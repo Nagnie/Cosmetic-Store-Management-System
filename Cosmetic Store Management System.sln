@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management System", "Cosmetic Store Management System\Cosmetic Store Management System.csproj", "{261A0A0F-D76B-4A9A-A590-1231349398AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management System.Core", "Cosmetic Store Management System.Core\Cosmetic Store Management System.Core.csproj", "{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|arm64 = Debug|arm64
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|arm64 = Release|arm64
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|Any CPU.Build.0 = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|arm64.ActiveCfg = Debug|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|arm64.Build.0 = Debug|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|arm64.Deploy.0 = Debug|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x64.ActiveCfg = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x64.Build.0 = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x64.Deploy.0 = Debug|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x86.ActiveCfg = Debug|x86
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x86.Build.0 = Debug|x86
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Debug|x86.Deploy.0 = Debug|x86
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|Any CPU.ActiveCfg = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|Any CPU.Build.0 = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|Any CPU.Deploy.0 = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|arm64.ActiveCfg = Release|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|arm64.Build.0 = Release|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|arm64.Deploy.0 = Release|arm64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x64.ActiveCfg = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x64.Build.0 = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x64.Deploy.0 = Release|x64
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x86.ActiveCfg = Release|x86
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x86.Build.0 = Release|x86
+		{261A0A0F-D76B-4A9A-A590-1231349398AE}.Release|x86.Deploy.0 = Release|x86
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|arm64.ActiveCfg = Debug|arm64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|arm64.Build.0 = Debug|arm64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|x64.ActiveCfg = Debug|x64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|x64.Build.0 = Debug|x64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|x86.ActiveCfg = Debug|x86
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Debug|x86.Build.0 = Debug|x86
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|arm64.ActiveCfg = Release|arm64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|arm64.Build.0 = Release|arm64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x64.ActiveCfg = Release|x64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x64.Build.0 = Release|x64
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.ActiveCfg = Release|x86
+		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {930D0C52-6DE9-46CE-B7C8-CCB1DB32DA02}
+	EndGlobalSection
+EndGlobal

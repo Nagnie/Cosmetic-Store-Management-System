@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "Cosmetic Store Management System (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "Cosmetic Store Management System (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
