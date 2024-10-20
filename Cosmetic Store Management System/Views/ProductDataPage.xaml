@@ -1,5 +1,5 @@
-﻿<Page
-    x:Class="Cosmetic_Store_Management_System.Views.OverviewsPage"
+<Page
+    x:Class="Cosmetic_Store_Management_System.Views.ProductDataPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -32,16 +32,10 @@
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <!-- Phần thông tin Analytics (để code sau) -->
-                <Border Background="{ThemeResource SystemControlBackgroundBaseLowBrush}" Padding="70">
-                    <TextBlock Text="Analytics Information" Style="{ThemeResource HeaderTextBlockStyle}" />
-                    <!-- Bạn sẽ thêm thông tin và các chỉ số phân tích tại đây -->
-                </Border>
-
-                <TextBlock Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,30,0,0"/>
+                <TextBlock Text="Products" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,30,0,0"/>
 
                 <!-- Phần danh sách các sản phẩm -->
-                <StackPanel Margin="0,10,0,0">
+                <StackPanel>
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" Background="LightGray">
                         <Grid.ColumnDefinitions>
@@ -60,42 +54,10 @@
                     <ListView
                         x:Uid="ProductList"
                         x:Name="ProductListView"
-                        ItemsSource="{x:Bind ViewModel.LimitedSampleItems}"
+                        ItemsSource="{x:Bind ViewModel.SampleItems}"
                         ItemTemplate="{StaticResource ProductItemTemplate}" />
                 </StackPanel>
 
-                <!-- Nút More để dẫn đến trang Product Page -->
-                <Button 
-                    Content="More"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Margin="0,10,0,0"
-                    FontSize="16"
-                    Background="Transparent"
-                    MinHeight="30"
-                    MinWidth="70"
-                    Click="MoreButton_Click">
-                    
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border                             
-                                            BorderBrush="Gray"
-                                            BorderThickness="2"
-                                            CornerRadius="5">
-                                            <!-- Đặt CornerRadius để bo tròn -->
-                                            <ContentPresenter 
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
-                </Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>
