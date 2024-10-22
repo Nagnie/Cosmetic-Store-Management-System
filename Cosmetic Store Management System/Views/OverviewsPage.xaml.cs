@@ -19,6 +19,12 @@ public sealed partial class OverviewsPage : Page
         InitializeComponent();
     }
 
+    private void MoreAnalytics_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        // Điều hướng đến trang AnalyticsPage
+        Frame.Navigate(typeof(AnalyticsPage));
+    }
+
     private void MoreButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         // Điều hướng đến trang ProductPage
