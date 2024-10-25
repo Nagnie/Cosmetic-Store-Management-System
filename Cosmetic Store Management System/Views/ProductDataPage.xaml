@@ -7,7 +7,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
@@ -22,7 +22,9 @@
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind ProductName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent">
+                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Button>
                 <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
@@ -37,7 +39,7 @@
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel>
                     <!-- Tiêu đề cột -->
-                    <Grid Height="40" Background="LightGray">
+                    <Grid Height="40" Background="LightGray" Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="200" />

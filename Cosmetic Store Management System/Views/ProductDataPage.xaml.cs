@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -27,6 +28,17 @@ public sealed partial class ProductDataPage : Page
     {
         get;
     }
+    private void OnProductClick(object sender, RoutedEventArgs e)
+    {
+        // Retrieve the selected product by accessing the DataContext of the button's parent item
+        var button = sender as Button;
+        if (button?.DataContext is SampleProduct selectedProduct)
+        {
+            // Navigate to ProductPage and pass the selected product
+            Frame.Navigate(typeof(ProductPage), selectedProduct);
+        }
+    }
+
     public ProductDataPage()
     {
         ViewModel = App.GetService<ProductDataViewModel>();

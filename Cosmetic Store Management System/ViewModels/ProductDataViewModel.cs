@@ -46,7 +46,10 @@ public partial class ProductDataViewModel : ObservableRecipient, INavigationAwar
 
         foreach (var item in data)
         {
-            SampleItems.Add(item);
+            if (item is SampleProduct product)
+            {
+                SampleItems.Add(product);
+            }
         }
     }
 

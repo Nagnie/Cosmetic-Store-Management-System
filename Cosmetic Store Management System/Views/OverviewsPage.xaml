@@ -22,7 +22,9 @@
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind ProductName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent">
+                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Button>
                 <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
@@ -32,6 +34,7 @@
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
+                <!-- header -->
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>

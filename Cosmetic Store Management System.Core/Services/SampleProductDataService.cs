@@ -26,14 +26,24 @@ public class SampleProductDataService : ISampleProductDataService
                 ProductID = "001",
                 ProductName = "Son kem Romand",
                 StockStatus = "In stock",
-                Price = 200000
+                Price = 200000,
+                Description = "Son kem Romand",
+                Quantity = 10,
+                Category = "Son",
+                Manufacturer = "Romand",
+                ImagePath = "Assets/image01.jpg"
             },
             new SampleProduct()
             {
                 ProductID = "002",
                 ProductName = "Son tint Romand",
                 StockStatus = "In stock",
-                Price = 200000
+                Price = 200000,
+                Description = "Son tint Romand",
+                Quantity = 10,
+                Category = "Son",
+                Manufacturer = "Romand",
+                ImagePath = "Assets/image01.jpg"
             },
             new SampleProduct()
             {
