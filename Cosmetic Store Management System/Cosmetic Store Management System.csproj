@@ -15,7 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <Content Remove="Assets\images01.jpg" />
+    <Content Remove="Assets\image01.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\ProductDataPage.xaml" />
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\images01.jpg">
+    <None Update="Assets\image01.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
