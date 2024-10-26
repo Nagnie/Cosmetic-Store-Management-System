@@ -42,12 +42,12 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
                             <TextBlock Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                             <FontIcon Glyph="&#xE721;" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <TextBlock x:Name="txtTime" Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
                             <FontIcon Glyph="&#xE716;" />
                         </StackPanel>
                     </Grid>

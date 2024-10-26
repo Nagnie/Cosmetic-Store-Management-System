@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -14,6 +15,8 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Cosmetic_Store_Management_System.Views;
 
@@ -28,6 +31,7 @@ public sealed partial class OverviewsPage : Page
     {
         ViewModel = App.GetService<ProductDataViewModel>();
         InitializeComponent();
+        _= UpdateDateTimeAsync();
     }
 
     private void MoreAnalytics_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -50,6 +54,30 @@ public sealed partial class OverviewsPage : Page
         {
             // Navigate to ProductPage and pass the selected product
             Frame.Navigate(typeof(ProductPage), selectedProduct);
+        }
+    }
+    private async Task UpdateDateTimeAsync()
+    {
+        while (true)
+        {
+            txtTime.Text = DateTime.Now.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture);
+
+            // Set greeting based on the current hour
+            int hour = DateTime.Now.Hour;
+            if (hour < 12)
+            {
+                txtGreeting.Text = "Good Morning!";
+            }
+            else if (hour < 18)
+            {
+                txtGreeting.Text = "Good Afternoon!";
+            }
+            else
+            {
+                txtGreeting.Text = "Good Evening!";
+            }
+
+            await Task.Delay(1000); // Update every second
         }
     }
 }
