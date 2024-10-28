@@ -48,7 +48,7 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Product" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.ProductViewModel">
+                <NavigationViewItem x:Uid="Shell_Product" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.ProductDataViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xea37;"/>
                     </NavigationViewItem.Icon>

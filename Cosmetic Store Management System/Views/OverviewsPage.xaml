@@ -4,9 +4,176 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
+    xmlns:views="using:Cosmetic_Store_Management_System.Views"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <!-- Template cho các sản phẩm -->
+        <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:SampleProduct">
+            <Grid Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="500" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent" Margin="0, 0, 20, 0">
+                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Button>
+                <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid x:Name="ContentArea">
-        
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <!-- header -->
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="750" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+                            <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                            <FontIcon Glyph="&#xE721;" Margin="0, 0, 15, 0"/>
+                            <TextBlock x:Name="txtTime" Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <FontIcon Glyph="&#xE716;" />
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+
+                <!-- Analytics Overview Section -->
+                <TextBlock Text="Analytics Overview" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
+                <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Today's order -->
+                    <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                            <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                                <TextBlock Text="Today's order" FontSize="16" />
+                                <TextBlock Text="028" FontSize="32" FontWeight="Bold" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Last week's order -->
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                            <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                                <TextBlock Text="Last week's order" FontSize="16" />
+                                <TextBlock Text="584" FontSize="32" FontWeight="Bold" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Stock left -->
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                            <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                                <TextBlock Text="Stock left" FontSize="16" />
+                                <TextBlock Text="412" FontSize="32" FontWeight="Bold" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Running out item -->
+                    <StackPanel Grid.Column="3" HorizontalAlignment="Center">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                            <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                                <TextBlock Text="Running out item" FontSize="16" />
+                                <TextBlock Text="002" FontSize="32" FontWeight="Bold" />
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Button Section -->
+                    <StackPanel Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button 
+                            Content="See more" 
+                            Width="100" 
+                            Margin="20,0,0,0" 
+                            BorderThickness="2" 
+                            Click="MoreAnalytics_Click"/>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,30,0,0"/>
+                <!-- Phần danh sách các sản phẩm -->
+                <StackPanel Margin="0,10,0,0">
+                    <!-- Tiêu đề cột -->
+                    <Grid Height="40" Background="LightGray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="500" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
+                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
+                        <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
+                    </Grid>
+
+                    <!-- Danh sách sản phẩm -->
+                    <ListView
+                        x:Uid="ProductList"
+                        x:Name="ProductListView"
+                        ItemsSource="{x:Bind ViewModel.LimitedSampleItems}"
+                        ItemTemplate="{StaticResource ProductItemTemplate}" />
+                </StackPanel>
+
+                <!-- Nút More để dẫn đến trang Product Page -->
+                <Button 
+                    Content="More"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,10,0,0"
+                    FontSize="16"
+                    Background="Transparent"
+                    MinHeight="30"
+                    MinWidth="70"
+                    Click="MoreButton_Click">
+                    
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border                             
+                                            BorderBrush="Gray"
+                                            BorderThickness="2"
+                                            CornerRadius="5">
+                                            <!-- Đặt CornerRadius để bo tròn -->
+                                            <ContentPresenter 
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

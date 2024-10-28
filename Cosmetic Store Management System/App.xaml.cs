@@ -67,6 +67,7 @@ public partial class App : Application
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
+            services.AddSingleton<ISampleProductDataService, SampleProductDataService>();
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
@@ -76,10 +77,13 @@ public partial class App : Application
             services.AddTransient<AnalyticsPage>();
             services.AddTransient<ProductViewModel>();
             services.AddTransient<ProductPage>();
+            services.AddTransient<ProductDataPage>();
             services.AddTransient<OverviewsViewModel>();
             services.AddTransient<OverviewsPage>();
             services.AddTransient<ShellPage>();
             services.AddTransient<ShellViewModel>();
+            services.AddTransient<ProductDataViewModel>();
+            services.AddTransient<AddNewPage>();
 
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));

@@ -1,0 +1,171 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Cosmetic_Store_Management_System.Core.Helpers;
+using Cosmetic_Store_Management_System.Core.Models;
+using Npgsql;
+
+namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
+public class SQLCosmeticDAO : ICosmeticDAO
+{
+    public async void AddCosmetic(Cosmetic cosmetic)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+                INSERT INTO COSMETIC (cosmetic_name, category_id, manufacturer_id, quantity, description, price, image)
+                VALUES (@name, @categoryID, @manufacturerID, @quantity, @description, @price, @image)
+            """;
+        command.Parameters.AddWithValue("name", cosmetic.Name);
+        command.Parameters.AddWithValue("categoryID", cosmetic.Category.ID);
+        command.Parameters.AddWithValue("manufacturerID", cosmetic.Manufacturer.ID);
+        command.Parameters.AddWithValue("quantity", cosmetic.Quantity);
+        command.Parameters.AddWithValue("description", cosmetic.Description);
+        command.Parameters.AddWithValue("price", cosmetic.Price);
+        command.Parameters.AddWithValue("image", cosmetic.Image);
+
+        await command.ExecuteNonQueryAsync();
+        connection.Close();
+
+        Console.WriteLine("Inserted successfully!");
+    }
+    public async void DeleteCosmetic(int ID)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+                DELETE FROM COSMETIC 
+                WHERE cosmetic_id = {ID}
+            """;
+
+        await command.ExecuteNonQueryAsync();
+
+        connection.Close();
+    }
+    public async Task<Cosmetic> GetCosmetic(int ID)
+    {
+        Cosmetic cosmetic = null;
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT * 
+            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
+                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+            WHERE cosmetic_id = {ID}
+            """;
+
+        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync()) {
+            cosmetic = new Cosmetic()
+            {
+                ID = (int)reader["cosmetic_id"],
+                Name = (string)reader["cosmetic_name"],
+                Description = (string)reader["description"],
+                Category = new Category() {
+                    ID = (int)reader["category_id"],
+                    Name = (string)reader["category_name"],
+                    Description = (string)reader["description"],
+                },
+                Manufacturer = new Manufacturer() {
+                    ID = (int)reader["manufacturer_id"],
+                    Name = (string)reader["manufacturer_name"],
+                    Description = (string)reader["description"],
+                },
+                Price = (int)reader["price"],
+                Quantity = (int)reader["quantity"],
+                Image = (string)reader["image"]
+            };
+        }
+
+        connection.Close();
+        return cosmetic;
+    }
+    public async Task<List<Cosmetic>> GetCosmetics()
+    {
+        List<Cosmetic> cosmetics = new List<Cosmetic>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+           SELECT * 
+           FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
+                             JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+        """;
+
+        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync())
+        {
+            Cosmetic cosmetic = new Cosmetic()
+            {
+                ID = (int)reader["cosmetic_id"],
+                Name = (string)reader["cosmetic_name"],
+                Description = (string)reader["description"],
+                Category = new Category()
+                {
+                    ID = (int)reader["category_id"],
+                    Name = (string)reader["category_name"],
+                    Description = (string)reader["description"],
+                },
+                Manufacturer = new Manufacturer()
+                {
+                    ID = (int)reader["manufacturer_id"],
+                    Name = (string)reader["manufacturer_name"],
+                    Description = (string)reader["description"],
+                },
+                Price = (int)reader["price"],
+                Quantity = (int)reader["quantity"],
+                Image = (string)reader["image"]
+            };
+            
+            cosmetics.Add(cosmetic);
+        }
+
+        connection.Close();
+        return cosmetics;
+    }
+    public async void UpdateCosmetic(Cosmetic cosmetic)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+                UPDATE COSMETIC
+                SET cosmetic_name = @name, category_id = @categoryID, manufacturer_id = @manufacturer_id,
+                    quantity = @quantity, description = @description, price = @price, image = @image
+                WHERE cosmetic_id = @id
+            """;
+
+        command.Parameters.AddWithValue("id", cosmetic.ID);
+        command.Parameters.AddWithValue("name", cosmetic.Name);
+        command.Parameters.AddWithValue("categoryID", cosmetic.Category.ID);
+        command.Parameters.AddWithValue("manufacturerID", cosmetic.Manufacturer.ID);
+        command.Parameters.AddWithValue("quantity", cosmetic.Quantity);
+        command.Parameters.AddWithValue("description", cosmetic.Description);
+        command.Parameters.AddWithValue("image", cosmetic.Image);
+        command.Parameters.AddWithValue("price", cosmetic.Price);
+
+        await command.ExecuteNonQueryAsync();
+
+        connection.Close();
+    }
+}

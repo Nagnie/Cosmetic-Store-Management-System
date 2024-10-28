@@ -15,9 +15,11 @@ public class PageService : IPageService
     public PageService()
     {
         Configure<OverviewsViewModel, OverviewsPage>();
-        Configure<ProductViewModel, ProductPage>();
+        Configure<ProductDataViewModel, ProductDataPage>();
         Configure<AnalyticsViewModel, AnalyticsPage>();
         Configure<SettingsViewModel, SettingsPage>();
+        Configure<ProductViewModel, ProductPage>();
+        Configure<ShellViewModel, ShellPage>();
     }
 
     public Type GetPageType(string key)
