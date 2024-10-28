@@ -15,7 +15,7 @@ public class PageService : IPageService
     public PageService()
     {
         Configure<OverviewsViewModel, OverviewsPage>();
-        Configure<ProductViewModel, ProductDataPage>();
+        Configure<ProductDataViewModel, ProductDataPage>();
         Configure<AnalyticsViewModel, AnalyticsPage>();
         Configure<SettingsViewModel, SettingsPage>();
     }

@@ -15,6 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Views\AddNewPage.xaml" />
     <None Remove="Views\ProductDataPage.xaml" />
   </ItemGroup>
 
@@ -39,6 +40,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\AddNewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ProductDataPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

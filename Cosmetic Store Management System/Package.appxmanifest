@@ -63,6 +63,7 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
+    <uap:Capability Name="picturesLibrary"/>
   </Capabilities>
 
   <genTemplate:Metadata>

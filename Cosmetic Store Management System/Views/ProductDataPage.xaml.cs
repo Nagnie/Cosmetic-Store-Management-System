@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,5 +31,11 @@ public sealed partial class ProductDataPage : Page
     {
         ViewModel = App.GetService<ProductDataViewModel>();
         this.InitializeComponent();
+    }
+
+    private void AddNewButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        // Điều hướng đến trang ProductPage
+        Frame.Navigate(typeof(AddNewPage));
     }
 }
