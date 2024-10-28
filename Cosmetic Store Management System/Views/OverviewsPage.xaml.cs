@@ -1,8 +1,22 @@
-﻿using CommunityToolkit.WinUI.UI.Controls;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
-
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Navigation;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Cosmetic_Store_Management_System.Views;
 
@@ -17,6 +31,7 @@ public sealed partial class OverviewsPage : Page
     {
         ViewModel = App.GetService<ProductDataViewModel>();
         InitializeComponent();
+        _= UpdateDateTimeAsync();
     }
 
     private void MoreAnalytics_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -27,7 +42,42 @@ public sealed partial class OverviewsPage : Page
 
     private void MoreButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        // Điều hướng đến trang ProductPage
+        // Điều hướng đến trang ProductDataPage
         Frame.Navigate(typeof(ProductDataPage));
+    }
+
+    private void OnProductClick(object sender, RoutedEventArgs e)
+    {
+        // Retrieve the selected product by accessing the DataContext of the button's parent item
+        var button = sender as Button;
+        if (button?.DataContext is SampleProduct selectedProduct)
+        {
+            // Navigate to ProductPage and pass the selected product
+            Frame.Navigate(typeof(ProductPage), selectedProduct);
+        }
+    }
+    private async Task UpdateDateTimeAsync()
+    {
+        while (true)
+        {
+            txtTime.Text = DateTime.Now.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture);
+
+            // Set greeting based on the current hour
+            int hour = DateTime.Now.Hour;
+            if (hour < 12)
+            {
+                txtGreeting.Text = "Good Morning!";
+            }
+            else if (hour < 18)
+            {
+                txtGreeting.Text = "Good Afternoon!";
+            }
+            else
+            {
+                txtGreeting.Text = "Good Evening!";
+            }
+
+            await Task.Delay(1000); // Update every second
+        }
     }
 }

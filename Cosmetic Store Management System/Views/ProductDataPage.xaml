@@ -7,7 +7,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
@@ -17,12 +17,14 @@
             <Grid Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="500" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind ProductName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent" Margin="0, 0, 20, 0">
+                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Button>
                 <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
@@ -73,16 +75,16 @@
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel>
                     <!-- Tiêu đề cột -->
-                    <Grid Height="40" Background="LightGray">
+                    <Grid Height="40" Background="LightGray" Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="500" />
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
-                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
-                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left"/>
+                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
+                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                         <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                     </Grid>
 

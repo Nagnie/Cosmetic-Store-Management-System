@@ -10,91 +10,66 @@
     xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
+    
     <Page.Resources>
-        <DataTemplate x:Key="ItemTemplate" x:DataType="models:SampleOrder">
-            <Grid Height="60">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <FontIcon
-                    Grid.Column="0"
-                    VerticalAlignment="Center"
-                    FontSize="32"
-                    Glyph="{x:Bind Symbol}"
-                    AutomationProperties.Name="{x:Bind SymbolName}" />
-                <StackPanel
-                    Grid.Column="1"
-                    Margin="{StaticResource SmallLeftMargin}"
-                    VerticalAlignment="Center">
-                    <TextBlock Text="{x:Bind Company}" Style="{StaticResource ListTitleStyle}" />
-                    <TextBlock Text="{x:Bind Status}" Style="{StaticResource ListSubTitleStyle}" />
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Key="DetailsTemplate">
-            <Grid>
-                <views:ProductDetailControl ListDetailsMenuItem="{Binding}" />
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Key="NoSelectionContentTemplate">
-            <Grid>
-                <TextBlock
-                    x:Uid="Product_NoSelection"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    TextAlignment="Center"
-                    Style="{ThemeResource SubtitleTextBlockStyle}" />
-            </Grid>
-        </DataTemplate>
-
-        <DataTemplate x:Key="ListHeaderTemplate">
-            <Grid Height="40">
-                <TextBlock
-                    VerticalAlignment="Center"
-                    Style="{StaticResource ListTitleStyle}"
-                    Text="{Binding}" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Key="MinimalListHeaderTemplate">
-            <Grid Height="40">
-                <TextBlock
-                    Margin="96,0,0,0"
-                    VerticalAlignment="Center"
-                    Style="{StaticResource ListTitleStyle}"
-                    Text="{Binding}" />
-            </Grid>
-        </DataTemplate>
+        
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState>
-                    <VisualState.StateTriggers>
-                        <!--641 is the default CompactModeThresholdWidth in NavigationView -->
-                        <AdaptiveTrigger MinWindowWidth="641" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="ListDetailsViewControl.ListHeaderTemplate" Value="{StaticResource ListHeaderTemplate}" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <controls:ListDetailsView
-            x:Uid="Product"
-            x:Name="ListDetailsViewControl"
-            BackButtonBehavior="Manual"
-            Background="Transparent"
-            BorderBrush="Transparent"
-            DetailsTemplate="{StaticResource DetailsTemplate}"
-            ItemsSource="{x:Bind ViewModel.SampleItems}"
-            ItemTemplate="{StaticResource ItemTemplate}"
-            ListHeaderTemplate="{StaticResource MinimalListHeaderTemplate}"
-            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
-            ViewStateChanged="OnViewStateChanged"/>
+       
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Margin="0,80,0,0">
+
+            <!-- Product Image -->
+            <Border Height="350" Width="350" BorderBrush="lightcoral" BorderThickness="2" CornerRadius="10" Margin="0, 0, 0, 0">
+                <Image Source="{Binding ImagePath}" Height="350" Width="350" HorizontalAlignment="Left" />
+            </Border>
+            
+
+            <!-- Delete and Edit buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+                <Button Content="Delete" Width="100" Margin="10" BorderBrush="Red" Foreground="Red" FontWeight="SemiBold"/>
+                <Button Content="Edit" Width="100" Margin="10" BorderBrush="Navy" Foreground="Navy" FontWeight="SemiBold"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Right Column (Product details) -->
+        <StackPanel Grid.Column="1" Margin="0,70,0,0" HorizontalAlignment="Left">
+            <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
+                <Run Text="{Binding ProductName}"></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,15,0,0">
+                <Run Text="ID: " FontWeight="Bold" ></Run>
+                <Run Text="{Binding ProductID}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Category: " FontWeight="Bold" ></Run>
+                <Run Text="{Binding Category}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Brand Name: " FontWeight="Bold" ></Run>
+                <Run Text="{Binding Manufacturer}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Quantity: " FontWeight="Bold" />
+                <Run Text="{Binding Quantity}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
+                <Run Text="Description: " FontWeight="Bold" />
+                <Run Text="{Binding Description}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Price: " FontWeight="Bold" />
+                <Run Text="{Binding Price}" FontWeight="Normal" ></Run>
+            </TextBlock>
+            <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Status: " FontWeight="Bold" />
+                <Run Text="{Binding StockStatus}" FontWeight="Normal" ></Run>
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Page>

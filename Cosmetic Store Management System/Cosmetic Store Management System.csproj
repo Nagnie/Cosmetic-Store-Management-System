@@ -15,7 +15,9 @@
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Views\AddNewPage.xaml" />
+    <Content Remove="Assets\image01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Views\ProductDataPage.xaml" />
   </ItemGroup>
 
@@ -35,6 +37,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cosmetic Store Management System.Core\Cosmetic Store Management System.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\image01.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

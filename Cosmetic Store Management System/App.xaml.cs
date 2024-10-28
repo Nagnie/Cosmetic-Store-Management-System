@@ -85,7 +85,6 @@ public partial class App : Application
             services.AddTransient<ProductDataViewModel>();
             services.AddTransient<AddNewPage>();
 
-
             // Configuration
             services.Configure<LocalSettingsOptions>(context.Configuration.GetSection(nameof(LocalSettingsOptions)));
         }).

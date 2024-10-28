@@ -17,12 +17,14 @@
             <Grid Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="500" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind ProductName}" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent" Margin="0, 0, 20, 0">
+                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                </Button>
                 <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
@@ -32,6 +34,7 @@
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
+                <!-- header -->
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -39,12 +42,12 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
+                            <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
                             <TextBlock Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                             <FontIcon Glyph="&#xE721;" Margin="0, 0, 15, 0"/>
-                            <TextBlock Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
+                            <TextBlock x:Name="txtTime" Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0"/>
                             <FontIcon Glyph="&#xE716;" />
                         </StackPanel>
                     </Grid>
@@ -120,13 +123,13 @@
                     <Grid Height="40" Background="LightGray">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="500" />
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
-                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
-                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left"/>
+                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
+                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                         <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                     </Grid>
 

@@ -1,23 +1,39 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
 using Cosmetic_Store_Management_System.Contracts.ViewModels;
 using Cosmetic_Store_Management_System.Core.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Models;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 
 public partial class ProductViewModel : ObservableRecipient, INavigationAware
 {
-    private readonly ISampleDataService _sampleDataService;
+    private readonly ISampleProductDataService _sampleDataService;
 
     [ObservableProperty]
-    private SampleOrder? selected;
+    private SampleProduct? selected;
 
-    public ObservableCollection<SampleOrder> SampleItems { get; private set; } = new ObservableCollection<SampleOrder>();
+    public ObservableCollection<SampleProduct> SampleItems { 
+        get; private set; 
+    } = new ObservableCollection<SampleProduct>();
 
-    public ProductViewModel(ISampleDataService sampleDataService)
+    public ObservableCollection<SampleProduct> LimitedSampleItems
+    {
+        get
+        {
+            return new ObservableCollection<SampleProduct>(SampleItems.Take(7));
+        }
+    }
+
+    public ProductViewModel(ISampleProductDataService sampleDataService)
     {
         _sampleDataService = sampleDataService;
     }
@@ -31,7 +47,10 @@ public partial class ProductViewModel : ObservableRecipient, INavigationAware
 
         foreach (var item in data)
         {
-            SampleItems.Add(item);
+            if (item is SampleProduct product)
+            {
+                SampleItems.Add(product);
+            }
         }
     }
 
