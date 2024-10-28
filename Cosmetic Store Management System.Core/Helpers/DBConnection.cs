@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Npgsql;
+
+namespace Cosmetic_Store_Management_System.Core.Helpers;
+public class DBConnection
+{
+    private static NpgsqlConnection connection = null;
+
+    private DBConnection() {}
+
+    public static NpgsqlConnection GetConnection()
+    {
+        if (connection == null)
+        {
+            var connectionString = """
+                Server=localhost;
+                Port=5432;
+                User Id=postgres;
+                Password=Huyen@123;
+                Database=cms; 
+            """;
+            connection = new NpgsqlConnection(connectionString);
+        }
+
+        return connection;
+    }
+}
