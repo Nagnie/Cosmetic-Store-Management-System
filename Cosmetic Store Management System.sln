@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management System.Core", "Cosmetic Store Management System.Core\Cosmetic Store Management System.Core.csproj", "{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMSTests", "CMSTests\CMSTests.csproj", "{16B291B8-F84F-4848-9FDF-AF85EE941A13}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,22 +59,6 @@ Global
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x64.Build.0 = Release|x64
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.ActiveCfg = Release|x86
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.Build.0 = Release|x86
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|arm64.ActiveCfg = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|arm64.Build.0 = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|x64.Build.0 = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Debug|x86.Build.0 = Debug|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|arm64.ActiveCfg = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|arm64.Build.0 = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|x64.ActiveCfg = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|x64.Build.0 = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|x86.ActiveCfg = Release|Any CPU
-		{16B291B8-F84F-4848-9FDF-AF85EE941A13}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
