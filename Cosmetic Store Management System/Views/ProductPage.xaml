@@ -48,33 +48,40 @@
             <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
                 <Run Text="{x:Bind ViewModel.Cosmetic.Name, Mode=OneWay}"></Run>
             </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,15,0,0">
                 <Run Text="ID: " FontWeight="Bold" ></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Category: " FontWeight="Bold" ></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Brand Name: " FontWeight="Bold" ></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Quantity: " FontWeight="Bold" />
                 <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
-            <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
-                <Run Text="Description: " FontWeight="Bold" />
-                <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Price: " FontWeight="Bold" />
                 <Run Text="{x:Bind ViewModel.Cosmetic.Price, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
+            
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Status: " FontWeight="Bold" />
                 <Run Text="In stock" FontWeight="Normal" ></Run>
+            </TextBlock>
+            
+            <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
+                <Run Text="Description: " FontWeight="Bold" />
+                <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
         </StackPanel>
     </Grid>
