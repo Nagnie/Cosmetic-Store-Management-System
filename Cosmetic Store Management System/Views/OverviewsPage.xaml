@@ -120,7 +120,7 @@
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel Margin="0,10,0,0">
                     <!-- Tiêu đề cột -->
-                    <Grid Height="40" Background="LightGray">
+                    <Grid Height="40" Background="{StaticResource SmokeFillColorDefaultBrush}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="500" />

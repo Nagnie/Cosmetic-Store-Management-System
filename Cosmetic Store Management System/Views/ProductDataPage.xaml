@@ -20,19 +20,29 @@
                     <ColumnDefinition Width="500" />
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ID, Mode=OneWay}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent" Margin="0, 0, 20, 0">
+                <Button Grid.Column="1" 
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" 
+                        Click="OnProductClick" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent" 
+                        Margin="0, 0, 20, 0">
                     <TextBlock Text="{x:Bind Name, Mode=OneWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
                 </Button>
-                <TextBlock Text="In stock" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="{x:Bind Quantity}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Text="{x:Bind Price, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind Category.Name, Mode=OneWay}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind Manufacturer.Name, Mode=OneWay}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,30,0,0">
                     <TextBlock Text="Products" FontSize="24" FontWeight="Bold" HorizontalTextAlignment="Left" />
@@ -75,17 +85,23 @@
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel>
                     <!-- Tiêu đề cột -->
-                    <Grid Height="40" Background="LightGray" Margin="0, 20, 0, 0">
+                    <Grid Height="40" 
+                          Background="{StaticResource SmokeFillColorDefaultBrush}" 
+                          Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="500" />
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
                         <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
-                        <TextBlock Text="Stock Status" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
+                        <TextBlock Text="Quantity" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                         <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
+                        <TextBlock Text="Category" Grid.Column="4" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
+                        <TextBlock Text="Manufacturer" Grid.Column="5" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="15,0,0,0"/>
                     </Grid>
 
                     <!-- Danh sách sản phẩm -->
