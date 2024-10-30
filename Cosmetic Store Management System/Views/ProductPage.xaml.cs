@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using CommunityToolkit.WinUI.UI;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -19,11 +22,6 @@ namespace Cosmetic_Store_Management_System.Views;
 
 public sealed partial class ProductPage : Page
 {
-    public SampleProduct SelectedProduct
-    {
-        get; set;
-    }
-
     public ProductViewModel ViewModel
     {
         get;
@@ -31,19 +29,23 @@ public sealed partial class ProductPage : Page
 
     public ProductPage()
     {
-        ViewModel = App.GetService<ProductViewModel>();
+        ViewModel = new ProductViewModel();
         this.InitializeComponent();
-        this.DataContext = ViewModel;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
 
-        if (e.Parameter is SampleProduct product)
+        if (e.Parameter is Cosmetic product)
         {
-            SelectedProduct = product;
-            DataContext = SelectedProduct; // Set DataContext for data binding
+            ViewModel.Cosmetic = product;
         }
+    }
+
+    private void editButton_Click(object sender, RoutedEventArgs e)
+    {
+        Debug.WriteLine(ViewModel.Cosmetic.Name);
+        this.Frame.Navigate(typeof(UpdateCosmeticPage), ViewModel.Cosmetic);
     }
 }

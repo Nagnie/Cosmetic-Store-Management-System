@@ -32,16 +32,16 @@ public sealed partial class ProductDataPage : Page
     {
         // Retrieve the selected product by accessing the DataContext of the button's parent item
         var button = sender as Button;
-        if (button?.DataContext is SampleProduct selectedProduct)
+        if (button?.DataContext is Cosmetic cosmetic)
         {
             // Navigate to ProductPage and pass the selected product
-            Frame.Navigate(typeof(ProductPage), selectedProduct);
+            this.Frame.Navigate(typeof(ProductPage), cosmetic);
         }
     }
 
     public ProductDataPage()
     {
-        ViewModel = App.GetService<ProductDataViewModel>();
+        ViewModel = new ProductDataViewModel();
         this.InitializeComponent();
     }
 

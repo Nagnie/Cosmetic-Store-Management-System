@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <!-- Template cho các sản phẩm -->
-        <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:SampleProduct">
+        <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
@@ -21,12 +21,12 @@
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind ProductID}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind ID, Mode=OneWay}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="OnProductClick" Background="Transparent" BorderBrush="Transparent" Margin="0, 0, 20, 0">
-                    <TextBlock Text="{x:Bind ProductName}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
                 </Button>
-                <TextBlock Text="{x:Bind StockStatus}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="{x:Bind Price}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="In stock" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="{x:Bind Price, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -92,7 +92,7 @@
                     <ListView
                         x:Uid="ProductList"
                         x:Name="ProductListView"
-                        ItemsSource="{x:Bind ViewModel.SampleItems}"
+                        ItemsSource="{x:Bind ViewModel.Cosmetics, Mode=OneWay}"
                         ItemTemplate="{StaticResource ProductItemTemplate}" />
                 </StackPanel>
 
