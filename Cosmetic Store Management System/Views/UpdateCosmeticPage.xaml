@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Cosmetic_Store_Management_System.Views.UpdateCosmeticPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cosmetic_Store_Management_System.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="460"/>
+                </Grid.ColumnDefinitions>
+                <!--ID, name, category_id, manufacturer_id, quantity, description, image-->
+
+                <TextBlock Text="ID"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="id"
+                         Text="{x:Bind ViewModel.Cosmetic.ID, Mode=TwoWay}"
+                         Grid.Row="0"
+                         Grid.Column="1"
+                         IsEnabled="False"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Name"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="name"
+                         Text="{x:Bind ViewModel.Cosmetic.Name, Mode=TwoWay}"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"
+                         TextWrapping="Wrap"/>
+
+                <TextBlock Text="Category"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="category"
+                         Text="{x:Bind ViewModel.Cosmetic.Category.ID, Mode=TwoWay}"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Manufacturer"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="manufacturer"
+                         Text="{x:Bind ViewModel.Cosmetic.Manufacturer.ID, Mode=TwoWay}"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Quantity"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="quantity"
+                         Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=TwoWay}"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Price"
+                           Grid.Row="5"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="price"
+                         Text="{x:Bind ViewModel.Cosmetic.Price, Mode=TwoWay}"
+                         Grid.Row="5"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Image"
+                           Grid.Row="6"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="image"
+                         Text="{x:Bind ViewModel.Cosmetic.Image, Mode=TwoWay}"
+                         Grid.Row="6"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"/>
+
+                <TextBlock Text="Description"
+                           Grid.Row="7"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10"/>
+                <TextBox Name="description"
+                         Text="{x:Bind ViewModel.Cosmetic.Description, Mode=TwoWay}"
+                         Grid.Row="7"
+                         Grid.Column="1"
+                         Margin="0, 0, 0, 10"
+                         TextWrapping="Wrap"
+                         Height="160"/>
+
+            </Grid>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    Margin="120, 20, 0, 0">
+            <Button Content="Update"
+                    Click="updateButton_Click"
+                    Margin="0, 0, 20, 0"
+                    Width="80"/>
+
+            <Button Content="Cancel"
+                    Click="cancelButton_Click"
+                    Width="80"/>
+        </StackPanel>
+    </StackPanel>
+</Page>

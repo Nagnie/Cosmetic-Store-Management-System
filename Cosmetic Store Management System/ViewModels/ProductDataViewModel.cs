@@ -11,54 +11,24 @@ using Cosmetic_Store_Management_System.Contracts.ViewModels;
 using Cosmetic_Store_Management_System.Core.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Models;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
-public partial class ProductDataViewModel : ObservableRecipient, INavigationAware
+public partial class ProductDataViewModel : ObservableRecipient
 {
-    private readonly ISampleProductDataService _sampleDataService;
-
-    [ObservableProperty]
-    private SampleProduct? selected;
-
-    public ObservableCollection<SampleProduct> SampleItems
+    public ObservableCollection<Cosmetic> Cosmetics
     {
-        get; private set;
-    } = new ObservableCollection<SampleProduct>();
-
-    public ObservableCollection<SampleProduct> LimitedSampleItems
-    {
-        get
-        {
-            return new ObservableCollection<SampleProduct>(SampleItems.Take(7));
-        }
+        get; set;
     }
 
-    public ProductDataViewModel(ISampleProductDataService sampleDataService)
+    public ProductDataViewModel()
     {
-        _sampleDataService = sampleDataService;
+        LoadData();
     }
 
-    public async void OnNavigatedTo(object parameter)
+    public async void LoadData()
     {
-        SampleItems.Clear();
-
-        var data = await _sampleDataService.GetListDetailsDataAsync();
-
-        foreach (var item in data)
-        {
-            if (item is SampleProduct product)
-            {
-                SampleItems.Add(product);
-            }
-        }
-    }
-
-    public void OnNavigatedFrom()
-    {
-    }
-
-    public void EnsureItemSelected()
-    {
-        Selected ??= SampleItems.First();
+        ICosmeticDAO dao = new SQLCosmeticDAO();
+        Cosmetics = new ObservableCollection<Cosmetic>(await dao.GetCosmetics());
     }
 }

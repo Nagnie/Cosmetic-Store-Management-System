@@ -16,6 +16,29 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Remove="Assets\image01.jpg" />
+    <Content Remove="Assets\Product\001.jpg" />
+    <Content Remove="Assets\Product\002.jpg" />
+    <Content Remove="Assets\Product\003.jpg" />
+    <Content Remove="Assets\Product\004.jpg" />
+    <Content Remove="Assets\Product\005.jpg" />
+    <Content Remove="Assets\Product\006.jpg" />
+    <Content Remove="Assets\Product\007.jpg" />
+    <Content Remove="Assets\Product\008.jpg" />
+    <Content Remove="Assets\Product\009.jpg" />
+    <Content Remove="Assets\Product\010.jpg" />
+    <Content Remove="Assets\Product\011.jpg" />
+    <Content Remove="Assets\Product\012.jpg" />
+    <Content Remove="Assets\Product\013.jpg" />
+    <Content Remove="Assets\Product\014.jpg" />
+    <Content Remove="Assets\Product\015.jpg" />
+    <Content Remove="Assets\Product\016.jpg" />
+    <Content Remove="Assets\Product\017.jpg" />
+    <Content Remove="Assets\Product\018.jpg" />
+    <Content Remove="Assets\Product\019.jpg" />
+    <Content Remove="Assets\Product\020.jpg" />
+    <Content Remove="Assets\Product\021.jpg" />
+    <Content Remove="Assets\Product\022.jpg" />
+    <Content Remove="Assets\Product\023.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Views\ProductDataPage.xaml" />
@@ -37,6 +60,78 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cosmetic Store Management System.Core\Cosmetic Store Management System.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Product\001.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\002.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\003.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\004.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\005.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\006.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\007.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\008.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\009.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\010.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\011.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\012.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\013.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\014.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\015.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\016.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\017.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\018.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\019.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\020.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\021.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\022.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Product\023.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

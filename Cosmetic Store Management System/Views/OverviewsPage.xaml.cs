@@ -17,19 +17,21 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Threading.Tasks;
 using System.Windows;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
+using System.Collections.ObjectModel;
 
 namespace Cosmetic_Store_Management_System.Views;
 
 public sealed partial class OverviewsPage : Page
 {
-    public ProductDataViewModel ViewModel
+    public OverviewsViewModel ViewModel
     {
         get;
     }
 
     public OverviewsPage()
     {
-        ViewModel = App.GetService<ProductDataViewModel>();
+        ViewModel = new OverviewsViewModel();
         InitializeComponent();
         _= UpdateDateTimeAsync();
     }
@@ -50,10 +52,10 @@ public sealed partial class OverviewsPage : Page
     {
         // Retrieve the selected product by accessing the DataContext of the button's parent item
         var button = sender as Button;
-        if (button?.DataContext is SampleProduct selectedProduct)
+        if (button?.DataContext is Cosmetic selectedCosmetic)
         {
             // Navigate to ProductPage and pass the selected product
-            Frame.Navigate(typeof(ProductPage), selectedProduct);
+            Frame.Navigate(typeof(ProductPage), selectedCosmetic);
         }
     }
     private async Task UpdateDateTimeAsync()

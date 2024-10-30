@@ -107,6 +107,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
            SELECT * 
            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+           ORDER BY cos.cosmetic_id
         """;
 
         NpgsqlDataReader reader = await command.ExecuteReaderAsync();

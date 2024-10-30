@@ -11,55 +11,19 @@ using Cosmetic_Store_Management_System.Contracts.ViewModels;
 using Cosmetic_Store_Management_System.Core.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Models;
 using Microsoft.UI.Xaml.Controls.Primitives;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 
-public partial class ProductViewModel : ObservableRecipient, INavigationAware
+public partial class ProductViewModel : ObservableRecipient
 {
-    private readonly ISampleProductDataService _sampleDataService;
-
-    [ObservableProperty]
-    private SampleProduct? selected;
-
-    public ObservableCollection<SampleProduct> SampleItems { 
-        get; private set; 
-    } = new ObservableCollection<SampleProduct>();
-
-    public ObservableCollection<SampleProduct> LimitedSampleItems
+    public Cosmetic Cosmetic
     {
-        get
-        {
-            return new ObservableCollection<SampleProduct>(SampleItems.Take(7));
-        }
+        get; set;
     }
 
-    public ProductViewModel(ISampleProductDataService sampleDataService)
+    public ProductViewModel()
     {
-        _sampleDataService = sampleDataService;
-    }
-
-    public async void OnNavigatedTo(object parameter)
-    {
-        SampleItems.Clear();
-
-        // TODO: Replace with real data.
-        var data = await _sampleDataService.GetListDetailsDataAsync();
-
-        foreach (var item in data)
-        {
-            if (item is SampleProduct product)
-            {
-                SampleItems.Add(product);
-            }
-        }
-    }
-
-    public void OnNavigatedFrom()
-    {
-    }
-
-    public void EnsureItemSelected()
-    {
-        Selected ??= SampleItems.First();
+        
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -22,32 +24,32 @@ namespace Cosmetic_Store_Management_System.Views;
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class ProductDataPage : Page
+public sealed partial class UpdateCosmeticPage : Page
 {
-    public ProductDataViewModel ViewModel
+    public UpdateCosmeticViewModel ViewModel { get; set; }
+    public UpdateCosmeticPage()
     {
-        get;
+        this.InitializeComponent();
+        ViewModel = new UpdateCosmeticViewModel();
     }
-    private void OnProductClick(object sender, RoutedEventArgs e)
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        // Retrieve the selected product by accessing the DataContext of the button's parent item
-        var button = sender as Button;
-        if (button?.DataContext is Cosmetic cosmetic)
+        base.OnNavigatedTo(e);
+        if (e.Parameter is Cosmetic cosmetic)
         {
-            // Navigate to ProductPage and pass the selected product
-            this.Frame.Navigate(typeof(ProductPage), cosmetic);
+            ViewModel.Cosmetic = cosmetic;
         }
     }
 
-    public ProductDataPage()
+    private void cancelButton_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel = new ProductDataViewModel();
-        this.InitializeComponent();
+        Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
-
-    private void AddNewButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void updateButton_Click(object sender, RoutedEventArgs e)
     {
-        // Điều hướng đến trang ProductPage
-        Frame.Navigate(typeof(AddNewPage));
+        ICosmeticDAO dao = new SQLCosmeticDAO();
+        dao.UpdateCosmetic(ViewModel.Cosmetic);
+        Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
 }
