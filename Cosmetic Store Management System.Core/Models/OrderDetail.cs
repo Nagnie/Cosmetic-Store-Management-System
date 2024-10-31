@@ -27,5 +27,8 @@ public class OrderDetail
         get; set;
     }
 
-
+    public int SubTotal
+    {
+        get; set;
+    }
 }

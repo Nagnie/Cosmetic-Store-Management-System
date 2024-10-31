@@ -7,12 +7,12 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
     
     <Page.Resources>
-        
+        <local:LanguageConverter x:Key="languageConverter"/>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
