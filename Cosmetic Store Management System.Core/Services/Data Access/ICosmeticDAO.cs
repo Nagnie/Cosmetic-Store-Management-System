@@ -9,7 +9,7 @@ namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ICosmeticDAO
 {
     void AddCosmetic(Cosmetic cosmetic);
-    Task<List<Cosmetic>> GetCosmetics();
+    List<Cosmetic> GetCosmetics(List<int> categoryIDs, List<int> manufacturerIDs);
     Task<Cosmetic> GetCosmetic(int ID);
     void UpdateCosmetic(Cosmetic cosmetic);
     void DeleteCosmetic(int ID);
