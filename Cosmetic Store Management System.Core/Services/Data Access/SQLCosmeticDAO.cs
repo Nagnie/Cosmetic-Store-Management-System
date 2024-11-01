@@ -37,7 +37,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
 
         Console.WriteLine("Inserted successfully!");
     }
-    public async void DeleteCosmetic(int ID)
+    public void DeleteCosmetic(int ID)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -49,7 +49,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 WHERE cosmetic_id = {ID}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
