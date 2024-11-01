@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Cosmetic_Store_Management_System.Core.Models;
-using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -23,34 +21,25 @@ namespace Cosmetic_Store_Management_System.Views;
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class CategoryPage : Page
+public sealed partial class AddCategoryPage : Page
 {
-    public CategoryViewModel ViewModel
+    public AddCategoryViewModel ViewModel
     {
         get;
-    } = new CategoryViewModel();
-
-    public CategoryPage()
+    } = new AddCategoryViewModel();
+    public AddCategoryPage()
     {
         this.InitializeComponent();
     }
 
-    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    private void saveButton_Click(object sender, RoutedEventArgs e)
     {
-        var button = sender as Button;
-        var category = button?.DataContext as Category;
-        ViewModel.dao.DeleteCategory(category.ID);
-        ViewModel.LoadData();
+        ViewModel.dao.AddCategory(ViewModel.Category);
+        this.Frame.Navigate(typeof(CategoryPage));
     }
 
-    private void editButton_Click(object sender, RoutedEventArgs e)
+    private void cancelButton_Click(object sender, RoutedEventArgs e)
     {
-        var category = (sender as Button)?.DataContext as Category;
-        Frame.Navigate(typeof(EditCategoryPage), category);
-    }
-
-    private void addButton_Click(object sender, RoutedEventArgs e)
-    {
-        this.Frame.Navigate(typeof(AddCategoryPage));
+        this.Frame.Navigate(typeof(CategoryPage));
     }
 }
