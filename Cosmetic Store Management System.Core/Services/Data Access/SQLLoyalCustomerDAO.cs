@@ -11,7 +11,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
 {
-    public async void AddLoyalCustomer(LoyalCustomer loyalCustomer)
+    public void AddLoyalCustomer(LoyalCustomer loyalCustomer)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -23,10 +23,10 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 VALUES ('{loyalCustomer.Name}', '{loyalCustomer.Phone}')
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
-    public async void DeleteLoyalCustomer(string phone)
+    public void DeleteLoyalCustomer(string phone)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -38,10 +38,10 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 WHERE phone = '{phone}'
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
-    public async Task<LoyalCustomer> GetLoyalCustomer(string phone)
+    public LoyalCustomer GetLoyalCustomer(string phone)
     {
         LoyalCustomer customer = null;
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -54,8 +54,8 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 WHERE phone = '{phone}'
             """;
 
-        var reader = await command.ExecuteReaderAsync();
-        var result = await reader.ReadAsync();
+        var reader = command.ExecuteReader();
+        var result = reader.Read();
 
         if (result)
         {
@@ -71,7 +71,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         connection.Close();
         return customer;
     }
-    public async Task<List<LoyalCustomer>> GetLoyalCustomers()
+    public List<LoyalCustomer> GetLoyalCustomers()
     {
         List<LoyalCustomer> customers = new List<LoyalCustomer>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -83,9 +83,9 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 SELECT * FROM LOYAL_CUSTOMER
             """;
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             LoyalCustomer customer = new LoyalCustomer()
             {
@@ -100,7 +100,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
 
         return customers;
     }
-    public async void UpdateLoyalCustomer(LoyalCustomer loyalCustomer)
+    public void UpdateLoyalCustomer(LoyalCustomer loyalCustomer)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -117,7 +117,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         command.Parameters.AddWithValue("point", loyalCustomer.Point);
         command.Parameters.AddWithValue("phone", loyalCustomer.Phone);
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
 }

@@ -65,7 +65,7 @@ public class SQLCategoryDAO : ICategoryDAO
         return categories;
     }
 
-    public async Task<Category> GetCategory(int ID)
+    public Category GetCategory(int ID)
     {
         Category category = new Category();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -75,9 +75,9 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = $"SELECT * FROM CATEGORY WHERE category_id = {ID}";
 
-        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+        NpgsqlDataReader reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync()) {
+        while (reader.Read()) {
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
             category.Description = reader.IsDBNull(2) ? null : reader.GetString(2);

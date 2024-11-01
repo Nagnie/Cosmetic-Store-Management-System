@@ -10,7 +10,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLOrderDetailDAO : IOrderDetailDAO
 {
-    public async void AddOrderDetail(OrderDetail orderDetail)
+    public void AddOrderDetail(OrderDetail orderDetail)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -22,11 +22,11 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                 VALUES ({orderDetail.Cosmetic.ID}, {orderDetail.OrderID}, {orderDetail.Quantity})
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
 
-    public async void DeleteOrderDetail(int ID)
+    public void DeleteOrderDetail(int ID)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -38,10 +38,10 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                 WHERE order_detail_id = {ID}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
-    public async Task<OrderDetail> GetOrderDetail(int ID)
+    public OrderDetail GetOrderDetail(int ID)
     {
         OrderDetail orderDetail = null;
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -57,9 +57,9 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                 WHERE order_detail_id = {ID}
             """;
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
         
-        if (await reader.ReadAsync())
+        if (reader.Read())
         {
             orderDetail = new OrderDetail()
             {
@@ -93,7 +93,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         connection.Close();
         return orderDetail;
     }
-    public async Task<List<OrderDetail>> GetOrderDetails(int orderID)
+    public List<OrderDetail> GetOrderDetails(int orderID)
     {
         List<OrderDetail> orderDetails = new List<OrderDetail>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -109,9 +109,9 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                 WHERE order_id = {orderID}
             """;
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             OrderDetail orderDetail = new OrderDetail()
             {
@@ -147,7 +147,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         connection.Close();
         return orderDetails;
     }
-    public async void UpdateOrderDetail(OrderDetail orderDetail)
+    public void UpdateOrderDetail(OrderDetail orderDetail)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -165,7 +165,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         command.Parameters.AddWithValue("quantity", orderDetail.Quantity);
         command.Parameters.AddWithValue("orderDetailID", orderDetail.ID);
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
     }
 }

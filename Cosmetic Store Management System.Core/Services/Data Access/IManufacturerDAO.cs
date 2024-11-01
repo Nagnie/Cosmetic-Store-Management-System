@@ -9,7 +9,7 @@ namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface IManufacturerDAO
 {
     List<Manufacturer> GetManufacturers();
-    Task<Manufacturer> GetManufacturer(int id);
+    Manufacturer GetManufacturer(int id);
     void AddManufacturer(Manufacturer manufacturer);
     void UpdateManufacturer(Manufacturer manufacturer);
     void DeleteManufacturer(int id);
