@@ -45,17 +45,34 @@
                 -->
                 <NavigationViewItem x:Uid="Shell_Overviews" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.OverviewsViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A9;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Uid="Shell_Product" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.ProductDataViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xea37;"/>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8EC;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Uid="Shell_Analytics" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.AnalyticsViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe7c3;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem  x:Uid="Shell_CreateOrder" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.CreateOrderViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE7BF;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem x:Uid="Shell_Category" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.CategoryViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8FD;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+                <NavigationViewItem x:Uid="Shell_Manufacturer" helpers:NavigationHelper.NavigateTo="Cosmetic_Store_Management_System.ViewModels.ManufacturerViewModel">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE716;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Cosmetic_Store_Management_System.Views.CreateOrderPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cosmetic_Store_Management_System.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="OrderDetailTemplate" x:DataType="models:OrderDetail">
+            <Grid Margin="20, 0, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{x:Bind ID}"
+                           Grid.Column="0"
+                           Padding="12, 12, 12, 12"/>
+
+                <TextBlock Text="{x:Bind Cosmetic.Name}"
+                           Grid.Column="1"
+                           Padding="12, 12, 12, 12"/>
+
+                <TextBlock Text="{x:Bind Cosmetic.Price}"
+                           Grid.Column="2"
+                           Padding="12, 12, 12, 12"/>
+
+                <TextBlock Text="{x:Bind Quantity}"
+                           Grid.Column="3"
+                           Padding="12, 12, 12, 12"/>
+
+                <TextBlock Text="{x:Bind SubTotal}"
+                           Grid.Column="4"
+                           Padding="12, 12, 12, 12"/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel>
+            <!--Customer section-->
+            <StackPanel>
+                <TextBlock Text="Customer"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <Grid Margin="20, 12, 0, 12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" 
+                                Orientation="Vertical" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Stretch"
+                                Margin="0, 0, 20, 0">
+                        <TextBlock Text="Phone Number" 
+                                   VerticalAlignment="Center"/>
+                        <TextBox Margin="0, 8, 0, 0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" 
+                                Orientation="Vertical" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Stretch"
+                                Margin="0, 0, 20, 0">
+                        <TextBlock Text="Name" 
+                                   VerticalAlignment="Center"/>
+                        <TextBox Margin="0, 8, 0, 0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" 
+                                Orientation="Vertical" 
+                                VerticalAlignment="Center" 
+                                HorizontalAlignment="Stretch">
+                        <TextBlock Text="Accumulated Point" 
+                                   VerticalAlignment="Center"/>
+                        <TextBox Margin="0, 8, 0, 0"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <!-- Product Section -->
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Products"
+                               Grid.Column="0"
+                               Style="{StaticResource SubtitleTextBlockStyle}"/>
+                    <Grid Margin="20, 12, 0, 0"
+                          Background="{StaticResource SmokeFillColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="No."
+                                   Grid.Column="0"
+                                   Padding="12, 12, 12, 12"/>
+
+                        <TextBlock Text="Name"
+                                   Grid.Column="1"
+                                   Padding="12, 12, 12, 12"/>
+
+                        <TextBlock Text="Unit Price"
+                                   Grid.Column="2"
+                                   Padding="12, 12, 12, 12"/>
+
+                        <TextBlock Text="Quantity"
+                                   Grid.Column="3"
+                                   Padding="12, 12, 12, 12"/>
+
+                        <TextBlock Text="Line Total"
+                                   Grid.Column="4"
+                                   Padding="12, 12, 12, 12"/>
+                    
+                </Grid>
+                </StackPanel>
+
+                <ListView ItemsSource="{x:Bind ViewModel.OrderDetails}"
+                          ItemTemplate="{StaticResource OrderDetailTemplate}"/>
+            </StackPanel>
+            
+            <!--Price-->
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0, 12, 0, 0">
+                <TextBlock Text="SubTotal: "
+                           Width="100"/>
+                <TextBlock x:Name="subTotal"
+                           Width="120"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0, 12, 0, 0">
+                <TextBlock Text="Total Price: "
+                           Width="100"/>
+                <TextBlock x:Name="totalPrice"
+                           Width="120"/>
+            </StackPanel>
+            
+            
+        </StackPanel>
+    </Grid>
+</Page>
