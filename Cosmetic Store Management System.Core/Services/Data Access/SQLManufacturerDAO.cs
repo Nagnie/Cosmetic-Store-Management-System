@@ -66,7 +66,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         connection.Close();
         return manufacturer;
     }
-    public async Task<List<Manufacturer>> GetManufacturers()
+    public List<Manufacturer> GetManufacturers()
     {
         List<Manufacturer> manufacturers = new List<Manufacturer>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -76,9 +76,9 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"SELECT * FROM MANUFACTURER";
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             Manufacturer manufacturer = new Manufacturer();
             manufacturer.ID = reader.GetInt32(0);

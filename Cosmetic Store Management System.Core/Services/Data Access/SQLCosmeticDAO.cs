@@ -95,24 +95,35 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return cosmetic;
     }
-    public async Task<List<Cosmetic>> GetCosmetics()
+    public List<Cosmetic> GetCosmetics(List<int> categoryIDs, List<int> manufacturerIDs)
     {
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
+        var categoryCondition = categoryIDs != null && categoryIDs.Count > 0 ? 
+                    $"WHERE cos.category_id IN ({string.Join(",", categoryIDs.Select(x => x).ToArray())}) " 
+                    : "WHERE TRUE ";
+
+        var manufacturerCondition = manufacturerIDs != null && manufacturerIDs.Count > 0 ?
+                    $"AND cos.manufacturer_id IN ({string.Join(",", manufacturerIDs.Select(x => x).ToArray())}) "
+                    : " AND TRUE";
+
+        var whereCommand = categoryCondition + manufacturerCondition;
+
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = """
+        command.CommandText = $"""
            SELECT * 
            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+           {whereCommand}
            ORDER BY cos.cosmetic_id
         """;
 
-        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+        NpgsqlDataReader reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             Cosmetic cosmetic = new Cosmetic()
             {
