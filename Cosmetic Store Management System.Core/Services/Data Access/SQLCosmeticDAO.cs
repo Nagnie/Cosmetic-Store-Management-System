@@ -88,7 +88,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 },
                 Price = (int)reader["price"],
                 Quantity = (int)reader["quantity"],
-                Image = (string)reader["image"]
+                Image = ""
             };
         }
 
