@@ -7,7 +7,7 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:Local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
@@ -39,11 +39,25 @@
                 <TextBlock Text="{x:Bind Manufacturer.Name, Mode=OneWay}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
+        
+        <!-- Template for category item-->
+        <DataTemplate x:Key="CategoryItemTemplate" x:DataType="models:Category">
+            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+                                  IsChecked="False"
+                                  Click="categoryItem_Click"/>
+        </DataTemplate>
+
+        <!-- Template for manufacturer item-->
+        <DataTemplate x:Key="ManufacturerItemTemplate" x:DataType="models:Manufacturer">
+            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+                                  IsChecked="False"
+                                  Click="manufacturerItem_Click"/>
+        </DataTemplate>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel>
+            <StackPanel VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,30,0,0">
                     <TextBlock Text="Products" FontSize="24" FontWeight="Bold" HorizontalTextAlignment="Left" />
                     <Button 
@@ -80,6 +94,57 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <AutoSuggestBox x:Name="SearchBox"
+                                    Width="200"
+                                    PlaceholderText="Search by name"
+                                    QueryIcon="Find" 
+                                    Margin="0, 0, 12, 0"/>
+
+                    <!-- Filter by category -->
+                    <Button Content="Category" 
+                            Width="120"
+                            Margin="0, 0, 12, 0"
+                            VerticalAlignment="Bottom">
+                        <Button.Flyout>
+                            <Flyout>
+                                <ListView
+                                    x:Uid="CategoryList"
+                                    x:Name="CategoryListView"
+                                    ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}"
+                                    ItemTemplate="{StaticResource CategoryItemTemplate}" 
+                                    Height="200"/>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+
+                    <!-- Filter by manufacturer -->
+                    <Button Content="Manufacturer" 
+                            Width="120"
+                            Margin="0, 0, 12, 0"
+                            VerticalAlignment="Bottom">
+                        <Button.Flyout>
+                            <Flyout>
+                                <ListView
+                                    x:Uid="ManufacturerList"
+                                    x:Name="ManufacturerListView"
+                                    ItemsSource="{x:Bind ViewModel.Manufacturers, Mode=OneWay}"
+                                    ItemTemplate="{StaticResource ManufacturerItemTemplate}" 
+                                    Height="200"/>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+
+                    <!-- Filter button -->
+                    <Button Content="Apply Filter" 
+                            Width="100"
+                            Style="{StaticResource AccentButtonStyle}"
+                            Click="filterButton_Click"
+                            VerticalAlignment="Bottom"/>
+
+
                 </StackPanel>
 
                 <!-- Phần danh sách các sản phẩm -->

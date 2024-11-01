@@ -50,4 +50,39 @@ public sealed partial class ProductDataPage : Page
         // Điều hướng đến trang ProductPage
         Frame.Navigate(typeof(AddNewPage));
     }
+    
+    private void categoryItem_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        var toggleItem = sender as ToggleMenuFlyoutItem;
+        var category = toggleItem.DataContext as Category;
+
+        if (toggleItem.IsChecked)
+        {
+            ViewModel.CategoryIDs.Add(category.ID);
+        }
+        else
+        {
+            ViewModel.CategoryIDs.Remove(category.ID);
+        }
+    }
+
+    private void manufacturerItem_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        var toggleItem = sender as ToggleMenuFlyoutItem;
+        var manufacturer = toggleItem.DataContext as Manufacturer;
+
+        if (toggleItem.IsChecked)
+        {
+            ViewModel.ManufacturerIDs.Add(manufacturer.ID);
+        }
+        else
+        {
+            ViewModel.ManufacturerIDs.Remove(manufacturer.ID);
+        }
+    }
+
+    private void filterButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        ViewModel.GetCosmetics();
+    }
 }

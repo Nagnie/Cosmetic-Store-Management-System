@@ -11,16 +11,16 @@ public partial class OverviewsViewModel : ObservableRecipient
     public ObservableCollection<Cosmetic> Cosmetics
     {
         get; set;
-    }
+    } = new ObservableCollection<Cosmetic>();
 
     public OverviewsViewModel()
     {   
         LoadData();
     }
 
-    public async void LoadData()
+    public void LoadData()
     {
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        Cosmetics = new ObservableCollection<Cosmetic>(await dao.GetCosmetics());
+        Cosmetics = new ObservableCollection<Cosmetic>(dao.GetCosmetics(null, null));
     }
 }
