@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using CommunityToolkit.WinUI.UI;
 using Cosmetic_Store_Management_System.Core.Models;
-using Cosmetic_Store_Management_System.Core.Services.Data_Access;
+using Cosmetic_Store_Management_System.Helpers;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -25,7 +25,7 @@ public sealed partial class ProductDataPage : Page
     public ProductDataViewModel ViewModel
     {
         get;
-    }
+    } = new ProductDataViewModel();
     private void OnProductClick(object sender, RoutedEventArgs e)
     {
         // Retrieve the selected product by accessing the DataContext of the button's parent item
@@ -39,7 +39,6 @@ public sealed partial class ProductDataPage : Page
 
     public ProductDataPage()
     {
-        ViewModel = new ProductDataViewModel();
         this.InitializeComponent();
     }
 
@@ -80,6 +79,75 @@ public sealed partial class ProductDataPage : Page
 
     private void filterButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
+        if (SearchBox.Text.Length > 0)
+        {
+            ViewModel.SearchString = SearchBox.Text;
+        }
+        else
+        {
+            ViewModel.SearchString = "";
+        }
+
         ViewModel.GetCosmetics();
+    }
+
+    private void ascIDButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("cosmetic_id ASC");
+    }
+
+    private void descIDButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("cosmetic_id DESC");
+    }
+
+    private void descManufacturerButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("manufacturer_name DESC");
+    }
+
+    private void ascManufacturerButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("manufacturer_name ASC");
+    }
+
+    private void descCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("category_name DESC");
+    }
+
+    private void ascCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("category_name ASC");
+    }
+
+    private void descPriceButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("price DESC");
+    }
+
+    private void ascPriceButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("price ASC");
+    }
+
+    private void descQuantityButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("quantity DESC");
+    }
+
+    private void ascQuantityButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("quantity ASC");
+    }
+
+    private void descNameButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("cosmetic_name DESC");
+    }
+
+    private void ascNameButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.SetSortString("cosmetic_name ASC");
     }
 }

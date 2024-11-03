@@ -14,7 +14,9 @@
     <Page.Resources>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
-            <Grid Height="40">
+            <Grid Height="40"
+                  Padding="0, 0, 0, 0"
+                  Margin="0, 0, 0, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
                     <ColumnDefinition Width="3*" />
@@ -23,7 +25,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="{x:Bind ID, Mode=OneWay}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind ID, Mode=OneWay}" 
+                           Grid.Column="0" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center"/>
                 <Button Grid.Column="1" 
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Left" 
@@ -31,12 +36,30 @@
                         Background="Transparent" 
                         BorderBrush="Transparent" 
                         Margin="0, 0, 20, 0">
-                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock Text="{x:Bind Name, Mode=OneWay}"  
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" />
                 </Button>
-                <TextBlock Text="{x:Bind Quantity}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="{x:Bind Price, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind Category.Name, Mode=OneWay}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="{x:Bind Manufacturer.Name, Mode=OneWay}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                
+                <TextBlock Text="{x:Bind Quantity}" 
+                           Grid.Column="2" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left" />
+                
+                <TextBlock Text="{x:Bind Price, Mode=OneWay}" 
+                           Grid.Column="3" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left"/>
+                
+                <TextBlock Text="{x:Bind Category.Name, Mode=OneWay}" 
+                           Grid.Column="4" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left"/>
+                
+                <TextBlock Text="{x:Bind Manufacturer.Name, Mode=OneWay}" 
+                           Grid.Column="5" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Left"/>
             </Grid>
         </DataTemplate>
         
@@ -137,9 +160,10 @@
                         </Button.Flyout>
                     </Button>
 
-                    <!-- Filter button -->
-                    <Button Content="Apply Filter" 
+                    <!-- Search button -->
+                    <Button Name="filterButton"
                             Width="100"
+                            Content="Search"
                             Style="{StaticResource AccentButtonStyle}"
                             Click="filterButton_Click"
                             VerticalAlignment="Bottom"/>
@@ -152,7 +176,8 @@
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" 
                           Background="{StaticResource SmokeFillColorDefaultBrush}" 
-                          Margin="0, 20, 0, 0">
+                          Margin="0, 20, 0, 0"
+                          Padding="8, 0, 8, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="3*" />
@@ -160,13 +185,185 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
-                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
-                        <TextBlock Text="Quantity" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,0,0,0"/>
-                        <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,0,0,0"/>
-                        <TextBlock Text="Category" Grid.Column="4" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="-5,0,0,0"/>
-                        <TextBlock Text="Manufacturer" Grid.Column="5" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="-10,0,0,0"/>
+                          <Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="0">
+                            <StackPanel Orientation="Vertical">
+                                <Button Name="ascIDButton"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Click="ascIDButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button Name="descIDButton"
+                                        Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 0, 8, 4"
+                                        Click="descIDButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+                            
+                            <TextBlock Text="ID"  
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Center"/>
+                            
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="1"
+                                    Padding="8, 0, 0, 0">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Name="ascNameButton"
+                                        Click="ascNameButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 0, 8, 4"
+                                        Name="descNameButton"
+                                        Click="descNameButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Name" 
+                                       Grid.Column="1" 
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="2">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Name="ascQuantityButton"
+                                        Click="ascQuantityButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 0, 8, 4"
+                                        Name="descQuantityButton"
+                                        Click="descQuantityButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Quantity" 
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="3">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Name="ascPriceButton"
+                                        Click="ascPriceButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button  Background="Transparent"
+                                         BorderBrush="Transparent"
+                                         Padding="8, 0, 8, 4"
+                                         Name="descPriceButton"
+                                         Click="descPriceButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Price"
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Left"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="4">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Name="ascCategoryButton"
+                                        Click="ascCategoryButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button  Background="Transparent"
+                                         BorderBrush="Transparent"
+                                         Padding="8, 0, 8, 4"
+                                         Name="descCategoryButton"
+                                         Click="descCategoryButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Category" 
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Left"/>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Left" 
+                                    VerticalAlignment="Center" 
+                                    Grid.Column="5">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        Padding="8, 4, 8, 0"
+                                        Name="ascManufacturerButton"
+                                        Click="ascManufacturerButton_Click">
+                                    <FontIcon Glyph="&#xE70E;" 
+                                              FontSize="8"/>
+                                </Button>
+                                <Button  Background="Transparent"
+                                         BorderBrush="Transparent"
+                                         Padding="8, 0, 8, 4"
+                                         Name="descManufacturerButton"
+                                         Click="descManufacturerButton_Click">
+                                    <FontIcon Glyph="&#xE70D;" 
+                                              FontSize="8"/>
+                                </Button>
+                            </StackPanel>
+
+                            <TextBlock Text="Manufacturer" 
+                                       FontWeight="Bold" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalTextAlignment="Left"/>
+                        </StackPanel>
                     </Grid>
 
                     <!-- Danh sách sản phẩm -->

@@ -95,7 +95,11 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return cosmetic;
     }
-    public List<Cosmetic> GetCosmetics(List<int> categoryIDs, List<int> manufacturerIDs)
+    public List<Cosmetic> GetCosmetics(
+        List<int> categoryIDs, 
+        List<int> manufacturerIDs, 
+        string searchString,
+        string sortString)
     {
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -110,9 +114,15 @@ public class SQLCosmeticDAO : ICosmeticDAO
 
         var manufacturerCondition = manufacturerIDs != null && manufacturerIDs.Count > 0 ?
                     $"AND cos.manufacturer_id IN ({string.Join(",", manufacturerIDs.Select(x => x).ToArray())}) "
-                    : " AND TRUE";
+                    : "AND TRUE ";
 
-        var whereCommand = categoryCondition + manufacturerCondition;
+        var nameCondition = searchString.Length > 0 
+                    ? $"AND cos.cosmetic_name ILIKE '%{searchString}%' " 
+                    : "";
+
+        var whereCommand = categoryCondition + manufacturerCondition + nameCondition;
+
+        var orderByCommand = $"ORDER BY {sortString} ";
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
@@ -121,7 +131,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
            FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
                              JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
-           ORDER BY cos.cosmetic_id
+           {orderByCommand}
         """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
