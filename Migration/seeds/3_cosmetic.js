@@ -1,6 +1,5 @@
 exports.seed = async function (knex) {
   await knex('COSMETIC').del();
-
   await knex('COSMETIC').insert([
     {
       cosmetic_name: 'Romand Zero Velvet Tint',
