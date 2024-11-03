@@ -18,7 +18,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO MANUFACTURER (manufacturer_name, description)
+                INSERT INTO "MANUFACTURER" (manufacturer_name, description)
                 VALUES ('{manufacturer.Name}', '{manufacturer.Description}')
             """;
 
@@ -34,7 +34,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM MANUFACTURER WHERE manufacturer_id = {id}
+                DELETE FROM "MANUFACTURER" WHERE manufacturer_id = {id}
             """;
 
         await command.ExecuteNonQueryAsync();
@@ -50,7 +50,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                SELECT * FROM MANUFACTURER
+                SELECT * FROM "MANUFACTURER"
                 WHERE manufacturer_id = {id}
             """;
 
@@ -74,7 +74,9 @@ public class SQLManufacturerDAO : IManufacturerDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"SELECT * FROM MANUFACTURER";
+        command.CommandText = $"""
+            SELECT * FROM "MANUFACTURER"
+            """;
 
         var reader = command.ExecuteReader();
 
@@ -99,7 +101,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE MANUFACTURER
+                UPDATE "MANUFACTURER"
                 SET manufacturer_name = '{manufacturer.Name}', description = '{manufacturer.Description}'
                 WHERE manufacturer_id = {manufacturer.ID}
             """;

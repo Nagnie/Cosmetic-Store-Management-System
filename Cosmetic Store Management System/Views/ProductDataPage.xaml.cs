@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using CommunityToolkit.WinUI.UI;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -15,13 +18,8 @@ using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace Cosmetic_Store_Management_System.Views;
-/// <summary>
-/// An empty page that can be used on its own or navigated to within a Frame.
-/// </summary>
+
 public sealed partial class ProductDataPage : Page
 {
     public ProductDataViewModel ViewModel
@@ -45,10 +43,9 @@ public sealed partial class ProductDataPage : Page
         this.InitializeComponent();
     }
 
-    private void AddNewButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void AddNewButton_Click(object sender, RoutedEventArgs e)
     {
-        // Điều hướng đến trang ProductPage
-        Frame.Navigate(typeof(AddNewPage));
+        this.Frame.Navigate(typeof(AddNewPage), ViewModel.Cosmetics);
     }
     
     private void categoryItem_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
