@@ -48,7 +48,7 @@ public sealed partial class ProductDataPage : Page
     private void AddNewButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         // Điều hướng đến trang ProductPage
-        Frame.Navigate(typeof(AddNewPage));
+        Frame.Navigate(typeof(AddCosmeticPage));
     }
     
     private void categoryItem_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
