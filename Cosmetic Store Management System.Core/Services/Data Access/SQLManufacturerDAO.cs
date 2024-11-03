@@ -10,7 +10,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLManufacturerDAO : IManufacturerDAO
 {
-    public async void AddManufacturer(Manufacturer manufacturer)
+    public void AddManufacturer(Manufacturer manufacturer)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -22,11 +22,11 @@ public class SQLManufacturerDAO : IManufacturerDAO
                 VALUES ('{manufacturer.Name}', '{manufacturer.Description}')
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
-    public async void DeleteManufacturer(int id)
+    public void DeleteManufacturer(int id)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -37,11 +37,11 @@ public class SQLManufacturerDAO : IManufacturerDAO
                 DELETE FROM "MANUFACTURER" WHERE manufacturer_id = {id}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
-    public async Task<Manufacturer> GetManufacturer(int id)
+    public Manufacturer GetManufacturer(int id)
     {
         Manufacturer manufacturer = new Manufacturer();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -54,9 +54,9 @@ public class SQLManufacturerDAO : IManufacturerDAO
                 WHERE manufacturer_id = {id}
             """;
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
@@ -92,7 +92,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         connection.Close();
         return manufacturers;
     }
-    public async void UpdateManufacturer(Manufacturer manufacturer)
+    public void UpdateManufacturer(Manufacturer manufacturer)
     {
 
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -106,7 +106,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
                 WHERE manufacturer_id = {manufacturer.ID}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }

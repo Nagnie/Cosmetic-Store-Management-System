@@ -42,8 +42,10 @@
     <Content Remove="Assets\Product\023.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Views\AddCategoryPage.xaml" />
     <None Remove="Views\CategoryPage.xaml" />
     <None Remove="Views\CreateOrderPage.xaml" />
+    <None Remove="Views\EditCategoryPage.xaml" />
     <None Remove="Views\ManufacturerPage.xaml" />
     <None Remove="Views\ProductDataPage.xaml" />
   </ItemGroup>
@@ -149,6 +151,12 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="Views\AddCategoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Views\EditCategoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\ManufacturerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
