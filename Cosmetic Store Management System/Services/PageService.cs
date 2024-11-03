@@ -20,6 +20,9 @@ public class PageService : IPageService
         Configure<SettingsViewModel, SettingsPage>();
         Configure<ProductViewModel, ProductPage>();
         Configure<ShellViewModel, ShellPage>();
+        Configure<CreateOrderViewModel, CreateOrderPage>();
+        Configure<CategoryViewModel, CategoryPage>();
+        Configure<ManufacturerViewModel, ManufacturerPage>();
     }
 
     public Type GetPageType(string key)

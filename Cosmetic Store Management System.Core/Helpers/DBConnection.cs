@@ -20,8 +20,8 @@ public class DBConnection
                 Server=localhost;
                 Port=5432;
                 User Id=postgres;
-                Password=Huyen@123;
-                Database=cms; 
+                Password=my_password;
+                Database=postgres; 
             """;
             connection = new NpgsqlConnection(connectionString);
         }

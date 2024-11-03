@@ -9,8 +9,8 @@ namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ICategoryDAO
 {
     List<Category> GetCategories();
-    Task<Category> GetCategory(int ID);
+    Category GetCategory(int ID);
     void AddCategory(Category category);
-    void UpgradeCategory(Category category);
+    void UpdateCategory(Category category);
     void DeleteCategory(int ID);
 }

@@ -10,7 +10,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLManufacturerDAO : IManufacturerDAO
 {
-    public async void AddManufacturer(Manufacturer manufacturer)
+    public void AddManufacturer(Manufacturer manufacturer)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -18,15 +18,15 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO MANUFACTURER (manufacturer_name, description)
+                INSERT INTO "MANUFACTURER" (manufacturer_name, description)
                 VALUES ('{manufacturer.Name}', '{manufacturer.Description}')
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
-    public async void DeleteManufacturer(int id)
+    public void DeleteManufacturer(int id)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -34,14 +34,14 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM MANUFACTURER WHERE manufacturer_id = {id}
+                DELETE FROM "MANUFACTURER" WHERE manufacturer_id = {id}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
-    public async Task<Manufacturer> GetManufacturer(int id)
+    public Manufacturer GetManufacturer(int id)
     {
         Manufacturer manufacturer = new Manufacturer();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -50,13 +50,13 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                SELECT * FROM MANUFACTURER
+                SELECT * FROM "MANUFACTURER"
                 WHERE manufacturer_id = {id}
             """;
 
-        var reader = await command.ExecuteReaderAsync();
+        var reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync())
+        while (reader.Read())
         {
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
@@ -74,7 +74,9 @@ public class SQLManufacturerDAO : IManufacturerDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"SELECT * FROM MANUFACTURER";
+        command.CommandText = $"""
+            SELECT * FROM "MANUFACTURER"
+            """;
 
         var reader = command.ExecuteReader();
 
@@ -90,7 +92,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         connection.Close();
         return manufacturers;
     }
-    public async void UpdateManufacturer(Manufacturer manufacturer)
+    public void UpdateManufacturer(Manufacturer manufacturer)
     {
 
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -99,12 +101,12 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE MANUFACTURER
+                UPDATE "MANUFACTURER"
                 SET manufacturer_name = '{manufacturer.Name}', description = '{manufacturer.Description}'
                 WHERE manufacturer_id = {manufacturer.ID}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }

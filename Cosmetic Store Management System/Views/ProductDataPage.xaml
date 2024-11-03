@@ -18,12 +18,12 @@
                   Padding="0, 0, 0, 0"
                   Margin="0, 0, 0, 0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60" />
-                    <ColumnDefinition Width="500" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ID, Mode=OneWay}" 
                            Grid.Column="0" 
@@ -80,7 +80,7 @@
 
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel>
+            <StackPanel VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,30,0,0">
                     <TextBlock Text="Products" FontSize="24" FontWeight="Bold" HorizontalTextAlignment="Left" />
                     <Button 
@@ -179,13 +179,13 @@
                           Margin="0, 20, 0, 0"
                           Padding="8, 0, 8, 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60" />
-                            <ColumnDefinition Width="500" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="150" />
-                            <ColumnDefinition Width="150" />
-                        </Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                          <Grid.ColumnDefinitions>
 
                         <StackPanel Orientation="Horizontal" 
                                     HorizontalAlignment="Left" 
@@ -364,7 +364,6 @@
                                        VerticalAlignment="Center" 
                                        HorizontalTextAlignment="Left"/>
                         </StackPanel>
-
                     </Grid>
 
                     <!-- Danh sách sản phẩm -->

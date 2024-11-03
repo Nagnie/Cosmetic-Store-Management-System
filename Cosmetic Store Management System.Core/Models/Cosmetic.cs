@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Cosmetic_Store_Management_System.Core.Models;
-public class Cosmetic
+public class Cosmetic : INotifyPropertyChanged
 {
     public int ID { get; set; }
 
@@ -22,4 +23,6 @@ public class Cosmetic
     public int Quantity { get; set; }
 
     public string Image { get; set; }
+
+    public event PropertyChangedEventHandler PropertyChanged;
 }
