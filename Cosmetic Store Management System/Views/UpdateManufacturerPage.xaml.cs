@@ -22,36 +22,35 @@ namespace Cosmetic_Store_Management_System.Views;
 /// <summary>
 /// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class ManufacturerPage : Page
+public sealed partial class UpdateManufacturerPage : Page
 {
-    public ManufacturerViewModel ViewModel
+    public UpdateManufacturerViewModel ViewModel
     {
         get;
-    } = new ManufacturerViewModel();
-    public ManufacturerPage()
+    } = new UpdateManufacturerViewModel();
+
+    public UpdateManufacturerPage()
     {
         this.InitializeComponent();
     }
 
-    private void addButton_Click(object sender, RoutedEventArgs e)
+    protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        this.Frame.Navigate(typeof(AddManufacturerPage));
-    }
-
-    private void editButton_Click(object sender, RoutedEventArgs e)
-    {
-        var button = sender as Button;
-        var manufacturer = button?.DataContext as Manufacturer;
-        this.Frame.Navigate(typeof(UpdateManufacturerPage), manufacturer);
-    }
-
-    private void deleteButton_Click(object sender, RoutedEventArgs e)
-    {
-        var button = sender as Button;
-        
-        if (button?.DataContext is Manufacturer manufacturer) {
-            ViewModel.ManufacturerDAO.DeleteManufacturer(manufacturer.ID);
-            ViewModel.LoadData();
+        base.OnNavigatedTo(e);
+        if (e.Parameter is Manufacturer manufacturer)
+        {
+            ViewModel.Manufacturer = manufacturer;
         }
+    }
+
+    private void saveButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.UpdateManufacturer();
+        this.Frame.Navigate(typeof(ManufacturerPage));
+    }
+
+    private void cancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Frame.Navigate(typeof(ManufacturerPage));
     }
 }
