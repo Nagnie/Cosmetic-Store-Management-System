@@ -17,11 +17,11 @@
             <Grid Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2.8*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="1.2*" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ID, Mode=OneWay}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <Button Grid.Column="1" 
@@ -135,11 +135,11 @@
                             Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2.8*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1.2*" />
+                            <ColumnDefinition Width="1.2*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
                         <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>

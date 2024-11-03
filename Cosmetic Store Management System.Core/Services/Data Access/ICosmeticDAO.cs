@@ -17,7 +17,8 @@ public interface ICosmeticDAO
         string searchString, 
         string sortString
     );
-    Task<Cosmetic> GetCosmetic(int ID);
+    Cosmetic GetCosmetic(int ID);
+    //Task<Cosmetic> GetCosmetic(int ID);
     void UpdateCosmetic(Cosmetic cosmetic);
     void DeleteCosmetic(int ID);
 }
