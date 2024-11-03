@@ -6,9 +6,8 @@
     <Platforms>x86;x64;arm64;AnyCPU</Platforms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="8.0.5" />
   </ItemGroup>
 </Project>

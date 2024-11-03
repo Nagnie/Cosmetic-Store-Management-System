@@ -13,7 +13,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLCosmeticDAO : ICosmeticDAO
 {
-    public async void AddCosmetic(Cosmetic cosmetic)
+    public void AddCosmetic(Cosmetic cosmetic)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -21,7 +21,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                INSERT INTO COSMETIC (cosmetic_name, category_id, manufacturer_id, quantity, description, price, image)
+                INSERT INTO "COSMETIC" (cosmetic_name, category_id, manufacturer_id, quantity, description, price, image)
                 VALUES (@name, @categoryID, @manufacturerID, @quantity, @description, @price, @image)
             """;
         command.Parameters.AddWithValue("name", cosmetic.Name);
@@ -32,12 +32,12 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("price", cosmetic.Price);
         command.Parameters.AddWithValue("image", cosmetic.Image);
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
         connection.Close();
 
         Console.WriteLine("Inserted successfully!");
     }
-    public async void DeleteCosmetic(int ID)
+    public void DeleteCosmetic(int ID)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -45,15 +45,15 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM COSMETIC 
+                DELETE FROM "COSMETIC" 
                 WHERE cosmetic_id = {ID}
             """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
-    public async Task<Cosmetic> GetCosmetic(int ID)
+    public Cosmetic GetCosmetic(int ID)
     {
         Cosmetic cosmetic = null;
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -63,14 +63,14 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Connection = connection;
         command.CommandText = $"""
             SELECT * 
-            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
-                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+            FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
+                              JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
             WHERE cosmetic_id = {ID}
             """;
 
-        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+        NpgsqlDataReader reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync()) {
+        while (reader.Read()) {
             cosmetic = new Cosmetic()
             {
                 ID = (int)reader["cosmetic_id"],
@@ -103,7 +103,10 @@ public class SQLCosmeticDAO : ICosmeticDAO
     {
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
-        connection.Open();
+        if (connection.State != System.Data.ConnectionState.Open)
+        {
+            connection.Open();
+        }
 
         var categoryCondition = categoryIDs != null && categoryIDs.Count > 0 ? 
                     $"WHERE cos.category_id IN ({string.Join(",", categoryIDs.Select(x => x).ToArray())}) " 
@@ -125,8 +128,8 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Connection = connection;
         command.CommandText = $"""
            SELECT * 
-           FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
-                             JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
+           FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
+                             JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
            {orderByCommand}
         """;
@@ -163,7 +166,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return cosmetics;
     }
-    public async void UpdateCosmetic(Cosmetic cosmetic)
+    public void UpdateCosmetic(Cosmetic cosmetic)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -171,7 +174,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                UPDATE COSMETIC
+                UPDATE "COSMETIC"
                 SET cosmetic_name = @name, category_id = @categoryID, manufacturer_id = @manufacturer_id,
                     quantity = @quantity, description = @description, price = @price, image = @image
                 WHERE cosmetic_id = @id
@@ -186,7 +189,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("image", cosmetic.Image);
         command.Parameters.AddWithValue("price", cosmetic.Price);
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }

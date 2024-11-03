@@ -7,12 +7,12 @@
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
     
     <Page.Resources>
-        
+        <local:LanguageConverter x:Key="languageConverter"/>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -26,13 +26,19 @@
 
             <!-- Product Image -->
             <Border Height="350" Width="350" BorderBrush="lightcoral" BorderThickness="2" CornerRadius="10" Margin="0, 0, 0, 0">
-                <Image Source="/Assets/Product/001.jpg" Height="350" Width="350" HorizontalAlignment="Left" />
+                <Image Source="{x:Bind ViewModel.Cosmetic.Image, Mode=OneWay}" Height="350" Width="350" HorizontalAlignment="Left" />
             </Border>
             
 
             <!-- Delete and Edit buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <Button Content="Delete" Width="100" Margin="10" BorderBrush="Red" Foreground="Red" FontWeight="SemiBold"/>
+                <Button Content="Delete" 
+                        Width="100" 
+                        Margin="10" 
+                        BorderBrush="Red" 
+                        Foreground="Red" 
+                        FontWeight="SemiBold"
+                        Click="deleteButton_Click"/>
                 <Button Content="Edit" 
                         Width="100" 
                         Margin="10" 

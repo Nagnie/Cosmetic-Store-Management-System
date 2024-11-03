@@ -10,7 +10,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLCategoryDAO : ICategoryDAO
 {
-    public async void AddCategory(Category category)
+    public void AddCategory(Category category)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -18,25 +18,27 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            INSERT INTO CATEGORY (category_name, description)
+            INSERT INTO "CATEGORY" (category_name, description)
             VALUES ('{category.Name}', '{category.Description}')
         """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
 
-    public async void DeleteCategory(int ID)
+    public void DeleteCategory(int ID)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"DELETE FROM CATEGORY WHERE category_id = {ID}";
+        command.CommandText = $"""
+            DELETE FROM "CATEGORY" WHERE category_id = {ID}
+            """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }
@@ -49,7 +51,9 @@ public class SQLCategoryDAO : ICategoryDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = "SELECT * FROM CATEGORY";
+        command.CommandText = """
+            SELECT * FROM "CATEGORY"
+            """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -65,7 +69,7 @@ public class SQLCategoryDAO : ICategoryDAO
         return categories;
     }
 
-    public async Task<Category> GetCategory(int ID)
+    public Category GetCategory(int ID)
     {
         Category category = new Category();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -73,11 +77,11 @@ public class SQLCategoryDAO : ICategoryDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"SELECT * FROM CATEGORY WHERE category_id = {ID}";
+        command.CommandText = $"SELECT * FROM 'CATEGORY' WHERE category_id = {ID}";
 
-        NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+        NpgsqlDataReader reader = command.ExecuteReader();
 
-        while (await reader.ReadAsync()) {
+        while (reader.Read()) {
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
             category.Description = reader.IsDBNull(2) ? null : reader.GetString(2);
@@ -87,7 +91,7 @@ public class SQLCategoryDAO : ICategoryDAO
         return category;
     }
 
-    public async void UpgradeCategory(Category category)
+    public void UpdateCategory(Category category)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -95,12 +99,12 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            UPDATE CATEGORY
+            UPDATE "CATEGORY"
             SET category_name = '{category.Name}', description = '{category.Description}'
             WHERE category_id = {category.ID}
-            """;
+         """;
 
-        await command.ExecuteNonQueryAsync();
+        command.ExecuteNonQuery();
 
         connection.Close();
     }

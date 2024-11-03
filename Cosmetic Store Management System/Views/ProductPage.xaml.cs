@@ -48,4 +48,11 @@ public sealed partial class ProductPage : Page
         Debug.WriteLine(ViewModel.Cosmetic.Name);
         this.Frame.Navigate(typeof(UpdateCosmeticPage), ViewModel.Cosmetic);
     }
+
+    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        ICosmeticDAO dao = new SQLCosmeticDAO();
+        dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
+        Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
+    }
 }
