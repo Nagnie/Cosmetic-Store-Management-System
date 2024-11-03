@@ -19,7 +19,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO LOYAL_CUSTOMER (customer_name, phone)
+                INSERT INTO "LOYAL_CUSTOMER" (customer_name, phone)
                 VALUES ('{loyalCustomer.Name}', '{loyalCustomer.Phone}')
             """;
 
@@ -34,7 +34,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM LOYAL_CUSTOMER
+                DELETE FROM "LOYAL_CUSTOMER"
                 WHERE phone = '{phone}'
             """;
 
@@ -50,7 +50,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                SELECT * FROM LOYAL_CUSTOMER
+                SELECT * FROM "LOYAL_CUSTOMER"
                 WHERE phone = '{phone}'
             """;
 
@@ -80,7 +80,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                SELECT * FROM LOYAL_CUSTOMER
+                SELECT * FROM "LOYAL_CUSTOMER"
             """;
 
         var reader = command.ExecuteReader();
@@ -108,7 +108,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE LOYAL_CUSTOMER
+                UPDATE "LOYAL_CUSTOMER"
                 SET customer_name = @name, point = @point
                 WHERE phone = @phone
             """;
