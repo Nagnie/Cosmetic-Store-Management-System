@@ -18,7 +18,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            INSERT INTO "CATEGORY" (category_name, description)
+            INSERT INTO CATEGORY (category_name, description)
             VALUES ('{category.Name}', '{category.Description}')
         """;
 
@@ -35,7 +35,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            DELETE FROM "CATEGORY" WHERE category_id = {ID}
+            DELETE FROM CATEGORY WHERE category_id = {ID}
             """;
 
         command.ExecuteNonQuery();
@@ -52,7 +52,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT * FROM "CATEGORY"
+            SELECT * FROM CATEGORY
             """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
@@ -99,7 +99,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            UPDATE "CATEGORY"
+            UPDATE CATEGORY
             SET category_name = '{category.Name}', description = '{category.Description}'
             WHERE category_id = {category.ID}
          """;

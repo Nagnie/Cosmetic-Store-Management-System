@@ -26,6 +26,8 @@ public class ActivationService : IActivationService
         // Execute tasks before activation.
         await InitializeAsync();
 
+        App.LoginWindow.Activate();
+
         // Set the MainWindow Content.
         if (App.MainWindow.Content == null)
         {
@@ -37,7 +39,7 @@ public class ActivationService : IActivationService
         await HandleActivationAsync(activationArgs);
 
         // Activate the MainWindow.
-        App.MainWindow.Activate();
+        //App.MainWindow.Activate();
 
         // Execute tasks after activation.
         await StartupAsync();

@@ -42,6 +42,7 @@
     <Content Remove="Assets\Product\023.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="LoginWindow.xaml" />
     <None Remove="Views\AddCategoryPage.xaml" />
     <None Remove="Views\CategoryPage.xaml" />
     <None Remove="Views\CreateOrderPage.xaml" />
@@ -63,6 +64,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="8.0.5" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="8.0.0" />
     <PackageReference Include="WinUIEx" Version="2.4.2" />
   </ItemGroup>
 
@@ -151,6 +153,9 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="Views\AddCategoryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
