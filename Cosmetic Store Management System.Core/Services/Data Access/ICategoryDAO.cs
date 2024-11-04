@@ -8,7 +8,8 @@ using Cosmetic_Store_Management_System.Core.Models;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ICategoryDAO
 {
-    List<Category> GetCategories();
+    Tuple<List<Category>, int> GetCategories(int page, int rowsPerPage);
+    public List<Category> GetAllCategories();
     Category GetCategory(int ID);
     void AddCategory(Category category);
     void UpdateCategory(Category category);

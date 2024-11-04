@@ -33,6 +33,32 @@ public sealed partial class ManufacturerPage : Page
         this.InitializeComponent();
     }
 
+    private void nextButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToNextPage();
+    }
+
+    private void previousButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToPreviousPage();
+    }
+
+    bool init = false;
+    private void pagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (init == false)
+        {
+            init = true;
+            return;
+        }
+        if (pagesComboBox.SelectedIndex >= 0)
+        {
+            var item = pagesComboBox.SelectedItem as PageInfo;
+            ViewModel.GoToPage(item.Page);
+        }
+    }
+
+
     private void addButton_Click(object sender, RoutedEventArgs e)
     {
         this.Frame.Navigate(typeof(AddManufacturerPage));

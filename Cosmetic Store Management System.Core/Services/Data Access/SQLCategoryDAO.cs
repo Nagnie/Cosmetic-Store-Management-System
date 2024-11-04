@@ -18,7 +18,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            INSERT INTO "CATEGORY" (category_name, description)
+            INSERT INTO CATEGORY (category_name, description)
             VALUES ('{category.Name}', '{category.Description}')
         """;
 
@@ -35,7 +35,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            DELETE FROM "CATEGORY" WHERE category_id = {ID}
+            DELETE FROM CATEGORY WHERE category_id = {ID}
             """;
 
         command.ExecuteNonQuery();
@@ -43,7 +43,7 @@ public class SQLCategoryDAO : ICategoryDAO
         connection.Close();
     }
 
-    public List<Category> GetCategories()
+    public List<Category> GetAllCategories()
     {
         List<Category> categories = new List<Category>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -52,12 +52,13 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT * FROM "CATEGORY"
+            SELECT * FROM CATEGORY
             """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
 
-        while (reader.Read()) {
+        while (reader.Read())
+        {
             Category category = new Category();
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
@@ -69,6 +70,46 @@ public class SQLCategoryDAO : ICategoryDAO
         return categories;
     }
 
+    public Tuple<List<Category>, int> GetCategories(int page, int rowsPerPage)
+    {
+        List<Category> categories = new List<Category>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT count(*) over() as Total, cat.category_id, cat.category_name, cat.description
+            FROM CATEGORY cat
+            OFFSET @Skip LIMIT @Take;
+            """;
+
+        command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
+        command.Parameters.AddWithValue("@Take", rowsPerPage);
+
+        NpgsqlDataReader reader = command.ExecuteReader();
+        int count = -1;
+
+        while (reader.Read()) {
+            if (count == -1)
+            {
+                count = Convert.ToInt32(reader["Total"]);
+            }
+            Category category = new Category()
+            {
+                ID = (int)reader["category_id"],
+                Name = (string)reader["category_name"],
+                Description = (string)reader["description"],
+            };
+            categories.Add(category);
+        }
+
+        connection.Close();
+        return new Tuple<List<Category>, int>(
+            categories, count
+            );
+    }
+
     public Category GetCategory(int ID)
     {
         Category category = new Category();
@@ -77,7 +118,7 @@ public class SQLCategoryDAO : ICategoryDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"SELECT * FROM 'CATEGORY' WHERE category_id = {ID}";
+        command.CommandText = $"SELECT * FROM CATEGORY WHERE category_id = {ID}";
 
         NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -99,7 +140,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            UPDATE "CATEGORY"
+            UPDATE CATEGORY
             SET category_name = '{category.Name}', description = '{category.Description}'
             WHERE category_id = {category.ID}
          """;
