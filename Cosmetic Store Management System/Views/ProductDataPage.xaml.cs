@@ -185,12 +185,29 @@ public sealed partial class ProductDataPage : Page
         ViewModel.SetSortString("cosmetic_name ASC");
     }
 
-    private void deleteButton_Click(object sender, RoutedEventArgs e)
-    {  
-        var button = sender as Button;
-        var cosmetic = button?.DataContext as Cosmetic;
-        ViewModel.dao.DeleteCosmetic(cosmetic.ID);
-        ViewModel.GetCosmetics();
+    private async void deleteButton_Click(object sender, RoutedEventArgs e)
+    {
+        ContentDialog dialog = new ContentDialog();
+
+        // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+        dialog.XamlRoot = this.XamlRoot;
+        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Title = "Delete this product?";
+        dialog.Content = "Are you sure to delete this product?";
+        dialog.PrimaryButtonText = "Delete";
+        dialog.CloseButtonText = "Cancel";
+        dialog.DefaultButton = ContentDialogButton.Primary;
+        //dialog.Content = new ContentDialogContent();
+
+        ContentDialogResult result = await dialog.ShowAsync();
+
+        if(result == ContentDialogResult.Primary)
+        {
+            var button = sender as Button;
+            var cosmetic = button?.DataContext as Cosmetic;
+            ViewModel.dao.DeleteCosmetic(cosmetic.ID);
+            ViewModel.LoadData();
+        }
 
     }
 }

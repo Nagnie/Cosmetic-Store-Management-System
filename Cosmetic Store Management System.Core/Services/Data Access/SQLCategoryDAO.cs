@@ -18,7 +18,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            INSERT INTO CATEGORY (category_name, description)
+            INSERT INTO "CATEGORY" (category_name, description)
             VALUES ('{category.Name}', '{category.Description}')
         """;
 
@@ -35,7 +35,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            DELETE FROM CATEGORY WHERE category_id = {ID}
+            DELETE FROM "CATEGORY" WHERE category_id = {ID}
             """;
 
         command.ExecuteNonQuery();
@@ -52,7 +52,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT * FROM CATEGORY
+            SELECT * FROM "CATEGORY"
             """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
@@ -80,7 +80,7 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = """
             SELECT count(*) over() as Total, cat.category_id, cat.category_name, cat.description
-            FROM CATEGORY cat
+            FROM "CATEGORY" cat
             OFFSET @Skip LIMIT @Take;
             """;
 
@@ -99,7 +99,7 @@ public class SQLCategoryDAO : ICategoryDAO
             {
                 ID = (int)reader["category_id"],
                 Name = (string)reader["category_name"],
-                Description = (string)reader["description"],
+                Description = /*(string)reader["description"]*/ "",
             };
             categories.Add(category);
         }
@@ -118,7 +118,9 @@ public class SQLCategoryDAO : ICategoryDAO
 
         using var command = new NpgsqlCommand();
         command.Connection = connection;
-        command.CommandText = $"SELECT * FROM CATEGORY WHERE category_id = {ID}";
+        command.CommandText = $"""
+            SELECT * FROM "CATEGORY" WHERE category_id = {ID}";
+            """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -140,7 +142,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            UPDATE CATEGORY
+            UPDATE "CATEGORY"
             SET category_name = '{category.Name}', description = '{category.Description}'
             WHERE category_id = {category.ID}
          """;

@@ -19,7 +19,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO MANUFACTURER (manufacturer_name, description)
+                INSERT INTO "MANUFACTURER" (manufacturer_name, description)
                 VALUES ('{manufacturer.Name}', '{manufacturer.Description}')
             """;
 
@@ -35,7 +35,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM MANUFACTURER WHERE manufacturer_id = {id}
+                DELETE FROM "MANUFACTURER" WHERE manufacturer_id = {id}
             """;
 
         command.ExecuteNonQuery();
@@ -51,7 +51,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                SELECT * FROM MANUFACTURER
+                SELECT * FROM "MANUFACTURER"
                 WHERE manufacturer_id = {id}
             """;
 
@@ -77,7 +77,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            SELECT * FROM MANUFACTURER
+            SELECT * FROM "MANUFACTURER"
             """;
 
         var reader = command.ExecuteReader();
@@ -104,7 +104,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"""
             SELECT count(*) over() as Total, man.manufacturer_id, man.manufacturer_name, man.description
-            FROM MANUFACTURER man
+            FROM "MANUFACTURER" man
             OFFSET @Skip LIMIT @Take;
             """;
 
@@ -124,7 +124,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
             {
                 ID = (int)reader["manufacturer_id"],
                 Name = (string)reader["manufacturer_name"],
-                Description = (string)reader["description"],
+                Description = /*(string)reader["description"]*/ "",
             };            
             manufacturers.Add(manufacturer);
         }
@@ -141,7 +141,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE MANUFACTURER
+                UPDATE "MANUFACTURER"
                 SET manufacturer_name = '{manufacturer.Name}', description = '{manufacturer.Description}'
                 WHERE manufacturer_id = {manufacturer.ID}
             """;

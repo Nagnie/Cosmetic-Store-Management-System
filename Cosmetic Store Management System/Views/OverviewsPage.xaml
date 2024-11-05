@@ -55,11 +55,28 @@
                             <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
                             <TextBlock Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                            <!--<FontIcon Glyph="&#xE721;" Margin="0, 0, 15, 0"/>-->
-                            <TextBlock x:Name="txtTime" Text="15 October 2024, Thursday" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0" FontWeight="SemiBold"/>
-                            <FontIcon Glyph="&#xE716;" />
+                        
+
+                            <!-- Display the date and icon inside the button -->
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Background="Transparent">
+                            <TextBlock x:Name="txtTime" FontSize="14" VerticalAlignment="Center" Margin="0, 0, 15, 0" FontWeight="SemiBold"/>
+                            
+                            <!-- Button with only the FontIcon to trigger the Calendar Flyout -->
+                            <Button Background="Transparent" BorderThickness="0">
+                                <FontIcon Glyph="&#xE787;" />
+                                <Button.Flyout>
+                                    <Flyout Placement="Bottom">
+                                        <CalendarView
+                                            SelectionMode="Single"
+                                            IsGroupLabelVisible="True"
+                                            IsOutOfScopeEnabled="True"
+                                            Language="en"
+                                            CalendarIdentifier="GregorianCalendar"/>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
                         </StackPanel>
+
                     </Grid>
 
                 </StackPanel>
@@ -126,9 +143,9 @@
                     </StackPanel>
                 </Grid>
 
-                <TextBlock Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,30,0,0"/>
+                <TextBlock Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
                 <!-- Phần danh sách các sản phẩm -->
-                <StackPanel Margin="0,10,0,0">
+                <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" 
                             Background="{StaticResource SmokeFillColorDefaultBrush}" 
@@ -162,7 +179,7 @@
                     Content="More"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Margin="0,20,0,40"
+                    Margin="0,20,0,0"
                     FontSize="16"
                     Background="Transparent"
                     MinHeight="30"
