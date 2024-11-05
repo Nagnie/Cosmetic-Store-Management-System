@@ -40,6 +40,8 @@ public partial class App : Application
 
     public static WindowEx MainWindow { get; } = new MainWindow();
 
+    public static Window LoginWindow { get; } = new LoginWindow();
+
     public static UIElement? AppTitlebar { get; set; }
 
     public App()
@@ -102,6 +104,8 @@ public partial class App : Application
     protected async override void OnLaunched(LaunchActivatedEventArgs args)
     {
         base.OnLaunched(args);
+
+        App.LoginWindow.Activate();
 
         await App.GetService<IActivationService>().ActivateAsync(args);
     }

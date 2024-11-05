@@ -128,9 +128,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-           SELECT count(*) over() as Total, cos.cosmetic_id, cos.cosmetic_name, cos.description, cos.price, cos.quantity, cos.image,
-            cat.category_id, cat.category_name, cat.description,
-            man.manufacturer_id, man.manufacturer_name, man.description
+           SELECT * 
            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
