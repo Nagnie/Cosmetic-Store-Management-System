@@ -11,12 +11,14 @@ namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ICosmeticDAO
 {
     void AddCosmetic(Cosmetic cosmetic);
-    List<Cosmetic> GetCosmetics(
+    Tuple<List<Cosmetic>, int> GetCosmetics(
         List<int> categoryIDs, 
         List<int> manufacturerIDs, 
         string searchString, 
-        string sortString
+        string sortString,
+        int page, int rowsPerPage
     );
+
     Cosmetic GetCosmetic(int ID);
     //Task<Cosmetic> GetCosmetic(int ID);
     void UpdateCosmetic(Cosmetic cosmetic);

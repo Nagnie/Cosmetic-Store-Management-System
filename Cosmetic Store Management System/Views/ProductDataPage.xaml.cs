@@ -45,6 +45,31 @@ public sealed partial class ProductDataPage : Page
         this.InitializeComponent();
     }
 
+    private void nextButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToNextPage();
+    }
+
+    private void previousButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToPreviousPage();
+    }
+
+    bool init = false;
+    private void pagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (init == false)
+        {
+            init = true;
+            return;
+        }
+        if (pagesComboBox.SelectedIndex >= 0)
+        {
+            var item = pagesComboBox.SelectedItem as PageInfo;
+            ViewModel.GoToPage(item.Page);
+        }
+    }
+
     private void AddNewButton_Click(object sender, RoutedEventArgs e)
     {
         // Điều hướng đến trang ProductPage
@@ -84,6 +109,7 @@ public sealed partial class ProductDataPage : Page
 
     private void filterButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
+
         if (SearchBox.Text.Length > 0)
         {
             ViewModel.SearchString = SearchBox.Text;
@@ -93,7 +119,10 @@ public sealed partial class ProductDataPage : Page
             ViewModel.SearchString = "";
         }
 
-        ViewModel.GetCosmetics();
+        //ViewModel.GetCosmetics();
+        //ViewModel.Search();
+        ViewModel.CurrentPage = 1;
+        ViewModel.LoadData();
     }
 
     private void ascIDButton_Click(object sender, RoutedEventArgs e)

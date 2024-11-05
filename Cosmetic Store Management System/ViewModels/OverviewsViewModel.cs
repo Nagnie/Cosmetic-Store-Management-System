@@ -28,6 +28,16 @@ public partial class OverviewsViewModel : ObservableRecipient
     public void LoadData()
     {
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        Cosmetics = new ObservableCollection<Cosmetic>(dao.GetCosmetics(null, null, "", SortString));
+        var (items, count) = dao.GetCosmetics(
+            null, null,
+            "", SortString,
+            1, 7
+        );
+        Cosmetics = new ObservableCollection<Cosmetic>(
+            items
+        );
+        //Cosmetics = new ObservableCollection<Cosmetic>(dao.GetCosmetics(null, null, "", SortString));
     }
+
+
 }

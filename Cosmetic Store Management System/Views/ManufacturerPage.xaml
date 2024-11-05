@@ -93,6 +93,24 @@
                 <ListView x:Uid="CategoryItemList"
                       ItemTemplate="{StaticResource ManufacturerItemTemplate}"
                       ItemsSource="{x:Bind ViewModel.Manufacturers, Mode=OneWay}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                    <TextBlock Name="infoTextBlock" Text="{x:Bind ViewModel.Info, Mode=OneWay}" Margin="0,10,5,0"/>
+                    <Button Margin="5" Content="Previous" Width="80" Height="35" Name="previousButton" Click="previousButton_Click"/>
+                    <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
+                        SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
+                        SelectionChanged="pagesComboBox_SelectionChanged"
+                        Margin="5" Name="pagesComboBox" Width="100" Height="35">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock >
+                                    <Run Text="{Binding Page}"/>/<Run Text="{Binding Total}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Margin="5" Content="Next" Width="80" Height="35" Name="nextButton" Click="nextButton_Click"/>
+                </StackPanel>
+            
             </StackPanel>
         </ScrollViewer>
     </Grid>

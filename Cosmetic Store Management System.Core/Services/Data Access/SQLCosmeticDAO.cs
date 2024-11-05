@@ -21,7 +21,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                INSERT INTO "COSMETIC" (cosmetic_name, category_id, manufacturer_id, quantity, description, price, image)
+                INSERT INTO COSMETIC (cosmetic_name, category_id, manufacturer_id, quantity, description, price, image)
                 VALUES (@name, @categoryID, @manufacturerID, @quantity, @description, @price, @image)
             """;
         command.Parameters.AddWithValue("name", cosmetic.Name);
@@ -45,7 +45,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM "COSMETIC" 
+                DELETE FROM COSMETIC 
                 WHERE cosmetic_id = {ID}
             """;
 
@@ -63,8 +63,8 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Connection = connection;
         command.CommandText = $"""
             SELECT * 
-            FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
-                              JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
+            FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
+                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
             WHERE cosmetic_id = {ID}
             """;
 
@@ -95,11 +95,12 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return cosmetic;
     }
-    public List<Cosmetic> GetCosmetics(
+    public Tuple<List<Cosmetic>, int> GetCosmetics(
         List<int> categoryIDs, 
         List<int> manufacturerIDs, 
         string searchString,
-        string sortString)
+        string sortString,
+        int page, int rowsPerPage)
     {
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -127,17 +128,28 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-           SELECT * 
-           FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
-                             JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
+           SELECT count(*) over() as Total, cos.cosmetic_id, cos.cosmetic_name, cos.description, cos.price, cos.quantity, cos.image,
+            cat.category_id, cat.category_name, cat.description,
+            man.manufacturer_id, man.manufacturer_name, man.description
+           FROM COSMETIC cos JOIN CATEGORY cat ON cos.category_id = cat.category_id
+                             JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
            {orderByCommand}
+           OFFSET @Skip LIMIT @Take;
         """;
 
+        command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
+        command.Parameters.AddWithValue("@Take", rowsPerPage);
+
         NpgsqlDataReader reader = command.ExecuteReader();
+        int count = -1;
 
         while (reader.Read())
         {
+            if (count == -1)
+            {
+                count = Convert.ToInt32(reader["Total"]);
+            }    
             Cosmetic cosmetic = new Cosmetic()
             {
                 ID = (int)reader["cosmetic_id"],
@@ -164,7 +176,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         }
 
         connection.Close();
-        return cosmetics;
+        return new Tuple<List<Cosmetic>, int>(
+            cosmetics, count
+        );
     }
     public void UpdateCosmetic(Cosmetic cosmetic)
     {
@@ -174,7 +188,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                UPDATE "COSMETIC"
+                UPDATE COSMETIC
                 SET cosmetic_name = @name, category_id = @categoryID, manufacturer_id = @manufacturer_id,
                     quantity = @quantity, description = @description, price = @price, image = @image
                 WHERE cosmetic_id = @id
