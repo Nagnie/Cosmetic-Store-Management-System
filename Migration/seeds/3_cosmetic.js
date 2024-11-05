@@ -114,7 +114,7 @@ exports.seed = async function (knex) {
       quantity: 50,
       price: 189000,
       category_id: 14,
-      manufacturer_id: 13,
+      manufacturer_id: 12,
       description: 'Kem Dưỡng Sáng Da Ngày & Đêm Olay Luminous Light Perfecting Cream là kem dưỡng thuộc thương hiệu OLAY đến từ Mỹ. Kem dưỡng sử dụng phức hợp làm sáng da từ Niacinamide tinh khiết 99%, Vitamin E, Vitamin B5 giúp làm sáng & đều màu da, ngăn ngừa tăng sắc tố đen và thúc đẩy quá trình tái tạo da giúp da tươi sáng tự nhiên.',
       image: 'images/013.jpg'
     },
@@ -132,7 +132,7 @@ exports.seed = async function (knex) {
       quantity: 65,
       price: 367000,
       category_id: 6, // Assuming 'Lemonade' is category_id 15
-      manufacturer_id: 14,
+      manufacturer_id: 13,
       description: 'Kem Chống Nắng Dr.G Chống Tia Hồng Ngoại, Phổ Rộng Cho Da Mụn Nhạy Cảm là kem chống nắng thuộc thương hiệu Dr.G với chỉ số chống nắng cao cùng các màng lọc tiên tiến giúp bảo vệ da trước các tác động xấu từ tia UV, tia hồng ngoại và bụi mịn. Đồng thời sản phẩm còn chứa chiết xuất rau má, ngải cứu, diếp cá giúp bổ sung độ ẩm và làm dịu da, an toàn cho làn da mụn nhạy cảm.',
       image: 'images/015.jpg'
     },
@@ -141,9 +141,162 @@ exports.seed = async function (knex) {
       quantity: 55,
       price: 155000,
       category_id: 4,
-      manufacturer_id: 15,
+      manufacturer_id: 14,
       description: 'Mascara Chuốt Mi Giúp Làm Tơi & Dày Mi Lemonade Soaring Mascara là mascara chuốt mi của thương hiệu Lemonade với khả năng làm tơi mi và dày mi và cho đôi mi cong vút cả ngày dài tạo điểm nhấn chiều sâu cho đôi mắt thêm sắc sảo cuốn hút mọi ánh nhìn.',
       image: 'images/016.jpg'
+    },
+    {
+      cosmetic_name: 'By Merzy V-Hyaluronic Acid Moisture Toner 500ml',
+      quantity: 45,
+      price: 239000,
+      category_id: 12,
+      manufacturer_id: 5,
+      description: 'Nước Hoa Hồng Dưỡng Ẩm By Merzy V-Hyaluronic Acid Moisture Toner là nước hoa hồng thuộc thương hiệu By Merzy đến từ Hàn Quốc. Chứa 11 loại axit Hyaluronic và 6 loại thảo mộc giúp chăm sóc làm dịu da, cấp ẩm và cân bằng độ ẩm - dầu, mang lại cảm giác ẩm mượt và trong trẻo.',
+      image: 'images/017.jpg'
+    },
+    {
+      cosmetic_name: '9 Wishes Rice Radiance Cream 50ml',
+      quantity: 56,
+      price: 322000,
+      category_id: 14,
+      manufacturer_id: 16,
+      description: 'Kem Dưỡng Ẩm, Hỗ Trợ Làm Sáng Da Chiết Xuất Gạo 9 Wishes Rice Radiance Cream là kem dưỡng thuộc thương hiệu 9 Wishes chứa tới 72% thành phần từ nước gạo và các chiết xuất lên men từ gạo có khả năng thanh lọc, hỗ trợ làm sáng da nuôi dưỡng làn da căng mịn đầy sức sống. Cùng các chiết xuất thực vật khác như rau sam, cam thảo hỗ trợ làm sáng và cải thiện hàng rào bảo vệ da.',
+      image: 'images/018.jpg'
+    },
+    {
+      cosmetic_name: "I'm Meme I'm Multi Stick Blusher 7g",
+      quantity: 22,
+      price: 322000,
+      category_id: 5,
+      manufacturer_id: 17,
+      description: 'Kem Dưỡng Ẩm, Hỗ Trợ Làm Sáng Da Chiết Xuất Gạo 9 Wishes Rice Radiance Cream là kem dưỡng thuộc thương hiệu 9 Wishes chứa tới 72% thành phần từ nước gạo và các chiết xuất lên men từ gạo có khả năng thanh lọc, hỗ trợ làm sáng da nuôi dưỡng làn da căng mịn đầy sức sống. Cùng các chiết xuất thực vật khác như rau sam, cam thảo hỗ trợ làm sáng và cải thiện hàng rào bảo vệ da.',
+      image: 'images/019.jpg'
+    },
+    {
+      cosmetic_name: "Ma:nyo Pure Cleansing Oil 200ml",
+      quantity: 19,
+      price: 449000,
+      category_id: 10,
+      manufacturer_id: 18,
+      description: 'Dầu Tẩy Trang Làm Sạch Sâu Ma:nyo Pure Cleansing Oil là dầu tẩy trang thuộc thương hiệu Ma:nyo đến từ Hàn Quốc. Với kết cấu nhẹ, dễ dàng hòa tan và lấy đi mọi bụi bẩn, bã nhờn cặn trang điểm trên bề mặt da. Đồng thời công thức chứa 12 nguồn thành phần dầu thực vật, vitamin giúp dưỡng ẩm, hỗ trợ phục hồi, củng cố hàng rào bảo vệ da, nuôi dưỡng làn da tươi trẻ, đều màu.',
+      image: 'images/020.jpg'
+    },
+    {
+      cosmetic_name: "Laneige Skin Veil Base EX 30ml",
+      quantity: 58,
+      price: 709000,
+      category_id: 7,
+      manufacturer_id: 10,
+      description: 'Kem Lót Trang Điểm Dưỡng Ẩm, Nâng Tông Laneige Skin Veil Base EX 30ml là kem lót thuộc thương hiệu Laneige giúp dưỡng ẩm, kiềm dầu, làm đều màu da, tạo lớp lót bảo vệ da tránh bụi mịn, ánh nắng với chỉ số SPF 28 PA++. Kem có kết cấu dạng lỏng, tươi mát thấm nhanh, dễ tán giúp lớp trang điểm mỏng nhẹ, tự nhiên.',
+      image: 'images/021.jpg'
+    },
+    {
+      cosmetic_name: "Laneige Water Bank Blue Hyaluronic Cleansing Oil 250ml",
+      quantity: 32,
+      price: 729000,
+      category_id: 10,
+      manufacturer_id: 10,
+      description: 'Dầu Tẩy Trang Làm Sạch Sâu Lỗ Chân Lông Laneige Water Bank Blue Hyaluronic Cleansing Oil là dầu tẩy trang với công thức hoá cấu trúc tương tự như bã nhờn tự nhiên, dễ dàng thẩm thấu và làm tan chảy lớp trang điểm đậm và cặn bã trên da bằng thành phần ngải cứu kết hợp dầu dừa cùng thảo dược giúp nhẹ nhàng làm sạch lỗ chân lông và cung cấp độ ẩm, trả lại làn da sạch sẽ, ẩm mượt thuộc thương hiệu Laneige đến từ Hàn Quốc.',
+      image: 'images/022.jpg'
+    },
+    {
+      cosmetic_name: "Hatomugi Moisturizing & Washing The Body Soap 800ml",
+      quantity: 48,
+      price: 79000,
+      category_id: 11,
+      manufacturer_id: 19,
+      description: 'Sữa Tắm Hatomugi Moisturizing & Washing The Body Soap là sữa tắm thuộc thương hiệu Hatomugi với thành phần chính chiết xuất từ hạt Coix giúp làm sạch da một cách nhẹ nhàng, lấy đi tế bào chết giúp da thông thoáng, cung cấp độ ẩm cho da mịn màng, căng mướt, và trắng khỏe từ bên trong, làm dịu và phục hồi làn da bị cháy nắng. Là sản phẩm thường xuyên được các tạp chí đứng đầu tại Nhật Bản bình chọn thuộc top 3 sữa tắm có độ dưỡng ẩm tốt và được khách hàng yêu thích.',
+      image: 'images/023.jpg'
+    },
+    {
+      cosmetic_name: "I'm Meme Pink Blur Tone-Up Sun Base SPF50+/PA++++ 40ml",
+      quantity: 66,
+      price: 209000,
+      category_id: 5,
+      manufacturer_id: 18,
+      description: "Kem Chống Nắng Nâng Tông Trắng Hồng I'm Meme Pink Blur Tone-Up Sun Base SPF50+/PA++++ là kem chống nắng giúp bảo vệ làn da mạnh mẽ bằng cách ngăn chặn cùng lúc tia UVA và UVB đồng thời làm tăng cường vẻ rạng rỡ tự nhiên của làn da bằng cách làm đều màu da, mang đến làn da trắng hồng tự nhiên nhưng vẫn thông thoáng nhẹ dịu cho da thuộc thương hiệu I'm Meme đến từ Hàn Quốc.",
+      image: 'images/024.jpg'
+    },
+    {
+      cosmetic_name: "Judydoll Sun Defense Tinted Moisturizer SPF50+ PA++++ 40g",
+      quantity: 55,
+      price: 336000,
+      category_id: 6,
+      manufacturer_id: 20,
+      description: 'Kem Chống Nắng Cấp Ẩm, Nâng Tông Da Judydoll Sun Defense Tinted Moisturizer SPF50+ PA++++ là kem chống nắng đến từ thương hiệu Judydoll. Với chỉ số chống nắng cao SPF50+ PA++++ giúp bảo vệ da tối ưu cùng công thức chứa nhiều dưỡng chất giúp nuôi dưỡng da chuyên sâu. Kem chống nắng có khả năng nâng tông cho da luôn tươi tắn, rạng rỡ.',
+      image: 'images/025.jpg'
+    },
+    {
+      cosmetic_name: "Innisfree Super Volcanic Pore Clay Mask 100ml",
+      quantity: 43,
+      price: 324000,
+      category_id: 15,
+      manufacturer_id: 8,
+      description: 'Mặt Nạ Đất Sét Chăm Sóc Lỗ Chân Lông Từ Đá Tro Núi Lửa Innisfree Super Volcanic Pore Clay Mask là mặt nạ đất sét thuộc thương hiệu Innisfree với thành phần chứa tro núi lửa đảo Jeju + bột vỏ quả óc chó và AHA có tác dụng làm sạch tế bào chết, làm sạch bã nhờn, dầu thừa, làm sạch sâu và cải thiện vấn đề về lỗ chân lông, hỗ trợ làm sáng da và cải thiện độ đàn hồi da.',
+      image: 'images/026.jpg'
+    },
+    {
+      cosmetic_name: "Hera Sensual Spicy Nude Balm",
+      quantity: 41,
+      price: 490000,
+      category_id: 1,
+      manufacturer_id: 15,
+      description: 'Với thiết kế vỏ ngoài xinh xắn nhưng không kém phần hiện đại, sở hữu màu sắc nhã nhặn đi kèm chất son mềm mượt, dễ dàng thẩm thấu nhanh; Son Dưỡng Màu Hera Sensual Spicy Nude Gloss có khả năng phục hồi tình trạng khô môi và bong tróc. Nhờ đó mà các chị em phụ nữ có thể tự tin trang điểm cho đôi môi và tự tin trong cả việc giao tiếp hằng ngày.',
+      image: 'images/027.jpg'
+    },
+    {
+      cosmetic_name: "Innisfree Green Tea Seed Hyaluronic Serum",
+      quantity: 25,
+      price: 549000,
+      category_id: 13,
+      manufacturer_id: 8,
+      description: 'Serum Innisfre Tinh Chất Dưỡng Ẩm Sâu, Phục Hồi Da Mụn Innisfree Green Tea Seed Hyaluronic Serum là tinh chất dưỡng da thuộc thương hiệu Innisfree, thích hợp cho da bị kích ứng với ô nhiễm môi trường, da có mụn. Có khả năng làm sạch sâu, tái tạo mới làn da, làm sáng da, ngăn ngừa mụn hiệu quả.',
+      image: 'images/028.jpg'
+    },
+    {
+      cosmetic_name: "Peripera Ink Mood Glowy Tint 4g",
+      quantity: 41,
+      price: 179000,
+      category_id: 1,
+      manufacturer_id: 9,
+      description: 'Son Tint Bóng Cho Môi Căng Mọng Peripera Ink Mood Glowy Tint 4g là son tint bóng của thương hiệu Peripera có chất son tint lướt nhẹ trên môi chỉ trong một lần vuốt có độ nhòe và chuyển màu đẹp, chứa nhiều dưỡng chất giúp dưỡng ẩm và nuôi dưỡng cho đôi môi, làm môi căng mọng tràn đầy sức sống, tự tin cả ngày dài.',
+      image: 'images/029.jpg'
+    },
+    {
+      cosmetic_name: "Aromatica Rosemary Scalp Scaling Shampoo",
+      quantity: 58,
+      price: 399000,
+      category_id: 16,
+      manufacturer_id: 21,
+      description: 'Dầu Gội Hương Thảo Ngăn Rụng Tóc Aromatica Rosemary Scalp Scaling Shampoo là dầu gội thuộc thương hiệu Aromatica đến từ Hàn Quốc. Dầu gội với chiết xuất hương thảo giúp làm sạch da dầu, lấy đi các tế bào chết, làm sạch gàu, hỗ trợ giảm viêm ngứa giúp da dầu khỏe một các tự nhiên, cho mái tóc sạch khỏe, bồnh bềnh.',
+      image: 'images/030.jpg'
+    },
+    {
+      cosmetic_name: "DOVE 1 Minute Super Conditioner",
+      quantity: 50,
+      price: 50000,
+      category_id: 17,
+      manufacturer_id: 22,
+      description: 'Dầu Xả Siêu Dưỡng Phục Hồi Tóc Hư Tổn DOVE 1 Minute Super Conditioner là sản phẩm dầu xả thế hệ mới đến từ thương hiệu nổi tiếng DOVE với tinh chất dưỡng ẩm ưu việt có chức năng siêu dưỡng phục hồi tóc hư tổn nặng nề, kết cấu dạng kem đặc giúp tái tạo cấu trúc tóc từ bên trong và làm giảm tình trạng hư tổn chỉ trong 1 phút, mái tóc trở nên suôn mượt và chắc khỏe.',
+      image: 'images/031.jpg'
+    },
+    {
+      cosmetic_name: "Catrice Primer 30ml",
+      quantity: 110,
+      price: 169000,
+      category_id: 7,
+      manufacturer_id: 11,
+      description: 'Kem Lót Kiềm Dầu, Dưỡng Ẩm, Làm Đều Màu Da Catrice Primer 30ml là kem lót đến từ thương hiệu Catrice. Với chất kem mỏng nhẹ, không gây bí da cùng các thành phần lành tính giúp che phủ tốt các khuyết điểm trên da. Kem lót Catrice Primer với nhiều dòng mang lại nhiều giải pháp khác nhau cho làn da như khả năng kiềm dầu tốt, dưỡng ẩm, che phủ tốt các nốt mụn, làm đều màu da mang lại làn da mịn mượt, đều màu.',
+      image: 'images/032.jpg'
+    },
+    {
+      cosmetic_name: "Maybelline Fit Me Matte Poreless Powder SPF32 /PA+++ 6g",
+      quantity: 105,
+      price: 148000,
+      category_id: 9,
+      manufacturer_id: 6,
+      description: 'Phấn Phủ Dạng Nén Che Phủ Hoàn Hảo, Kiềm Dầu Hiệu Quả Maybelline Fit Me Matte Poreless Powder SPF32 /PA+++ là phấn nền đến từ thương hiệu Maybelline công thức chứa hạt phấn Micro Power cho lớp nền mịn, kiềm dầu lên đến 16h, mang đến cho bạn một lớp nền hoàn hảo, phủ mịn và không bị bóng dầu.',
+      image: 'images/033.jpg'
     },
   ]);
 };

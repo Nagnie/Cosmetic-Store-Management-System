@@ -11,11 +11,18 @@ exports.seed = async function(knex) {
     {manufacturer_name: 'Innisfree'},
     {manufacturer_name: 'Peripera'},
     {manufacturer_name: 'Laneige'},
-    {manufacturer_name: 'Im Meme'},
     {manufacturer_name: 'Catrice'},
     {manufacturer_name: 'Olay'},
     {manufacturer_name: 'Dr.G'},
     {manufacturer_name: 'Lemonade'},
     {manufacturer_name: 'Hera'},
+    {manufacturer_name: '9 Wishes'},
+    {manufacturer_name: "I'm Meme"},
+    {manufacturer_name: 'Ma:nyo'},
+    {manufacturer_name: 'Hatomugi'},
+    {manufacturer_name: 'Judydoll'},
+    {manufacturer_name: 'Aromatica'},
+    {manufacturer_name: 'Dove'},
+    
   ]);
 };

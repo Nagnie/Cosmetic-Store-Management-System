@@ -19,6 +19,7 @@ namespace Cosmetic_Store_Management_System.ViewModels;
 
 public partial class ProductDataViewModel : ObservableRecipient
 {
+    public ICosmeticDAO dao = new SQLCosmeticDAO();
     public ObservableCollection<Cosmetic> Cosmetics
     {
         get; set;

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using CommunityToolkit.WinUI.UI;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.Helpers;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
@@ -26,6 +27,8 @@ public sealed partial class ProductDataPage : Page
     {
         get;
     } = new ProductDataViewModel();
+
+
     private void OnProductClick(object sender, RoutedEventArgs e)
     {
         // Retrieve the selected product by accessing the DataContext of the button's parent item
@@ -151,5 +154,14 @@ public sealed partial class ProductDataPage : Page
     private void ascNameButton_Click(object sender, RoutedEventArgs e)
     {
         ViewModel.SetSortString("cosmetic_name ASC");
+    }
+
+    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {  
+        var button = sender as Button;
+        var cosmetic = button?.DataContext as Cosmetic;
+        ViewModel.dao.DeleteCosmetic(cosmetic.ID);
+        ViewModel.GetCosmetics();
+
     }
 }
