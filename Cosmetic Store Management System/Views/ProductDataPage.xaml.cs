@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using CommunityToolkit.WinUI.UI;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.Helpers;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
@@ -26,6 +27,8 @@ public sealed partial class ProductDataPage : Page
     {
         get;
     } = new ProductDataViewModel();
+
+
     private void OnProductClick(object sender, RoutedEventArgs e)
     {
         // Retrieve the selected product by accessing the DataContext of the button's parent item
@@ -40,6 +43,31 @@ public sealed partial class ProductDataPage : Page
     public ProductDataPage()
     {
         this.InitializeComponent();
+    }
+
+    private void nextButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToNextPage();
+    }
+
+    private void previousButton_Click(object sender, RoutedEventArgs e)
+    {
+        ViewModel.GoToPreviousPage();
+    }
+
+    bool init = false;
+    private void pagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (init == false)
+        {
+            init = true;
+            return;
+        }
+        if (pagesComboBox.SelectedIndex >= 0)
+        {
+            var item = pagesComboBox.SelectedItem as PageInfo;
+            ViewModel.GoToPage(item.Page);
+        }
     }
 
     private void AddNewButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +109,7 @@ public sealed partial class ProductDataPage : Page
 
     private void filterButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
+
         if (SearchBox.Text.Length > 0)
         {
             ViewModel.SearchString = SearchBox.Text;
@@ -90,7 +119,10 @@ public sealed partial class ProductDataPage : Page
             ViewModel.SearchString = "";
         }
 
-        ViewModel.GetCosmetics();
+        //ViewModel.GetCosmetics();
+        //ViewModel.Search();
+        ViewModel.CurrentPage = 1;
+        ViewModel.LoadData();
     }
 
     private void ascIDButton_Click(object sender, RoutedEventArgs e)
@@ -151,5 +183,14 @@ public sealed partial class ProductDataPage : Page
     private void ascNameButton_Click(object sender, RoutedEventArgs e)
     {
         ViewModel.SetSortString("cosmetic_name ASC");
+    }
+
+    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    {  
+        var button = sender as Button;
+        var cosmetic = button?.DataContext as Cosmetic;
+        ViewModel.dao.DeleteCosmetic(cosmetic.ID);
+        ViewModel.GetCosmetics();
+
     }
 }

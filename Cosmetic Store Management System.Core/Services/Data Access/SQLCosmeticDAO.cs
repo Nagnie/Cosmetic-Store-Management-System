@@ -45,7 +45,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM COSMETIC
+                DELETE FROM COSMETIC 
                 WHERE cosmetic_id = {ID}
             """;
 
@@ -95,11 +95,12 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return cosmetic;
     }
-    public List<Cosmetic> GetCosmetics(
+    public Tuple<List<Cosmetic>, int> GetCosmetics(
         List<int> categoryIDs, 
         List<int> manufacturerIDs, 
         string searchString,
-        string sortString)
+        string sortString,
+        int page, int rowsPerPage)
     {
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -132,12 +133,21 @@ public class SQLCosmeticDAO : ICosmeticDAO
                              JOIN MANUFACTURER man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
            {orderByCommand}
+           OFFSET @Skip LIMIT @Take;
         """;
 
+        command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
+        command.Parameters.AddWithValue("@Take", rowsPerPage);
+
         NpgsqlDataReader reader = command.ExecuteReader();
+        int count = -1;
 
         while (reader.Read())
         {
+            if (count == -1)
+            {
+                count = Convert.ToInt32(reader["Total"]);
+            }    
             Cosmetic cosmetic = new Cosmetic()
             {
                 ID = (int)reader["cosmetic_id"],
@@ -164,7 +174,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         }
 
         connection.Close();
-        return cosmetics;
+        return new Tuple<List<Cosmetic>, int>(
+            cosmetics, count
+        );
     }
     public void UpdateCosmetic(Cosmetic cosmetic)
     {
