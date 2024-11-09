@@ -38,7 +38,7 @@
                  ScrollViewer.HorizontalScrollMode="Enabled"
                  TextWrapping="Wrap"
                  Height="120"
-                 Text="{x:Bind ViewModel.Category.Description, Mode=TwoWay}"/>
+                 Text="{x:Bind ViewModel.Category.productCount, Mode=TwoWay}"/>
 
         <StackPanel Grid.Column="1"
                 Grid.Row="3"

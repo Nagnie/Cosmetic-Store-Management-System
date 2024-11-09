@@ -18,8 +18,8 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            INSERT INTO "CATEGORY" (category_name, description)
-            VALUES ('{category.Name}', '{category.Description}')
+            INSERT INTO "CATEGORY" (category_name)
+            VALUES ('{category.Name}')
         """;
 
         command.ExecuteNonQuery();
@@ -62,7 +62,7 @@ public class SQLCategoryDAO : ICategoryDAO
             Category category = new Category();
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
-            category.Description = reader.IsDBNull(2) ? null : reader.GetString(2);
+            category.productCount = reader.GetInt32(2);
             categories.Add(category);
         }
 
@@ -79,7 +79,7 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT count(*) over() as Total, cat.category_id, cat.category_name, cat.description
+            SELECT count(*) over() as Total, cat.category_id, cat.category_name, cat.product_count
             FROM "CATEGORY" cat
             OFFSET @Skip LIMIT @Take;
             """;
@@ -99,7 +99,7 @@ public class SQLCategoryDAO : ICategoryDAO
             {
                 ID = (int)reader["category_id"],
                 Name = (string)reader["category_name"],
-                Description = /*(string)reader["description"]*/ "",
+                productCount = (int)reader["product_count"]
             };
             categories.Add(category);
         }
@@ -127,7 +127,7 @@ public class SQLCategoryDAO : ICategoryDAO
         while (reader.Read()) {
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
-            category.Description = reader.IsDBNull(2) ? null : reader.GetString(2);
+            category.productCount = reader.GetInt32(2);
         }
 
         connection.Close();
@@ -143,7 +143,7 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = $"""
             UPDATE "CATEGORY"
-            SET category_name = '{category.Name}', description = '{category.Description}'
+            SET category_name = '{category.Name}', product_count = '{category.productCount}'
             WHERE category_id = {category.ID}
          """;
 

@@ -75,13 +75,14 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                     {
                         ID = (int)reader["category_id"],
                         Name = (string)reader["category_name"],
-                        Description = (string)reader["description"],
+                        productCount = (int)reader["product_count"],
                     },
                     Manufacturer = new Manufacturer()
                     {
                         ID = (int)reader["manufacturer_id"],
                         Name = (string)reader["manufacturer_name"],
-                        Description = (string)reader["description"],
+                        productCount = (int)reader["product_count"],
+                        Origin = reader.IsDBNull(3) ? null : reader.GetString(3)
                     },
                     Price = (int)reader["price"],
                     Quantity = (int)reader["quantity"],
@@ -127,13 +128,14 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                     {
                         ID = (int)reader["category_id"],
                         Name = (string)reader["category_name"],
-                        Description = (string)reader["description"],
+                        productCount = (int)reader["product_count"],
                     },
                     Manufacturer = new Manufacturer()
                     {
                         ID = (int)reader["manufacturer_id"],
                         Name = (string)reader["manufacturer_name"],
-                        Description = (string)reader["description"],
+                        productCount = (int)reader["product_count"],
+                        Origin = reader.IsDBNull(3) ? null : reader.GetString(3)
                     },
                     Price = (int)reader["price"],
                     Quantity = (int)reader["quantity"],

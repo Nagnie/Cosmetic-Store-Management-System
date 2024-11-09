@@ -12,7 +12,9 @@ public class Manufacturer : INotifyPropertyChanged
 
     public string Name { get; set; }
 
-    public string Description { get; set; }
+    public string Origin { get; set; }
+
+    public int productCount { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

@@ -19,8 +19,8 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO "MANUFACTURER" (manufacturer_name, description)
-                VALUES ('{manufacturer.Name}', '{manufacturer.Description}')
+                INSERT INTO "MANUFACTURER" (manufacturer_name, origin)
+                VALUES ('{manufacturer.Name}', '{manufacturer.Origin}')
             """;
 
         command.ExecuteNonQuery();
@@ -61,7 +61,8 @@ public class SQLManufacturerDAO : IManufacturerDAO
         {
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
-            manufacturer.Description = reader.IsDBNull(2) ? null : reader.GetString(2);
+            manufacturer.Origin = reader.IsDBNull(2) ? null : reader.GetString(2);
+            manufacturer.productCount = reader.GetInt32(3);
         }
 
         connection.Close();
@@ -87,7 +88,8 @@ public class SQLManufacturerDAO : IManufacturerDAO
             Manufacturer manufacturer = new Manufacturer();
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
-            manufacturer.Description = reader.IsDBNull(2) ? null : reader.GetString(2);
+            manufacturer.Origin = (string)reader["origin"];
+            manufacturer.productCount = (int)reader["product_count"];
             manufacturers.Add(manufacturer);
         }
 
@@ -103,7 +105,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            SELECT count(*) over() as Total, man.manufacturer_id, man.manufacturer_name, man.description
+            SELECT count(*) over() as Total, man.manufacturer_id, man.manufacturer_name, man.product_count, man.origin
             FROM "MANUFACTURER" man
             OFFSET @Skip LIMIT @Take;
             """;
@@ -124,7 +126,8 @@ public class SQLManufacturerDAO : IManufacturerDAO
             {
                 ID = (int)reader["manufacturer_id"],
                 Name = (string)reader["manufacturer_name"],
-                Description = /*(string)reader["description"]*/ "",
+                productCount = (int)reader["product_count"],
+                Origin = (string)reader["origin"] ?? string.Empty
             };            
             manufacturers.Add(manufacturer);
         }
@@ -142,7 +145,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"""
                 UPDATE "MANUFACTURER"
-                SET manufacturer_name = '{manufacturer.Name}', description = '{manufacturer.Description}'
+                SET manufacturer_name = '{manufacturer.Name}', origin = '{manufacturer.Origin}', product_count = '{manufacturer.productCount}'
                 WHERE manufacturer_id = {manufacturer.ID}
             """;
 

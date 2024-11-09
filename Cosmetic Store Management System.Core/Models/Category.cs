@@ -10,7 +10,7 @@ public class Category : INotifyPropertyChanged
 {
     public int ID { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
+    public int productCount { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

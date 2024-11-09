@@ -79,12 +79,13 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 Category = new Category() {
                     ID = (int)reader["category_id"],
                     Name = (string)reader["category_name"],
-                    Description = (string)reader["description"],
+                    productCount = (int)reader["product_count"],
                 },
                 Manufacturer = new Manufacturer() {
                     ID = (int)reader["manufacturer_id"],
                     Name = (string)reader["manufacturer_name"],
-                    Description = (string)reader["description"],
+                    productCount = (int)reader["product_count"],
+                    Origin = reader.IsDBNull(3) ? null : reader.GetString(3)
                 },
                 Price = (int)reader["price"],
                 Quantity = (int)reader["quantity"],
@@ -129,8 +130,8 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Connection = connection;
         command.CommandText = $"""
            SELECT count(*) over() as Total, cos.cosmetic_id, cos.cosmetic_name, cos.description, cos.price, cos.quantity, cos.image,
-            cat.category_id, cat.category_name, cat.description,
-            man.manufacturer_id, man.manufacturer_name, man.description
+            cat.category_id, cat.category_name, cat.product_count,
+            man.manufacturer_id, man.manufacturer_name, man.product_count, man.origin
            FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
                              JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
@@ -159,13 +160,14 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 {
                     ID = (int)reader["category_id"],
                     Name = (string)reader["category_name"],
-                    Description = (string)reader["description"],
+                    productCount = (int)reader["product_count"],
                 },
                 Manufacturer = new Manufacturer()
                 {
                     ID = (int)reader["manufacturer_id"],
                     Name = (string)reader["manufacturer_name"],
-                    Description = (string)reader["description"],
+                    productCount = (int)reader["product_count"],
+                    Origin = reader.IsDBNull(3) ? null : reader.GetString(3)
                 },
                 Price = (int)reader["price"],
                 Quantity = (int)reader["quantity"],

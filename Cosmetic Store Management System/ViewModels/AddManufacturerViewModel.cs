@@ -15,7 +15,7 @@ public class AddManufacturerViewModel
     } = new Manufacturer()
     {
         Name= "",
-        Description = ""
+        Origin = ""
     };
 
     public IManufacturerDAO DAO
