@@ -82,7 +82,7 @@ Các trang còn lại (**Analytics**, **Category**, **Manufacturer**, **Create O
 
     + Leader nhóm sẽ kiểm tra và hợp nhất mã đã kiểm duyệt vào nhánh chính (master).
 
-    ![Quá trình commit trên git](image.png)![Quá trình commit trên git](image-1.png)
+    ![Quá trình commit trên git](image-1.png)![Quá trình commit trên git](image.png)
 
 ## 5. Quality assurance
 
