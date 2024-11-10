@@ -141,7 +141,7 @@ public sealed partial class UpdateCosmeticPage : Page
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
 
-    private void updateButton_Click(object sender, RoutedEventArgs e)
+    private async void updateButton_Click(object sender, RoutedEventArgs e)
 
     {
         if (!ValidateInput()) return;
