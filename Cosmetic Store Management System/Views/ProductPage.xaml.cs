@@ -49,10 +49,32 @@ public sealed partial class ProductPage : Page
         this.Frame.Navigate(typeof(UpdateCosmeticPage), ViewModel.Cosmetic);
     }
 
-    private void deleteButton_Click(object sender, RoutedEventArgs e)
+    private async void deleteButton_Click(object sender, RoutedEventArgs e)
     {
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
+        bool success = dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
+
+        if (success)
+        {
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Delete",
+                Content = "Delete successfully!",
+                CloseButtonText = "OK"
+            }.ShowAsync();
+        }
+        else
+        {
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Delete",
+                Content = "Delete failed",
+                CloseButtonText = "Cannot delete cosmetic!"
+            }.ShowAsync();
+        }
+
         Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
     }
 }

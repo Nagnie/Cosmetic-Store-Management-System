@@ -13,7 +13,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLCosmeticDAO : ICosmeticDAO
 {
-    public void AddCosmetic(Cosmetic cosmetic)
+    public bool AddCosmetic(Cosmetic cosmetic)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -32,12 +32,14 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("price", cosmetic.Price);
         command.Parameters.AddWithValue("image", cosmetic.Image);
 
-        command.ExecuteNonQuery();
-        connection.Close();
+        int count = command.ExecuteNonQuery();
+        bool success = count == 1;
 
-        Console.WriteLine("Inserted successfully!");
+        connection.Close();
+        return success;
+        //Console.WriteLine("Inserted successfully!");
     }
-    public void DeleteCosmetic(int ID)
+    public bool DeleteCosmetic(int ID)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -49,9 +51,11 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 WHERE cosmetic_id = {ID}
             """;
 
-        command.ExecuteNonQuery();
+        int count = command.ExecuteNonQuery();
+        bool success = count == 1;
 
         connection.Close();
+        return success;
     }
     public Cosmetic GetCosmetic(int ID)
     {
@@ -182,7 +186,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
             cosmetics, count
         );
     }
-    public void UpdateCosmetic(Cosmetic cosmetic)
+    public bool UpdateCosmetic(Cosmetic cosmetic)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -205,8 +209,10 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("image", cosmetic.Image);
         command.Parameters.AddWithValue("price", cosmetic.Price);
 
-        command.ExecuteNonQuery();
+        int count = command.ExecuteNonQuery();
+        bool success = count == 1;
 
         connection.Close();
+        return success;
     }
 }

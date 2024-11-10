@@ -205,7 +205,29 @@ public sealed partial class ProductDataPage : Page
         {
             var button = sender as Button;
             var cosmetic = button?.DataContext as Cosmetic;
-            ViewModel.dao.DeleteCosmetic(cosmetic.ID);
+            bool success = ViewModel.dao.DeleteCosmetic(cosmetic.ID);
+
+            if (success)
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Delete",
+                    Content = "Delete successfully!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Delete",
+                    Content = "Delete failed",
+                    CloseButtonText = "Cannot delete cosmetic!"
+                }.ShowAsync();
+            }
+
             ViewModel.LoadData();
         }
 
