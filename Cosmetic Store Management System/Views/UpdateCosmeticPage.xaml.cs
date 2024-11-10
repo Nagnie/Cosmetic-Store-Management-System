@@ -42,14 +42,105 @@ public sealed partial class UpdateCosmeticPage : Page
         }
     }
 
+    private bool ValidateInput()
+    {
+        string errorMessage = "";
+
+        // Name validation
+        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
+        {
+            errorMessage += "Name cannot be empty.\n";
+        }
+
+        // Category validation
+        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Category.Name))
+        {
+            errorMessage += "Category cannot be empty.\n";
+        }
+
+        // Manufacturer validation
+        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Manufacturer.Name))
+        {
+            errorMessage += "Manufacturer cannot be empty.\n";
+        }
+
+        // Quantity validation
+        if (ViewModel.Cosmetic.Quantity <= 0)
+        {
+            errorMessage += "Quantity must be a positive number.\n";
+        }
+
+        // Price validation
+        if (ViewModel.Cosmetic.Price <= 0)
+        {
+            errorMessage += "Price must be a positive number.\n";
+        }
+
+        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Image))
+        {
+            errorMessage += "Image input cannot be empty.\n";
+        }
+
+        // Image URL validation
+        //if (!Uri.TryCreate(ViewModel.Cosmetic.Image, UriKind.Absolute, out Uri uriResult) ||
+        //    !(uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+        //{
+        //    errorMessage += "Image must be a valid URL.\n";
+        //}
+
+        if (errorMessage != "")
+        {
+            DisplayValidationErrors(errorMessage);
+            return false;
+        }
+
+        return true;
+    }
+
+    // Method to display validation errors
+    private async void DisplayValidationErrors(string errorMessage)
+    {
+        await new ContentDialog
+        {
+            XamlRoot = this.Content.XamlRoot,
+            Title = "Validation Error",
+            Content = errorMessage,
+            CloseButtonText = "OK"
+        }.ShowAsync();
+    }
+
     private void cancelButton_Click(object sender, RoutedEventArgs e)
     {
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
-    private void updateButton_Click(object sender, RoutedEventArgs e)
+    private async void updateButton_Click(object sender, RoutedEventArgs e)
     {
+        if (!ValidateInput()) return;
+
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        dao.UpdateCosmetic(ViewModel.Cosmetic);
+        bool success = dao.UpdateCosmetic(ViewModel.Cosmetic);
+
+        if (success)
+        {
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Update",
+                Content = "Update successfully!",
+                CloseButtonText = "OK"
+            }.ShowAsync();
+        }
+        else
+        {
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Update",
+                Content = "Update failed",
+                CloseButtonText = "Cannot update cosmetic!"
+            }.ShowAsync();
+        }
+
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
 }

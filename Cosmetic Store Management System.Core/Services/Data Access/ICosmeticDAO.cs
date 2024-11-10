@@ -10,7 +10,7 @@ using Cosmetic_Store_Management_System.Core.Models;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ICosmeticDAO
 {
-    void AddCosmetic(Cosmetic cosmetic);
+    bool AddCosmetic(Cosmetic cosmetic);
     Tuple<List<Cosmetic>, int> GetCosmetics(
         List<int> categoryIDs, 
         List<int> manufacturerIDs, 
@@ -21,6 +21,6 @@ public interface ICosmeticDAO
 
     Cosmetic GetCosmetic(int ID);
     //Task<Cosmetic> GetCosmetic(int ID);
-    void UpdateCosmetic(Cosmetic cosmetic);
-    void DeleteCosmetic(int ID);
+    bool UpdateCosmetic(Cosmetic cosmetic);
+    bool DeleteCosmetic(int ID);
 }

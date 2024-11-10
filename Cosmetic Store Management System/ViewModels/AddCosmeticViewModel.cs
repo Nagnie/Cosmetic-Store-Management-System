@@ -55,10 +55,11 @@ public class AddCosmeticViewModel : ObservableRecipient
         Categories = new ObservableCollection<Category>(CategoryDAO.GetAllCategories());
         Manufacturers = new ObservableCollection<Manufacturer>(ManufacturerDAO.GetAllManufacturers());
     }
-    public void AddCosmetic()
+    public bool AddCosmetic()
     {
         Cosmetic.Manufacturer = Manufacturer;
         Cosmetic.Category = Category;
-        CosmeticDAO.AddCosmetic(Cosmetic);
+        bool success = CosmeticDAO.AddCosmetic(Cosmetic);
+        return success;
     }
 }
