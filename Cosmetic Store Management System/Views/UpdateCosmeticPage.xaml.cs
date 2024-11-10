@@ -27,6 +27,9 @@ namespace Cosmetic_Store_Management_System.Views;
 public sealed partial class UpdateCosmeticPage : Page
 {
     public UpdateCosmeticViewModel ViewModel { get; set; }
+
+    private Cosmetic originalCosmetic;
+
     public UpdateCosmeticPage()
     {
         this.InitializeComponent();
@@ -39,6 +42,19 @@ public sealed partial class UpdateCosmeticPage : Page
         if (e.Parameter is Cosmetic cosmetic)
         {
             ViewModel.Cosmetic = cosmetic;
+
+            // Create a backup of the original data
+            originalCosmetic = new Cosmetic
+            {
+                ID = cosmetic.ID,
+                Name = cosmetic.Name,
+                Category = cosmetic.Category,
+                Manufacturer = cosmetic.Manufacturer,
+                Quantity = cosmetic.Quantity,
+                Price = cosmetic.Price,
+                Image = cosmetic.Image,
+                Description = cosmetic.Description
+            };
         }
     }
 
@@ -111,9 +127,22 @@ public sealed partial class UpdateCosmeticPage : Page
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)
     {
+        // Revert the ViewModel.Cosmetic to the original data
+        ViewModel.Cosmetic.ID = originalCosmetic.ID;
+        ViewModel.Cosmetic.Name = originalCosmetic.Name;
+        ViewModel.Cosmetic.Category = originalCosmetic.Category;
+        ViewModel.Cosmetic.Manufacturer = originalCosmetic.Manufacturer;
+        ViewModel.Cosmetic.Quantity = originalCosmetic.Quantity;
+        ViewModel.Cosmetic.Price = originalCosmetic.Price;
+        ViewModel.Cosmetic.Image = originalCosmetic.Image;
+        ViewModel.Cosmetic.Description = originalCosmetic.Description;
+
+        // Navigate back to the ProductPage without saving changes
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
-    private async void updateButton_Click(object sender, RoutedEventArgs e)
+
+    private void updateButton_Click(object sender, RoutedEventArgs e)
+
     {
         if (!ValidateInput()) return;
 
