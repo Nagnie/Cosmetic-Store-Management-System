@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -31,5 +34,65 @@ public sealed partial class CreateOrderPage : Page
     {
         this.InitializeComponent();
         ViewModel = new CreateOrderViewModel();
+    }
+
+    private void ProductListUserControl_ItemClick(Core.Models.Cosmetic cosmetic)
+    {
+        order.AddOrderDetail(cosmetic);
+    }
+
+    private void OrderDetailsUserControl_PaymentChanged(int delta)
+    {
+        payment.UpdatePayment(delta);
+    }
+
+    private void checkoutButton_Click(object sender, RoutedEventArgs e)
+    {
+        pivot.SelectedIndex = 1;
+    }
+
+    private void CheckoutUserControl_CancelButtonClicked()
+    {
+        pivot.SelectedIndex = 0;
+    }
+
+    private async void CheckoutUserControl_FinishButtonClicked()
+    {
+        LoyalCustomer customer = customerUserControl.GetCustomer();
+        var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
+        List<OrderDetail> orderDetails = order.GetOrderDetails();
+
+        Order newOrder = new Order()
+        {
+            Customer = customer,
+            SubTotal = subtotal,
+            Discount = discount,
+            SaleTax = saleTax,
+            Total = total
+        };
+
+        if (customer.ID != -1)
+        {
+            customer.Point += (int)(total/1000);
+        }
+
+        IOrderDAO orderDAO = new SQLOrderDAO();
+        var orderID = orderDAO.AddOrder(newOrder);
+
+        IOrderDetailDAO orderDetailDAO = new SQLOrderDetailDAO();
+        orderDetailDAO.AddOrderDetails(orderID, orderDetails);
+
+        ILoyalCustomerDAO loyalCustomerDAO = new SQLLoyalCustomerDAO();
+        loyalCustomerDAO.UpdateLoyalCustomer(customer);
+
+        ContentDialog contentDialog = new ContentDialog()
+        {
+            Content = "Thank you for your purchasing",
+            CloseButtonText = "Ok",
+            XamlRoot = this.Content.XamlRoot
+        };
+
+        await contentDialog.ShowAsync();
+        this.Frame.Navigate(typeof(CreateOrderPage));
     }
 }

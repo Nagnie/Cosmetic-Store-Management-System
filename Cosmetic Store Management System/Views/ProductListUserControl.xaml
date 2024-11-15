@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="Cosmetic_Store_Management_System.Views.ProductListUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Cosmetic_Store_Management_System.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:local1="using:Cosmetic_Store_Management_System.Core.Models" 
+    xmlns:local2="using:Cosmetic_Store_Management_System.Helpers" 
+    xmlns:local3="using:Cosmetic_Store_Management_System.ViewModels"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <local2:IntToCurrencyConverter x:Key="IntToCurrencyConverter"/>
+        
+        <!-- Template for category item-->
+        <DataTemplate x:Key="CategoryItemTemplate" x:DataType="local1:Category">
+            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+                  IsChecked="False"
+                  Click="categoryItem_Click"/>
+        </DataTemplate>
+
+        <!-- Template for manufacturer item-->
+        <DataTemplate x:Key="ManufacturerItemTemplate" x:DataType="local1:Manufacturer">
+            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+                  IsChecked="False"
+                  Click="manufacturerItem_Click"/>
+        </DataTemplate>
+        
+        <!-- Template for page info -->
+        <DataTemplate x:Key="PageInfoTemplate" x:DataType="local3:PageInfo">
+            <TextBlock TextAlignment="Center">
+                Page <Run Text="{Binding Page}"/> of <Run Text="{Binding Total}"/>
+            </TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Padding="0, 0, 0, 16">
+            <AutoSuggestBox x:Name="SearchBox"
+                Width="250"
+                PlaceholderText="Search by name"
+                QueryIcon="Find" 
+                Margin="0, 0, 12, 0"/>
+
+            <!-- Filter by category -->
+            <Button Content="Category" 
+                    Width="100"
+                    Margin="0, 0, 12, 0"
+                    VerticalAlignment="Bottom">
+                <Button.Flyout>
+                    <Flyout>
+                        <ListView x:Uid="CategoryList"
+                                x:Name="CategoryListView"
+                                ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}"
+                                ItemTemplate="{StaticResource CategoryItemTemplate}" 
+                                Height="200"/>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+
+            <!-- Filter by manufacturer -->
+            <Button Content="Manufacturer" 
+                    Width="120"
+                    Margin="0, 0, 12, 0"
+                    VerticalAlignment="Bottom">
+                <Button.Flyout>
+                    <Flyout>
+                        <ListView
+                        x:Uid="ManufacturerList"
+                        x:Name="ManufacturerListView"
+                        ItemsSource="{x:Bind ViewModel.Manufacturers, Mode=OneWay}"
+                        ItemTemplate="{StaticResource ManufacturerItemTemplate}" 
+                        Height="200"/>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+
+            <!-- Search button -->
+            <Button Name="filterButton"
+                    Width="80"
+                    Content="Search"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="filterButton_Click"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"/>
+        </StackPanel>
+
+        <GridView ItemsSource="{x:Bind ViewModel.Cosmetics}"
+                  IsItemClickEnabled="True"
+                  ItemClick="GridView_ItemClick"
+                  Grid.Row="1"
+                  Margin="-8, 0, -8, 0">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local1:Cosmetic" >
+                    <StackPanel CornerRadius="12" 
+                        Width="180" 
+                        Padding="16, 16, 16, 16"
+                        BorderBrush="#EEEEEE"
+                        BorderThickness="1">
+                        <StackPanel>
+                            <Border CornerRadius="12" Height="128">
+                                <Image Source="/Assets/Product/001.jpg" Stretch="Fill"/>
+                            </Border>
+
+                            <TextBlock Text="{x:Bind Name}"
+                               TextWrapping="Wrap"
+                               Height="40"
+                               Margin="0, 16, 0, 12"/>
+
+                            <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}}"
+                               FontSize="16"
+                               FontWeight="SemiBold"
+                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="8, 8, 8, 8"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+        </GridView>
+
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Margin="0, 16, 0, 8">
+            <Button x:Name="prevButton"
+                    Width="32" 
+                    Height="32" 
+                    Padding="0, 0, 0, 0" 
+                    Margin="0, 0, 8, 0"
+                    Click="prevButton_Click"
+                    IsEnabled="{x:Bind ViewModel.EnablePrev, Mode=OneWay}">
+                <FontIcon FontSize="14" Glyph="&#xE96F;" />
+            </Button>
+
+            <ComboBox SelectedItem="{x:Bind ViewModel.CurrentPageInfo, Mode=OneWay}"
+                      Width="136" 
+                      HorizontalAlignment="Center"
+                      ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
+                      ItemTemplate="{StaticResource PageInfoTemplate}"
+                      SelectionChanged="pagesCombobox_SelectionChanged"
+                      x:Name="pagesCombobox"/>
+
+            <Button x:Name="nextButton"
+                    Width="32" 
+                    Height="32" 
+                    Padding="0, 0, 0, 0" 
+                    Margin="8, 0, 0, 0"
+                    Click="nextButton_Click"
+                    IsEnabled="{x:Bind ViewModel.EnableNext, Mode=OneWay}">
+                <FontIcon FontSize="14" Glyph="&#xE970;" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
