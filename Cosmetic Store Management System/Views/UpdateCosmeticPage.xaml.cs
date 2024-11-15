@@ -76,7 +76,7 @@ public sealed partial class UpdateCosmeticPage : Page
             errorMessage += "Price must be a positive number.\n";
         }
 
-        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Image))
+        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
             errorMessage += "Image input cannot be empty.\n";
         }
