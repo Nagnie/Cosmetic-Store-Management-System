@@ -10,19 +10,27 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLOrderDetailDAO : IOrderDetailDAO
 {
-    public void AddOrderDetail(OrderDetail orderDetail)
+    public void AddOrderDetails(int orderID, List<OrderDetail> orderDetails)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
-        using var command = new NpgsqlCommand();
-        command.Connection = connection;
-        command.CommandText = $"""
-                INSERT INTO ORDER_DETAIL (cosmetic_id, order_id, quantity)
-                VALUES ({orderDetail.Cosmetic.ID}, {orderDetail.OrderID}, {orderDetail.Quantity})
+        foreach (var orderDetail in orderDetails) {
+            using var command = new NpgsqlCommand();
+            command.Connection = connection;
+            command.CommandText = $"""
+                INSERT INTO ORDER_DETAIL (order_id, cosmetic_id, quantity, subTotal)
+                VALUES (@orderID, @cosmeticID, @quantity, @subTotal)
             """;
 
-        command.ExecuteNonQuery();
+            command.Parameters.AddWithValue("orderID", orderID);
+            command.Parameters.AddWithValue("cosmeticID", orderDetail.Cosmetic.ID);
+            command.Parameters.AddWithValue("quantity", orderDetail.Quantity);
+            command.Parameters.AddWithValue("subTotal", orderDetail.SubTotal);
+
+            command.ExecuteNonQuery();
+        }
+
         connection.Close();
     }
 
