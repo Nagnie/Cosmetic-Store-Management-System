@@ -11,7 +11,7 @@ using Npgsql;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
 {
-    public void AddLoyalCustomer(LoyalCustomer loyalCustomer)
+    public int AddLoyalCustomer(LoyalCustomer loyalCustomer)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
@@ -19,12 +19,14 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                INSERT INTO "LOYAL_CUSTOMER" (customer_name, phone)
-                VALUES ('{loyalCustomer.Name}', '{loyalCustomer.Phone}')
+                INSERT INTO "CUSTOMER" (customer_name, phone, point)
+                VALUES ('{loyalCustomer.Name}', '{loyalCustomer.Phone}', 0)
+                RETURNING customer_id
             """;
 
-        command.ExecuteNonQuery();
+        var customerId = (int)command.ExecuteScalar();
         connection.Close();
+        return customerId;
     }
     public void DeleteLoyalCustomer(string phone)
     {
@@ -34,7 +36,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM "LOYAL_CUSTOMER"
+                DELETE FROM "CUSTOMER"
                 WHERE phone = '{phone}'
             """;
 
@@ -50,7 +52,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                SELECT * FROM "LOYAL_CUSTOMER"
+                SELECT * FROM "CUSTOMER"
                 WHERE phone = '{phone}'
             """;
 
@@ -64,7 +66,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 ID = (int)reader["customer_id"],
                 Name = (string)reader["customer_name"],
                 Phone = (string)reader["phone"],
-                Point = (double)reader["point"]
+                Point = (float)reader["point"]
             };
         }
 
@@ -80,7 +82,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                SELECT * FROM "LOYAL_CUSTOMER"
+                SELECT * FROM "CUSTOMER"
             """;
 
         var reader = command.ExecuteReader();
@@ -92,7 +94,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
                 ID = (int)reader["customer_id"],
                 Name = (string)reader["customer_name"],
                 Phone = (string)reader["phone"],
-                Point = (double)reader["point"]
+                Point = (float)reader["point"]
             };
             
             customers.Add(customer);
@@ -108,7 +110,7 @@ public class SQLLoyalCustomerDAO : ILoyalCustomerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE "LOYAL_CUSTOMER"
+                UPDATE "CUSTOMER"
                 SET customer_name = @name, point = @point
                 WHERE phone = @phone
             """;
