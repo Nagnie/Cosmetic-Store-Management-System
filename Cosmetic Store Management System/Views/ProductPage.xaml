@@ -6,12 +6,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
+    xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
-        <local:LanguageConverter x:Key="languageConverter"/>
+        <local:CurrencyConverter x:Key="currencyConverter"/>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -89,7 +90,7 @@
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Price: " FontWeight="Bold" />
-                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Mode=OneWay}" FontWeight="Normal" ></Run>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
