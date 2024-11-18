@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.Core.Services.Data_Access;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 public partial class CategoryViewModel : ObservableRecipient
@@ -18,7 +19,20 @@ public partial class CategoryViewModel : ObservableRecipient
 
     public ICategoryDAO dao = new SQLCategoryDAO();
 
-    public string Info => $"Displaying {Categories.Count}/{RowsPerPage} of total {TotalItems} item(s)";
+    public string Info
+    {
+        get
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+
+            if (localSettings.Values["appLanguage"].Equals("vi-VN"))
+            {
+                return $"Hiển thị {Categories.Count}/{RowsPerPage} trong tổng số {TotalItems} sản phẩm";
+            }
+
+            return $"Displaying {Categories.Count}/{RowsPerPage} of total {TotalItems} item(s)";
+        }
+    }
 
     public ObservableCollection<PageInfo> PageInfos { get; set; } = new ObservableCollection<PageInfo>();
 

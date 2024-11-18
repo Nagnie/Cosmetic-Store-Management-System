@@ -24,6 +24,8 @@ public class Order
 
     public int Discount { get; set; }
 
+    public int SaleTax { get; set;}
+
     public LoyalCustomer Customer { get; set; }
 
     public OrderStatus Status { get; set; }

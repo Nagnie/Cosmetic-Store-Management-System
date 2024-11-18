@@ -8,7 +8,7 @@ using Cosmetic_Store_Management_System.Core.Models;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface ILoyalCustomerDAO
 {
-    void AddLoyalCustomer(LoyalCustomer loyalCustomer);
+    int AddLoyalCustomer(LoyalCustomer loyalCustomer);
     List<LoyalCustomer> GetLoyalCustomers();
     LoyalCustomer GetLoyalCustomer(string phone);
     void UpdateLoyalCustomer(LoyalCustomer loyalCustomer);

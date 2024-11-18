@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Input;
 
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -10,6 +11,7 @@ using Cosmetic_Store_Management_System.Helpers;
 using Microsoft.UI.Xaml;
 
 using Windows.ApplicationModel;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 
@@ -23,6 +25,8 @@ public partial class SettingsViewModel : ObservableRecipient
     [ObservableProperty]
     private string _versionDescription;
 
+    public string DisplayLanguage = (string)ApplicationData.Current.LocalSettings.Values["appLanguage"];
+    
     public ICommand SwitchThemeCommand
     {
         get;
@@ -61,5 +65,15 @@ public partial class SettingsViewModel : ObservableRecipient
         }
 
         return $"{"AppDisplayName".GetLocalized()} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+    }
+
+    public void SetDisplayLanguage(string language)
+    {
+        if (DisplayLanguage != language)
+        {
+            DisplayLanguage = language;
+            ApplicationData.Current.LocalSettings.Values["appLanguage"] = language;
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+        }
     }
 }
