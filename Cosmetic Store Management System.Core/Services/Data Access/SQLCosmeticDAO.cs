@@ -108,6 +108,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         string sortString,
         int page, int rowsPerPage)
     {
+        if (page < 1) page = 1;
         List<Cosmetic> cosmetics = new List<Cosmetic>();
         NpgsqlConnection connection = DBConnection.GetConnection();
         if (connection.State != System.Data.ConnectionState.Open)
@@ -216,4 +217,82 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return success;
     }
+
+    public Cosmetic GetCosmeticById(int id)
+    {
+        using var connection = DBConnection.GetConnection();
+        connection.Open();
+
+        const string query = """
+        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
+        FROM "COSMETIC"
+        WHERE cosmetic_id = @id
+    """;
+
+        using var command = new NpgsqlCommand(query, connection);
+        command.Parameters.AddWithValue("@id", id);
+
+        using var reader = command.ExecuteReader();
+        return reader.Read() ? MapToCosmetic(reader) : null;
+    }
+
+    public Cosmetic GetNextCosmetic(int currentId)
+    {
+        using var connection = DBConnection.GetConnection();
+        connection.Open();
+
+        const string query = """
+        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
+        FROM "COSMETIC"
+        WHERE cosmetic_id > @currentId
+        ORDER BY cosmetic_id ASC
+        LIMIT 1
+    """;
+
+        using var command = new NpgsqlCommand(query, connection);
+        command.Parameters.AddWithValue("@currentId", currentId);
+
+        using var reader = command.ExecuteReader();
+        return reader.Read() ? MapToCosmetic(reader) : null;
+    }
+
+    public Cosmetic GetPreviousCosmetic(int currentId)
+    {
+        using var connection = DBConnection.GetConnection();
+        connection.Open();
+
+        const string query = """
+        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
+        FROM "COSMETIC"
+        WHERE cosmetic_id < @currentId
+        ORDER BY cosmetic_id DESC
+        LIMIT 1
+    """;
+
+        using var command = new NpgsqlCommand(query, connection);
+        command.Parameters.AddWithValue("@currentId", currentId);
+
+        using var reader = command.ExecuteReader();
+        return reader.Read() ? MapToCosmetic(reader) : null;
+    }
+
+    private Cosmetic MapToCosmetic(NpgsqlDataReader reader)
+    {
+        return new Cosmetic
+        {
+            ID = reader.GetInt32(reader.GetOrdinal("cosmetic_id")),
+            Name = reader.GetString(reader.GetOrdinal("cosmetic_name")),
+            Category = new Category { ID = reader.GetInt32(reader.GetOrdinal("category_id")) },
+            Manufacturer = new Manufacturer { ID = reader.GetInt32(reader.GetOrdinal("manufacturer_id")) },
+            Quantity = reader.GetInt32(reader.GetOrdinal("quantity")),
+            Description = reader.IsDBNull(reader.GetOrdinal("description"))
+                ? null
+                : reader.GetString(reader.GetOrdinal("description")),
+            Price = reader.GetInt32(reader.GetOrdinal("price")),
+            ImageData = reader.IsDBNull(reader.GetOrdinal("image"))
+                ? null
+                : (byte[])reader["image"]
+        };
+    }
+
 }

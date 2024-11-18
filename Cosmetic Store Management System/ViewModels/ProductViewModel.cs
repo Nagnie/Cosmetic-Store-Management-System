@@ -22,6 +22,9 @@ namespace Cosmetic_Store_Management_System.ViewModels;
 
 public partial class ProductViewModel : ObservableRecipient
 {
+    public ICosmeticDAO CosmeticDao { get; set; } = new SQLCosmeticDAO();
+    private int _currentProductId;
+
     private Cosmetic _cosmetic;
     public Cosmetic Cosmetic
     {
@@ -60,6 +63,36 @@ public partial class ProductViewModel : ObservableRecipient
                 bitmapImage.SetSourceAsync(stream.AsRandomAccessStream());
             }
             Image = bitmapImage;
+        }
+    }
+
+    public async Task LoadProductById(int productId)
+    {
+        var product = await Task.Run(() => CosmeticDao.GetCosmeticById(productId));
+        if (product != null)
+        {
+            Cosmetic = product;
+            _currentProductId = productId;
+        }
+    }
+
+    public async Task LoadNextProduct()
+    {
+        var nextProduct = await Task.Run(() => CosmeticDao.GetNextCosmetic(_currentProductId));
+        if (nextProduct != null)
+        {
+            Cosmetic = nextProduct;
+            _currentProductId = nextProduct.ID;
+        }
+    }
+
+    public async Task LoadPreviousProduct()
+    {
+        var previousProduct = await Task.Run(() => CosmeticDao.GetPreviousCosmetic(_currentProductId));
+        if (previousProduct != null)
+        {
+            Cosmetic = previousProduct;
+            _currentProductId = previousProduct.ID;
         }
     }
 

@@ -78,4 +78,19 @@ public sealed partial class ProductPage : Page
 
         Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
     }
+
+    private void backButton_Click(object sender, RoutedEventArgs e)
+    {
+        this.Frame.Navigate(typeof(ProductDataPage));
+    }
+
+    private async void previousProductButton_Click(object sender, RoutedEventArgs e)
+    {
+        await ViewModel.LoadPreviousProduct();
+    }
+
+    private async void nextProductButton_Click(object sender, RoutedEventArgs e)
+    {
+        await ViewModel.LoadNextProduct();
+    }
 }
