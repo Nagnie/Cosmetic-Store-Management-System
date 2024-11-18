@@ -105,7 +105,7 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="AddCosmeticPage_Image"/>
                 <TextBox Name="image"
-                         Text="{x:Bind ViewModel.Cosmetic.Image, Mode=TwoWay}"
+                         Text="{x:Bind ViewModel.Cosmetic.ImageData, Mode=TwoWay}"
                          Grid.Row="5"
                          Grid.Column="1"
                          Margin="0, 0, 0, 10"/>

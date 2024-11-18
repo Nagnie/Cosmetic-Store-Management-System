@@ -10,6 +10,7 @@
 
     <Grid HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
+
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="500"/>
         </Grid.ColumnDefinitions>
@@ -26,6 +27,7 @@
                    Grid.Column="0"
                    Margin="0, 0, 0, 12"
                    x:Uid="AddManufacturerPage_Name"/>
+
         <TextBox Grid.Row="0"
                  Grid.Column="1"
                  Margin="0, 0, 0, 12"
@@ -35,23 +37,25 @@
                    Grid.Column="0"
                    Grid.Row="1"
                    x:Uid="AddManufacturerPage_Origin"/>
+
         <TextBox Grid.Column="1"
                  Grid.Row="1"
                  ScrollViewer.HorizontalScrollMode="Enabled"
                  TextWrapping="Wrap"
                  Margin="0, 0, 0, 12"
-                 Text="{x:Bind ViewModel.Manufacturer.Origin, Mode=TwoWay}"/>
 
         <TextBlock Text="Product Count"
                    Grid.Column="0"
                    Grid.Row="2"
                    x:Uid="AddManufacturerPage_ProductCount"/>
+
         <TextBox Grid.Column="1"
                  Grid.Row="2"
                  ScrollViewer.HorizontalScrollMode="Enabled"
                  TextWrapping="Wrap"
                  Height="120"
-                 Text="{x:Bind ViewModel.Manufacturer.productCount, Mode=TwoWay}"/>
+                 Text="{x:Bind ViewModel.Manufacturer.Origin, Mode=TwoWay}"/>
+
 
         <StackPanel Grid.Column="1"
                 Grid.Row="3"

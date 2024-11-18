@@ -8,10 +8,12 @@
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
     xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
+    xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <local:CurrencyConverter x:Key="currencyConverter"/>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40">
@@ -34,7 +36,7 @@
                     <TextBlock Text="{x:Bind Name, Mode=OneWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
                 </Button>
                 <TextBlock Text="{x:Bind Quantity}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="{x:Bind Price, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="{x:Bind Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="{x:Bind Category.Name, Mode=OneWay}" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="{x:Bind Manufacturer.Name, Mode=OneWay}" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>

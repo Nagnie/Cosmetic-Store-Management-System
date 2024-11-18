@@ -4,13 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:controls="using:CommunityToolkit.Mvvm.Collections"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:Local="using:Cosmetic_Store_Management_System.Helpers"
+    xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
+    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <local:CurrencyConverter x:Key="currencyConverter"/>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40"
@@ -46,8 +48,8 @@
                            Grid.Column="2" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left" />
-                
-                <TextBlock Text="{x:Bind Price, Mode=OneWay}" 
+
+                <TextBlock Text="{x:Bind Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" 
                            Grid.Column="3" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left"/>
@@ -90,6 +92,7 @@
                                   IsChecked="False"
                                   Click="manufacturerItem_Click"/>
         </DataTemplate>
+        
     </Page.Resources>
 
     <Grid x:Name="ContentArea">

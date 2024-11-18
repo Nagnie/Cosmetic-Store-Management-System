@@ -24,7 +24,7 @@ exports.up = function (knex) {
         table.integer('category_id').unsigned().references('category_id').inTable('CATEGORY').onDelete('CASCADE');
         table.integer('manufacturer_id').unsigned().references('manufacturer_id').inTable('MANUFACTURER').onDelete('CASCADE');
         table.text('description');
-        table.text('image');
+        table.binary('image');
       });
   };
   
