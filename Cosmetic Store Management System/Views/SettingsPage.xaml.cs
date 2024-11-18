@@ -43,12 +43,30 @@ public sealed partial class SettingsPage : Page
         UpdateLanguage("en-US");
     }
 
-    private void UpdateLanguage(string languageCode)
+    private async void UpdateLanguage(string languageCode)
     {
         if (ViewModel.DisplayLanguage != languageCode)
         {
+            var currentLanguage = ViewModel.DisplayLanguage;
             ViewModel.SetDisplayLanguage(languageCode);
-            RefreshUI();
+
+            var dialog = currentLanguage.Equals("en-US")
+                ? new ContentDialog
+                {
+                    Title = "Restart Required",
+                    Content = "The app must be restarted for the language change to take effect.",
+                    CloseButtonText = "Close",
+                    XamlRoot = this.XamlRoot,
+                }
+                : new ContentDialog
+                {
+                    Title = "Yêu cầu khởi động lại",
+                    Content = "Ứng dụng phải được khởi động lại để thay đổi ngôn ngữ có hiệu lực.",
+                    CloseButtonText = "Đóng",
+                    XamlRoot = this.XamlRoot
+                };
+
+            await dialog.ShowAsync();
         }
     }
 
