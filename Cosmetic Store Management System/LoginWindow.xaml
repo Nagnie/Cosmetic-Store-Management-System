@@ -11,14 +11,24 @@
     <StackPanel Orientation="Vertical" 
         HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="LOGIN" 
-               FontSize="40" 
-               FontWeight="Bold" 
-               HorizontalAlignment="Center" 
-               Margin="0,0,0,15"/>
+                   FontSize="40" 
+                   FontWeight="Bold" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,15"
+                   x:Uid="LoginWindow_Login"/>
         <TextBox Header="Enter your username:" 
-         Name="usernameTextBox" Width="150"/>
-        <PasswordBox Name="passwordBox" Header="Enter password"/>
-        <CheckBox Name="rememberCheckBox" Content="Remember me"/>
-        <Button x:Name="loginButton" Click="loginButton_Click" HorizontalAlignment="Center">Login</Button>
+                 Name="usernameTextBox"
+                 x:Uid="LoginWindow_Username"/>
+        <PasswordBox Name="passwordBox" 
+                     Header="Enter password"
+                     x:Uid="LoginWindow_Password"/>
+        <CheckBox Name="rememberCheckBox" 
+                  Content="Remember me"
+                  x:Uid="LoginWindow_RememberMeCheckBox"/>
+        <Button x:Name="loginButton" 
+                Click="loginButton_Click" 
+                HorizontalAlignment="Center"
+                Content="Login"
+                x:Uid="LoginWindow_LoginButton"/>
     </StackPanel>
 </Window>

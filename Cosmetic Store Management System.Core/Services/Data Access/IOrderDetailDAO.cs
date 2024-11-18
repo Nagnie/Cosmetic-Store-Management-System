@@ -8,7 +8,7 @@ using Cosmetic_Store_Management_System.Core.Models;
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public interface IOrderDetailDAO
 {
-    void AddOrderDetail(OrderDetail orderDetail);
+    void AddOrderDetails(int orderID, List<OrderDetail> orderDetails);
     List<OrderDetail> GetOrderDetails(int orderID);
     OrderDetail GetOrderDetail(int ID);
     void UpdateOrderDetail(OrderDetail orderDetail);

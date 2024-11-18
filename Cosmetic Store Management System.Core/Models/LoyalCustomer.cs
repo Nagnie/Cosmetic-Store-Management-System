@@ -14,7 +14,7 @@ public class LoyalCustomer : INotifyPropertyChanged
 
     public string Name { get; set; }
 
-    public double Point { get; set; }
+    public float Point { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

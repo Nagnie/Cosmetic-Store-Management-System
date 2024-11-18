@@ -18,8 +18,16 @@
 
             <!-- Phía bên trái: Form nhập thông tin -->
             <StackPanel Orientation="Vertical" Grid.Column="0" Spacing="10" HorizontalAlignment="Left">
-                <TextBlock Text="Product's Name" FontSize="16" FontWeight="Bold" />
-                <TextBox x:Name="ProductNameInput" PlaceholderText="Enter product name" Width="365" Margin="0,0,60,0"/>
+                <TextBlock Text="Product's Name" 
+                           FontSize="16" 
+                           FontWeight="Bold"
+                           x:Uid="AddNewPage_ProductName"/>
+                
+                <TextBox x:Name="ProductNameInput" 
+                         PlaceholderText="Enter product name" 
+                         Width="365" 
+                         Margin="0,0,60,0"
+                         x:Uid="AddNewPage_ProductNameInput"/>
 
                 <TextBlock Text="ID" FontSize="16" FontWeight="Bold" />
                 <TextBox x:Name="ProductIDInput" PlaceholderText="Enter product ID" Width="365" Margin="0,0,60,0"/>
