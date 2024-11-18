@@ -8,7 +8,6 @@
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
     xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
-    behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
     
     <Page.Resources>
@@ -32,14 +31,16 @@
 
             <!-- Delete and Edit buttons -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <Button Content="Delete" 
+                <Button x:Uid="ProductPage_DeleteButton"
+                        Content="Delete" 
                         Width="100" 
                         Margin="10" 
                         BorderBrush="Red" 
                         Foreground="Red" 
                         FontWeight="SemiBold"
                         Click="deleteButton_Click"/>
-                <Button Content="Edit" 
+                <Button x:Uid="ProductPage_EditButton"
+                        Content="Edit" 
                         Width="100" 
                         Margin="10" 
                         BorderBrush="Navy" 
@@ -56,37 +57,37 @@
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,15,0,0">
-                <Run Text="ID: " FontWeight="Bold" ></Run>
+                <Run Text="ID: " FontWeight="Bold" x:Uid="ProductPage_ID"></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Category: " FontWeight="Bold" ></Run>
+                <Run Text="Category: " FontWeight="Bold" x:Uid="ProductPage_Category"></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Brand Name: " FontWeight="Bold" ></Run>
+                <Run Text="Brand Name: " FontWeight="Bold" x:Uid="ProductPage_Brand"></Run>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Quantity: " FontWeight="Bold" />
+                <Run Text="Quantity: " FontWeight="Bold" x:Uid="ProductPage_Quantity"/>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Price: " FontWeight="Bold" />
+                <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Price, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Status: " FontWeight="Bold" />
+                <Run Text="Status: " FontWeight="Bold" x:Uid="ProductPage_Status"/>
                 <Run Text="In stock" FontWeight="Normal" ></Run>
             </TextBlock>
             
             <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
-                <Run Text="Description: " FontWeight="Bold" />
+                <Run Text="Description: " FontWeight="Bold" x:Uid="ProductPage_Description"/>
                 <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
             </TextBlock>
         </StackPanel>

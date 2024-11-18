@@ -25,12 +25,12 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{x:Bind ID, Mode=OneWay}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <Button Grid.Column="1" 
-                VerticalAlignment="Center" 
-                HorizontalAlignment="Left" 
-                Click="OnProductClick" 
-                Background="Transparent" 
-                BorderBrush="Transparent" 
-                Margin="0, 0, 20, 0">
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" 
+                        Click="OnProductClick" 
+                        Background="Transparent" 
+                        BorderBrush="Transparent" 
+                        Margin="0, 0, 20, 0">
                     <TextBlock Text="{x:Bind Name, Mode=OneWay}"  VerticalAlignment="Center" HorizontalAlignment="Left" />
                 </Button>
                 <TextBlock Text="{x:Bind Quantity}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" />
@@ -158,12 +158,46 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="ID" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Center"/>
-                        <TextBlock Text="Name" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="27,0,0,0"/>
-                        <TextBlock Text="Quantity" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,0,0,0"/>
-                        <TextBlock Text="Price" Grid.Column="3" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,0,0,0"/>
-                        <TextBlock Text="Category" Grid.Column="4" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="-5,0,0,0"/>
-                        <TextBlock Text="Manufacturer" Grid.Column="5" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="-10,0,0,0"/>
+                        <TextBlock Text="ID" 
+                                   Grid.Column="0" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalTextAlignment="Center"/>
+                        <TextBlock Text="Name" 
+                                   Grid.Column="1" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalTextAlignment="Left" 
+                                   Margin="27,0,0,0"
+                                   x:Uid="OverviewsPage_Name"/>
+                        <TextBlock Text="Quantity" 
+                                   Grid.Column="2" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalTextAlignment="Left" 
+                                   Margin="0,0,0,0"
+                                   x:Uid="OverviewsPage_Quantity"/>
+                        <TextBlock Text="Price" 
+                                   Grid.Column="3" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center"
+                                   HorizontalTextAlignment="Left" 
+                                   Margin="0,0,0,0"
+                                   x:Uid="OverviewsPage_Price"/>
+                        <TextBlock Text="Category" 
+                                   Grid.Column="4" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalTextAlignment="Left" 
+                                   Margin="-5,0,0,0"
+                                   x:Uid="OverviewsPage_Category"/>
+                        <TextBlock Text="Manufacturer" 
+                                   Grid.Column="5" 
+                                   FontWeight="Bold" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalTextAlignment="Left" 
+                                   Margin="-10,0,0,0"
+                                   x:Uid="OverviewsPage_Manufacturer"/>
                     </Grid>
 
                     <!-- Danh sách sản phẩm -->
@@ -182,9 +216,10 @@
                     Margin="0,20,0,0"
                     FontSize="16"
                     Background="Transparent"
-                    MinHeight="30"
-                    MinWidth="70"
-                    Click="MoreButton_Click">
+                    MinHeight="40"
+                    MinWidth="100"
+                    Click="MoreButton_Click"
+                    x:Uid="OverviewsPage_MoreProduct">
                     
                     <Button.Style>
                         <Style TargetType="Button">

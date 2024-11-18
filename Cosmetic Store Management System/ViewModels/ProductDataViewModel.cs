@@ -16,6 +16,7 @@ using System.Diagnostics;
 using Cosmetic_Store_Management_System.Helpers;
 using Windows.Services.Maps;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 
@@ -37,7 +38,20 @@ public partial class ProductDataViewModel : ObservableRecipient
         get; set;
     } = new ObservableCollection<Manufacturer>();
 
-    public string Info => $"Displaying {Cosmetics.Count}/{RowsPerPage} of total {TotalItems} item(s)";
+    public string Info
+    {
+        get
+        {
+            var localSettings = ApplicationData.Current.LocalSettings;
+
+            if (localSettings.Values["appLanguage"].Equals("vi-VN"))
+            {
+                return $"Hiển thị {Cosmetics.Count}/{RowsPerPage} trong tổng số {TotalItems} mặt hàng";
+            }
+
+            return $"Displaying {Cosmetics.Count}/{RowsPerPage} of total {TotalItems} item(s)";
+        }
+    }
 
     public ObservableCollection<PageInfo> PageInfos { get; set; } = new ObservableCollection<PageInfo>();
 

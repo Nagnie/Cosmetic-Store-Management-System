@@ -11,9 +11,11 @@
     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
         <Button Content="Cancel"
                 Name="cancelButton"
-                Click="cancelButton_Click"/>
+                Click="cancelButton_Click"
+                x:Uid="CheckoutUserControl_CancelButton"/>
         <Button Content="Finish"
                 Name="finishButton"
-                Click="finishButton_Click"/>
+                Click="finishButton_Click"
+                x:Uid="CheckoutUserControl_FinishButton"/>
     </StackPanel>
 </UserControl>

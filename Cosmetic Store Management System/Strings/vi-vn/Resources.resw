@@ -117,35 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDisplayName" xml:space="preserve">
-    <value>Cosmetic Store Management System</value>
-  </data>
   <data name="AppDescription" xml:space="preserve">
-    <value>Cosmetic Store Management System</value>
+    <value>Hệ thống quản lý cửa hàng mỹ phẩm</value>
   </data>
-  <data name="Shell_Overviews.Content" xml:space="preserve">
-    <value>Overviews</value>
-  </data>
-  <data name="Shell_Product.Content" xml:space="preserve">
-    <value>Product</value>
-  </data>
-  <data name="Shell_Analytics.Content" xml:space="preserve">
-    <value>Analytics</value>
-  </data>
-  <data name="Settings_Personalization.Text" xml:space="preserve">
-    <value>Personalization</value>
-  </data>
-  <data name="Settings_Theme.Text" xml:space="preserve">
-    <value>Theme</value>
-  </data>
-  <data name="Settings_Theme_Light.Content" xml:space="preserve">
-    <value>Light</value>
-  </data>
-  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-  <data name="Settings_Theme_Default.Content" xml:space="preserve">
-    <value>Default</value>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Hệ thống quản lý cửa hàng mỹ phẩm</value>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
     <value>About this application</value>
@@ -153,319 +129,343 @@
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
     <value>TODO: Replace with your app description.</value>
   </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Cài đặt cá nhân hóa</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>Chủ đề</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>Tối</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>Sáng</value>
+  </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Privacy Statement</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
     <value>https://YourPrivacyUrlGoesHere/</value>
   </data>
-  <data name="Shell_CreateOrder.Content" xml:space="preserve">
-    <value>Create Order</value>
+  <data name="Shell_Analytics.Content" xml:space="preserve">
+    <value>Phân tích</value>
   </data>
   <data name="Shell_Category.Content" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
+  </data>
+  <data name="Shell_CreateOrder.Content" xml:space="preserve">
+    <value>Tạo đơn hàng</value>
   </data>
   <data name="Shell_Manufacturer.Content" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
+  </data>
+  <data name="Shell_Overviews.Content" xml:space="preserve">
+    <value>Tổng quan</value>
+  </data>
+  <data name="Shell_Product.Content" xml:space="preserve">
+    <value>Sản phẩm</value>
   </data>
   <data name="Settings_Language_English.Content" xml:space="preserve">
-    <value>English</value>
+    <value>Tiếng Anh</value>
   </data>
   <data name="Settings_Language_Vietnamese.Content" xml:space="preserve">
-    <value>Vietnamese</value>
+    <value>Tiếng Việt</value>
   </data>
   <data name="Settings_Language.Text" xml:space="preserve">
-    <value>Language</value>
+    <value>Ngôn ngữ</value>
   </data>
   <data name="productDataPage_addText.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Thêm</value>
   </data>
-  <data name="ProductDataPage_SearchBox.PlaceHolderText" xml:space="preserve">
-    <value>Search by name</value>
+  <data name="ProductDataPage_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Tìm kiếm theo tên</value>
   </data>
   <data name="ProductDataPage_CategoryFilter.Content" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="ProductDataPage_ManufacturerFilter.Content" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="ProductDataPage_SearchButton.Content" xml:space="preserve">
-    <value>Search</value>
+    <value>Tìm kiếm</value>
   </data>
   <data name="ProductDataPage_Headers_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên sản phẩm</value>
   </data>
   <data name="ProductDataPage_Headers_Quantity.Text" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Số lượng</value>
   </data>
   <data name="ProductDataPage_Headers_Price.Text" xml:space="preserve">
-    <value>Price</value>
+    <value>Giá</value>
   </data>
   <data name="ProductDataPage_Headers_Category.Text" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="ProductDataPage_Headers_Manufacturer.Text" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="ProductDataPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
+    <value>Trang tiếp</value>
   </data>
   <data name="ProductDataPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
+    <value>Trang trước</value>
   </data>
   <data name="ProductPage_DeleteButton.Content" xml:space="preserve">
-    <value>Delete</value>
+    <value>Xóa</value>
   </data>
   <data name="ProductPage_EditButton.Content" xml:space="preserve">
-    <value>Edit</value>
+    <value>Sửa</value>
   </data>
   <data name="ProductPage_ID.Text" xml:space="preserve">
     <value>ID: </value>
   </data>
   <data name="ProductPage_Category.Text" xml:space="preserve">
-    <value>Category: </value>
+    <value>Danh mục: </value>
   </data>
   <data name="ProductPage_Brand.Text" xml:space="preserve">
-    <value>Brand Name: </value>
+    <value>Thương hiệu: </value>
   </data>
   <data name="ProductPage_Quantity.Text" xml:space="preserve">
-    <value>Quantity: </value>
+    <value>Số lượng: </value>
   </data>
   <data name="ProductPage_Price.Text" xml:space="preserve">
-    <value>Price: </value>
+    <value>Giá: </value>
   </data>
   <data name="ProductPage_Status.Text" xml:space="preserve">
-    <value>Status: </value>
+    <value>Trạng thái: </value>
   </data>
   <data name="ProductPage_Description.Text" xml:space="preserve">
-    <value>Description: </value>
+    <value>Mô tả: </value>
   </data>
   <data name="AddCosmeticPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="AddCosmeticPage_Category.Text" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="AddCosmeticPage_Manufacturer.Text" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="AddCosmeticPage_Quantity.Text" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Số lượng</value>
   </data>
   <data name="AddCosmeticPage_Price.Text" xml:space="preserve">
-    <value>Price</value>
+    <value>Giá</value>
   </data>
   <data name="AddCosmeticPage_Image.Text" xml:space="preserve">
-    <value>Image</value>
+    <value>Hình ảnh</value>
   </data>
   <data name="AddCosmeticPage_Description.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Mô tả</value>
   </data>
   <data name="AddCosmeticPage_SaveButton.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
   </data>
   <data name="AddCosmeticPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="AddCategoryPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="AddCategoryPage_Description.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Mô tả</value>
   </data>
   <data name="AddCategoryPage_SaveButton.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
   </data>
   <data name="AddCategoryPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="AddManufacturerPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="AddManufacturerPage_Origin.Text" xml:space="preserve">
-    <value>Origin</value>
+    <value>Xuất xứ</value>
   </data>
   <data name="AddManufacturerPage_ProductCount.Text" xml:space="preserve">
-    <value>Product Count</value>
+    <value>Số lượng sản phẩm</value>
   </data>
   <data name="AddManufacturerPage_SaveButton.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
   </data>
   <data name="AddManufacturerPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="CategoryPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
+    <value>Trang tiếp</value>
   </data>
   <data name="CategoryPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
+    <value>Trang trước</value>
   </data>
   <data name="CategoryPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="CategoryPage_ProductCount.Text" xml:space="preserve">
-    <value>Product Count</value>
+    <value>Số sản phẩm</value>
   </data>
   <data name="CategoryPage_Active.Text" xml:space="preserve">
-    <value>Active</value>
+    <value>Hành động</value>
   </data>
   <data name="EditCategoryPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="EditCategoryPage_SaveButton.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
   </data>
   <data name="EditCategoryPage_ProductCount.Text" xml:space="preserve">
-    <value>Product Count</value>
+    <value>Số lượng sản phẩm</value>
   </data>
   <data name="EditCategoryPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="ManufacturerPage_AddButtonText.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Thêm</value>
   </data>
   <data name="Manufacturer_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="ManufacturerPage_Origin.Text" xml:space="preserve">
-    <value>Origin</value>
+    <value>Xuất xứ</value>
   </data>
   <data name="ManufacturerPage_ProductCount.Text" xml:space="preserve">
-    <value>Product Count</value>
+    <value>Số lượng sản phẩm</value>
   </data>
   <data name="ManufacturerPage_Active.Text" xml:space="preserve">
-    <value>Active</value>
+    <value>Hành động</value>
   </data>
   <data name="ManufacturerPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
+    <value>Trang trước</value>
   </data>
   <data name="ManufacturerPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
+    <value>Trang tiếp</value>
   </data>
   <data name="UpdateManufacturerPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="UpdateManufacturerPage_SaveButton.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>Lưu</value>
   </data>
   <data name="UpdateManufacturerPage_Origin.Text" xml:space="preserve">
-    <value>Origin</value>
+    <value>Xuất xứ</value>
   </data>
   <data name="UpdateManufacturerPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="UpdateCosmeticPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="UpdateCosmeticPage_Category.Text" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="UpdateCosmeticPage_Manufacturer.Text" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="UpdateCosmeticPage_Quantity.Text" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Số lượng</value>
   </data>
   <data name="UpdateCosmeticPage_Price.Text" xml:space="preserve">
-    <value>Price</value>
+    <value>Giá</value>
   </data>
   <data name="UpdateCosmeticPage_Image.Text" xml:space="preserve">
-    <value>Image</value>
+    <value>Hình ảnh</value>
   </data>
   <data name="UpdateCosmeticPage_Description.Text" xml:space="preserve">
-    <value>Description</value>
+    <value>Mô tả</value>
   </data>
   <data name="UpdateCosmeticPage_UpdateButton.Content" xml:space="preserve">
-    <value>Update</value>
+    <value>Cập nhật</value>
   </data>
   <data name="UpdateCosmeticPage_CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Hủy</value>
   </data>
   <data name="CategoryPage_AddButtonText.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Thêm</value>
   </data>
   <data name="CreateOrderPage_CustomerHeader.Text" xml:space="preserve">
-    <value>Customer</value>
+    <value>Khách hàng</value>
   </data>
   <data name="CreateOrderPage_OrderDetailHeader.Text" xml:space="preserve">
-    <value>Order Details</value>
+    <value>Chi tiết đơn hàng</value>
   </data>
   <data name="CreateOrderPage_CheckOutButton.Content" xml:space="preserve">
-    <value>Checkout</value>
+    <value>Thanh toán</value>
   </data>
   <data name="CustomerInfoUserControl_PhoneNumber.Header" xml:space="preserve">
-    <value>Phone number</value>
+    <value>Điện thoại</value>
   </data>
   <data name="CustomerInfoUserControl_Name.Header" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên</value>
   </data>
   <data name="CustomerInfoUserControl_Point.Header" xml:space="preserve">
-    <value>Point</value>
+    <value>Điểm</value>
   </data>
   <data name="CustomerInfoUserControl_PhoneNumber.PlaceholderText" xml:space="preserve">
-    <value>Enter phone number</value>
+    <value>Nhập số điện thoại</value>
   </data>
   <data name="CustomerInfoUserControl_Name.PlaceholderText" xml:space="preserve">
-    <value>Enter customer name</value>
+    <value>Nhập tên khách hàng</value>
   </data>
   <data name="PaymentUserControl_Subtotal.Text" xml:space="preserve">
-    <value>Subtotal</value>
+    <value>Tổng tiền hàng</value>
   </data>
   <data name="PaymentUserControl_Discount.Text" xml:space="preserve">
-    <value>Discount</value>
+    <value>Giảm giá</value>
   </data>
   <data name="PaymentUserControl_SaleTax.Text" xml:space="preserve">
-    <value>SaleTax</value>
+    <value>Thuế GTGT</value>
   </data>
   <data name="PaymentUserControl_Total.Text" xml:space="preserve">
-    <value>Total</value>
+    <value>Tổng thanh toán</value>
   </data>
   <data name="ProductListUserControl_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>Search by name</value>
+    <value>Tìm theo tên sản phẩm</value>
   </data>
   <data name="ProductListUserControl_CategoryButton.Content" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="ProductListUserControl_Manufacturer.Content" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="ProductListUserControl_FilterButton.Content" xml:space="preserve">
-    <value>Search</value>
+    <value>Tìm kiếm</value>
   </data>
   <data name="LoginWindow_Login.Text" xml:space="preserve">
-    <value>LOGIN</value>
+    <value>ĐĂNG NHẬP</value>
   </data>
   <data name="LoginWindow_Username.Header" xml:space="preserve">
-    <value>Enter your username:</value>
+    <value>Nhập tên đăng nhập:</value>
   </data>
   <data name="LoginWindow_Password.Header" xml:space="preserve">
-    <value>Enter password:</value>
+    <value>Nhập mật khẩu:</value>
   </data>
   <data name="LoginWindow_LoginButton.Content" xml:space="preserve">
-    <value>Login</value>
+    <value>Đăng nhập</value>
   </data>
   <data name="LoginWindow_RememberMeCheckBox.Content" xml:space="preserve">
-    <value>Remember me</value>
+    <value>Ghi nhớ đăng nhập</value>
   </data>
   <data name="OverviewsPage_Name.Text" xml:space="preserve">
-    <value>Name</value>
+    <value>Tên sản phẩm</value>
   </data>
   <data name="OverviewsPage_Quantity.Text" xml:space="preserve">
-    <value>Quantity</value>
+    <value>Số lượng</value>
   </data>
   <data name="OverviewsPage_Price.Text" xml:space="preserve">
-    <value>Price</value>
+    <value>Giá</value>
   </data>
   <data name="OverviewsPage_Category.Text" xml:space="preserve">
-    <value>Category</value>
+    <value>Danh mục</value>
   </data>
   <data name="OverviewsPage_Manufacturer.Text" xml:space="preserve">
-    <value>Manufacturer</value>
+    <value>Thương hiệu</value>
   </data>
   <data name="OverviewsPage_MoreProduct.Content" xml:space="preserve">
-    <value>More</value>
+    <value>Xem thêm</value>
   </data>
   <data name="ProductListUserControl_Quantity.Text" xml:space="preserve">
-    <value>Qty: </value>
+    <value>SL: </value>
   </data>
 </root>

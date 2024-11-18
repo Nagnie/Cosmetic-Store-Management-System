@@ -25,7 +25,8 @@
                      Name="phoneNumberTextBox"
                      Header="Phone number"
                      Text="{x:Bind ViewModel.Customer.Phone, Mode=TwoWay}"
-                     Grid.Column="0"/>
+                     Grid.Column="0"
+                     x:Uid="CustomerInfoUserControl_PhoneNumber"/>
 
             <Button Name="searchButton"
                     Grid.Column="1" 
@@ -64,13 +65,15 @@
                      Name="nameTextBox"
                      PlaceholderText="Enter customer name"
                      Text="{x:Bind ViewModel.Customer.Name, Mode=TwoWay}"
-                     Grid.Column="0"/>
+                     Grid.Column="0"
+                     x:Uid="CustomerInfoUserControl_Name"/>
 
             <TextBox Header="Point"
                      Text="{x:Bind ViewModel.Customer.Point, Mode=OneWay}"
                      Grid.Column="1"
                      Margin="8, 0, 0, 0"
-                     IsEnabled="False"/>
+                     IsEnabled="False"
+                     x:Uid="CustomerInfoUserControl_Point"/>
 
         </Grid>
     </Grid>

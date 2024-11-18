@@ -13,10 +13,10 @@
         </UserControl.Resources>
 
         <Grid Padding="12, 12, 12, 12"
-          BorderBrush="#EEEEEE"
-          BorderThickness="1"
-          CornerRadius="12"
-          Margin="0, 12, 0, 0">
+              BorderBrush="#EEEEEE"
+              BorderThickness="1"
+              CornerRadius="12"
+              Margin="0, 12, 0, 0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
@@ -32,7 +32,8 @@
         <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    Text="Subtotal"
-                   Margin="0, 0, 0, 10"/>
+                   Margin="0, 0, 0, 10"
+                   x:Uid="PaymentUserControl_Subtotal"/>
         <TextBlock Grid.Row="0" 
                    Grid.Column="1" 
                    Text="{x:Bind ViewModel.SubTotal, Mode=OneWay, 
@@ -43,7 +44,8 @@
         <TextBlock Grid.Row="1" 
                    Grid.Column="0" 
                    Text="Discount"
-                   Margin="0, 0, 0, 10"/>
+                   Margin="0, 0, 0, 10"
+                   x:Uid="PaymentUserControl_Discount"/>
         <TextBlock Grid.Row="1" 
                    Grid.Column="1" 
                    Text="{x:Bind ViewModel.Discount, Mode=OneWay, 
@@ -54,7 +56,8 @@
         <TextBlock Grid.Row="2" 
                    Grid.Column="0" 
                    Text="Sale Tax"
-                   Margin="0, 0, 0, 14"/>
+                   Margin="0, 0, 0, 14"
+                   x:Uid="PaymentUserControl_SaleTax"/>
         <TextBlock Grid.Row="2" 
                    Grid.Column="1" 
                    Text="{x:Bind ViewModel.SaleTax, Mode=OneWay, 
@@ -66,7 +69,8 @@
                    Grid.Column="0" 
                    Text="Total"
                    FontSize="16"
-                   FontWeight="Bold"/>
+                   FontWeight="Bold"
+                   x:Uid="PaymentUserControl_Total"/>
         <TextBlock Grid.Row="3" 
                    Grid.Column="1" 
                    Text="{x:Bind ViewModel.Total, Mode=OneWay, 
