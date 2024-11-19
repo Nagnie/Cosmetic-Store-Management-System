@@ -15,14 +15,14 @@
         
         <!-- Template for category item-->
         <DataTemplate x:Key="CategoryItemTemplate" x:DataType="local1:Category">
-            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+            <ToggleMenuFlyoutItem Text="{x:Bind Name, Mode=OneWay}" 
                   IsChecked="False"
                   Click="categoryItem_Click"/>
         </DataTemplate>
 
         <!-- Template for manufacturer item-->
         <DataTemplate x:Key="ManufacturerItemTemplate" x:DataType="local1:Manufacturer">
-            <ToggleMenuFlyoutItem Text="{x:Bind Name}" 
+            <ToggleMenuFlyoutItem Text="{x:Bind Name, Mode=OneWay}" 
                   IsChecked="False"
                   Click="manufacturerItem_Click"/>
         </DataTemplate>
@@ -30,7 +30,7 @@
         <!-- Template for page info -->
         <DataTemplate x:Key="PageInfoTemplate" x:DataType="local3:PageInfo">
             <TextBlock TextAlignment="Center">
-                Page <Run Text="{Binding Page}"/> of <Run Text="{Binding Total}"/>
+                Page <Run Text="{Binding Page, Mode=OneWay}"/> of <Run Text="{Binding Total, Mode=OneWay}"/>
             </TextBlock>
         </DataTemplate>
     </UserControl.Resources>
@@ -44,16 +44,18 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Padding="0, 0, 0, 16">
             <AutoSuggestBox x:Name="SearchBox"
-                Width="250"
-                PlaceholderText="Search by name"
-                QueryIcon="Find" 
-                Margin="0, 0, 12, 0"/>
+                            Width="250"
+                            PlaceholderText="Search by name"
+                            QueryIcon="Find" 
+                            Margin="0, 0, 12, 0"
+                            x:Uid="ProductListUserControl_SearchBox"/>
 
             <!-- Filter by category -->
             <Button Content="Category" 
                     Width="100"
                     Margin="0, 0, 12, 0"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    x:Uid="ProductListUserControl_CategoryButton">
                 <Button.Flyout>
                     <Flyout>
                         <ListView x:Uid="CategoryList"
@@ -69,7 +71,8 @@
             <Button Content="Manufacturer" 
                     Width="120"
                     Margin="0, 0, 12, 0"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    x:Uid="ProductListUserControl_Manufacturer">
                 <Button.Flyout>
                     <Flyout>
                         <ListView
@@ -89,7 +92,8 @@
                     Style="{StaticResource AccentButtonStyle}"
                     Click="filterButton_Click"
                     VerticalAlignment="Bottom"
-                    BorderThickness="0"/>
+                    BorderThickness="0"
+                    x:Uid="ProductListUserControl_FilterButton"/>
         </StackPanel>
 
         <GridView ItemsSource="{x:Bind ViewModel.Cosmetics}"
@@ -109,16 +113,39 @@
                                 <Image Source="/Assets/Product/001.jpg" Stretch="Fill"/>
                             </Border>
 
-                            <TextBlock Text="{x:Bind Name}"
-                               TextWrapping="Wrap"
-                               Height="40"
-                               Margin="0, 16, 0, 12"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
 
-                            <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}}"
-                                       FontSize="16"
-                                       FontWeight="SemiBold"
-                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"
-                                       x:Name="PriceTextBlock"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                           TextWrapping="Wrap"
+                                           Height="40"
+                                           Margin="0, 16, 0, 12"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"/>
+
+                                <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}, Mode=OneWay}"
+                                           FontSize="16"
+                                           FontWeight="SemiBold"
+                                           Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                           Grid.Row="1"
+                                           Grid.Column="0"/>
+                                
+                                <TextBlock Grid.Row="1" 
+                                           Grid.Column="1" 
+                                           HorizontalAlignment="Right"
+                                           Foreground="{StaticResource AccentAcrylicBackgroundFillColorBaseBrush}"
+                                           FontWeight="Bold">
+                                        <Run Text="Qty: " x:Uid="ProductListUserControl_Quantity"/><Run Text="{x:Bind Quantity}"/>
+                                </TextBlock>
+                            </Grid>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

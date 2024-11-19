@@ -126,9 +126,6 @@
   <data name="Shell_Overviews.Content" xml:space="preserve">
     <value>Overviews</value>
   </data>
-  <data name="Product_NoSelection.Text" xml:space="preserve">
-    <value>Select an item from the list.</value>
-  </data>
   <data name="Shell_Product.Content" xml:space="preserve">
     <value>Product</value>
   </data>
@@ -170,5 +167,305 @@
   </data>
   <data name="Shell_Manufacturer.Content" xml:space="preserve">
     <value>Manufacturer</value>
+  </data>
+  <data name="Settings_Language_English.Content" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Settings_Language_Vietnamese.Content" xml:space="preserve">
+    <value>Vietnamese</value>
+  </data>
+  <data name="Settings_Language.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="productDataPage_addText.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ProductDataPage_SearchBox.PlaceHolderText" xml:space="preserve">
+    <value>Search by name</value>
+  </data>
+  <data name="ProductDataPage_CategoryFilter.Content" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ProductDataPage_ManufacturerFilter.Content" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="ProductDataPage_SearchButton.Content" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ProductDataPage_Headers_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ProductDataPage_Headers_Quantity.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="ProductDataPage_Headers_Price.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ProductDataPage_Headers_Category.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ProductDataPage_Headers_Manufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="ProductDataPage_NextButton.Content" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="ProductDataPage_PrevButton.Content" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ProductPage_DeleteButton.Content" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ProductPage_EditButton.Content" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ProductPage_ID.Text" xml:space="preserve">
+    <value>ID: </value>
+  </data>
+  <data name="ProductPage_Category.Text" xml:space="preserve">
+    <value>Category: </value>
+  </data>
+  <data name="ProductPage_Brand.Text" xml:space="preserve">
+    <value>Brand Name: </value>
+  </data>
+  <data name="ProductPage_Quantity.Text" xml:space="preserve">
+    <value>Quantity: </value>
+  </data>
+  <data name="ProductPage_Price.Text" xml:space="preserve">
+    <value>Price: </value>
+  </data>
+  <data name="ProductPage_Status.Text" xml:space="preserve">
+    <value>Status: </value>
+  </data>
+  <data name="ProductPage_Description.Text" xml:space="preserve">
+    <value>Description: </value>
+  </data>
+  <data name="AddCosmeticPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddCosmeticPage_Category.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="AddCosmeticPage_Manufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="AddCosmeticPage_Quantity.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="AddCosmeticPage_Price.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="AddCosmeticPage_Image.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="AddCosmeticPage_Description.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddCosmeticPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddCosmeticPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddCategoryPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddCategoryPage_Description.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddCategoryPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddCategoryPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddManufacturerPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddManufacturerPage_Origin.Text" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="AddManufacturerPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
+  <data name="AddManufacturerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AddManufacturerPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CategoryPage_NextButton.Content" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="CategoryPage_PrevButton.Content" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="CategoryPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CategoryPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
+  <data name="CategoryPage_Active.Text" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="EditCategoryPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EditCategoryPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="EditCategoryPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
+  <data name="EditCategoryPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ManufacturerPage_AddButtonText.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Manufacturer_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ManufacturerPage_Origin.Text" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="ManufacturerPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
+  <data name="ManufacturerPage_Active.Text" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="ManufacturerPage_PrevButton.Content" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ManufacturerPage_NextButton.Content" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="UpdateManufacturerPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="UpdateManufacturerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="UpdateManufacturerPage_Origin.Text" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="UpdateManufacturerPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UpdateCosmeticPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="UpdateCosmeticPage_Category.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="UpdateCosmeticPage_Manufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="UpdateCosmeticPage_Quantity.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="UpdateCosmeticPage_Price.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="UpdateCosmeticPage_Image.Text" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="UpdateCosmeticPage_Description.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="UpdateCosmeticPage_UpdateButton.Content" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateCosmeticPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CategoryPage_AddButtonText.Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CreateOrderPage_CustomerHeader.Text" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="CreateOrderPage_OrderDetailHeader.Text" xml:space="preserve">
+    <value>Order Details</value>
+  </data>
+  <data name="CreateOrderPage_CheckOutButton.Content" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="CustomerInfoUserControl_PhoneNumber.Header" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="CustomerInfoUserControl_Name.Header" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CustomerInfoUserControl_Point.Header" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="CustomerInfoUserControl_PhoneNumber.PlaceholderText" xml:space="preserve">
+    <value>Enter phone number</value>
+  </data>
+  <data name="CustomerInfoUserControl_Name.PlaceholderText" xml:space="preserve">
+    <value>Enter customer name</value>
+  </data>
+  <data name="PaymentUserControl_Subtotal.Text" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="PaymentUserControl_Discount.Text" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="PaymentUserControl_SaleTax.Text" xml:space="preserve">
+    <value>SaleTax</value>
+  </data>
+  <data name="PaymentUserControl_Total.Text" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="ProductListUserControl_SearchBox.PlaceholderText" xml:space="preserve">
+    <value>Search by name</value>
+  </data>
+  <data name="ProductListUserControl_CategoryButton.Content" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ProductListUserControl_Manufacturer.Content" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="ProductListUserControl_FilterButton.Content" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="LoginWindow_Login.Text" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="LoginWindow_Username.Header" xml:space="preserve">
+    <value>Enter your username:</value>
+  </data>
+  <data name="LoginWindow_Password.Header" xml:space="preserve">
+    <value>Enter password:</value>
+  </data>
+  <data name="LoginWindow_LoginButton.Content" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginWindow_RememberMeCheckBox.Content" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="OverviewsPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OverviewsPage_Quantity.Text" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="OverviewsPage_Price.Text" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="OverviewsPage_Category.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="OverviewsPage_Manufacturer.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="OverviewsPage_MoreProduct.Content" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="ProductListUserControl_Quantity.Text" xml:space="preserve">
+    <value>Qty: </value>
   </data>
 </root>

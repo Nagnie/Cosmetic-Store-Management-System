@@ -94,7 +94,8 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                     },
                     Price = (int)reader["price"],
                     Quantity = (int)reader["quantity"],
-                    Image = (string)reader["image"]
+                    ImageData = (byte[])reader["image"],
+
                 }
             };
         }
@@ -147,7 +148,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
                     },
                     Price = (int)reader["price"],
                     Quantity = (int)reader["quantity"],
-                    Image = (string)reader["image"]
+                    ImageData = (byte[])reader["image"]
                 }
             };
 

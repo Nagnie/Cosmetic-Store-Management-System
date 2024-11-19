@@ -22,7 +22,7 @@ public class Cosmetic : INotifyPropertyChanged
 
     public int Quantity { get; set; }
 
-    public string Image { get; set; }
+    public byte[] ImageData { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }

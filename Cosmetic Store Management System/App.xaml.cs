@@ -1,4 +1,5 @@
-﻿using Cosmetic_Store_Management_System.Activation;
+﻿using System.Diagnostics;
+using Cosmetic_Store_Management_System.Activation;
 using Cosmetic_Store_Management_System.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Services;
@@ -93,17 +94,26 @@ public partial class App : Application
 
         UnhandledException += App_UnhandledException;
 
+
         var localSettings = ApplicationData.Current.LocalSettings;
 
         if (!localSettings.Values.ContainsKey("CurrencyUnit"))
         {
             localSettings.Values["CurrencyUnit"] = "VND";
         }
+
+        if (!localSettings.Values.ContainsKey("appLanguage"))
+        {
+            localSettings.Values["appLanguage"] = "en-US";
+        }
+
+        Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = (string)localSettings.Values["appLanguage"];
     }
 
     private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
     {
         // TODO: Log and handle exceptions as appropriate.
+        Debug.WriteLine(e.Message);
         // https://docs.microsoft.com/windows/windows-app-sdk/api/winrt/microsoft.ui.xaml.application.unhandledexception.
     }
 

@@ -30,7 +30,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("quantity", cosmetic.Quantity);
         command.Parameters.AddWithValue("description", cosmetic.Description);
         command.Parameters.AddWithValue("price", cosmetic.Price);
-        command.Parameters.AddWithValue("image", cosmetic.Image);
+        command.Parameters.AddWithValue("image", cosmetic.ImageData);
 
         int count = command.ExecuteNonQuery();
         bool success = count == 1;
@@ -93,7 +93,8 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 },
                 Price = (int)reader["price"],
                 Quantity = (int)reader["quantity"],
-                Image = (string)reader["image"]
+                ImageData = (byte[])reader["image"],
+
             };
         }
 
@@ -175,7 +176,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
                 },
                 Price = (int)reader["price"],
                 Quantity = (int)reader["quantity"],
-                Image = (string)reader["image"]
+                ImageData = (byte[])reader["image"],
             };
             
             cosmetics.Add(cosmetic);
@@ -206,7 +207,7 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("manufacturerID", cosmetic.Manufacturer.ID);
         command.Parameters.AddWithValue("quantity", cosmetic.Quantity);
         command.Parameters.AddWithValue("description", cosmetic.Description);
-        command.Parameters.AddWithValue("image", cosmetic.Image);
+        command.Parameters.AddWithValue("image", cosmetic.ImageData);
         command.Parameters.AddWithValue("price", cosmetic.Price);
 
         int count = command.ExecuteNonQuery();
