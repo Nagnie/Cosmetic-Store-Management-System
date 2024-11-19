@@ -51,6 +51,27 @@
                 </StackPanel>
             </StackPanel>
 
+            <TextBlock x:Uid="Settings_CurrencyUnit" 
+                       Style="{ThemeResource SubtitleTextBlockStyle}" 
+                       Text="Currency"/>
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                    <RadioButton x:Uid="Settings_Currency_VND"
+                                 FontSize="15"
+                                 GroupName="AppCurrency"
+                                 Content="VND"
+                                 Checked="Settings_Currency_VND_Check"
+                                 Name="Settings_Currency_VND"/>
+                    <RadioButton x:Uid="Settings_Currency_USD"
+                                 FontSize="15"
+                                 GroupName="AppCurrency"
+                                 Content="USD"
+                                 Checked="Settings_Currency_USD_Check"
+                                 Name="Settings_Currency_USD">
+                    </RadioButton>
+                </StackPanel>
+            </StackPanel>
+
             <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">

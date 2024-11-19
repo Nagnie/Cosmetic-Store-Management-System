@@ -115,9 +115,10 @@
                                Margin="0, 16, 0, 12"/>
 
                             <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}}"
-                               FontSize="16"
-                               FontWeight="SemiBold"
-                               Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                       x:Name="PriceTextBlock"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

@@ -11,6 +11,7 @@ using Cosmetic_Store_Management_System.Views;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System;
 
@@ -91,6 +92,13 @@ public partial class App : Application
         Build();
 
         UnhandledException += App_UnhandledException;
+
+        var localSettings = ApplicationData.Current.LocalSettings;
+
+        if (!localSettings.Values.ContainsKey("CurrencyUnit"))
+        {
+            localSettings.Values["CurrencyUnit"] = "VND";
+        }
     }
 
     private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)

@@ -70,6 +70,11 @@ public class ProductListViewModel : ObservableRecipient
 
     public const string SortString = " cosmetic_id ASC ";
 
+    public string CurrencyUnit
+    {
+        get; set;
+    } = "USD";
+
     public ProductListViewModel()
     {
         ICategoryDAO categoryDAO = new SQLCategoryDAO();
