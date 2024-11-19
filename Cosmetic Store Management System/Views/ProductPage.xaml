@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
     xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
 

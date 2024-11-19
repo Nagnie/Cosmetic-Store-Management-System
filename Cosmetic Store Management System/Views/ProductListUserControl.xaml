@@ -110,7 +110,7 @@
                         BorderThickness="1">
                         <StackPanel>
                             <Border CornerRadius="12" Height="128">
-                                <Image Source="/Assets/Product/001.jpg" Stretch="Fill"/>
+                                <Image Source="Assets/Product/001.jpg" Stretch="Fill"/>
                             </Border>
 
                             <Grid>

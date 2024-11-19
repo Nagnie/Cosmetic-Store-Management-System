@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation.Collections;
 using Microsoft.UI.Dispatching;
-using CommunityToolkit.WinUI;
+using CommunityToolkit;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Windows.Storage;

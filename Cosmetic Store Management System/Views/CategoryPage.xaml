@@ -9,7 +9,6 @@
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
     xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" 
-    xmlns:Local="using:Cosmetic_Store_Management_System.Helpers"
     mc:Ignorable="d">
 
     <Page.Resources>
