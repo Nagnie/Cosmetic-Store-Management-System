@@ -47,14 +47,16 @@
             
             <TextBlock Text="Customer"
                        Style="{StaticResource SubtitleTextBlockStyle}"
-                       Grid.Row="0"/>
+                       Grid.Row="0"
+                       x:Uid="CreateOrderPage_CustomerHeader"/>
             <local:CustomerInforUserControl Grid.Row="1"
                                             x:Name="customerUserControl"/>
             
             <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
                        Text="Order details"
                        Margin="0, 24, 0, 20"
-                       Grid.Row="2"/>
+                       Grid.Row="2"
+                       x:Uid="CreateOrderPage_OrderDetailHeader"/>
             <local:OrderDetailsUserControl x:Name="order" 
                                            Grid.Row="3"
                                            PaymentChanged="OrderDetailsUserControl_PaymentChanged"/>
@@ -70,7 +72,8 @@
                     FontWeight="SemiBold"
                     Style="{StaticResource AccentButtonStyle}"
                     BorderThickness="0"
-                    Click="checkoutButton_Click"/>
+                    Click="checkoutButton_Click"
+                    x:Uid="CreateOrderPage_CheckOutButton"/>
         </Grid>
     </Grid>
 </Page>

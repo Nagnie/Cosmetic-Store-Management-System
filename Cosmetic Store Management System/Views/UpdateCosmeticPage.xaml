@@ -42,7 +42,8 @@
                 <TextBlock Text="Name"
                            Grid.Row="1"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Name"/>
                 <TextBox Name="name"
                          Text="{x:Bind ViewModel.Cosmetic.Name, Mode=TwoWay}"
                          Grid.Row="1"
@@ -53,7 +54,8 @@
                 <TextBlock Text="Category"
                            Grid.Row="2"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Category"/>
                 <TextBox Name="category"
                          Text="{x:Bind ViewModel.Cosmetic.Category.ID, Mode=TwoWay}"
                          Grid.Row="2"
@@ -63,7 +65,8 @@
                 <TextBlock Text="Manufacturer"
                            Grid.Row="3"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Manufacturer"/>
                 <TextBox Name="manufacturer"
                          Text="{x:Bind ViewModel.Cosmetic.Manufacturer.ID, Mode=TwoWay}"
                          Grid.Row="3"
@@ -73,7 +76,8 @@
                 <TextBlock Text="Quantity"
                            Grid.Row="4"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Quantity"/>
                 <TextBox Name="quantity"
                          Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=TwoWay}"
                          Grid.Row="4"
@@ -83,7 +87,8 @@
                 <TextBlock Text="Price"
                            Grid.Row="5"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Price"/>
                 <TextBox Name="price"
                          Text="{x:Bind ViewModel.Cosmetic.Price, Mode=TwoWay}"
                          Grid.Row="5"
@@ -93,9 +98,10 @@
                 <TextBlock Text="Image"
                            Grid.Row="6"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Image"/>
                 <TextBox Name="image"
-                         Text="{x:Bind ViewModel.Cosmetic.Image, Mode=TwoWay}"
+                         Text="{x:Bind ViewModel.Cosmetic.ImageData, Mode=TwoWay}"
                          Grid.Row="6"
                          Grid.Column="1"
                          Margin="0, 0, 0, 10"/>
@@ -103,7 +109,8 @@
                 <TextBlock Text="Description"
                            Grid.Row="7"
                            Grid.Column="0"
-                           Margin="0, 0, 0, 10"/>
+                           Margin="0, 0, 0, 10"
+                           x:Uid="UpdateCosmeticPage_Description"/>
                 <TextBox Name="description"
                          Text="{x:Bind ViewModel.Cosmetic.Description, Mode=TwoWay}"
                          Grid.Row="7"
@@ -122,11 +129,13 @@
             <Button Content="Update"
                     Click="updateButton_Click"
                     Margin="0, 0, 20, 0"
-                    Width="80"/>
+                    Width="80"
+                    x:Uid="UpdateCosmeticPage_UpdateButton"/>
 
             <Button Content="Cancel"
                     Click="cancelButton_Click"
-                    Width="80"/>
+                    Width="80"
+                    x:Uid="UpdateCosmeticPage_CancelButton"/>
         </StackPanel>
     </StackPanel>
 </Page>

@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:controls="using:CommunityToolkit.Mvvm.Collections"
     xmlns:models="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:views="using:Cosmetic_Store_Management_System.Views"
-    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors" xmlns:Local="using:Cosmetic_Store_Management_System.Helpers"
+    xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     behaviors:NavigationViewHeaderBehavior.HeaderMode="Never"
     mc:Ignorable="d">
 
     <Page.Resources>
+        <local:CurrencyConverter x:Key="currencyConverter"/>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40"
@@ -47,8 +48,8 @@
                            Grid.Column="2" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left" />
-                
-                <TextBlock Text="{x:Bind Price, Mode=OneWay}" 
+
+                <TextBlock Text="{x:Bind Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" 
                            Grid.Column="3" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left"/>
@@ -91,15 +92,12 @@
                                   IsChecked="False"
                                   Click="manufacturerItem_Click"/>
         </DataTemplate>
+        
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel VerticalAlignment="Top">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,15">
-                    <TextBlock Text="Products List" FontSize="30" FontWeight="Bold" HorizontalTextAlignment="Left" />
-                </StackPanel>
-
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0, 15, 0, 0">
                     <Button Name="addNewButton"
                             Style="{StaticResource AccentButtonStyle}"
@@ -110,18 +108,21 @@
                             <FontIcon Glyph="&#xE710;" 
                                       FontSize="8"
                                       Margin="0, 0, 8, 0"/>
-                            <TextBlock Text="Add"/>
+                            <TextBlock Text="Add"
+                                       x:Uid="productDataPage_addText"/>
                         </StackPanel>
                     </Button>
 
                     <AutoSuggestBox x:Name="SearchBox"
+                                    x:Uid="ProductDataPage_SearchBox"
                                     Width="250"
                                     PlaceholderText="Search by name"
                                     QueryIcon="Find" 
                                     Margin="0, 0, 12, 0"/>
 
                     <!-- Filter by category -->
-                    <Button Content="Category" 
+                    <Button x:Uid="ProductDataPage_CategoryFilter"
+                            Content="Category" 
                             Width="120"
                             Margin="0, 0, 12, 0"
                             VerticalAlignment="Bottom">
@@ -138,7 +139,8 @@
                     </Button>
 
                     <!-- Filter by manufacturer -->
-                    <Button Content="Manufacturer" 
+                    <Button Content="Manufacturer"
+                            x:Uid="ProductDataPage_ManufacturerFilter"
                             Width="120"
                             Margin="0, 0, 12, 0"
                             VerticalAlignment="Bottom">
@@ -156,6 +158,7 @@
 
                     <!-- Search button -->
                     <Button Name="filterButton"
+                            x:Uid="ProductDataPage_SearchButton"
                             Width="100"
                             Content="Search"
                             Style="{StaticResource AccentButtonStyle}"
@@ -237,6 +240,7 @@
                             </StackPanel>
 
                             <TextBlock Text="Name" 
+                                       x:Uid="ProductDataPage_Headers_Name"
                                        Grid.Column="1" 
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center" 
@@ -267,6 +271,7 @@
                             </StackPanel>
 
                             <TextBlock Text="Quantity" 
+                                       x:Uid="ProductDataPage_Headers_Quantity"
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center" 
                                        HorizontalTextAlignment="Left"/>
@@ -296,6 +301,7 @@
                             </StackPanel>
 
                             <TextBlock Text="Price"
+                                       x:Uid="ProductDataPage_Headers_Price"
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center" 
                                        HorizontalTextAlignment="Left"/>
@@ -325,6 +331,7 @@
                             </StackPanel>
 
                             <TextBlock Text="Category" 
+                                       x:Uid="ProductDataPage_Headers_Category"
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center" 
                                        HorizontalTextAlignment="Left"/>
@@ -355,6 +362,7 @@
                             </StackPanel>
 
                             <TextBlock Text="Manufacturer" 
+                                       x:Uid="ProductDataPage_Headers_Manufacturer"
                                        FontWeight="Bold" 
                                        VerticalAlignment="Center" 
                                        HorizontalTextAlignment="Left"/>
@@ -375,8 +383,17 @@
                         ItemTemplate="{StaticResource ProductItemTemplate}" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
-                        <TextBlock Name="infoTextBlock" Text="{x:Bind ViewModel.Info, Mode=OneWay}" Margin="0,10,5,0"/>
-                        <Button Margin="5" Content="Previous" Width="80" Height="35" Name="previousButton" Click="previousButton_Click"/>
+                        <TextBlock Name="infoTextBlock" 
+                                   Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
+                                   Margin="0,10,5,0"/>
+                        
+                        <Button x:Uid="ProductDataPage_PrevButton"
+                                Margin="5" 
+                                Content="Previous" 
+                                Width="100" 
+                                Height="35" 
+                                Name="previousButton" 
+                                Click="previousButton_Click"/>
                         <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
                                   SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
                                   SelectionChanged="pagesComboBox_SelectionChanged"
@@ -389,7 +406,13 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <Button Margin="5" Content="Next" Width="80" Height="35" Name="nextButton" Click="nextButton_Click"/>
+                        <Button x:Uid="ProductDataPage_NextButton"
+                                Margin="5" 
+                                Content="Next" 
+                                Width="100" 
+                                Height="35" 
+                                Name="nextButton" 
+                                Click="nextButton_Click"/>
                     </StackPanel>
                     
                 </StackPanel>
