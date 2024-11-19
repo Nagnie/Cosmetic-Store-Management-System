@@ -15,12 +15,22 @@ public class OrderDetailsViewModel
         get; set;
     } = new FullObservableCollection<OrderDetail>();
 
-    public int Add(Cosmetic cosmetic)
+    public Tuple<bool, int> Add(Cosmetic cosmetic)
     {
+        if (cosmetic.Quantity == 0)
+        {
+            return new Tuple<bool, int>(false, 0);
+        }
+
         var item = OrderDetails.FirstOrDefault(od => od.Cosmetic.ID == cosmetic.ID);
         
         if (item != null)
         {
+            if (item.Quantity == cosmetic.Quantity)
+            {
+                return new Tuple<bool, int>(false, 0);
+            }
+
             item.Quantity++;
             item.SubTotal = item.Quantity * item.Cosmetic.Price;
         }
@@ -35,14 +45,20 @@ public class OrderDetailsViewModel
             OrderDetails.Add(orderDetail);
         }
 
-        return cosmetic.Price;
+        return new Tuple<bool, int>(true, cosmetic.Price);
     }
 
-    public int Increase(OrderDetail orderDetail)
+    public Tuple<bool, int> Increase(OrderDetail orderDetail)
     {
+        if (orderDetail.Quantity == orderDetail.Cosmetic.Quantity)
+        {
+            return new Tuple<bool, int>(false, 0);
+        }
+
         orderDetail.Quantity++;
         orderDetail.SubTotal = orderDetail.Quantity * orderDetail.Cosmetic.Price;
-        return orderDetail.Cosmetic.Price;
+
+        return new Tuple<bool, int>(true, orderDetail.Cosmetic.Price);
     }
 
     public int Decrease(OrderDetail orderDetail)
