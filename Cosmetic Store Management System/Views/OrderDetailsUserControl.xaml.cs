@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,19 +36,56 @@ public sealed partial class OrderDetailsUserControl : UserControl
         this.InitializeComponent();
     }
 
-    public void AddOrderDetail(Cosmetic cosmetic)
+    private async void ShowCantAddItemNotification()
     {
-        int delta = ViewModel.Add(cosmetic);
+        var localSettings = ApplicationData.Current.LocalSettings;
 
-        if (PaymentChanged != null)
+        if (localSettings.Values["appLanguage"].Equals("en-US"))
         {
-            PaymentChanged.Invoke(delta);
+            var dialog = new ContentDialog
+            {
+                Title = "Add Order Detail",
+                Content = "Cannot add more items. The quantity exceeds the available stock.",
+                CloseButtonText = "Ok",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
+        }
+        else
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Thêm chi tiết đơn hàng",
+                Content = "Số lượng mặt hàng thêm vào đơn hàng đã vượt quá số lượng tồn kho.",
+                CloseButtonText = "Ok",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
+        }
+    }
+
+    public async void AddOrderDetail(Cosmetic cosmetic)
+    {
+        var (added, delta) = ViewModel.Add(cosmetic);
+
+        if (!added)
+        {
+            ShowCantAddItemNotification();
+        }
+        else
+        {
+            if (PaymentChanged != null)
+            {
+                PaymentChanged.Invoke(delta);
+            }
         }
     }
 
     private void decreaseButton_Click(object sender, RoutedEventArgs e)
     {
-        int delta = ViewModel.Decrease((sender as Button).DataContext as OrderDetail);
+        var delta = ViewModel.Decrease((sender as Button).DataContext as OrderDetail);
 
         if (PaymentChanged != null)
         {
@@ -57,11 +95,18 @@ public sealed partial class OrderDetailsUserControl : UserControl
 
     private void increaseButton_Click(object sender, RoutedEventArgs e)
     {
-        int delta = ViewModel.Increase((sender as Button).DataContext as OrderDetail);
+        var (added, delta) = ViewModel.Increase((sender as Button).DataContext as OrderDetail);
 
-        if (PaymentChanged != null)
+        if (!added)
         {
-            PaymentChanged.Invoke(delta);
+            ShowCantAddItemNotification();
+        }
+        else
+        {
+            if (PaymentChanged != null)
+            {
+                PaymentChanged.Invoke(delta);
+            }
         }
     }
 
