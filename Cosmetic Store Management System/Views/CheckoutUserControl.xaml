@@ -8,12 +8,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-        <Button Content="Cancel"
-                Name="cancelButton"
-                Click="cancelButton_Click"/>
-        <Button Content="Finish"
-                Name="finishButton"
-                Click="finishButton_Click"/>
-    </StackPanel>
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+            <Button Content="Cancel"
+                    Name="cancelButton"
+                    Click="cancelButton_Click"/>
+            <Button Content="Finish"
+                    Name="finishButton"
+                    Click="finishButton_Click"/>
+        </StackPanel>
+    </Grid>
 </UserControl>
