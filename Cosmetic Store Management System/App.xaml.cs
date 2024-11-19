@@ -94,8 +94,13 @@ public partial class App : Application
 
         UnhandledException += App_UnhandledException;
 
-        // Set default display language: English
+
         var localSettings = ApplicationData.Current.LocalSettings;
+
+        if (!localSettings.Values.ContainsKey("CurrencyUnit"))
+        {
+            localSettings.Values["CurrencyUnit"] = "VND";
+        }
 
         if (!localSettings.Values.ContainsKey("appLanguage"))
         {

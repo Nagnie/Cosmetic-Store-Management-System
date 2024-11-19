@@ -1,3 +1,5 @@
+
+﻿using Cosmetic_Store_Management_System.Helpers;
 ﻿using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml.Controls;
 using Windows.Foundation.Collections;
@@ -23,6 +25,17 @@ public sealed partial class SettingsPage : Page
         ViewModel = App.GetService<SettingsViewModel>();
         InitializeComponent();
 
+        var localSettings = ApplicationData.Current.LocalSettings;
+        var currencyUnit = localSettings.Values["CurrencyUnit"] as string;
+
+        if (currencyUnit == "USD")
+        {
+            Settings_Currency_USD.IsChecked = true;
+        }
+        else
+        {
+            Settings_Currency_VND.IsChecked = true;
+        }
         if (ViewModel.DisplayLanguage == "vi-VN")
         {
             VietnameseButton.IsChecked = true;
@@ -31,6 +44,20 @@ public sealed partial class SettingsPage : Page
         {
             EnglishButton.IsChecked = true;
         }
+    }
+
+    private void Settings_Currency_VND_Check(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        var localSettings = ApplicationData.Current.LocalSettings;
+        localSettings.Values["CurrencyUnit"] = "VND";
+    }
+
+    private async void Settings_Currency_USD_Check(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        var localSettings = ApplicationData.Current.LocalSettings;
+        localSettings.Values["CurrencyUnit"] = "USD";
+        localSettings.Values["ExchangeRate"] = (float)25405;
+        //localSettings.Values["ExchangeRate"] = await ExchangeRateHelper.GetExchangeRate("USD", "VND"); 
     }
 
     private void VietnameseButton_Checked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
