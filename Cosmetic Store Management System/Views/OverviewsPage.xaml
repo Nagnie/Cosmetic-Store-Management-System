@@ -95,7 +95,7 @@
 
                     <!-- Today's order -->
                     <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
                                 <TextBlock Text="Today's order" FontSize="16" />
                                 <TextBlock Text="028" FontSize="32" FontWeight="Bold" />
@@ -105,7 +105,7 @@
 
                     <!-- Last week's order -->
                     <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
                                 <TextBlock Text="Last week's order" FontSize="16" />
                                 <TextBlock Text="584" FontSize="32" FontWeight="Bold" />
@@ -115,7 +115,7 @@
 
                     <!-- Stock left -->
                     <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
                                 <TextBlock Text="Stock left" FontSize="16" />
                                 <TextBlock Text="412" FontSize="32" FontWeight="Bold" />
@@ -125,7 +125,7 @@
 
                     <!-- Running out item -->
                     <StackPanel Grid.Column="3" HorizontalAlignment="Center">
-                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="Black">
+                        <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
                                 <TextBlock Text="Running out item" FontSize="16" />
                                 <TextBlock Text="002" FontSize="32" FontWeight="Bold" />
@@ -139,7 +139,7 @@
                             Content="See more" 
                             Width="100" 
                             Margin="20,0,0,0" 
-                            BorderThickness="2" 
+                            Style="{StaticResource AccentButtonStyle}"
                             Click="MoreAnalytics_Click"/>
                     </StackPanel>
                 </Grid>
@@ -149,7 +149,7 @@
                 <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" 
-                            Background="{StaticResource SmokeFillColorDefaultBrush}" 
+                            Background="{StaticResource AccentAcrylicBackgroundFillColorBaseBrush}" 
                             Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
@@ -216,31 +216,12 @@
                     VerticalAlignment="Top"
                     Margin="0,20,0,0"
                     FontSize="16"
-                    Background="Transparent"
-                    MinHeight="40"
-                    MinWidth="100"
+                    Width="100"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Background="{StaticResource AccentFillColorTertiaryBrush}"
                     Click="MoreButton_Click"
                     x:Uid="OverviewsPage_MoreProduct">
                     
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border                             
-                                            BorderBrush="Gray"
-                                            BorderThickness="2"
-                                            CornerRadius="5">
-                                            <!-- Đặt CornerRadius để bo tròn -->
-                                            <ContentPresenter 
-                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
                 </Button>
             </StackPanel>
         </ScrollViewer>

@@ -8,27 +8,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Activated="Window_Activated">
 
-    <StackPanel Orientation="Vertical" 
+    <StackPanel Orientation="Vertical" Width="250"
         HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="LOGIN" 
-                   FontSize="40" 
+        <TextBlock Text="WELCOME!" 
+                   FontSize="45" 
                    FontWeight="Bold" 
                    HorizontalAlignment="Center" 
                    Margin="0,0,0,15"
                    x:Uid="LoginWindow_Login"/>
         <TextBox Header="Enter your username:" 
                  Name="usernameTextBox"
-                 x:Uid="LoginWindow_Username"/>
+                 x:Uid="LoginWindow_Username"
+                 Margin="0, 10, 0, 10"/>
         <PasswordBox Name="passwordBox" 
                      Header="Enter password"
-                     x:Uid="LoginWindow_Password"/>
+                     x:Uid="LoginWindow_Password"
+                     Margin="0, 10, 0, 5"/>
         <CheckBox Name="rememberCheckBox" 
                   Content="Remember me"
-                  x:Uid="LoginWindow_RememberMeCheckBox"/>
+                  x:Uid="LoginWindow_RememberMeCheckBox"
+                  Margin="0, 0, 0, 25"/>
         <Button x:Name="loginButton" 
                 Click="loginButton_Click" 
                 HorizontalAlignment="Center"
                 Content="Login"
-                x:Uid="LoginWindow_LoginButton"/>
+                Width="100"
+                x:Uid="LoginWindow_LoginButton"
+                Style="{StaticResource AccentButtonStyle}"
+                />
     </StackPanel>
 </Window>
