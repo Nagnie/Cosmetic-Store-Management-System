@@ -1,7 +1,6 @@
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   await knex('CUSTOMER').del()
   await knex('CUSTOMER').insert([
-
     {
       customer_name: 'Uyên Nhi',
       phone: '0348790157',
@@ -135,6 +134,4 @@ exports.seed = async function(knex) {
       address: '02 Y Ngông, Tự An, Buôn Ma Thuột, Đắk Lắk, Việt Nam',
     },
   ]);
-
-  await knex('CUSTOMER').where('point', '>', 200).update({ loyal: true });
 };

@@ -2,6 +2,7 @@ using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.Storage.Pickers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -125,4 +126,5 @@ public sealed partial class AddCosmeticPage : Page
     {
         this.Frame.Navigate(typeof(ProductDataPage));
     }
+
 }

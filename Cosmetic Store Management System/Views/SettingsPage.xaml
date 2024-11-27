@@ -68,9 +68,9 @@
                                  GroupName="AppCurrency"
                                  Content="USD"
                                  Checked="Settings_Currency_USD_Check"
-                                 Name="Settings_Currency_USD"/>
+                                 Name="Settings_Currency_USD">
+                    </RadioButton>
                 </StackPanel>
-
 
                 <!-- Setting language -->
                 <TextBlock x:Uid="Settings_Language" 

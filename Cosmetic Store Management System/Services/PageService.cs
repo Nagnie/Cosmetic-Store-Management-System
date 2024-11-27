@@ -23,6 +23,7 @@ public class PageService : IPageService
         Configure<CreateOrderViewModel, CreateOrderPage>();
         Configure<CategoryViewModel, CategoryPage>();
         Configure<ManufacturerViewModel, ManufacturerPage>();
+        Configure<CustomerViewModel, CustomerPage>();
     }
 
     public Type GetPageType(string key)

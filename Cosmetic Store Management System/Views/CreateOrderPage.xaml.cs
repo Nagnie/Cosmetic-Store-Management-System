@@ -58,7 +58,7 @@ public sealed partial class CreateOrderPage : Page
 
     private async void CheckoutUserControl_FinishButtonClicked()
     {
-        LoyalCustomer customer = customerUserControl.GetCustomer();
+        Customer customer = customerUserControl.GetCustomer();
         var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
         List<OrderDetail> orderDetails = order.GetOrderDetails();
 
@@ -82,8 +82,8 @@ public sealed partial class CreateOrderPage : Page
         IOrderDetailDAO orderDetailDAO = new SQLOrderDetailDAO();
         orderDetailDAO.AddOrderDetails(orderID, orderDetails);
 
-        ILoyalCustomerDAO loyalCustomerDAO = new SQLLoyalCustomerDAO();
-        loyalCustomerDAO.UpdateLoyalCustomer(customer);
+        ICustomerDAO loyalCustomerDAO = new SQLCustomerDAO();
+        loyalCustomerDAO.UpdateCustomer(customer);
 
         ContentDialog contentDialog = new ContentDialog()
         {

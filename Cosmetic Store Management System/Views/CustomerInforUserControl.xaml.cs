@@ -96,7 +96,7 @@ public sealed partial class CustomerInforUserControl : UserControl
         saveCustomerButton.IsEnabled = false;
     }
 
-    public LoyalCustomer GetCustomer()
+    public Customer GetCustomer()
     {
         return ViewModel.GetCustomerInfor();
     }

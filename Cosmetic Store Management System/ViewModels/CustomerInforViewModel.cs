@@ -11,18 +11,18 @@ using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 namespace Cosmetic_Store_Management_System.ViewModels;
 public class CustomerInforViewModel : ObservableRecipient
 {
-    public LoyalCustomer Customer
+    public Customer Customer
     {
         get; set;
-    } = new LoyalCustomer()
+    } = new Customer()
     {
         ID = -1
     };
 
     public bool GetCustomer()
     {
-        ILoyalCustomerDAO DAO = new SQLLoyalCustomerDAO();
-        LoyalCustomer customer = DAO.GetLoyalCustomer(Customer.Phone);
+        ICustomerDAO DAO = new SQLCustomerDAO();
+        Customer customer = DAO.GetCustomer(Customer.Phone);
 
         if (customer != null)
         {
@@ -35,11 +35,11 @@ public class CustomerInforViewModel : ObservableRecipient
 
     public void AddCustomer()
     {
-        ILoyalCustomerDAO DAO = new SQLLoyalCustomerDAO();
-        Customer.ID = DAO.AddLoyalCustomer(Customer);
+        ICustomerDAO DAO = new SQLCustomerDAO();
+        Customer.ID = DAO.AddCustomer(Customer);
     }
 
-    public LoyalCustomer GetCustomerInfor()
+    public Customer GetCustomerInfor()
     {
         return Customer;
     }
