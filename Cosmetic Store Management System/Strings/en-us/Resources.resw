@@ -207,12 +207,6 @@
   <data name="ProductDataPage_Headers_Manufacturer.Text" xml:space="preserve">
     <value>Manufacturer</value>
   </data>
-  <data name="ProductDataPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="ProductDataPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
-  </data>
   <data name="ProductPage_DeleteButton.Content" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -433,7 +427,7 @@
     <value>Search</value>
   </data>
   <data name="LoginWindow_Login.Text" xml:space="preserve">
-    <value>LOGIN</value>
+    <value>WELCOME!</value>
   </data>
   <data name="LoginWindow_Username.Header" xml:space="preserve">
     <value>Enter your username:</value>
@@ -467,5 +461,20 @@
   </data>
   <data name="ProductListUserControl_Quantity.Text" xml:space="preserve">
     <value>Qty: </value>
+  </data>
+  <data name="OverviewsPage_helloText.Text" xml:space="preserve">
+    <value>Today is a good day to check your store's performance.</value>
+  </data>
+  <data name="Shell_Customer.Content" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="OverviewsPage_Analytics_Header.Text" xml:space="preserve">
+    <value>Analytics Overviews</value>
+  </data>
+  <data name="OverviewsPage_ProductList_Header.Text" xml:space="preserve">
+    <value>Product Stock List</value>
+  </data>
+  <data name="OverviewsPage_MoreAnalytics.Content" xml:space="preserve">
+    <value>See more</value>
   </data>
 </root>

@@ -54,7 +54,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
                             <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
-                            <TextBlock Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
+                            <TextBlock x:Uid="OverviewsPage_helloText" Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
                         </StackPanel>
                         
 
@@ -83,7 +83,7 @@
                 </StackPanel>
 
                 <!-- Analytics Overview Section -->
-                <TextBlock Text="Analytics Overview" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
+                <TextBlock x:Uid="OverviewsPage_Analytics_Header" Text="Analytics Overview" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200" />
@@ -136,6 +136,7 @@
                     <!-- Button Section -->
                     <StackPanel Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Button 
+                            x:Uid="OverviewsPage_MoreAnalytics"
                             Content="See more" 
                             Width="100" 
                             Margin="20,0,0,0" 
@@ -144,7 +145,7 @@
                     </StackPanel>
                 </Grid>
 
-                <TextBlock Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
+                <TextBlock x:Uid="OverviewsPage_ProductList_Header" Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
