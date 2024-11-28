@@ -5,12 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.IO;
-
-
 using Microsoft.UI.Xaml.Media.Imaging;
-
 using CommunityToolkit.Mvvm.ComponentModel;
-
 using Cosmetic_Store_Management_System.Contracts.ViewModels;
 using Cosmetic_Store_Management_System.Core.Contracts.Services;
 using Cosmetic_Store_Management_System.Core.Models;

@@ -13,6 +13,13 @@
 
     <Page.Resources>
         <local:CurrencyConverter x:Key="currencyConverter"/>
+        <FontFamily x:Key="DongleBold">/Assets/Font/Dongle/Dongle-Bold.ttf#Dongle Bold</FontFamily>
+        <FontFamily x:Key="DongleLight">/Assets/Font/Dongle/Dongle-Light.ttf#Dongle Light</FontFamily>
+        <FontFamily x:Key="DongleRegular">/Assets/Font/Dongle/Dongle-Regular.ttf#Dongle Regular</FontFamily>
+        <FontFamily x:Key="Bungee">/Assets/Font/Bungee/Bungee-Regular.ttf#Bungee</FontFamily>
+        <FontFamily x:Key="Coiny">/Assets/Font/Coiny/Coiny-Regular.ttf#Coiny</FontFamily>
+        <FontFamily x:Key="CharmonmanBold">/Assets/Font/Charmonman/Charmonman-Bold.ttf#Charmonman Bold</FontFamily>
+        <FontFamily x:Key="CharmonmanRegular">/Assets/Font/Charmonman/Charmonman-Regular.ttf#Charmonman Regular</FontFamily>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40">
@@ -53,8 +60,19 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-                            <TextBlock x:Name="txtGreeting" Text="Good Morning!" Style="{ThemeResource HeaderTextBlockStyle}" />
-                            <TextBlock x:Uid="OverviewsPage_helloText" Text="Today is a good day to check your store's performance." Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,10,0,0"/>
+                            <TextBlock 
+                                x:Name="txtGreeting" 
+                                Text="Good Morning!" 
+                                FontFamily="{StaticResource Coiny}"
+                                FontSize="50"
+                                Style="{ThemeResource HeaderTextBlockStyle}" 
+                                Margin="0, 10, 0, -15"/>
+                            <TextBlock 
+                                x:Uid="OverviewsPage_helloText" 
+                                FontFamily="{StaticResource CharmonmanBold}"
+                                Text="Today is a good day to check your store's performance." 
+                                Style="{ThemeResource SubtitleTextBlockStyle}" 
+                                Margin="0,0,0,5"/>
                         </StackPanel>
                         
 
@@ -83,7 +101,13 @@
                 </StackPanel>
 
                 <!-- Analytics Overview Section -->
-                <TextBlock x:Uid="OverviewsPage_Analytics_Header" Text="Analytics Overview" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
+                <TextBlock 
+                    x:Uid="OverviewsPage_Analytics_Header" 
+                    Text="Analytics Overview" 
+                    FontSize="35" FontFamily="{StaticResource DongleBold}"
+                    VerticalAlignment="Center" 
+                    HorizontalTextAlignment="Left" 
+                    Margin="0,10,0,-10"/>
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200" />
@@ -138,14 +162,22 @@
                         <Button 
                             x:Uid="OverviewsPage_MoreAnalytics"
                             Content="See more" 
-                            Width="100" 
                             Margin="20,0,0,0" 
+                            FontSize="25"
+                    Padding="15,0, 15, 5"
+                            FontFamily="{StaticResource DongleBold}"
                             Style="{StaticResource AccentButtonStyle}"
                             Click="MoreAnalytics_Click"/>
                     </StackPanel>
                 </Grid>
 
-                <TextBlock x:Uid="OverviewsPage_ProductList_Header" Text="Product Stock List" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" HorizontalTextAlignment="Left" Margin="0,20,0,0"/>
+                <TextBlock 
+                    x:Uid="OverviewsPage_ProductList_Header" 
+                    Text="Product Stock List" 
+                    FontSize="35" FontFamily="{StaticResource DongleBold}"
+                    VerticalAlignment="Center" 
+                    HorizontalTextAlignment="Left" 
+                    Margin="0,20,0,-10"/>
                 <!-- Phần danh sách các sản phẩm -->
                 <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
@@ -216,8 +248,9 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="0,20,0,0"
-                    FontSize="16"
-                    Width="100"
+                    FontSize="25"
+                    Padding="15,0, 15, 5"
+                    FontFamily="{StaticResource DongleBold}"
                     Style="{StaticResource AccentButtonStyle}"
                     Background="{StaticResource AccentFillColorTertiaryBrush}"
                     Click="MoreButton_Click"

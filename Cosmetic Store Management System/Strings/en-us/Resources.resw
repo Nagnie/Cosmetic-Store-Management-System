@@ -427,7 +427,7 @@
     <value>Search</value>
   </data>
   <data name="LoginWindow_Login.Text" xml:space="preserve">
-    <value>WELCOME!</value>
+    <value>Welcome</value>
   </data>
   <data name="LoginWindow_Username.Header" xml:space="preserve">
     <value>Enter your username:</value>

@@ -68,15 +68,15 @@ public sealed partial class OverviewsPage : Page
             int hour = DateTime.Now.Hour;
             if (hour < 12)
             {
-                txtGreeting.Text = "Good Morning!";
+                txtGreeting.Text = "Good morning!";
             }
             else if (hour < 18)
             {
-                txtGreeting.Text = "Good Afternoon!";
+                txtGreeting.Text = "Good afternoon!";
             }
             else
             {
-                txtGreeting.Text = "Good Evening!";
+                txtGreeting.Text = "Good evening!";
             }
 
             await Task.Delay(1000); // Update every second

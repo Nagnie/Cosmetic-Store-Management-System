@@ -131,6 +131,10 @@
                                            Grid.Row="0"
                                            Grid.ColumnSpan="2"/>
 
+                                <Border CornerRadius="12" Height="128">
+                                    <Image Source="Assets/Product/001.jpg" Stretch="Fill"/>
+                                </Border>
+
                                 <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}, Mode=OneWay}"
                                            FontSize="16"
                                            FontWeight="SemiBold"

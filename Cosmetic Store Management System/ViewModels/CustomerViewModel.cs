@@ -94,7 +94,7 @@ public partial class CustomerViewModel : ObservableRecipient
     public void LoadData()
     {
         ICustomerDAO customerDAO = new SQLCustomerDAO();
-        Customers.Clear();
+
         // Retrieve customer data from the DAO
         var (items, count) = customerDAO.GetCustomers(
             CurrentPage, RowsPerPage

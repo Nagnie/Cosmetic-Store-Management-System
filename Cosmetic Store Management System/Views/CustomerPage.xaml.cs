@@ -26,6 +26,7 @@ public sealed partial class CustomerPage : Page
 {
     public CustomerPage()
     {
+        
         this.InitializeComponent();
     }
 

@@ -8,13 +8,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Activated="Window_Activated">
 
-    <StackPanel Orientation="Vertical" Width="250"
+    <StackPanel Orientation="Vertical" Width="280"
         HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="WELCOME!" 
-                   FontSize="45" 
-                   FontWeight="Bold" 
+                   FontSize="55" 
+                   FontFamily="Pacifico"
                    HorizontalAlignment="Center" 
-                   Margin="0,0,0,15"
+                   Margin="0,0,0,20"
                    x:Uid="LoginWindow_Login"/>
         <TextBox Header="Enter your username:" 
                  Name="usernameTextBox"
@@ -32,8 +32,12 @@
                 Click="loginButton_Click" 
                 HorizontalAlignment="Center"
                 Content="Login"
-                Width="100"
+                Width="115"
                 x:Uid="LoginWindow_LoginButton"
+                Margin="0, 30, 0, 20"
+                FontSize="25"
+                Padding="0, 0, 0, 7"
+                FontFamily="Assets/Font/Dongle/Dongle-Bold.ttf#Dongle Bold"
                 Style="{StaticResource AccentButtonStyle}"
                 />
     </StackPanel>

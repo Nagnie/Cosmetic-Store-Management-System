@@ -427,7 +427,7 @@
     <value>Tìm kiếm</value>
   </data>
   <data name="LoginWindow_Login.Text" xml:space="preserve">
-    <value>XIN CHÀO</value>
+    <value>Xin chào</value>
   </data>
   <data name="LoginWindow_Username.Header" xml:space="preserve">
     <value>Nhập tên đăng nhập:</value>

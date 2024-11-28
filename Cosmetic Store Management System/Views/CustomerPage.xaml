@@ -65,53 +65,7 @@
     <Grid>
         <ScrollViewer VerticalScrollMode="Enabled">
             <StackPanel Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Right"
-                        Margin="0, 0, 0, 12"
-                        Background="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}"
-                        CornerRadius="4, 4, 4, 4">
-                    <Button Click="addButton_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="&#xF8AA;" 
-                                  FontSize="12"
-                                  Margin="0, 0, 12, 0"/>
-                            <TextBlock x:Uid="CustomerPage_AddButtonText">Add</TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-                <!-- Table header -->
-                <Grid Padding="12, 12, 12, 12"
-              Background="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="ID"
-                       Grid.Column="0"
-                       FontWeight="Bold"/>
-                    <TextBlock Text="Name"
-                       Grid.Column="1"
-                       FontWeight="Bold"
-                       x:Uid="CustomerPage_Name"/>
-                    <TextBlock Text="Phone Number"
-                       FontWeight="Bold"
-                       Grid.Column="2"
-                       x:Uid="CustomerPage_ProductCount"/>
-                    <TextBlock Text="Point"
-                       FontWeight="Bold"
-                       Grid.Column="3"
-                       x:Uid="CustomerPage_Point"/>
-                    <TextBlock Text="Loyal"
-                       FontWeight="Bold"
-                       Grid.Column="4"
-                       x:Uid="CustomerPage_Loyal"/>
-                </Grid>
-
-                <ListView x:Uid="CustomerItemList"
+                <ListView
                   ItemTemplate="{StaticResource CustomerItemTemplate}"
                   ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
@@ -124,7 +78,7 @@
                             Height="35" 
                             Name="previousButton" 
                             Click="previousButton_Click"
-                            x:Uid="CustomerPage_PrevButton"/>
+                            />
                     <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
                             SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
                             SelectionChanged="pagesComboBox_SelectionChanged"
@@ -143,7 +97,7 @@
                         Height="35" 
                         Name="nextButton" 
                         Click="nextButton_Click"
-                        x:Uid="CustomerPage_NextButton"/>
+                        />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
