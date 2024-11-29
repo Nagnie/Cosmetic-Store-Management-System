@@ -2,7 +2,9 @@ using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Windows.Storage;
 using Windows.Storage.Pickers;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -127,4 +129,38 @@ public sealed partial class AddCosmeticPage : Page
         this.Frame.Navigate(typeof(ProductDataPage));
     }
 
+    private async void PickAPhotoButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Clear previous returned file name, if it exists, between iterations of this scenario
+        PickAPhotoOutputTextBlock.Text = "";
+
+        FileOpenPicker fileOpenPicker = new()
+        {
+            ViewMode = PickerViewMode.Thumbnail,
+            FileTypeFilter = { ".jpg", ".jpeg", ".png", ".gif" },
+        };
+
+        nint windowHandle = WindowNative.GetWindowHandle(App.MainWindow);
+        InitializeWithWindow.Initialize(fileOpenPicker, windowHandle);
+
+        StorageFile file = await fileOpenPicker.PickSingleFileAsync();
+        if (file != null)
+        {
+            PickAPhotoOutputTextBlock.Text = file.Name;
+
+            // Read file as binary
+            using var stream = await file.OpenReadAsync();
+            using var dataReader = new Windows.Storage.Streams.DataReader(stream);
+            await dataReader.LoadAsync((uint)stream.Size);
+            byte[] imageData = new byte[stream.Size];
+            dataReader.ReadBytes(imageData);
+
+            ViewModel.Cosmetic.ImageData = imageData;
+        }
+        else
+        {
+            PickAPhotoOutputTextBlock.Text = "Operation cancelled.";
+        }
+
+    }
 }
