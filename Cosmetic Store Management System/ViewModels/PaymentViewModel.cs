@@ -31,7 +31,7 @@ public partial class PaymentViewModel : INotifyPropertyChanged
 
     public void Update(int delta)
     {
-        SubTotal = SubTotal + delta;
+        SubTotal += delta;
     }
 
     public Tuple<int, int, int, int> GetPaymentInfo()

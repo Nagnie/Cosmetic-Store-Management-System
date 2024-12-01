@@ -23,7 +23,7 @@ public class SQLOrderDAO : IOrderDAO
                 RETURNING order_id
             """;
 
-        command.Parameters.AddWithValue("customerID", order.Customer.ID == -1 ? null : order.Customer.ID);
+        command.Parameters.AddWithValue("customerID", order.Customer?.ID == -1 ? (object)DBNull.Value : order.Customer.ID);
         command.Parameters.AddWithValue("subtotal", order.SubTotal);
         command.Parameters.AddWithValue("discount", order.Discount);
         command.Parameters.AddWithValue("saleTax", order.SaleTax);

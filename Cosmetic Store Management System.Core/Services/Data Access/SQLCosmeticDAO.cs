@@ -220,25 +220,26 @@ public class SQLCosmeticDAO : ICosmeticDAO
 
     public Cosmetic GetCosmeticById(int id)
     {
-        using var connection = DBConnection.GetConnection();
+        NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
         const string query = """
-        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
-        FROM "COSMETIC"
-        WHERE cosmetic_id = @id
-    """;
+            SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
+            FROM "COSMETIC"
+            WHERE cosmetic_id = @id
+        """;
 
         using var command = new NpgsqlCommand(query, connection);
         command.Parameters.AddWithValue("@id", id);
 
         using var reader = command.ExecuteReader();
+        connection.Close();
         return reader.Read() ? MapToCosmetic(reader) : null;
     }
 
     public Cosmetic GetNextCosmetic(int currentId)
     {
-        using var connection = DBConnection.GetConnection();
+        NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
         const string query = """
@@ -253,26 +254,28 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        connection.Close();
         return reader.Read() ? MapToCosmetic(reader) : null;
     }
 
     public Cosmetic GetPreviousCosmetic(int currentId)
     {
-        using var connection = DBConnection.GetConnection();
+        NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
         const string query = """
-        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
-        FROM "COSMETIC"
-        WHERE cosmetic_id < @currentId
-        ORDER BY cosmetic_id DESC
-        LIMIT 1
-    """;
+            SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
+            FROM "COSMETIC"
+            WHERE cosmetic_id < @currentId
+            ORDER BY cosmetic_id DESC
+            LIMIT 1
+        """;
 
         using var command = new NpgsqlCommand(query, connection);
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        connection.Close();
         return reader.Read() ? MapToCosmetic(reader) : null;
     }
 
@@ -295,4 +298,20 @@ public class SQLCosmeticDAO : ICosmeticDAO
         };
     }
 
+    public bool UpdateCosmeticQuantity(int id, int delta)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        const string query = """
+            UPDATE "COSMETIC"
+            SET quantity = quantity + @delta
+            WHERE cosmetic_id = @id
+        """;
+        using var command = new NpgsqlCommand(query, connection);
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@delta", delta);
+        var effectedRow = command.ExecuteNonQuery();
+        connection.Close();
+        return effectedRow != -1;
+    }
 }

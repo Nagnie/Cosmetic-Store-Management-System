@@ -71,19 +71,7 @@ public sealed partial class CreateOrderPage : Page
             Total = total
         };
 
-        if (customer.ID != -1)
-        {
-            customer.Point += (int)(total/1000);
-        }
-
-        IOrderDAO orderDAO = new SQLOrderDAO();
-        var orderID = orderDAO.AddOrder(newOrder);
-
-        IOrderDetailDAO orderDetailDAO = new SQLOrderDetailDAO();
-        orderDetailDAO.AddOrderDetails(orderID, orderDetails);
-
-        ICustomerDAO loyalCustomerDAO = new SQLCustomerDAO();
-        loyalCustomerDAO.UpdateCustomer(customer);
+        ViewModel.SaveOrder(customer, newOrder, orderDetails);
 
         ContentDialog contentDialog = new ContentDialog()
         {

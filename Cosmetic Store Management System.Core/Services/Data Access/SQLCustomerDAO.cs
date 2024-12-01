@@ -65,9 +65,9 @@ public class SQLCustomerDAO : ICustomerDAO
                 ID = (int)reader["customer_id"],
                 Name = (string)reader["customer_name"],
                 Phone = (string)reader["phone"],
-                Address = (string)reader["address"],
+                Address = (string)(reader["address"] != null ? reader["address"] : ""),             
                 Point = (float)reader["point"],
-                Loyal = (string)reader["loyal"]
+                Loyal = (string)(reader["loyal"] != null ? reader["loyal"] : "")
             };
         }
 

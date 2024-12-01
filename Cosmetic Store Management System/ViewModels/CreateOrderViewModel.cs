@@ -6,59 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Cosmetic_Store_Management_System.Core.Models;
+using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 public class CreateOrderViewModel : ObservableRecipient
 {
-    public ObservableCollection<OrderDetail> OrderDetails
+    public void SaveOrder(Customer customer, Order order, List<OrderDetail> orderDetails)
     {
-        get; set;
-    }
-    public CreateOrderViewModel()
-    {
-        OrderDetails = new ObservableCollection<OrderDetail>()
+        IOrderDAO orderDAO = new SQLOrderDAO();
+        var orderID = orderDAO.AddOrder(order);
+
+        IOrderDetailDAO orderDetailDAO = new SQLOrderDetailDAO();
+        orderDetailDAO.AddOrderDetails(orderID, orderDetails);
+
+        for (var i = 0; i < orderDetails.Count; i++)
         {
-            new OrderDetail()
-            {
-                ID = 1,
-                Cosmetic = new Cosmetic()
-                {
-                    ID = 1,
-                    Name = "Lipstick",
-                    Price = 10
-                },
-                OrderID = 1,
-                Quantity = 2,
-                SubTotal = 20
-            },
+            ICosmeticDAO cosmeticDAO = new SQLCosmeticDAO();
+            cosmeticDAO.UpdateCosmeticQuantity(orderDetails[i].Cosmetic.ID, 
+                - orderDetails[i].Quantity);
+        }
 
-            new OrderDetail()
-            {
-                ID = 1,
-                Cosmetic = new Cosmetic()
-                {
-                    ID = 1,
-                    Name = "Lipstick",
-                    Price = 10
-                },
-                OrderID = 1,
-                Quantity = 2,
-                SubTotal = 20
-            },
-
-            new OrderDetail()
-            {
-                ID = 1,
-                Cosmetic = new Cosmetic()
-                {
-                    ID = 1,
-                    Name = "Lipstick",
-                    Price = 10
-                },
-                OrderID = 1,
-                Quantity = 2,
-                SubTotal = 20
-            },
-        };
+        if (customer.ID != -1)
+        {
+            customer.Point += (int)(order.Total / 1000);
+            ICustomerDAO loyalCustomerDAO = new SQLCustomerDAO();
+            loyalCustomerDAO.UpdateCustomer(customer);
+        }
     }
 }

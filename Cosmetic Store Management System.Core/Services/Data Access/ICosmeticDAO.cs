@@ -20,10 +20,11 @@ public interface ICosmeticDAO
     );
 
     Cosmetic GetCosmetic(int ID);
-    //Task<Cosmetic> GetCosmetic(int ID);
     bool UpdateCosmetic(Cosmetic cosmetic);
     bool DeleteCosmetic(int ID);
     Cosmetic GetCosmeticById(int productId);
     Cosmetic GetNextCosmetic(int currentProductId);
     Cosmetic GetPreviousCosmetic(int currentProductId);
+
+    bool UpdateCosmeticQuantity(int ID, int delta);
 }
