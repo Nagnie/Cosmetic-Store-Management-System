@@ -13,7 +13,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <local:CurrencyConverter x:Key="currencyConverter"/>
+        <local:IntToCurrencyConverter x:Key="currencyConverter"/>
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
@@ -95,7 +95,7 @@
             
             <TextBlock FontSize="20" Margin="25,10,0,0">
                 <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Mode=OneWay}" FontWeight="Normal" ></Run>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
 
             </TextBlock>
             

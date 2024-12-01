@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <local:CurrencyConverter x:Key="currencyConverter"/>
+        <local:IntToCurrencyConverter x:Key="currencyConverter"/>
         <!-- Template cho các sản phẩm -->
         <DataTemplate x:Key="ProductItemTemplate" x:DataType="models:Cosmetic">
             <Grid Height="40"

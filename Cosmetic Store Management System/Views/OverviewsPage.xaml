@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <local:CurrencyConverter x:Key="currencyConverter"/>
+        <local:IntToCurrencyConverter x:Key="currencyConverter"/>
         <FontFamily x:Key="DongleBold">/Assets/Font/Dongle/Dongle-Bold.ttf#Dongle Bold</FontFamily>
         <FontFamily x:Key="DongleLight">/Assets/Font/Dongle/Dongle-Light.ttf#Dongle Light</FontFamily>
         <FontFamily x:Key="DongleRegular">/Assets/Font/Dongle/Dongle-Regular.ttf#Dongle Regular</FontFamily>
