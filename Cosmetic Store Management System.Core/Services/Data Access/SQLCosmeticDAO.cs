@@ -254,8 +254,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        var result = reader.Read() ? MapToCosmetic(reader) : null;
         connection.Close();
-        return reader.Read() ? MapToCosmetic(reader) : null;
+        return result;
     }
 
     public Cosmetic GetPreviousCosmetic(int currentId)
@@ -275,8 +276,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        var result = reader.Read() ? MapToCosmetic(reader) : null;
         connection.Close();
-        return reader.Read() ? MapToCosmetic(reader) : null;
+        return result;
     }
 
     private Cosmetic MapToCosmetic(NpgsqlDataReader reader)
