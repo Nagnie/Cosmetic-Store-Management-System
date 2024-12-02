@@ -29,6 +29,7 @@
     <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="17.7.2">
       <ExcludeAssets>build</ExcludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

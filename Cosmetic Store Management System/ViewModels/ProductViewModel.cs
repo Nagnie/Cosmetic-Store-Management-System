@@ -61,6 +61,12 @@ public partial class ProductViewModel : ObservableRecipient
         }
     }
 
+    //public void LoadProductContent()
+    //{
+    //    ICosmeticDAO cosmeticDao = new SQLCosmeticDAO();
+        
+    //}
+
     public async Task LoadProductById(int productId)
     {
         //var product = await Task.Run(() => CosmeticDao.GetCosmeticById(productId));
@@ -73,22 +79,30 @@ public partial class ProductViewModel : ObservableRecipient
 
     public async Task LoadNextProduct()
     {
-        //var nextProduct = await Task.Run(() => CosmeticDao.GetNextCosmetic(_currentProductId));
-        //if (nextProduct != null)
-        //{
-        //    Cosmetic = nextProduct;
-        //    _currentProductId = nextProduct.ID;
-        //}
+        var nextProduct = await Task.Run(() => CosmeticDao.GetNextCosmetic(Cosmetic?.ID ?? 0));
+        if (nextProduct != null)
+        {
+            Cosmetic = nextProduct;
+            //_currentProductId = nextProduct.ID;
+
+            OnPropertyChanged(nameof(Cosmetic));
+            LoadImage();
+        }
     }
 
     public async Task LoadPreviousProduct()
     {
-        //var previousProduct = await Task.Run(() => CosmeticDao.GetPreviousCosmetic(_currentProductId));
-        //if (previousProduct != null)
-        //{
-        //    Cosmetic = previousProduct;
-        //    _currentProductId = previousProduct.ID;
-        //}
+        var previousProduct = await Task.Run(() => CosmeticDao.GetPreviousCosmetic(Cosmetic?.ID ?? 0));
+        if (previousProduct != null)
+        {
+            Cosmetic = previousProduct;
+            //_currentProductId = previousProduct.ID;
+
+            OnPropertyChanged(nameof(Cosmetic));
+            LoadImage();
+
+
+        }
     }
 
     public ProductViewModel()
