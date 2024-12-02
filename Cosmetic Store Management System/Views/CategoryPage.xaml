@@ -56,7 +56,6 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel HorizontalAlignment="Right"
                             Margin="0, 0, 0, 12"
-                            Background="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}"
                             CornerRadius="4, 4, 4, 4">
                     <Button Click="addButton_Click">
                         <StackPanel Orientation="Horizontal">
@@ -101,13 +100,13 @@
                     <TextBlock Name="infoTextBlock" 
                                Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
                                Margin="0,10,5,0"/>
-                    <Button Margin="5" 
-                            Content="Previous" 
-                            Width="100" 
+                    <Button Margin="5"  
                             Height="35" 
                             Name="previousButton" 
                             Click="previousButton_Click"
-                            x:Uid="CategoryPage_PrevButton"/>
+                            x:Uid="CategoryPage_PrevButton">
+                        <FontIcon Glyph="&#xE973;" />
+                    </Button>
                     <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
                             SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
                             SelectionChanged="pagesComboBox_SelectionChanged"
@@ -121,12 +120,12 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <Button Margin="5" 
-                            Content="Next" 
-                            Width="100" 
                             Height="35" 
                             Name="nextButton" 
                             Click="nextButton_Click"
-                            x:Uid="CategoryPage_NextButton"/>
+                            x:Uid="CategoryPage_NextButton">
+                        <FontIcon Glyph="&#xE974;" />
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

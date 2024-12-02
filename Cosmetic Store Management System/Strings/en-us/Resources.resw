@@ -288,12 +288,6 @@
   <data name="AddManufacturerPage_CancelButton.Content" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="CategoryPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="CategoryPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
-  </data>
   <data name="CategoryPage_Name.Text" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -329,12 +323,6 @@
   </data>
   <data name="ManufacturerPage_Active.Text" xml:space="preserve">
     <value>Active</value>
-  </data>
-  <data name="ManufacturerPage_PrevButton.Content" xml:space="preserve">
-    <value>Previous</value>
-  </data>
-  <data name="ManufacturerPage_NextButton.Content" xml:space="preserve">
-    <value>Next</value>
   </data>
   <data name="UpdateManufacturerPage_CancelButton.Content" xml:space="preserve">
     <value>Cancel</value>
@@ -476,5 +464,17 @@
   </data>
   <data name="OverviewsPage_MoreAnalytics.Content" xml:space="preserve">
     <value>See more</value>
+  </data>
+  <data name="CustomerPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CustomerPage_PhoneNumber.Text" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="CustomerPage_Point.Text" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="CustomerPage_Loyal.Text" xml:space="preserve">
+    <value>Loyal</value>
   </data>
 </root>
