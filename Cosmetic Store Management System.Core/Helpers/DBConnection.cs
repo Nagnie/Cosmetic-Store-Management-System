@@ -19,9 +19,9 @@ public class DBConnection
             var connectionString = """
                 Server=localhost;
                 Port=5432;
-                User Id=postgres;
-                Password=my_password;
-                Database=postgres; 
+                User Id=my_postgres;
+                Password=1234;
+                Database=my_database; 
             """;
             connection = new NpgsqlConnection(connectionString);
         }
