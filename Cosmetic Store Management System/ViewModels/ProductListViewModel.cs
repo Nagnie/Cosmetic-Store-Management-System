@@ -19,7 +19,10 @@ public class ProductListViewModel : ObservableRecipient
         get; set; 
     } = new ObservableCollection<ExtraProductListViewModel>();
 
-    public ObservableCollection<Cosmetic> Cosmetics { get; set; } = new ObservableCollection<Cosmetic>();
+    public ObservableCollection<Cosmetic> Cosmetics 
+    { 
+        get; set; 
+    } = new ObservableCollection<Cosmetic>();
 
 
     private void UpdateExtraCosmetics()

@@ -8,15 +8,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:local1="using:Cosmetic_Store_Management_System.Core.Models" 
     xmlns:local2="using:Cosmetic_Store_Management_System.Helpers"
+    xmlns:local3="using:Cosmetic_Store_Management_System.ViewModels"
     mc:Ignorable="d">
 
     <UserControl.Resources>
         <local2:IntToCurrencyConverter x:Key="IntToCurrencyConverter"/>
     </UserControl.Resources>
 
-    <GridView ItemsSource="{x:Bind ViewModel.OrderDetails}">
+    <GridView ItemsSource="{x:Bind ViewModel.ExtraOrderDetails}">
         <GridView.ItemTemplate>
-            <DataTemplate x:DataType="local1:OrderDetail" >
+            <DataTemplate x:DataType="local3:ExtraOrderDetailsViewModel" >
                 <Grid Padding="8, 8, 8, 8">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="24"/>
@@ -32,7 +33,7 @@
                                 Grid.RowSpan="2" 
                                 Grid.Column="0" 
                                 Margin="0, 0, 12, 0">
-                            <Image Source="/Assets/Product/001.jpg" Stretch="Fill"/>
+                            <Image Source="{x:Bind Image}" Stretch="UniformToFill"/>
                         </Border>
 
                         <TextBlock Text="{x:Bind Cosmetic.Name, Mode=OneWay}"
@@ -55,7 +56,7 @@
                                     <FontIcon Glyph="&#xF8AB;" FontSize="10"/>
                                 </Button>
 
-                                <TextBlock Text="{x:Bind Quantity, Mode=OneWay}"
+                                <TextBlock Text="{x:Bind OrderDetail.Quantity, Mode=OneWay}"
                                        Width="40"
                                        TextAlignment="Center"
                                        VerticalAlignment="Center"/>
@@ -72,7 +73,7 @@
                             </StackPanel>
 
                             <TextBlock Grid.Column="1"
-                                   Text="{x:Bind SubTotal, Mode=OneWay,
+                                   Text="{x:Bind OrderDetail.SubTotal, Mode=OneWay,
                                         Converter={StaticResource IntToCurrencyConverter}}"
                                    TextAlignment="End"
                                    VerticalAlignment="Center"/>
