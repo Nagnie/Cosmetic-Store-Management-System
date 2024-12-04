@@ -22,7 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="LoginWindow.xaml" />
-    <None Remove="Views\Account.xaml" />
     <None Remove="Views\AddCategoryPage.xaml" />
     <None Remove="Views\AddCustomerPage.xaml" />
     <None Remove="Views\CategoryPage.xaml" />
@@ -72,9 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\CustomerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Account.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="LoginWindow.xaml">
