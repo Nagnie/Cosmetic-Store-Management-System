@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,10 +32,33 @@ public sealed partial class OrderDetailsUserControl : UserControl
         get;
     } = new OrderDetailsViewModel();
 
+
     public OrderDetailsUserControl()
     {
         this.InitializeComponent();
+        ViewModel.OrderDetails.CollectionChanged += OnOrderDetailsChanged;
+        UpdateExtraOrderDetails();
     }
+    private void OnOrderDetailsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        UpdateExtraOrderDetails();
+        
+    }
+
+    private void UpdateExtraOrderDetails()
+    {
+        ViewModel.ExtraOrderDetails.Clear();
+        foreach (var detail in ViewModel.OrderDetails)
+        {
+            ViewModel.ExtraOrderDetails.Add(new ExtraOrderDetailsViewModel
+            {
+                OrderDetail = detail,
+                Cosmetic = detail.Cosmetic
+            });
+        }
+    }
+
+    
 
     private async void ShowCantAddItemNotification()
     {
@@ -69,6 +93,8 @@ public sealed partial class OrderDetailsUserControl : UserControl
     public async void AddOrderDetail(Cosmetic cosmetic)
     {
         var (added, delta) = ViewModel.Add(cosmetic);
+
+        
 
         if (!added)
         {

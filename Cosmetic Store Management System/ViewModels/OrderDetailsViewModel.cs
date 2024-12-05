@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 
@@ -14,6 +16,11 @@ public class OrderDetailsViewModel
     {
         get; set;
     } = new FullObservableCollection<OrderDetail>();
+
+    public FullObservableCollection<ExtraOrderDetailsViewModel> ExtraOrderDetails
+    {
+        get; set;
+    } = new FullObservableCollection<ExtraOrderDetailsViewModel>();
 
     public Tuple<bool, int> Add(Cosmetic cosmetic)
     {
