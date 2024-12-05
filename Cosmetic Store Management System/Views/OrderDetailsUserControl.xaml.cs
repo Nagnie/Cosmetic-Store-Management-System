@@ -111,27 +111,27 @@ public sealed partial class OrderDetailsUserControl : UserControl
 
     private void decreaseButton_Click(object sender, RoutedEventArgs e)
     {
-        var delta = ViewModel.Decrease((sender as Button).DataContext as OrderDetail);
-
-        if (PaymentChanged != null)
+        if ((sender as Button)?.DataContext is OrderDetail orderDetail)
         {
-            PaymentChanged.Invoke(delta);
+            var delta = ViewModel.Decrease(orderDetail);
+
+            PaymentChanged?.Invoke(delta);
         }
     }
 
     private void increaseButton_Click(object sender, RoutedEventArgs e)
     {
-        var (added, delta) = ViewModel.Increase((sender as Button).DataContext as OrderDetail);
+        if ((sender as Button)?.DataContext is OrderDetail orderDetail)
+        {
+            var (added, delta) = ViewModel.Increase(orderDetail);
 
-        if (!added)
-        {
-            ShowCantAddItemNotification();
-        }
-        else
-        {
-            if (PaymentChanged != null)
+            if (!added)
             {
-                PaymentChanged.Invoke(delta);
+                ShowCantAddItemNotification();
+            }
+            else
+            {
+                PaymentChanged?.Invoke(delta);
             }
         }
     }

@@ -47,13 +47,14 @@
                             </Grid.ColumnDefinitions>
 
                             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                <Button Width="20" 
+                            <Button Width="20" 
                                     Height="20" 
                                     Padding="0" 
                                     VerticalAlignment="Center" 
                                     CornerRadius="20"
-                                    Click="decreaseButton_Click">
-                                    <FontIcon Glyph="&#xF8AB;" FontSize="10"/>
+                                    Click="decreaseButton_Click"
+                                    DataContext="{x:Bind OrderDetail}">
+                                <FontIcon Glyph="&#xF8AB;" FontSize="10"/>
                                 </Button>
 
                                 <TextBlock Text="{x:Bind OrderDetail.Quantity, Mode=OneWay}"
@@ -67,7 +68,8 @@
                                     VerticalAlignment="Center" 
                                     CornerRadius="20"
                                     Click="increaseButton_Click"
-                                    Style="{StaticResource AccentButtonStyle}">
+                                    Style="{StaticResource AccentButtonStyle}"
+                                    DataContext="{x:Bind OrderDetail}">
                                     <FontIcon Glyph="&#xF8AA;" FontSize="10"/>
                                 </Button>
                             </StackPanel>
