@@ -86,7 +86,7 @@ public partial class CategoryViewModel : ObservableRecipient
     }
     public CategoryViewModel()
     {
-        RowsPerPage = 10;
+        RowsPerPage = 12;
         CurrentPage = 1;
         
         LoadData();

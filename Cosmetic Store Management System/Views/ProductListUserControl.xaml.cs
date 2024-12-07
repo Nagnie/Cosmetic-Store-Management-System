@@ -38,9 +38,9 @@ public sealed partial class ProductListUserControl : UserControl
 
     private void GridView_ItemClick(object sender, ItemClickEventArgs e)
     {
-        if (ItemClick != null)
+        if (e.ClickedItem is ExtraProductListViewModel clickedItem && clickedItem.Cosmetic != null)
         {
-            ItemClick.Invoke(e.ClickedItem as Cosmetic);
+            ItemClick?.Invoke(clickedItem.Cosmetic);
         }
     }
 

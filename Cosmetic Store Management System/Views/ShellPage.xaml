@@ -8,7 +8,13 @@
     xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     Loaded="OnLoaded">
-
+    <Page.Resources>
+        <FontFamily x:Key="DongleBold">/Assets/Font/Dongle/Dongle-Bold.ttf#Dongle Bold</FontFamily>
+        <FontFamily x:Key="DongleLight">/Assets/Font/Dongle/Dongle-Light.ttf#Dongle Light</FontFamily>
+        <FontFamily x:Key="DongleRegular">/Assets/Font/Dongle/Dongle-Regular.ttf#Dongle Regular</FontFamily>
+        <FontFamily x:Key="Bungee">/Assets/Font/Bungee/Bungee-Regular.ttf#Bungee</FontFamily>
+        <FontFamily x:Key="Coiny">/Assets/Font/Coiny/Coiny-Regular.ttf#Coiny</FontFamily>
+    </Page.Resources>
     <Grid>
         <Grid x:Name="AppTitleBar"
               Canvas.ZIndex="1"

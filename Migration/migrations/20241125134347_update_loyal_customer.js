@@ -4,8 +4,14 @@ exports.up = function (knex) {
       CREATE OR REPLACE FUNCTION update_loyalty()
       RETURNS TRIGGER AS $$
       BEGIN
-        IF NEW.point > 200 THEN
+        IF NEW.point > 1000 THEN
           NEW.loyal := '\uEB52';
+        ELSEIF NEW.point > 600 THEN
+          NEW.loyal := '\uEB51';
+        ELSEIF NEW.point > 300 THEN
+          NEW.loyal := '\uE735';
+        ELSEIF NEW.point > 120 THEN
+          NEW.loyal := '\uE734';
         ELSE
           NEW.loyal := NULL;
         END IF;

@@ -28,7 +28,7 @@ public class CreateOrderViewModel : ObservableRecipient
 
         if (customer.ID != -1)
         {
-            customer.Point += (int)(order.Total / 1000);
+            customer.Point += (int)(order.Total / 10000);
             ICustomerDAO loyalCustomerDAO = new SQLCustomerDAO();
             loyalCustomerDAO.UpdateCustomer(customer);
         }

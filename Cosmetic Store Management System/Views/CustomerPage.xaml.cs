@@ -66,14 +66,4 @@ public sealed partial class CustomerPage : Page
         ViewModel.dao.DeleteCustomer(customer.Phone);
         ViewModel.LoadData();
     }
-
-    private void editButton_Click(object sender, RoutedEventArgs e)
-    {
-        var customer = (sender as Button)?.DataContext as Customer;
-        Frame.Navigate(typeof(EditCustomerPage), customer);
-    }
-    private void addButton_Click(object sender, RoutedEventArgs e)
-    {
-        this.Frame.Navigate(typeof(AddCustomerPage));
-    }
 }

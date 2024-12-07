@@ -28,6 +28,7 @@ public class SQLCustomerDAO : ICustomerDAO
         connection.Close();
         return customerId;
     }
+
     public void DeleteCustomer(string phone)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -65,9 +66,9 @@ public class SQLCustomerDAO : ICustomerDAO
                 ID = (int)reader["customer_id"],
                 Name = (string)reader["customer_name"],
                 Phone = (string)reader["phone"],
-                Address = (string)(reader["address"] != null ? reader["address"] : ""),             
+                Address = (string)(reader["address"] != null ? reader["address"] : ""),
                 Point = (float)reader["point"],
-                Loyal = (string)(reader["loyal"] != null ? reader["loyal"] : "")
+                Loyal = reader["loyal"] != DBNull.Value ? (string)reader["loyal"] : string.Empty,
             };
         }
 
@@ -158,15 +159,13 @@ public class SQLCustomerDAO : ICustomerDAO
         command.Connection = connection;
         command.CommandText = $"""
                 UPDATE "CUSTOMER"
-                SET customer_name = @name, point = @point, address = @address
+                SET customer_name = @name, point = @point
                 WHERE phone = @phone
             """;
 
         command.Parameters.AddWithValue("name", loyalCustomer.Name);
         command.Parameters.AddWithValue("point", loyalCustomer.Point);
         command.Parameters.AddWithValue("phone", loyalCustomer.Phone);
-        command.Parameters.AddWithValue("address", loyalCustomer.Address);
-        command.Parameters.AddWithValue("loyal", loyalCustomer.Loyal);
 
         command.ExecuteNonQuery();
         connection.Close();

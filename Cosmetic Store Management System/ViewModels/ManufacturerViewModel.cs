@@ -90,7 +90,7 @@ public class ManufacturerViewModel : ObservableRecipient
 
     public ManufacturerViewModel()
     {
-        RowsPerPage = 10;
+        RowsPerPage = 12;
         CurrentPage = 1;
         
         LoadData();

@@ -17,7 +17,24 @@ exports.seed = async function (knex) {
       manufacturer_id: 1,
       description: 'Son Kem Lì Cực Nhẹ Môi Romand Zero Velvet Tint là son kem lì của thương hiệu Romand với kết cấu velvet xốp mềm cùng bảng màu đa dạng, dễ dùng cho đôi môi lên màu chuẩn, mịn mượt, nổi bật dù bạn ở bất cứ đâu.',
       image: readImageAsBinary(path.join(__dirname, 'images', '001.jpg'))
-
+    },
+    {
+      cosmetic_name: 'Cocoon Hau Giang Lotus Soothing Toner',
+      quantity: 42,
+      price: 175000,
+      category_id: 12,
+      manufacturer_id: 23,
+      description: 'Nước Cân Bằng Sen Hậu Giang Làm Dịu Da Nhạy Cảm Cocoon Hau Giang Lotus Soothing Toner là nước hoa hồng thuộc thương hiệu mỹ phẩm thuần chay Cocoon đến từ Việt Nam. Với sự kết hợp từ những đóa sen từ vùng đất Hậu Giang cùng các hoạt chất gồm Madecassoside, vitamin B5, B12, Beta-glucan (prebiotic) ... nước cân bằng giúp bảo vệ hàng rào độ ẩm của làn da nhạy cảm, hỗ trợ và cải thiện da mẩn đỏ, kích ứng, mang lại cảm giác nhẹ nhàng, ẩm mượt.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '037.jpg'))
+    },
+    {
+      cosmetic_name: "L'oreal Glycolic-Bright Instant Glowing Serum 30ml",
+      quantity: 106,
+      price: 319000,
+      category_id: 13,
+      manufacturer_id: 24,
+      description: "Serum L'oreal Tinh Chất Mờ Thâm Nám L'oreal Glycolic-Bright Instant Glowing Serum là tinh chất dưỡng ẩm thuộc thương hiệu L'Oreal đến từ Pháp. Với công thức mới đột phá hỗ trợ làm sáng da MelasylTM từ viện nghiên cứu L’oreal Paris – hiệu quả hơn 5 hoạt chất sáng da phổ biến, cùng phức hợp hoạt chất khác giúp hỗ trợ giảm thâm mụn, đồi mồi/nám, thâm sạm, cải thiện làm trắng da hiệu quả rõ rệt, kể cả các đốm nâu lâu năm, hiệu quả cho mọi tông da Châu Á.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '038.jpg'))
     },
     {
       cosmetic_name: 'Black Rouge Air Fit Velvet Tint',
@@ -74,6 +91,24 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '007.jpg'))
     },
     {
+      cosmetic_name: 'Wonjin Ampoule Edition Fill Air Mask 27g',
+      quantity: 190,
+      price: 18000,
+      category_id: 15,
+      manufacturer_id: 25,
+      description: 'Mặt Nạ Siêu Tinh Chất Cấp Ẩm, Làm Dịu Da Dr.Wonjin Ampoule Edition Fill Air Mask là mặt nạ miếng thuộc thương hiệu Wonjin. Có chất liệu Skin Air Fit trong suốt, siêu mỏng, ôm khít vào da giúp hỗ trợ tăng cường hiệu quả và thúc đẩy dưỡng chất thấm sâu vào da rút ngắn thời gian thẩm thấu tinh chất nhanh gấp 5 lần.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '040.jpg'))
+    },
+    {
+      cosmetic_name: 'Wonjin Effect Concentrated Essence Mask',
+      quantity: 180,
+      price: 24000,
+      category_id: 15,
+      manufacturer_id: 25,
+      description: 'Mặt Nạ Cấp Ẩm, Hỗ Trợ Dưỡng Sáng, Phục Hồi Da Chuyên Sâu Wonjin Effect Concentrated Essence Mask là dòng mặt nạ thuộc thương hiệu Wonjin đến từ Hàn Quốc. Mặt nạ Wonjin Effect được sử dụng chuyên sâu cho da với lượng tinh chất nhiều, mặt nạ trong suốt, ôm khít mặt giúp dưỡng ẩm, hỗ trợ dưỡng sáng da, phục hồi da mang lại làn da căng mịn, ẩm mượt sau khi sử dụng.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '041.jpg'))
+    },
+    {
       cosmetic_name: 'Black Rouge Double Layer Over Velvet 4.1g',
       quantity: 60,
       price: 169000,
@@ -81,6 +116,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 2,
       description: 'Son Kem Lì, Mịn Mượt Nhẹ Môi Black Rouge Double Layer Over Velvet 4.1g là son kem lì đến từ thương hiệu Black Rouge có kết cấu chất son mịn mượt, giúp đôi môi mịn màng và căng tràn sức sống cả ngày bởi chức năng cấp ẩm sâu.',
       image: readImageAsBinary(path.join(__dirname, 'images', '008.jpg'))
+    },
+    {
+      cosmetic_name: "Three-Color Concealer Palette 2.7g",
+      quantity: 10,
+      price: 167000,
+      category_id: 8,
+      manufacturer_id: 20,
+      image: readImageAsBinary(path.join(__dirname, 'images', '039.jpg')),
+      description: "Bảng Che Khuyết Điểm 3 Ô Judydoll Three-Color Concealer Palette 2.7g là che khuyết điểm thuộc thương hiệu Judydoll. Có thiết kế 3 màu dễ sử dụng, dễ hiệu chỉnh sắc tố da, có khả năng che phủ tốt các khuyết điểm trên da với công thức dạng kem bám dính tốt, chất kem siêu mịn tệp vào da cho lớp nền mịn màng, tự nhiên."
     },
     {
       cosmetic_name: "Black Rouge Colordation Mood Palette",
@@ -108,6 +152,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 4,
       description: 'Kem Nền Kiềm Dầu, Che Phủ Mỏng Nhẹ, Lâu Trôi The Saem Saemmul Perfect Pore BB là kem nền trang điểm đến từ thương hiệu The Saem sản phẩm là sự kết hợp giữa kem lót và kem BB giúp che phủ lỗ chân lông mịn mượt, mang đến lớp nền trang điểm mềm mại được che phủ mỏng nhẹ, tự nhiên.',
       image: readImageAsBinary(path.join(__dirname, 'images', '011.jpg'))
+    },
+    {
+      cosmetic_name: "I'm Meme Purple Cotton Tone Control Pact 9.5g",
+      quantity: 44,
+      price: 179000,
+      category_id: 9,
+      manufacturer_id: 17,
+      description: "Phấn Phủ Dạng Nén Kiềm Dầu, Nâng Tông, Làm Đều Màu Da I'm Meme Purple Cotton Tone Control Pact là phấn phủ thuộc thương hiệu I'm Meme giúp che phủ lỗ chân lông, kiềm dầu hiệu quả cho làn da luôn khô thoáng, hiệu chỉnh tông da và làm đều màu da, nâng tông giữ cho lớp trang điểm mịn màng và bền màu cả ngày dài.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '043.jpg'))
     },
     {
       cosmetic_name: 'The Saem Iceland Aqua Moist Cream 60ml',
@@ -164,6 +217,15 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '017.jpg'))
     },
     {
+      cosmetic_name: "I'm Meme I'm Concealer 10g",
+      quantity: 10,
+      price: 169000,
+      category_id: 8,
+      manufacturer_id: 17,
+      image: readImageAsBinary(path.join(__dirname, 'images', '042.jpg')),
+      description: "Kem Che Khuyết Điểm Cho Làn Da Mịn Màng I'm Meme I'm Concealer 10g là che khuyết điểm thuộc thương hiệu I'm Meme. Với khả năng che phủ hoàn hảo những khuyết điểm lớn nhỏ trên mặt, với chất kem mỏng nhẹ, độ bám cao, không gây cảm giác bết dính cho lớp nền bền màu trong thời gian dài."
+    },
+    {
       cosmetic_name: '9 Wishes Rice Radiance Cream 50ml',
       quantity: 56,
       price: 322000,
@@ -189,6 +251,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 18,
       description: 'Dầu Tẩy Trang Làm Sạch Sâu Ma:nyo Pure Cleansing Oil là dầu tẩy trang thuộc thương hiệu Ma:nyo đến từ Hàn Quốc. Với kết cấu nhẹ, dễ dàng hòa tan và lấy đi mọi bụi bẩn, bã nhờn cặn trang điểm trên bề mặt da. Đồng thời công thức chứa 12 nguồn thành phần dầu thực vật, vitamin giúp dưỡng ẩm, hỗ trợ phục hồi, củng cố hàng rào bảo vệ da, nuôi dưỡng làn da tươi trẻ, đều màu.',
       image: readImageAsBinary(path.join(__dirname, 'images', '020.jpg'))
+    },
+    {
+      cosmetic_name: "Dove Beauty Serum Micellar Cleansing Water 235ml",
+      quantity: 118,
+      price: 99000,
+      category_id: 10,
+      manufacturer_id: 22,
+      image: readImageAsBinary(path.join(__dirname, 'images', '044.jpeg')),
+      description: "Nước Tẩy Trang Tinh Chất Dành Cho Da Khô Và Da Thường Dove Beauty Serum Micellar Cleansing Water là nước tẩy trang với 3 tác động: tẩy trang, làm sạch bã nhờn, tẩy tế bào chết kết hợp cùng 40% tinh chất dưỡng ẩm, bổ sung thêm Niacinamide giúp làn da ẩm và căng mịn ngay sau khi làm sạch thương hiệu Dove đến từ Mỹ."
     },
     {
       cosmetic_name: "Laneige Skin Veil Base EX 30ml",
@@ -281,6 +352,15 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '030.jpg'))
     },
     {
+      cosmetic_name: "Hatomugi High Moisturizing Lotion 250ml",
+      quantity: 140,
+      price: 147000,
+      category_id: 12,
+      manufacturer_id: 19,
+      description: "Nước Hoa Hồng Dưỡng Ẩm Sâu Và Hỗ Trợ Làm Sáng Da Hatomugi High Moisturizing Lotion là nước cân bằng thuộc thương hiệu Hatomugi với chiết xuất từ hạt Ý Dĩ giàu vitamin và các acid béo giúp cung cấp dưỡng chất cho làn da. Đặc biệt còn kết hợp cùng với thành phần Soluble Collagen giúp làm tăng hàm lượng nước trong da, cải thiện độ đàn hồi, mang lại làn da căng mịn và mềm mại.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '045.jpeg'))
+    },
+    {
       cosmetic_name: "DOVE 1 Minute Super Conditioner",
       quantity: 50,
       price: 50000,
@@ -306,6 +386,33 @@ exports.seed = async function (knex) {
       manufacturer_id: 6,
       description: 'Phấn Phủ Dạng Nén Che Phủ Hoàn Hảo, Kiềm Dầu Hiệu Quả Maybelline Fit Me Matte Poreless Powder SPF32 /PA+++ là phấn nền đến từ thương hiệu Maybelline công thức chứa hạt phấn Micro Power cho lớp nền mịn, kiềm dầu lên đến 16h, mang đến cho bạn một lớp nền hoàn hảo, phủ mịn và không bị bóng dầu.',
       image: readImageAsBinary(path.join(__dirname, 'images', '033.jpg'))
+    },
+    {
+      cosmetic_name: "Cocoon Winter Melon Shower Gel",
+      quantity: 25,
+      price: 220000,
+      category_id: 11,
+      manufacturer_id: 23,
+      description: 'Sữa Tắm Dạng Gel Giảm Mụn Vùng Lưng Chiết Xuất Bí Đao Cocoon Winter Melon Shower Gel là sữa tắm với thành phần chủ đạo là chiết xuất bí đao giúp da sạch mịn màng và giảm mụn lưng hiệu quả. Đồng thời bổ sung tinh dầu sả chanh giúp giảm mùi cơ thể, tạo cảm giác sảng khoái và thư giãn.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '034.jpg'))
+    },
+    {
+      cosmetic_name: "Cocoon Pomelo Shampoo",
+      quantity: 111,
+      price: 238000,
+      category_id: 16,
+      manufacturer_id: 23,
+      description: 'Dầu Gội Tinh Chất Dầu Bưởi Giúp Giảm Gãy Rụng & Hỗ Trợ Mọc Tóc Cocoon Pomelo Shampoo là sản phẩm dầu gội đến từ thương hiệu Cocoon với thành phần được chiết xuất từ tinh dầu vỏ bưởi có tác dụng làm sạch da đầu và cung cấp dưỡng chất giúp nuôi dưỡng tóc chắc khỏe, giảm gãy rụng và hỗ trợ kích thích sự phát triển của tóc.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '035.jpg'))
+    },
+    {
+      cosmetic_name: "L'oreal Extraordinary Oil Smooth Silicone - Free Shampoo 440ml",
+      quantity: 68,
+      price: 179000,
+      category_id: 16,
+      manufacturer_id: 24,
+      description: "Dầu Gội Dưỡng Tóc Suôn Mượt Cao Cấp L'oreal Extraordinary Oil Smooth Silicone - Free Shampoo 440ml là dầu gội thuộc thương hiệu L'Oreal đến từ Pháp với chiết xuất 100% từ gỗ tuyết tùng giúp tóc suôn mượt, gãy rụng, giảm khô xơ, giúp tóc phục hồi hư tổn một cách hiệu quả.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '036.jpg'))
     },
   ]);
 

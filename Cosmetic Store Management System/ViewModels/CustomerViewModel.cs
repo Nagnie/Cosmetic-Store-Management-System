@@ -17,7 +17,10 @@ public partial class CustomerViewModel : ObservableRecipient
         get; set;
     } = new ObservableCollection<Customer>();
 
-    public ICustomerDAO dao = new SQLCustomerDAO();
+    public ICustomerDAO dao
+    {
+        get;
+    } = new SQLCustomerDAO();
 
     public string Info
     {
@@ -85,7 +88,7 @@ public partial class CustomerViewModel : ObservableRecipient
     }
     public CustomerViewModel()
     {
-        RowsPerPage = 10;
+        RowsPerPage = 12;
         CurrentPage = 1;
 
         LoadData();
@@ -94,6 +97,7 @@ public partial class CustomerViewModel : ObservableRecipient
     public void LoadData()
     {
         ICustomerDAO customerDAO = new SQLCustomerDAO();
+        Customers.Clear();
 
         // Retrieve customer data from the DAO
         var (items, count) = customerDAO.GetCustomers(
@@ -101,9 +105,9 @@ public partial class CustomerViewModel : ObservableRecipient
         );
 
         // Add the retrieved customers to the collection
-        foreach (var customer in Customers)
+        foreach (var item in items)
         {
-            Customers.Add(customer);
+            Customers.Add(item);
         }
 
         if (count != TotalItems)

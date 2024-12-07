@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
     <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
@@ -29,6 +29,7 @@
     <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="17.7.2">
       <ExcludeAssets>build</ExcludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 

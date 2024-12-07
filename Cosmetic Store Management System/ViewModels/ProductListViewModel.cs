@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.UI.Xaml.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.Core.Services.Data_Access;
@@ -12,10 +14,29 @@ using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 namespace Cosmetic_Store_Management_System.ViewModels;
 public class ProductListViewModel : ObservableRecipient
 {
-    public FullObservableCollection<Cosmetic> Cosmetics
+    public ObservableCollection<ExtraProductListViewModel> ExtraCosmetics 
+    { 
+        get; set; 
+    } = new ObservableCollection<ExtraProductListViewModel>();
+
+    public ObservableCollection<Cosmetic> Cosmetics 
+    { 
+        get; set; 
+    } = new ObservableCollection<Cosmetic>();
+
+
+    private void UpdateExtraCosmetics()
     {
-        get; set;
-    } = new FullObservableCollection<Cosmetic>();
+        ExtraCosmetics.Clear();
+        foreach (var cosmetic in Cosmetics)
+        {
+            ExtraCosmetics.Add(new ExtraProductListViewModel { Cosmetic = cosmetic });
+        }
+    }
+    //public FullObservableCollection<Cosmetic> Cosmetics
+    //{
+    //    get; set;
+    //} = new FullObservableCollection<Cosmetic>();
 
     public FullObservableCollection<Category> Categories
     {
@@ -26,6 +47,13 @@ public class ProductListViewModel : ObservableRecipient
     {
         get; set;
     }
+
+    public ExtraProductListViewModel ExtraProductListViewModel
+    {
+        get; set;
+    } = new ExtraProductListViewModel();
+
+
 
     public List<int> CategoryID
     {
@@ -123,6 +151,20 @@ public class ProductListViewModel : ObservableRecipient
         foreach (var cosmetic in cosmetics)
         {
             Cosmetics.Add(cosmetic);
+        }
+
+        if (ExtraCosmetics == null)
+        {
+            ExtraCosmetics = new ObservableCollection<ExtraProductListViewModel>();
+        }
+        ExtraCosmetics.Clear();
+
+        foreach (var cosmetic in cosmetics)
+        {
+            ExtraCosmetics.Add(new ExtraProductListViewModel
+            {
+                Cosmetic = cosmetic
+            });
         }
     }
 

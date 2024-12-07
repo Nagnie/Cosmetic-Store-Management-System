@@ -22,9 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="LoginWindow.xaml" />
-    <None Remove="Views\Account.xaml" />
     <None Remove="Views\AddCategoryPage.xaml" />
-    <None Remove="Views\AddCustomerPage.xaml" />
     <None Remove="Views\CategoryPage.xaml" />
     <None Remove="Views\CreateOrderPage.xaml" />
     <None Remove="Views\CustomerPage.xaml" />
@@ -42,11 +40,13 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
     <PackageReference Include="CSharpMarkup.WinUI.LiveChartsCore.SkiaSharpView" Version="2.4.18" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241114003" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Npgsql" Version="9.0.1" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
     <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="9.0.0" />
     <PackageReference Include="WinUIEx" Version="2.5.0" />
   </ItemGroup>
@@ -67,13 +67,7 @@
     <Page Update="Views\EditCustomerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Update="Views\AddCustomerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Update="Views\CustomerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\Account.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="LoginWindow.xaml">

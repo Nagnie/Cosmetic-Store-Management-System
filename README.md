@@ -87,5 +87,3 @@ Các trang còn lại (**Analytics**, **Category**, **Manufacturer**, **Create O
 ## 5. Quality assurance
 
 Quy Trình Kiểm Duyệt Mã Nguồn: Mã nguồn được leader kiểm duyệt (giải quyết xung đột nếu có) trước khi hợp nhất.
-
-

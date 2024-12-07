@@ -32,6 +32,7 @@ public sealed partial class ProductPage : Page
     {
         ViewModel = new ProductViewModel();
         this.InitializeComponent();
+        this.DataContext = ViewModel;
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -87,10 +88,12 @@ public sealed partial class ProductPage : Page
     private async void previousProductButton_Click(object sender, RoutedEventArgs e)
     {
         await ViewModel.LoadPreviousProduct();
+        this.Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
 
     private async void nextProductButton_Click(object sender, RoutedEventArgs e)
     {
         await ViewModel.LoadNextProduct();
+        this.Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
     }
 }

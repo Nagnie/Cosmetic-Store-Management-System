@@ -239,10 +239,12 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Open();
 
         const string query = """
-        SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
-        FROM "COSMETIC"
-        WHERE cosmetic_id > @currentId
-        ORDER BY cosmetic_id ASC
+        SELECT c.cosmetic_id, c.cosmetic_name, c.category_id, ca.category_name, c.manufacturer_id, m.manufacturer_name, c.quantity, c.description, c.price, c.image
+        FROM "COSMETIC" c
+        LEFT JOIN "MANUFACTURER" m ON c.manufacturer_id = m.manufacturer_id
+        LEFT JOIN "CATEGORY" ca ON c.category_id = ca.category_id
+        WHERE c.cosmetic_id > @currentId
+        ORDER BY c.cosmetic_id ASC
         LIMIT 1
     """;
 
@@ -250,8 +252,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        var result = reader.Read() ? MapToCosmetic(reader) : null;
         connection.Close();
-        return reader.Read() ? MapToCosmetic(reader) : null;
+        return result;
     }
 
     public Cosmetic GetPreviousCosmetic(int currentId)
@@ -260,10 +263,12 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Open();
 
         const string query = """
-            SELECT cosmetic_id, cosmetic_name, category_id, manufacturer_id, quantity, description, price, image
-            FROM "COSMETIC"
-            WHERE cosmetic_id < @currentId
-            ORDER BY cosmetic_id DESC
+            SELECT c.cosmetic_id, c.cosmetic_name, c.category_id, ca.category_name, c.manufacturer_id, m.manufacturer_name, c.quantity, c.description, c.price, c.image
+            FROM "COSMETIC" c
+            LEFT JOIN "MANUFACTURER" m ON c.manufacturer_id = m.manufacturer_id
+            LEFT JOIN "CATEGORY" ca ON c.category_id = ca.category_id
+            WHERE c.cosmetic_id < @currentId
+            ORDER BY c.cosmetic_id DESC
             LIMIT 1
         """;
 
@@ -271,8 +276,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("@currentId", currentId);
 
         using var reader = command.ExecuteReader();
+        var result = reader.Read() ? MapToCosmetic(reader) : null;
         connection.Close();
-        return reader.Read() ? MapToCosmetic(reader) : null;
+        return result;
     }
 
     private Cosmetic MapToCosmetic(NpgsqlDataReader reader)
@@ -281,8 +287,16 @@ public class SQLCosmeticDAO : ICosmeticDAO
         {
             ID = reader.GetInt32(reader.GetOrdinal("cosmetic_id")),
             Name = reader.GetString(reader.GetOrdinal("cosmetic_name")),
-            Category = new Category { ID = reader.GetInt32(reader.GetOrdinal("category_id")) },
-            Manufacturer = new Manufacturer { ID = reader.GetInt32(reader.GetOrdinal("manufacturer_id")) },
+            Category = new Category 
+            { 
+                ID = reader.GetInt32(reader.GetOrdinal("category_id")), 
+                Name = reader.GetString(reader.GetOrdinal("category_name"))
+            },
+            Manufacturer = new Manufacturer 
+            { 
+                ID = reader.GetInt32(reader.GetOrdinal("manufacturer_id")),
+                Name = reader.GetString(reader.GetOrdinal("manufacturer_name"))
+            },
             Quantity = reader.GetInt32(reader.GetOrdinal("quantity")),
             Description = reader.IsDBNull(reader.GetOrdinal("description"))
                 ? null

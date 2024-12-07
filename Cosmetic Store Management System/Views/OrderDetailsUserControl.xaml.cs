@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,10 +32,33 @@ public sealed partial class OrderDetailsUserControl : UserControl
         get;
     } = new OrderDetailsViewModel();
 
+
     public OrderDetailsUserControl()
     {
         this.InitializeComponent();
+        ViewModel.OrderDetails.CollectionChanged += OnOrderDetailsChanged;
+        UpdateExtraOrderDetails();
     }
+    private void OnOrderDetailsChanged(object sender, NotifyCollectionChangedEventArgs e)
+    {
+        UpdateExtraOrderDetails();
+        
+    }
+
+    private void UpdateExtraOrderDetails()
+    {
+        ViewModel.ExtraOrderDetails.Clear();
+        foreach (var detail in ViewModel.OrderDetails)
+        {
+            ViewModel.ExtraOrderDetails.Add(new ExtraOrderDetailsViewModel
+            {
+                OrderDetail = detail,
+                Cosmetic = detail.Cosmetic
+            });
+        }
+    }
+
+    
 
     private async void ShowCantAddItemNotification()
     {
@@ -70,6 +94,8 @@ public sealed partial class OrderDetailsUserControl : UserControl
     {
         var (added, delta) = ViewModel.Add(cosmetic);
 
+        
+
         if (!added)
         {
             ShowCantAddItemNotification();
@@ -85,27 +111,27 @@ public sealed partial class OrderDetailsUserControl : UserControl
 
     private void decreaseButton_Click(object sender, RoutedEventArgs e)
     {
-        var delta = ViewModel.Decrease((sender as Button).DataContext as OrderDetail);
-
-        if (PaymentChanged != null)
+        if ((sender as Button)?.DataContext is OrderDetail orderDetail)
         {
-            PaymentChanged.Invoke(delta);
+            var delta = ViewModel.Decrease(orderDetail);
+
+            PaymentChanged?.Invoke(delta);
         }
     }
 
     private void increaseButton_Click(object sender, RoutedEventArgs e)
     {
-        var (added, delta) = ViewModel.Increase((sender as Button).DataContext as OrderDetail);
+        if ((sender as Button)?.DataContext is OrderDetail orderDetail)
+        {
+            var (added, delta) = ViewModel.Increase(orderDetail);
 
-        if (!added)
-        {
-            ShowCantAddItemNotification();
-        }
-        else
-        {
-            if (PaymentChanged != null)
+            if (!added)
             {
-                PaymentChanged.Invoke(delta);
+                ShowCantAddItemNotification();
+            }
+            else
+            {
+                PaymentChanged?.Invoke(delta);
             }
         }
     }

@@ -67,48 +67,52 @@
             </StackPanel>
         </StackPanel>
 
+        <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,40,0,0">
+            
+        
         <!-- Right Column (Product details) -->
-        <StackPanel Grid.Column="1" Grid.Row="1"  Margin="0,40,0,0" HorizontalAlignment="Left">
-            <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
-                <Run Text="{x:Bind ViewModel.Cosmetic.Name, Mode=OneWay}"></Run>
-            </TextBlock>
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Name, Mode=OneWay}"></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,15,0,0">
-                <Run Text="ID: " FontWeight="Bold" x:Uid="ProductPage_ID"></Run>
-                <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
+                <TextBlock FontSize="20" Margin="25,15,0,0">
+                    <Run Text="ID: " FontWeight="Bold" x:Uid="ProductPage_ID"></Run>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Category: " FontWeight="Bold" x:Uid="ProductPage_Category"></Run>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
+                <TextBlock FontSize="20" Margin="25,10,0,0">
+                    <Run Text="Category: " FontWeight="Bold" x:Uid="ProductPage_Category"></Run>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Brand Name: " FontWeight="Bold" x:Uid="ProductPage_Brand"></Run>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
+                <TextBlock FontSize="20" Margin="25,10,0,0">
+                    <Run Text="Brand Name: " FontWeight="Bold" x:Uid="ProductPage_Brand"></Run>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Quantity: " FontWeight="Bold" x:Uid="ProductPage_Quantity"/>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
+                <TextBlock FontSize="20" Margin="25,10,0,0">
+                    <Run Text="Quantity: " FontWeight="Bold" x:Uid="ProductPage_Quantity"/>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
+                <TextBlock FontSize="20" Margin="25,10,0,0">
+                    <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
 
-            </TextBlock>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0">
-                <Run Text="Status: " FontWeight="Bold" x:Uid="ProductPage_Status"/>
-                <Run Text="In stock" FontWeight="Normal" ></Run>
-            </TextBlock>
+                <TextBlock FontSize="20" Margin="25,10,0,0">
+                    <Run Text="Status: " FontWeight="Bold" x:Uid="ProductPage_Status"/>
+                    <Run Text="In stock" FontWeight="Normal" ></Run>
+                </TextBlock>
             
-            <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
-                <Run Text="Description: " FontWeight="Bold" x:Uid="ProductPage_Description"/>
-                <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
-            </TextBlock>
-        </StackPanel>
+                <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
+                    <Run Text="Description: " FontWeight="Bold" x:Uid="ProductPage_Description"/>
+                    <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
 
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

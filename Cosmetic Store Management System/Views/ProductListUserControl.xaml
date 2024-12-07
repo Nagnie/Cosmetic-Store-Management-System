@@ -96,21 +96,21 @@
                     x:Uid="ProductListUserControl_FilterButton"/>
         </StackPanel>
 
-        <GridView ItemsSource="{x:Bind ViewModel.Cosmetics}"
+        <GridView ItemsSource="{x:Bind ViewModel.ExtraCosmetics}"
                   IsItemClickEnabled="True"
                   ItemClick="GridView_ItemClick"
                   Grid.Row="1"
                   Margin="-8, 0, -8, 0">
             <GridView.ItemTemplate>
-                <DataTemplate x:DataType="local1:Cosmetic" >
+                <DataTemplate x:DataType="local3:ExtraProductListViewModel" >
                     <StackPanel CornerRadius="12" 
                         Width="180" 
                         Padding="16, 16, 16, 16"
                         BorderBrush="#EEEEEE"
                         BorderThickness="1">
                         <StackPanel>
-                            <Border CornerRadius="12" Height="128">
-                                <Image Source="Assets/Product/001.jpg" Stretch="Fill"/>
+                            <Border CornerRadius="12" Height="128" Width="128">
+                                <Image Source="{x:Bind Image, Mode=OneWay}" Stretch="UniformToFill"/>
                             </Border>
 
                             <Grid>
@@ -124,18 +124,15 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock Text="{x:Bind Name, Mode=OneWay}"
+                                <TextBlock Text="{x:Bind Cosmetic.Name, Mode=OneWay}"
                                            TextWrapping="Wrap"
                                            Height="40"
                                            Margin="0, 16, 0, 12"
                                            Grid.Row="0"
                                            Grid.ColumnSpan="2"/>
 
-                                <Border CornerRadius="12" Height="128">
-                                    <Image Source="Assets/Product/001.jpg" Stretch="Fill"/>
-                                </Border>
-
-                                <TextBlock Text="{x:Bind Price, Converter={StaticResource IntToCurrencyConverter}, Mode=OneWay}"
+                                
+                                <TextBlock Text="{x:Bind Cosmetic.Price, Converter={StaticResource IntToCurrencyConverter}, Mode=OneWay}"
                                            FontSize="16"
                                            FontWeight="SemiBold"
                                            Foreground="{ThemeResource TextFillColorPrimaryBrush}"
@@ -147,7 +144,7 @@
                                            HorizontalAlignment="Right"
                                            Foreground="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}"
                                            FontWeight="Bold">
-                                        <Run Text="Qty: " x:Uid="ProductListUserControl_Quantity"/><Run Text="{x:Bind Quantity}"/>
+                                        <Run Text="Qty: " x:Uid="ProductListUserControl_Quantity"/><Run Text="{x:Bind Cosmetic.Quantity}"/>
                                 </TextBlock>
                             </Grid>
                         </StackPanel>
