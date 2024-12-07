@@ -51,12 +51,13 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid>
-        <ScrollViewer VerticalScrollMode="Enabled">
-            <StackPanel Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Right"
-                            Margin="0, 0, 0, 12"
-                            CornerRadius="4, 4, 4, 4">
+    <Grid x:Name="ContentArea">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel VerticalAlignment="Top">
+                <StackPanel 
+                    HorizontalAlignment="Right"
+                    Margin="0, 0, 0, 12"
+                    CornerRadius="4, 4, 4, 4">
                     <Button Click="addButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <FontIcon Glyph="&#xF8AA;" 
@@ -67,65 +68,67 @@
                     </Button>
                 </StackPanel>
                 <!-- Table header -->
-            <Grid Padding="12, 12, 12, 12"
-                  Background="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <Grid Padding="12, 12, 12, 12" Height="40" 
+                          Background="{ThemeResource AccentAcrylicBackgroundFillColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
 
-                <TextBlock Text="ID"
-                           Grid.Column="0"
-                           FontWeight="Bold"/>
-                <TextBlock Text="Name"
-                           Grid.Column="1"
-                           FontWeight="Bold"
-                           x:Uid="CategoryPage_Name"/>
-                <TextBlock Text="Product Count"
-                           FontWeight="Bold"
-                           Grid.Column="2"
-                           x:Uid="CategoryPage_ProductCount"/>
-                <TextBlock Text="Active"
-                           FontWeight="Bold"
-                           Grid.Column="3"
-                           x:Uid="CategoryPage_Active"/>
-            </Grid>
+                        <TextBlock Text="ID"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"/>
+                        <TextBlock Text="Name"
+                                   Grid.Column="1"
+                                   FontWeight="Bold"
+                                   x:Uid="CategoryPage_Name"/>
+                        <TextBlock Text="Product Count"
+                                   FontWeight="Bold"
+                                   Grid.Column="2"
+                                   x:Uid="CategoryPage_ProductCount"/>
+                        <TextBlock Text="Active"
+                                   FontWeight="Bold"
+                                   Grid.Column="3"
+                                   x:Uid="CategoryPage_Active"/>
+                    </Grid>
 
-            <ListView x:Uid="CategoryItemList"
-                      ItemTemplate="{StaticResource CategoryItemTemplate}"
-                      ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
-                    <TextBlock Name="infoTextBlock" 
-                               Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
-                               Margin="0,10,5,0"/>
-                    <Button Margin="5"  
-                            Height="35" 
-                            Name="previousButton" 
-                            Click="previousButton_Click"
-                            x:Uid="CategoryPage_PrevButton">
-                        <FontIcon Glyph="&#xE973;" />
-                    </Button>
-                    <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
-                            SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
-                            SelectionChanged="pagesComboBox_SelectionChanged"
-                            Margin="5" Name="pagesComboBox" Width="100" Height="35">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock >
-                                    <Run Text="{Binding Page}"/>/<Run Text="{Binding Total}"/>
-                                </TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <Button Margin="5" 
-                            Height="35" 
-                            Name="nextButton" 
-                            Click="nextButton_Click"
-                            x:Uid="CategoryPage_NextButton">
-                        <FontIcon Glyph="&#xE974;" />
-                    </Button>
+                    <ListView x:Uid="CategoryItemList"
+                              ItemTemplate="{StaticResource CategoryItemTemplate}"
+                              ItemsSource="{x:Bind ViewModel.Categories, Mode=OneWay}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
+                        <TextBlock Name="infoTextBlock" 
+                                   Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
+                                   Margin="0,10,5,0"/>
+                        <Button Margin="5"  
+                                Height="35" 
+                                Name="previousButton" 
+                                Click="previousButton_Click"
+                                x:Uid="CategoryPage_PrevButton">
+                            <FontIcon Glyph="&#xE973;" />
+                        </Button>
+                        <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
+                                SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
+                                SelectionChanged="pagesComboBox_SelectionChanged"
+                                Margin="5" Name="pagesComboBox" Width="100" Height="35">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock >
+                                        <Run Text="{Binding Page}"/>/<Run Text="{Binding Total}"/>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Margin="5" 
+                                Height="35" 
+                                Name="nextButton" 
+                                Click="nextButton_Click"
+                                x:Uid="CategoryPage_NextButton">
+                            <FontIcon Glyph="&#xE974;" />
+                        </Button>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

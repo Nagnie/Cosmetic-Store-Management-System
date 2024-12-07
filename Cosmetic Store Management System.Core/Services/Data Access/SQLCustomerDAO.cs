@@ -28,6 +28,7 @@ public class SQLCustomerDAO : ICustomerDAO
         connection.Close();
         return customerId;
     }
+
     public void DeleteCustomer(string phone)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();

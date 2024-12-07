@@ -9,13 +9,22 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <Button Content="Cancel"
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+            <StackPanel Margin="0, 0, 0, 20">
+                <TextBlock Text="Order Details"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           x:Uid="CheckoutUserControl_CustomerHeader"/>
+                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Cancel"
                     Name="cancelButton"
                     Click="cancelButton_Click"/>
-            <Button Content="Finish"
+                <Button Content="Finish"
                     Name="finishButton"
                     Click="finishButton_Click"/>
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </UserControl>

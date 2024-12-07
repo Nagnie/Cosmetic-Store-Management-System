@@ -88,7 +88,7 @@ public partial class CustomerViewModel : ObservableRecipient
     }
     public CustomerViewModel()
     {
-        RowsPerPage = 10;
+        RowsPerPage = 12;
         CurrentPage = 1;
 
         LoadData();

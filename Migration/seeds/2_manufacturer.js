@@ -71,6 +71,15 @@ exports.seed = async function(knex) {
     {
       manufacturer_name: 'Dove',
       origin: 'Hoa Kỳ'},
+    {
+      manufacturer_name: 'Cocoon',
+      origin: 'Việt Nam'},
+    {
+      manufacturer_name: "L'oreal",
+      origin: 'Pháp'},
+    {
+      manufacturer_name: "Wonjin",
+      origin: 'Hàn Quốc'},
   ]);
 
   await knex('CATEGORY').update({

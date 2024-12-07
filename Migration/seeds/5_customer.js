@@ -22,7 +22,7 @@ exports.seed = async function (knex) {
     {
       customer_name: 'Thanh Nhã',
       phone: '0983530147',
-      point: 180,
+      point: 1080,
       address: '139/24 Hồng Lĩnh, TT. Đập Đá, An Nhơn, Bình Định, Việt Nam',
     },
     {
@@ -40,7 +40,7 @@ exports.seed = async function (knex) {
     {
       customer_name: 'Thanh Huyền',
       phone: '0989457534',
-      point: 56,
+      point: 866,
       address: '47 đường số 2, phường Linh Xuân, Thủ Đức, TPHCM',
     },
     {
@@ -64,13 +64,13 @@ exports.seed = async function (knex) {
     {
       customer_name: 'Mỹ Duyên',
       phone: '0326737860',
-      point: 15,
+      point: 115,
       address: '19/81 Lê Văn Bì, phường An Thới, quận Bình Thuỷ, TP. Cần Thơ',
     },
     {
       customer_name: 'Lan Anh',
       phone: '0356599081',
-      point: 6,
+      point: 620,
       address: 'Ngõ 137 Xuân Thuỷ, phường Dịch Vọng Hậu, quận Cầu Giấy, Hà Nội',
     },
     {
@@ -94,7 +94,7 @@ exports.seed = async function (knex) {
     {
       customer_name: 'Nguyễn Hạnh',
       phone: '0852108960',
-      point: 50,
+      point: 150,
       address: 'Khu đô thị Vinhomes Grand Park, Phường Long Bình, Thành phố Thủ Đức, Thành phố Hồ Chí Minh',
     },
     {

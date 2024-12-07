@@ -23,7 +23,6 @@
   <ItemGroup>
     <None Remove="LoginWindow.xaml" />
     <None Remove="Views\AddCategoryPage.xaml" />
-    <None Remove="Views\AddCustomerPage.xaml" />
     <None Remove="Views\CategoryPage.xaml" />
     <None Remove="Views\CreateOrderPage.xaml" />
     <None Remove="Views\CustomerPage.xaml" />
@@ -66,9 +65,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Page Update="Views\EditCustomerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="Views\AddCustomerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="Views\CustomerPage.xaml">
