@@ -19,6 +19,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="ID"
@@ -44,16 +45,26 @@
         <TextBlock Text="Origin"
                    Grid.Column="0"
                    Grid.Row="2"
-                   x:Uid="UpdateManufacturerPage_Origin"/>
+                   x:Uid="UpdateManufacturerPage_Origin"
+                   Margin="0, 0, 0, 12"/>
         <TextBox Text="{x:Bind ViewModel.Manufacturer.Origin, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="2"
-                 ScrollViewer.HorizontalScrollMode="Enabled"
                  TextWrapping="Wrap"
-                 Height="120"/>
+                 Margin="0, 0, 0, 12"/>
+
+        <TextBlock Text="Product Count"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   x:Uid="UpdateManufacturerPage_ProductCount"/>
+        <TextBox Text="{x:Bind ViewModel.Manufacturer.ProductCount, Mode=TwoWay}"
+                 Grid.Column="1"
+                 Grid.Row="3"
+                 TextWrapping="Wrap"
+                 IsEnabled="False"/>
 
         <StackPanel Grid.Column="1"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

@@ -477,4 +477,7 @@
   <data name="OverviewsPage_MoreAnalytics.Content" xml:space="preserve">
     <value>See more</value>
   </data>
+  <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
 </root>

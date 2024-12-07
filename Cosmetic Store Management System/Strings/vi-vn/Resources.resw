@@ -477,4 +477,7 @@
   <data name="OverviewsPage_MoreAnalytics.Content" xml:space="preserve">
     <value>Xem thêm</value>
   </data>
+  <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
+    <value>Số lượng sản phẩm</value>
+  </data>
 </root>
