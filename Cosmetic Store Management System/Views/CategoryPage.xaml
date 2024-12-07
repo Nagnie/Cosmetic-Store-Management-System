@@ -27,7 +27,7 @@
                 <TextBlock Text="{x:Bind Name}"
                            Grid.Column="1"
                            VerticalAlignment="Center"/>
-                <TextBlock Text="{x:Bind productCount}"
+                <TextBlock Text="{x:Bind ProductCount}"
                            Grid.Column="2"
                            VerticalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" 

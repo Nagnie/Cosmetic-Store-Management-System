@@ -45,12 +45,12 @@
                    Grid.Column="0"
                    Grid.Row="2"
                    x:Uid="EditCategoryPage_ProductCount"/>
-        <TextBox Text="{x:Bind ViewModel.Category.productCount, Mode=TwoWay}"
+        <TextBox Text="{x:Bind ViewModel.Category.ProductCount, Mode=TwoWay}"
                  Grid.Column="1"
                  Grid.Row="2"
+                 IsEnabled="False"
                  ScrollViewer.HorizontalScrollMode="Enabled"
-                 TextWrapping="Wrap"
-                 Height="120"/>
+                 TextWrapping="Wrap"/>
 
         <StackPanel Grid.Column="1"
                     Grid.Row="3"

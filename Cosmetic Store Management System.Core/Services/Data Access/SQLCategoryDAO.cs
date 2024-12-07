@@ -52,8 +52,11 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT * FROM "CATEGORY"
-            """;
+            SELECT cat.category_id, cat.category_name, COUNT(cos.quantity) as product_count
+            FROM "CATEGORY" cat JOIN "COSMETIC" cos ON cat.category_id = cos.category_id
+            GROUP BY cat.category_id, cat.category_name
+            ORDER BY cat.category_id
+        """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
 
@@ -62,7 +65,7 @@ public class SQLCategoryDAO : ICategoryDAO
             Category category = new Category();
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
-            category.productCount = reader.GetInt32(2);
+            category.ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"]);
             categories.Add(category);
         }
 
@@ -79,10 +82,12 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-            SELECT count(*) over() as Total, cat.category_id, cat.category_name, cat.product_count
-            FROM "CATEGORY" cat
-            OFFSET @Skip LIMIT @Take;
-            """;
+            SELECT count(*) over() as Total, cat.category_id, cat.category_name, SUM(cos.quantity) as product_count
+            FROM "CATEGORY" cat LEFT JOIN "COSMETIC" cos ON cat.category_id = cos.category_id
+            GROUP BY cat.category_id, cat.category_name
+            ORDER BY cat.category_id
+            OFFSET @Skip LIMIT @Take
+        """;
 
         command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
         command.Parameters.AddWithValue("@Take", rowsPerPage);
@@ -99,7 +104,7 @@ public class SQLCategoryDAO : ICategoryDAO
             {
                 ID = (int)reader["category_id"],
                 Name = (string)reader["category_name"],
-                productCount = (int)reader["product_count"]
+                ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"])
             };
             categories.Add(category);
         }
@@ -119,7 +124,9 @@ public class SQLCategoryDAO : ICategoryDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            SELECT * FROM "CATEGORY" WHERE category_id = {ID}";
+            SELECT cat.*, COUNT(cos.quantity) as product_count
+            FROM "CATEGORY" cat LEFT JOIN "COSMETIC" cos ON cat.category_id = cos.category_id
+            WHERE category_id = {ID}";
             """;
 
         NpgsqlDataReader reader = command.ExecuteReader();
@@ -127,7 +134,7 @@ public class SQLCategoryDAO : ICategoryDAO
         while (reader.Read()) {
             category.ID = reader.GetInt32(0);
             category.Name = reader.GetString(1);
-            category.productCount = reader.GetInt32(2);
+            category.ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"]);
         }
 
         connection.Close();
@@ -143,7 +150,7 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = $"""
             UPDATE "CATEGORY"
-            SET category_name = '{category.Name}', product_count = '{category.productCount}'
+            SET category_name = '{category.Name}'
             WHERE category_id = {category.ID}
          """;
 

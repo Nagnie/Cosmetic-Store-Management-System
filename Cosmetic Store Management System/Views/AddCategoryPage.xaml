@@ -18,32 +18,20 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Name"
-                   Grid.Row="1"
+                   Grid.Row="0"
                    Grid.Column="0"
                    Margin="0, 0, 0, 12"
                    x:Uid="AddCategoryPage_Name"/>
-        <TextBox Grid.Row="1"
+        <TextBox Grid.Row="0"
                  Grid.Column="1"
                  Margin="0, 0, 0, 12"
                  Text="{x:Bind ViewModel.Category.Name, Mode=TwoWay}"/>
 
-        <TextBlock Text="Description"
-                   Grid.Column="0"
-                   Grid.Row="2"
-                   x:Uid="AddCategoryPage_Description"/>
-        <TextBox Grid.Column="1"
-                 Grid.Row="2"
-                 ScrollViewer.HorizontalScrollMode="Enabled"
-                 TextWrapping="Wrap"
-                 Height="120"
-                 Text="{x:Bind ViewModel.Category.productCount, Mode=TwoWay}"/>
-
         <StackPanel Grid.Column="1"
-                Grid.Row="3"
+                Grid.Row="1"
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"

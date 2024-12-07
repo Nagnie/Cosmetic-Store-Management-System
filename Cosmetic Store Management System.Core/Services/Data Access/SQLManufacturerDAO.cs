@@ -62,7 +62,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
             manufacturer.Origin = reader.IsDBNull(2) ? null : reader.GetString(2);
-            manufacturer.productCount = reader.GetInt32(3);
+            manufacturer.ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"]);
         }
 
         connection.Close();
@@ -89,7 +89,6 @@ public class SQLManufacturerDAO : IManufacturerDAO
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
             manufacturer.Origin = (string)reader["origin"];
-            manufacturer.productCount = (int)reader["product_count"];
             manufacturers.Add(manufacturer);
         }
 
@@ -105,8 +104,11 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            SELECT count(*) over() as Total, man.manufacturer_id, man.manufacturer_name, man.product_count, man.origin
-            FROM "MANUFACTURER" man
+            SELECT count(*) over() as Total, man.manufacturer_id, man.manufacturer_name, 
+                    SUM(cos.quantity) AS product_count, man.origin
+            FROM "MANUFACTURER" man LEFT JOIN "COSMETIC" cos ON man.manufacturer_id = cos.manufacturer_id
+            GROUP BY man.manufacturer_id, man.manufacturer_name, man.origin
+            ORDER BY man.manufacturer_id
             OFFSET @Skip LIMIT @Take;
             """;
 
@@ -126,7 +128,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
             {
                 ID = (int)reader["manufacturer_id"],
                 Name = (string)reader["manufacturer_name"],
-                productCount = (int)reader["product_count"],
+                ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"]),
                 Origin = (string)reader["origin"] ?? string.Empty
             };            
             manufacturers.Add(manufacturer);
@@ -145,7 +147,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"""
                 UPDATE "MANUFACTURER"
-                SET manufacturer_name = '{manufacturer.Name}', origin = '{manufacturer.Origin}', product_count = '{manufacturer.productCount}'
+                SET manufacturer_name = '{manufacturer.Name}', origin = '{manufacturer.Origin}'
                 WHERE manufacturer_id = {manufacturer.ID}
             """;
 

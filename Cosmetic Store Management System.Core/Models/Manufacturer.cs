@@ -14,7 +14,7 @@ public class Manufacturer : INotifyPropertyChanged
 
     public string Origin { get; set; }
 
-    public int productCount { get; set; }
+    public int ProductCount { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 }
