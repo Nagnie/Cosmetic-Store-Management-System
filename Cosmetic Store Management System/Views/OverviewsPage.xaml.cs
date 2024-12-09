@@ -82,4 +82,42 @@ public sealed partial class OverviewsPage : Page
             await Task.Delay(1000); // Update every second
         }
     }
+
+    private void UpdateNotificationBadge()
+    {
+        var lowStockProducts = ViewModel.Cosmetics.Where(c => c.Quantity <= 10).ToList();
+        if (lowStockProducts.Count > 0)
+        {
+            NotificationBadge.Visibility = Visibility.Visible;
+            NotificationCountText.Text = lowStockProducts.Count.ToString();
+        }
+        else
+        {
+            NotificationBadge.Visibility = Visibility.Collapsed;
+        }
+    }
+
+
+    private void OnNotificationClick(object sender, RoutedEventArgs e)
+    {
+        if (ViewModel.LowStockProducts.Count > 0)
+        {
+            // Use the Flyout property of the button to show the flyout
+            NotificationButton.Flyout.ShowAt(NotificationButton);
+        }
+        else
+        {
+            NotificationBadge.Visibility = Visibility.Collapsed;
+        }
+    }
+
+    private void OnLowStockProductTapped(object sender, TappedRoutedEventArgs e)
+    {
+        // Get the tapped product (the DataContext of the tapped item)
+        var tappedProduct = (Cosmetic)((Grid)sender).DataContext;
+
+        // Navigate to the product details page, passing the selected product
+        Frame.Navigate(typeof(ProductPage), tappedProduct);
+    }
+
 }
