@@ -56,22 +56,22 @@ public sealed partial class CreateOrderPage : Page
         {
             dialog.Title = "Confirm Payment";
             dialog.Content = "Are you sure you want to proceed with the payment?";
-            dialog.PrimaryButtonText = "Yes";
-            dialog.SecondaryButtonText = "No";
+            dialog.SecondaryButtonText = "Yes";
+            dialog.PrimaryButtonText = "No";
         }
         else
         {
             dialog.Title = "Xác nhận thanh toán";
             dialog.Content = "Bạn có chắc chắn muốn thực hiện thanh toán không?";
-            dialog.PrimaryButtonText = "Có";
-            dialog.SecondaryButtonText = "Không";
+            dialog.SecondaryButtonText = "Có";
+            dialog.PrimaryButtonText = "Không";
         }
 
-        dialog.PrimaryButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"];
+        dialog.SecondaryButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"];
         dialog.XamlRoot = this.Content.XamlRoot;
         var result = await dialog.ShowAsync();
 
-        if (result == ContentDialogResult.Primary)
+        if (result == ContentDialogResult.Secondary)
         {
             CreateOrder();
         }
