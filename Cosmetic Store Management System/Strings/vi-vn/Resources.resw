@@ -467,6 +467,7 @@
   </data>
   <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
     <value>Số lượng sản phẩm</value>
+  </data>
   <data name="CustomerPage_Name.Text" xml:space="preserve">
     <value>Họ Tên</value>
   </data>
