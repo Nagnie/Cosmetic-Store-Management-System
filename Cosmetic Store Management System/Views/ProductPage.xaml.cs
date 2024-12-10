@@ -54,30 +54,50 @@ public sealed partial class ProductPage : Page
     private async void deleteButton_Click(object sender, RoutedEventArgs e)
     {
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        bool success = dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
 
-        if (success)
-        {
-            await new ContentDialog
-            {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Delete",
-                Content = "Delete successfully!",
-                CloseButtonText = "OK"
-            }.ShowAsync();
-        }
-        else
-        {
-            await new ContentDialog
-            {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Delete",
-                Content = "Delete failed",
-                CloseButtonText = "Cannot delete cosmetic!"
-            }.ShowAsync();
-        }
+        ContentDialog dialog = new ContentDialog();
 
-        Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
+        // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+        dialog.XamlRoot = this.XamlRoot;
+        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+        dialog.Title = "Delete this product?";
+        dialog.Content = "Are you sure to delete this product?";
+        dialog.PrimaryButtonText = "Delete";
+        dialog.CloseButtonText = "Cancel";
+        dialog.DefaultButton = ContentDialogButton.Primary;
+        //dialog.Content = new ContentDialogContent();
+
+        ContentDialogResult result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary)
+        {
+            var button = sender as Button;
+            var cosmetic = button?.DataContext as Cosmetic;
+            bool success = dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
+
+            if (success)
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Delete",
+                    Content = "Delete successfully!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Delete",
+                    Content = "Delete failed",
+                    CloseButtonText = "Cannot delete cosmetic!"
+                }.ShowAsync();
+            }
+
+            Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
+        }
     }
 
     private void backButton_Click(object sender, RoutedEventArgs e)
