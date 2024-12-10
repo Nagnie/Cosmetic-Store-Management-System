@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cosmetic_Store_Management_System.Core.Helpers;
 using Cosmetic_Store_Management_System.Core.Models;
+using Microsoft.UI.Composition;
 using Npgsql;
 
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
@@ -323,5 +324,79 @@ public class SQLCosmeticDAO : ICosmeticDAO
         var effectedRow = command.ExecuteNonQuery();
         connection.Close();
         return effectedRow != -1;
+    }
+
+    public int GetOutOfStockCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT COUNT(*) 
+            FROM "COSMETIC"
+            WHERE quantity = 0
+        """;
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
+    }
+
+    public List<Cosmetic> GetOutOfStockCosmetics()
+    {
+        var cosmetics = new List<Cosmetic>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT cos.cosmetic_id, cos.cosmetic_name, cat.category_name, man.manufacturer_name, cos.price
+            FROM "COSMETIC" cos JOIN "CATEGORY" cat ON cos.category_id = cat.category_id
+                                JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
+            WHERE cos.quantity = 0
+            ORDER BY cos.cosmetic_id
+        """;
+
+        var reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+            var cosmetic = new Cosmetic
+            {
+                ID = reader.GetInt32("cosmetic_id"),
+                Name = reader.GetString("cosmetic_name"),
+
+                Category = new Category { 
+                    Name = reader.GetString("category_name"),
+                },
+                Manufacturer = new Manufacturer {
+                    Name = reader.GetString("manufacturer_name") 
+                },
+
+                Price = reader.GetInt32("price")
+            };
+
+            cosmetics.Add(cosmetic);
+        }
+
+        connection.Close();
+        return cosmetics;
+    }
+
+    public int GetInStockCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT SUM(quantity)
+            FROM "COSMETIC"
+            WHERE quantity > 0
+        """;
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
     }
 }

@@ -20,13 +20,34 @@ public partial class OverviewsViewModel : ObservableRecipient
         set;
     } = "cosmetic_id ASC";
 
+    public int OutOfStockCount
+    {
+        get; set;
+    }
+
+    public int InStockCount
+    {
+        get; set;
+    }
+
+    public int TodayOrderCount
+    {
+        get; set;
+    }
+
+    public int LastWeekOrderCount
+    {
+        get; set;
+    }
+
     public OverviewsViewModel()
     {   
         LoadData();
     }
-
+    
     public void LoadData()
     {
+        // Get the cosmetics from the database
         ICosmeticDAO dao = new SQLCosmeticDAO();
         var (items, count) = dao.GetCosmetics(
             null, null,
@@ -36,7 +57,19 @@ public partial class OverviewsViewModel : ObservableRecipient
         Cosmetics = new ObservableCollection<Cosmetic>(
             items
         );
-        //Cosmetics = new ObservableCollection<Cosmetic>(dao.GetCosmetics(null, null, "", SortString));
+
+        // Get the out of stock count
+        OutOfStockCount = dao.GetOutOfStockCount();
+
+        // Get the in stock count
+        InStockCount = dao.GetInStockCount();
+
+        // Get the today order count
+        IOrderDAO orderDAO = new SQLOrderDAO();
+        TodayOrderCount = orderDAO.GetTodayOrderCount();
+
+        // Get the last week order count
+        LastWeekOrderCount = orderDAO.GetLastWeekOrderCount();
     }
 
 
