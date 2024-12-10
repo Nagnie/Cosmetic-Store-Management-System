@@ -34,4 +34,37 @@ public class SQLOrderDAO : IOrderDAO
 
         return orderID;
     }
+
+    public int GetTodayOrderCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+                SELECT COUNT(*)
+                FROM orders
+                WHERE DATE(order_date) = DATE(NOW())
+            """;
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
+    }
+
+    public int GetLastWeekOrderCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+                SELECT COUNT(*)
+                FROM orders
+                WHERE order_date >= DATE_TRUNC('week', NOW() - INTERVAL '1 week') + INTERVAL '1 day'
+                    AND order_date < DATE_TRUNC('week', NOW())
+            """;
+        var result = command.ExecuteScalar();
+        connection.Close();
+        return (int)(Int64)result;
+    }
 }

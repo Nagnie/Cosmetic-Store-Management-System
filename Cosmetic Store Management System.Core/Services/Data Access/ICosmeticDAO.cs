@@ -25,6 +25,8 @@ public interface ICosmeticDAO
     Cosmetic GetCosmeticById(int productId);
     Cosmetic GetNextCosmetic(int currentProductId);
     Cosmetic GetPreviousCosmetic(int currentProductId);
-
     bool UpdateCosmeticQuantity(int ID, int delta);
+
+    int GetOutOfStockCount();
+    int GetInStockCount();
 }

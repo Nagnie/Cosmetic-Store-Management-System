@@ -175,8 +175,10 @@
                     <StackPanel Grid.Column="0" HorizontalAlignment="Center">
                         <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                                <TextBlock Text="Today's order" FontSize="16" />
-                                <TextBlock Text="028" FontSize="32" FontWeight="Bold" />
+                                <TextBlock Text="Today's order" FontSize="16" x:Uid="OverviewsPage_TodayOrderLabel"/>
+                                <TextBlock Text="{x:Bind ViewModel.TodayOrderCount}" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" />
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -185,8 +187,10 @@
                     <StackPanel Grid.Column="1" HorizontalAlignment="Center">
                         <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                                <TextBlock Text="Last week's order" FontSize="16" />
-                                <TextBlock Text="584" FontSize="32" FontWeight="Bold" />
+                                <TextBlock Text="Last week's order" FontSize="16" x:Uid="OverviewsPage_LastWeekOrderLabel"/>
+                                <TextBlock Text="{x:Bind ViewModel.LastWeekOrderCount}"
+                                           FontSize="32" 
+                                           FontWeight="Bold" />
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -195,8 +199,10 @@
                     <StackPanel Grid.Column="2" HorizontalAlignment="Center">
                         <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                                <TextBlock Text="Stock left" FontSize="16" />
-                                <TextBlock Text="412" FontSize="32" FontWeight="Bold" />
+                                <TextBlock Text="Stock left" FontSize="16" x:Uid="OverviewsPage_StockLeftLabel"/>
+                                <TextBlock Text="{x:Bind ViewModel.InStockCount}" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" />
                             </StackPanel>
                         </Border>
                     </StackPanel>
@@ -205,8 +211,10 @@
                     <StackPanel Grid.Column="3" HorizontalAlignment="Center">
                         <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
                             <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                                <TextBlock Text="Running out item" FontSize="16" />
-                                <TextBlock Text="002" FontSize="32" FontWeight="Bold" />
+                                <TextBlock Text="Running out item" FontSize="16" x:Uid="OverviewsPage_RunningOutLabel"/>
+                                <TextBlock Text="{x:Bind ViewModel.OutOfStockCount}" 
+                                           FontSize="32" 
+                                           FontWeight="Bold" />
                             </StackPanel>
                         </Border>
                     </StackPanel>

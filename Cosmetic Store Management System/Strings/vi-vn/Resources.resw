@@ -457,7 +457,7 @@
     <value>Khách hàng</value>
   </data>
   <data name="OverviewsPage_Analytics_Header.Text" xml:space="preserve">
-    <value>Phân tích tổng quan</value>
+    <value>Tổng quan</value>
   </data>
   <data name="OverviewsPage_ProductList_Header.Text" xml:space="preserve">
     <value>Danh sách sản phẩm</value>
@@ -477,6 +477,17 @@
   <data name="CustomerPage_Loyal.Text" xml:space="preserve">
     <value>Thân thiết</value>
   </data>
+  <data name="OverviewsPage_TodayOrderLabel.Text" xml:space="preserve">
+    <value>Đơn hàng hôm nay</value>
+  </data>
+  <data name="OverviewsPage_LastWeekOrderLabel.Text" xml:space="preserve">
+    <value>Đơn hàng tuần qua</value>
+  </data>
+  <data name="OverviewsPage_StockLeftLabel.Text" xml:space="preserve">
+    <value>Số lượng tồn kho</value>
+  </data>
+  <data name="OverviewsPage_RunningOutLabel.Text" xml:space="preserve">
+    <value>Mặt hàng đã hết</value>
   <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
     <value>Số lượng sản phẩm</value>
   </data>
