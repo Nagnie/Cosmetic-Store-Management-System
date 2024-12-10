@@ -15,8 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Remove="UnitTestApp.xaml" />
-    <ApplicationDefinition Include="UnitTestApp.xaml" />
     <ProjectCapability Include="TestContainer" />
   </ItemGroup>
 

@@ -95,7 +95,7 @@
                          Grid.Column="1"
                          Margin="0, 0, 0, 10"/>
 
-                <TextBlock Text="Image"
+                <!--<TextBlock Text="Image"
                            Grid.Row="6"
                            Grid.Column="0"
                            Margin="0, 0, 0, 10"
@@ -104,7 +104,25 @@
                          Text="{x:Bind ViewModel.Cosmetic.ImageData, Mode=TwoWay}"
                          Grid.Row="6"
                          Grid.Column="1"
-                         Margin="0, 0, 0, 10"/>
+                         Margin="0, 0, 0, 10"/>-->
+
+                <TextBlock Text="Image"
+                           Grid.Row="6"
+                           Grid.Column="0"
+                           Margin="0, 0, 0, 10" 
+                           x:Uid="UpdateCosmeticPage_Image"/>
+                <StackPanel Orientation="Horizontal"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Margin="0, 0, 0, 10">
+                    <Button x:Name="PickAPhotoButton" 
+                        Content="Open a picture"
+                        Click="PickAPhotoButton_Click" />
+                    <TextBlock 
+                        Name="PickAPhotoOutputTextBlock" 
+                        Padding="15,5,0,0"
+                        TextWrapping="Wrap"/>
+                </StackPanel>
 
                 <TextBlock Text="Description"
                            Grid.Row="7"
