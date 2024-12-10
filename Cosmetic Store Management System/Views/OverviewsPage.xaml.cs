@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Cosmetic_Store_Management_System.Core.Services.Data_Access;
 using System.Collections.ObjectModel;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.Views;
 
@@ -65,18 +66,20 @@ public sealed partial class OverviewsPage : Page
             txtTime.Text = DateTime.Now.ToString("dd MMMM yyyy, dddd", CultureInfo.InvariantCulture);
 
             // Set greeting based on the current hour
-            int hour = DateTime.Now.Hour;
+            var hour = DateTime.Now.Hour;
+            var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
             if (hour < 12)
             {
-                txtGreeting.Text = "Good morning!";
+                txtGreeting.Text = language.Equals("en-US") ? "Good morning!" : "Chào buổi sáng!";
             }
             else if (hour < 18)
             {
-                txtGreeting.Text = "Good afternoon!";
+                txtGreeting.Text = language.Equals("en-US") ?  "Good afternoon!" : "Chào buổi chiều!";
             }
             else
             {
-                txtGreeting.Text = "Good evening!";
+                txtGreeting.Text = language.Equals("en-US") ? "Good evening!" : "Chào buổi tối!";
             }
 
             await Task.Delay(1000); // Update every second
