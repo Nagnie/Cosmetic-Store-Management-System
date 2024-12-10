@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.Storage;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -46,22 +47,65 @@ public sealed partial class CreateOrderPage : Page
         payment.UpdatePayment(delta);
     }
 
-    private void checkoutButton_Click(object sender, RoutedEventArgs e)
+    private async void CheckoutButton_Click(object sender, RoutedEventArgs e)
     {
-        pivot.SelectedIndex = 1;
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var dialog = new ContentDialog();
+
+        if (language.Equals("en-US"))
+        {
+            dialog.Title = "Confirm Payment";
+            dialog.Content = "Are you sure you want to proceed with the payment?";
+            dialog.PrimaryButtonText = "Yes";
+            dialog.SecondaryButtonText = "No";
+        }
+        else
+        {
+            dialog.Title = "Xác nhận thanh toán";
+            dialog.Content = "Bạn có chắc chắn muốn thực hiện thanh toán không?";
+            dialog.PrimaryButtonText = "Có";
+            dialog.SecondaryButtonText = "Không";
+        }
+
+        dialog.PrimaryButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"];
+        dialog.XamlRoot = this.Content.XamlRoot;
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Primary)
+        {
+            CreateOrder();
+        }
     }
 
-    private void CheckoutUserControl_CancelButtonClicked()
+    private async void CreateOrder()
     {
-        pivot.SelectedIndex = 0;
-    }
-
-    private async void CheckoutUserControl_FinishButtonClicked()
-    {
-        Customer customer = customerUserControl.GetCustomer();
-        var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
+        // Get order details
         List<OrderDetail> orderDetails = order.GetOrderDetails();
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
+        // Check if the cart is empty
+        if (orderDetails.Count == 0)
+        {
+            var dialog = new ContentDialog()
+            {
+                Content = language.Equals("en-US")
+                        ? "Your cart is empty. Please add items to your order before proceeding to checkout."
+                        : "Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm vào đơn hàng trước khi thanh toán.",
+                CloseButtonText = "Ok",
+                XamlRoot = this.Content.XamlRoot,
+            };
+
+            await dialog.ShowAsync();
+            return;
+        }
+
+        // Get customer info
+        Customer customer = customerUserControl.GetCustomer();
+
+        // Get payment info
+        var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
+
+        // Create order object
         Order newOrder = new Order()
         {
             Customer = customer,
@@ -71,11 +115,18 @@ public sealed partial class CreateOrderPage : Page
             Total = total
         };
 
+        // Save order
         ViewModel.SaveOrder(customer, newOrder, orderDetails);
 
+        // Show success message
         ContentDialog contentDialog = new ContentDialog()
         {
-            Content = "Thank you for your purchasing",
+            Title = language.Equals("en-US")
+                    ? "Payment Successful"
+                    : "Thanh toán thành công",
+            Content = language.Equals("en-US")
+                    ? "Thank you for your purchasing!"
+                    : "Cảm ơn quý khách đã mua hàng tại cửa hàng chúng tôi!",
             CloseButtonText = "Ok",
             XamlRoot = this.Content.XamlRoot
         };
