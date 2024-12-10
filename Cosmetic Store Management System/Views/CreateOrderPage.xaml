@@ -19,20 +19,9 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <Pivot x:Name="pivot" Grid.Column="0" Padding="0, 0, 0, 0" Margin="0, -48, 0, 0">
-            <PivotItem>
-                <!-- Product List -->
-                <local:ProductListUserControl Grid.Column="0" 
-                                              ItemClick="ProductListUserControl_ItemClick"
-                                              x:Name="productList"/>
-            </PivotItem>
-
-            <PivotItem>
-                <local:CheckoutUserControl Grid.Column="0"
-                                           CancelButtonClicked="CheckoutUserControl_CancelButtonClicked"
-                                           FinishButtonClicked="CheckoutUserControl_FinishButtonClicked"/>
-            </PivotItem>
-        </Pivot>
+        <local:ProductListUserControl Grid.Column="0" 
+                                      ItemClick="ProductListUserControl_ItemClick"
+                                      x:Name="productList"/>
 
         <!-- Customer infor - Order details - Payment -->
         <Grid Grid.Column="1" Margin="36, 0, 0, 0">
@@ -72,7 +61,7 @@
                     FontWeight="SemiBold"
                     Style="{StaticResource AccentButtonStyle}"
                     BorderThickness="0"
-                    Click="checkoutButton_Click"
+                    Click="CheckoutButton_Click"
                     x:Uid="CreateOrderPage_CheckOutButton"/>
         </Grid>
     </Grid>

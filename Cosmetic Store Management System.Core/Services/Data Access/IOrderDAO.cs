@@ -14,4 +14,6 @@ public interface IOrderDAO
     //Order GetOrder(int ID);
     //void UpdateOrder(Order order);
     //void DeleteOrder(int ID);
+    int GetTodayOrderCount();
+    int GetLastWeekOrderCount();
 }
