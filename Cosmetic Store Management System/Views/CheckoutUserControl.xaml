@@ -9,20 +9,31 @@
     mc:Ignorable="d">
 
     <Grid>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-            <StackPanel Margin="0, 0, 0, 20">
-                <TextBlock Text="Order Details"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           x:Uid="CheckoutUserControl_CustomerHeader"/>
-                
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+            <TextBlock Text="Please review your order before checkout." 
+                       Margin="0, 0, 0, 10"
+                       FontSize="28" FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       x:Uid="CheckoutUserControl_ReviewOrder"/>
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0, 20, 0, 0">
                 <Button Content="Cancel"
-                    Name="cancelButton"
-                    Click="cancelButton_Click"/>
+                        Name="cancelButton"
+                        Click="cancelButton_Click"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        x:Uid="CheckoutUserControl_CancelBtn"
+                        Style="{StaticResource ButtonRevealStyle}"
+                        Margin="0, 0, 10, 0"/>
                 <Button Content="Finish"
-                    Name="finishButton"
-                    Click="finishButton_Click"/>
+                        Name="finishButton"
+                        Click="finishButton_Click"
+                        Margin="10, 0, 0, 0"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        x:Uid="CheckoutUserControl_FinishBtn"
+                        Style="{StaticResource AccentButtonStyle}"/>
             </StackPanel>
 
         </StackPanel>

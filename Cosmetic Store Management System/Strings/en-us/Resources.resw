@@ -465,9 +465,6 @@
   <data name="OverviewsPage_MoreAnalytics.Content" xml:space="preserve">
     <value>See more</value>
   </data>
-  <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
-    <value>Product Count</value>
-  </data>
   <data name="CustomerPage_Name.Text" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -491,5 +488,16 @@
   </data>
   <data name="OverviewsPage_RunningOutLabel.Text" xml:space="preserve">
     <value>Running out items</value>
+  <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
+    <value>Product Count</value>
+  </data>
+  <data name="CheckoutUserControl_ReviewOrder.Text" xml:space="preserve">
+    <value>Please review your order before checkout.</value>
+  </data>
+  <data name="CheckoutUserControl_CancelBtn.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CheckoutUserControl_FinishBtn.Content" xml:space="preserve">
+    <value>Finish</value>
   </data>
 </root>

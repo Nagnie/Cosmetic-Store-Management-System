@@ -77,7 +77,7 @@
                 </StackPanel>
                 <!-- Table header -->
                 <Grid Padding="12, 12, 12, 12"
-                  Background="{StaticResource AccentAcrylicBackgroundFillColorDefaultBrush}">
+                  Background="{ThemeResource AccentAcrylicBackgroundFillColorDefaultBrush}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="4*"/>
