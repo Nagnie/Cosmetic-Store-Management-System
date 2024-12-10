@@ -22,6 +22,11 @@ public partial class OverviewsViewModel : ObservableRecipient
         set;
     } = "cosmetic_id ASC";
 
+    public int LowStockCount
+    {
+        get; set;
+    }
+
     public int OutOfStockCount
     {
         get; set;
@@ -90,7 +95,6 @@ public partial class OverviewsViewModel : ObservableRecipient
             1, 0
         );
 
-        
         LowStockProducts = new ObservableCollection<Cosmetic>(
             items.Where(c => c.Quantity <= 10)
         );

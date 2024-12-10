@@ -488,6 +488,7 @@
   </data>
   <data name="OverviewsPage_RunningOutLabel.Text" xml:space="preserve">
     <value>Running out items</value>
+  </data>
   <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
     <value>Product Count</value>
   </data>
