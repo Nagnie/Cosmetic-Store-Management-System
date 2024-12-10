@@ -20,9 +20,11 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"""
                 INSERT INTO "MANUFACTURER" (manufacturer_name, origin)
-                VALUES ('{manufacturer.Name}', '{manufacturer.Origin}')
+                VALUES (@name, @origin)
             """;
 
+        command.Parameters.AddWithValue("@name", manufacturer.Name);
+        command.Parameters.AddWithValue("@origin", manufacturer.Origin);
         command.ExecuteNonQuery();
 
         connection.Close();
@@ -139,7 +141,6 @@ public class SQLManufacturerDAO : IManufacturerDAO
     }
     public void UpdateManufacturer(Manufacturer manufacturer)
     {
-
         NpgsqlConnection connection = DBConnection.GetConnection();
         connection.Open();
 
@@ -147,12 +148,47 @@ public class SQLManufacturerDAO : IManufacturerDAO
         command.Connection = connection;
         command.CommandText = $"""
                 UPDATE "MANUFACTURER"
-                SET manufacturer_name = '{manufacturer.Name}', origin = '{manufacturer.Origin}'
-                WHERE manufacturer_id = {manufacturer.ID}
+                SET manufacturer_name = @name, origin = @origin
+                WHERE manufacturer_id = @id
             """;
 
+        command.Parameters.AddWithValue("@name", manufacturer.Name);
+        command.Parameters.AddWithValue("@origin", manufacturer.Origin);
+        command.Parameters.AddWithValue("@id", manufacturer.ID);
         command.ExecuteNonQuery();
 
         connection.Close();
+    }
+
+    public Manufacturer GetManufacturerByName(string name)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+                SELECT *
+                FROM "MANUFACTURER"
+                WHERE manufacturer_name = @name
+            """;
+
+        command.Parameters.AddWithValue("@name", name);
+        var result = command.ExecuteReader();
+
+        while (result.Read())
+        {
+            Manufacturer manufacturer = new Manufacturer()
+            {
+                ID = (int)result["manufacturer_id"],
+                Name = (string)result["manufacturer_name"],
+                Origin = (string)result["origin"]
+            };
+            connection.Close();
+            return manufacturer;
+        }
+
+        connection.Close();
+        return null;
     }
 }

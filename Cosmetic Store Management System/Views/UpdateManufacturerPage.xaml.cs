@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,9 +44,30 @@ public sealed partial class UpdateManufacturerPage : Page
         }
     }
 
-    private void saveButton_Click(object sender, RoutedEventArgs e)
+    private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
         ViewModel.UpdateManufacturer();
+
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var dialog = new ContentDialog();
+        dialog.Content = language;
+
+        if (language.Equals("en-US"))
+        {
+            dialog.Title = "Success";
+            dialog.Content = "The manufacturer has been updated successfully!";
+            dialog.PrimaryButtonText = "OK";
+        }
+        else
+        {
+            dialog.Title = "Thành công";
+            dialog.Content = "Nhà sản xuất đã được cập nhật thành công!";
+            dialog.PrimaryButtonText = "OK";
+        }
+
+        dialog.XamlRoot = this.Content.XamlRoot;
+        await dialog.ShowAsync();
+
         this.Frame.Navigate(typeof(ManufacturerPage));
     }
 

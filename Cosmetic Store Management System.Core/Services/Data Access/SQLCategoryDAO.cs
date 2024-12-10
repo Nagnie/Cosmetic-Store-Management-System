@@ -19,9 +19,10 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = $"""
             INSERT INTO "CATEGORY" (category_name)
-            VALUES ('{category.Name}')
+            VALUES (@name)
         """;
 
+        command.Parameters.AddWithValue("@name", category.Name);
         command.ExecuteNonQuery();
 
         connection.Close();
@@ -150,12 +151,46 @@ public class SQLCategoryDAO : ICategoryDAO
         command.Connection = connection;
         command.CommandText = $"""
             UPDATE "CATEGORY"
-            SET category_name = '{category.Name}'
-            WHERE category_id = {category.ID}
+            SET category_name = @name
+            WHERE category_id = @id
          """;
 
+        command.Parameters.AddWithValue("@name", category.Name);
+        command.Parameters.AddWithValue("@id", category.ID);
         command.ExecuteNonQuery();
 
         connection.Close();
+    }
+
+    public Category GetCategoryByName(string name)
+    {
+        var category = new Category();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT *
+            FROM "CATEGORY"
+            WHERE category_name = @name
+        """;
+        command.Parameters.AddWithValue("@name", name);
+        NpgsqlDataReader reader = command.ExecuteReader();
+        
+        while (reader.Read())
+        {
+            category = new Category()
+            {
+                ID = reader.GetInt32(0),
+                Name = reader.GetString(1)
+            };
+
+            connection.Close();
+            return category;
+        }
+
+        connection.Close();
+        return null;
     }
 }
