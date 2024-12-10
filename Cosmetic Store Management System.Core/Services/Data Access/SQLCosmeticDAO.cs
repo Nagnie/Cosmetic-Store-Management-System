@@ -140,11 +140,14 @@ public class SQLCosmeticDAO : ICosmeticDAO
                              JOIN "MANUFACTURER" man ON cos.manufacturer_id = man.manufacturer_id
            {whereCommand}
            {orderByCommand}
-           OFFSET @Skip LIMIT @Take;
+           {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
         """;
 
-        command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
-        command.Parameters.AddWithValue("@Take", rowsPerPage);
+        if (rowsPerPage > 0)
+        {
+            command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
+            command.Parameters.AddWithValue("@Take", rowsPerPage);
+        }
 
         NpgsqlDataReader reader = command.ExecuteReader();
         int count = -1;
