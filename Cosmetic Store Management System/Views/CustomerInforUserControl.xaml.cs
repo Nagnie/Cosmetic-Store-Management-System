@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using Windows.Storage;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -34,13 +35,16 @@ public sealed partial class CustomerInforUserControl : UserControl
     }
     private async void searchButton_Click(object sender, RoutedEventArgs e)
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         // Check if phone number text box is empty
         if (phoneNumberTextBox.Text.Length == 0)
         {
             ContentDialog notification = new ContentDialog()
             {
-                Content = "Please enter the phone number!",
-                CloseButtonText = "Cancel",
+                Content = language.Equals("en-US") 
+                        ? "Please enter the phone number!"
+                        : "Vui lòng nhập số điện thoại khách hàng!",
+                CloseButtonText = "OK",
                 XamlRoot = this.XamlRoot
             };
 
@@ -55,8 +59,10 @@ public sealed partial class CustomerInforUserControl : UserControl
         {
             ContentDialog notification = new ContentDialog()
             {
-                Content = "Customer not found!",
-                CloseButtonText = "Cancel",
+                Content = language.Equals("en-US") 
+                        ? "Customer not found!"
+                        : "Không tìm thấy khách hàng có số điện thoại đã nhập!",
+                CloseButtonText = "OK",
                 XamlRoot = this.XamlRoot
             };
 
@@ -72,12 +78,16 @@ public sealed partial class CustomerInforUserControl : UserControl
 
     private async void saveCustomerButton_Click(object sender, RoutedEventArgs e)
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
         if (phoneNumberTextBox.Text.Length == 0 || nameTextBox.Text.Length == 0)
         {
             ContentDialog dialog = new ContentDialog()
             {
-                Content = "Please enter the phone number and customer name!",
-                CloseButtonText = "Cancel",
+                Content = language.Equals("en-US") 
+                        ? "Please enter the phone number and customer name!"
+                        : "Vui lòng nhập đầy đủ số điện thoại và tên khách hàng!",
+                CloseButtonText = "OK",
                 XamlRoot = this.XamlRoot
             };
 
@@ -89,7 +99,9 @@ public sealed partial class CustomerInforUserControl : UserControl
 
         ContentDialog notification = new ContentDialog()
         {
-            Content = "Customer information has been saved successfully!",
+            Content = language.Equals("en-US")
+                    ? "Customer information has been saved successfully!"
+                    : "Thông tin khách hàng đã được lưu thành công!",
             CloseButtonText = "OK",
             XamlRoot = this.XamlRoot
         };
