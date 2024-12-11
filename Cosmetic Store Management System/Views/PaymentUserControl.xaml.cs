@@ -39,4 +39,9 @@ public sealed partial class PaymentUserControl : UserControl
     {
         return ViewModel.GetPaymentInfo();
     }
+
+    public void UpdateDiscountRate(int point)
+    {
+        ViewModel.UpdateDiscountRate(point);
+    }
 }

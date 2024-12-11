@@ -21,6 +21,9 @@ using Windows.Foundation.Collections;
 namespace Cosmetic_Store_Management_System.Views;
 public sealed partial class CustomerInforUserControl : UserControl
 {
+    public delegate void UserFoundHandler(int point);
+    public event UserFoundHandler UserFound;
+
     public CustomerInforViewModel ViewModel
     {
         get; set;
@@ -63,6 +66,7 @@ public sealed partial class CustomerInforUserControl : UserControl
         else
         {
             saveCustomerButton.IsEnabled = false;
+            UserFound?.Invoke((int)ViewModel.Customer.Point);
         }
     }
 

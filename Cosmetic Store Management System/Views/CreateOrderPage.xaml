@@ -38,7 +38,8 @@
                        Grid.Row="0"
                        x:Uid="CreateOrderPage_CustomerHeader"/>
             <local:CustomerInforUserControl Grid.Row="1"
-                                            x:Name="customerUserControl"/>
+                                            x:Name="customerUserControl"
+                                            UserFound="CustomerInforUserControl_UserFound"/>
 
             <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
                        Text="Order details"

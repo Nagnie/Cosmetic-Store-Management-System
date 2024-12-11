@@ -134,4 +134,9 @@ public sealed partial class CreateOrderPage : Page
         await contentDialog.ShowAsync();
         this.Frame.Navigate(typeof(CreateOrderPage));
     }
+
+    private void CustomerInforUserControl_UserFound(int point)
+    {
+        payment.UpdateDiscountRate(point);
+    }
 }
