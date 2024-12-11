@@ -12,37 +12,41 @@
 ## 1. UI/UX
 Hoàn thành giao diện cho các trang:
 
-- **Login** (Đăng nhập): Username là admin, mật khẩu là 1234, và được code cứng. Có chế độ Remember me để tự động lưu Username và Password cho các lần đăng nhập tiếp theo. Số giờ làm việc: **0.5h**
+- **Login** (Đăng nhập): (Username là admin, mật khẩu là 1234)
 
-- **Overviews** (Tổng quan): Bao gồm phần header, phần Analytics Overview hiển thị được code cứng, và danh sách sản phẩm tổng quát, ấn vào nút More ở dưới cùng sẽ đến trang Product Data. Số giờ làm việc: **1h**
-
-    ![Overviews Page](image-4.png)
-
-- **Product Data**: hiển thị danh sách tất cả sản phẩm, bao gồm ID, Name, Quantity, Price, Category và Manufacturer. Có các chức năng:
-
-    + Phân trang.
+- **Overviews** (Tổng quan):
+  
+    + Có icon Thông báo để hiển thị các sản phẩm với số lượng tồn kho ít (không quá 10 sản phẩm). Nếu có sản phẩm với số lượng tồn kho ít, trên icon sẽ có hiện chấm đỏ để thông báo. Khi xem tên các sản phẩm còn số lượng ít, có thể chọn vào tên sản phẩm để đi đến trang thông tin của sản phẩm đó và thực hiện cập nhật số lượng. Số giờ làm việc: **0.5h**
     
-    + Thêm sản phẩm mới.
+    + Các thông tin chung như Today's order, Last week's order, Stock left và Running out items được hiển thị đúng theo dữ liệu. Số giờ làm việc: **0.5h**
 
-    + Tìm kiếm bằng tên.
-
-    + Lọc sản phẩm theo Category và Manufacturer.
-
-    + Sắp Xếp Sản Phẩm theo ID, Tên, Số Lượng, Giá, Category, và Manufacturer, có thể chọn tăng hoặc giảm dần.
-
-    + Khi ấn vào tên một sản phẩm thì sẽ hiện ra trang Product, hiển thị thông tin chi tiết của sản phẩm đó.
-
-    + Tổng số giờ làm việc: **3.5h**
-
-    ![Product Data](image-5.png)
-
-- **Product**: hiển thị hình ảnh, tên, ID, số lượng, giá cả, danh mục và nhà sản xuất, trạng thái (còn hàng hay hết hàng) và mô tả. Bên dưới hình ảnh là hai nút Delete (dùng để xóa sản phẩm) và Edit (dùng để chỉnh sửa thông tin sản phẩm). Số giờ làm việc: **1h**
+- **Product**: Hoàn thiện việc hiển thị sản phẩm với đầy đủ thông tin, bao gồm ảnh sản phẩm. Số giờ làm việc: **0.5h**
 
     ![Product Page](image-6.png)
 
-- **Data Binding**: Đã thực hiện data binding dạng văn bản, và đang tiếp tục tìm hiểu cách ràng buộc dữ liệu hình ảnh. Số giờ làm việc: **2h**
+- **Create Order**:
 
-Các trang còn lại (**Analytics**, **Category**, **Manufacturer**, **Create Order**) nhóm đã lên ý tưởng nhưng chưa làm hoàn chỉnh.
+  + Phần bên trái hiển thị danh sách sản phẩm, bao gồm các nội dung:
+    - Hiển thị từng sản phẩm với hình ảnh, tên và số lượng sản phẩm.
+    - Phân trang.
+    - Tìm kiếm sản phẩm bằng tên.
+    - Lọc tìm sản phẩm theo Category và Manufacturer.
+    - Khi ấn vào một sản phẩm trong danh sách, sản phẩm đó sẽ được thêm vào đơn hàng bên phải chờ thanh toán.
+
+  + Phần bên phải hiển thị khách hàng và chi tiết đơn hàng, cụ thể như sau:
+    - Nhập tên và số điện thoại khách hàng để xem điểm và tích điểm.
+    - Có thể đăng kí thành viên mới cho khách hàng.
+    - Chi tiết đơn hàng bao gồm các sản phẩm được chọn vào đơn hàng, tên, hình ảnh và số lượng sản phẩm sẽ mua. Có nút tăng và giảm số lượng sản phẩm trong đơn hàng.
+    - Đơn hàng thanh toán gồm tổng tiền sản phẩm, giảm giá theo khách hàng thân thiết và tiền thuế. Khách hàng sẽ phải thanh toán dựa theo số tiền Tổng thanh toán.
+
+  + Tổng số giờ làm việc: **3.5h**
+- **Category**:
+  
+- **Manufacturer**:
+  
+- **Costumer**:
+
+Còn trang **Analytics** nhóm đã lên ý tưởng nhưng chưa làm hoàn chỉnh.
 
 ## 2. Design patterns / architecture
 
