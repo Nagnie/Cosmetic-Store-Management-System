@@ -140,7 +140,5 @@
         <Grid Grid.Column="1" Margin="40, 0, 0, 0">
             <local:CustomerInforUserControl x:Name="customerUserControl"/>
         </Grid>
-
-        
     </Grid>
 </Page>

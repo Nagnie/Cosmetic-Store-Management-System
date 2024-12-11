@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,12 +25,10 @@ public sealed partial class CustomerInforUserControl : UserControl
     {
         get; set;
     } = new CustomerInforViewModel();
-
     public CustomerInforUserControl()
     {
         this.InitializeComponent();
     }
-
     private async void searchButton_Click(object sender, RoutedEventArgs e)
     {
         // Check if phone number text box is empty

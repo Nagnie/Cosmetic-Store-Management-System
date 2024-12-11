@@ -32,7 +32,7 @@ public class CustomerInforViewModel : ObservableRecipient
 
         return false;
     }
-
+    
     public void AddCustomer()
     {
         ICustomerDAO DAO = new SQLCustomerDAO();

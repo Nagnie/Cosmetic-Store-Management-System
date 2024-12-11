@@ -29,7 +29,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Bind ViewModel.CustomerPoints}"/>
         <TextBlock Grid.Row="0" 
                    Grid.Column="0" 
                    Text="Subtotal"

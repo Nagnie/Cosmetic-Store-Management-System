@@ -18,7 +18,7 @@ public class SQLOrderDAO : IOrderDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = """
-                INSERT INTO ORDERS (customer_id, subtotal, discount, sale_tax, total)
+                INSERT INTO "ORDERS" (customer_id, subtotal, discount, sale_tax, total)
                 VALUES (@customerID, @subtotal, @discount, @saleTax, @total)
                 RETURNING order_id
             """;
@@ -43,7 +43,7 @@ public class SQLOrderDAO : IOrderDAO
         command.Connection = connection;
         command.CommandText = """
                 SELECT COUNT(*)
-                FROM orders
+                FROM "ORDERS"
                 WHERE DATE(order_date) = DATE(NOW())
             """;
         var count = (int)(Int64)command.ExecuteScalar();
@@ -59,7 +59,7 @@ public class SQLOrderDAO : IOrderDAO
         command.Connection = connection;
         command.CommandText = """
                 SELECT COUNT(*)
-                FROM orders
+                FROM "ORDERS"
                 WHERE order_date >= DATE_TRUNC('week', NOW() - INTERVAL '1 week') + INTERVAL '1 day'
                     AND order_date < DATE_TRUNC('week', NOW())
             """;

@@ -4,7 +4,7 @@
  */
 exports.up = async function(knex) {
     await knex.raw(`
-        CREATE TABLE ORDERS (
+        CREATE TABLE "ORDERS" (
             order_id SERIAL PRIMARY KEY,
             customer_id INT,
             order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -14,7 +14,7 @@ exports.up = async function(knex) {
             total INT
         );
 
-        CREATE TABLE ORDER_DETAIL (
+        CREATE TABLE "ORDER_DETAIL" (
             order_detail_id SERIAL PRIMARY KEY,
             order_id INT,
             cosmetic_id INT,
@@ -30,7 +30,7 @@ exports.up = async function(knex) {
  */
 exports.down = async function(knex) {
     await knex.raw(`
-        DROP TABLE IF EXISTS ORDER_DETAIL;
-        DROP TABLE IF EXISTS ORDERS;
+        DROP TABLE IF EXISTS "ORDER_DETAIL";
+        DROP TABLE IF EXISTS "ORDERS";
     `);
 };

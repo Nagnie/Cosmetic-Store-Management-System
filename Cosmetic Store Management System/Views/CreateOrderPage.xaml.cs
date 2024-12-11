@@ -36,7 +36,6 @@ public sealed partial class CreateOrderPage : Page
         this.InitializeComponent();
         ViewModel = new CreateOrderViewModel();
     }
-
     private void ProductListUserControl_ItemClick(Core.Models.Cosmetic cosmetic)
     {
         order.AddOrderDetail(cosmetic);
@@ -101,6 +100,7 @@ public sealed partial class CreateOrderPage : Page
 
         // Get customer info
         Customer customer = customerUserControl.GetCustomer();
+
 
         // Get payment info
         var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
