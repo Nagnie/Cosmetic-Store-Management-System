@@ -10,6 +10,8 @@
     3. 22120225 - Trần Thảo Ngân
 
 ## 1. UI/UX
+Màu sắc của ứng dụng có thể thay đổi theo màu sắc của máy tính.
+
 Hoàn thành giao diện cho các trang:
 
 - **Login** (Đăng nhập): (Username là admin, mật khẩu là 1234)
@@ -20,11 +22,11 @@ Hoàn thành giao diện cho các trang:
      
     + Các thông tin chung như Today's order, Last week's order, Stock left và Running out items được hiển thị đúng theo dữ liệu. Số giờ làm việc: **0.5h**
  
-  ![Overviews](overviews.png)
+  ![Overviews](overviews.png)!
 
 - **Product**: Hoàn thiện việc hiển thị sản phẩm với đầy đủ thông tin, bao gồm ảnh sản phẩm. Số giờ làm việc: **0.5h**
 
-  ![Product Page](product.png)
+  ![Product Page](product.png)!
 
 - **Create Order**:
 
@@ -62,9 +64,9 @@ Hoàn thành giao diện cho các trang:
 
   ![Manufacturer Page](manufacturer.png)
   
-- **Costumer**: Hiển thị đầy đủ các thông tin về danh sách các khách hàng như ID, tên, số điện thoại, số điểm tích lũy và mức độ thân thiết. Ngoài ra còn có khung để thêm tên và số điện thoại khách hàng mới vào danh sách, cũng như nút xóa khách hàng. Số giờ làm việc: **1h**
+- **Customer**: Hiển thị đầy đủ các thông tin về danh sách các khách hàng như ID, tên, số điện thoại, số điểm tích lũy và mức độ thân thiết. Ngoài ra còn có khung để thêm tên và số điện thoại khách hàng mới vào danh sách, cũng như nút xóa khách hàng. Số giờ làm việc: **1h**
 
-  ![Costumer Page](costumer.png)
+  ![Customer Page](customer.png)
 
 - **Setting**: Người dùng có thể tùy chỉnh các cài đặt về chủ đề ứng dụng: Sáng, Tối hoặc Mặc định (Mặc định ở đây là theo màu của máy), có thể tùy chỉnh đơn vị tiền tệ: VND hoặc USD, có thể tùy chỉnh ngôn ngữ: Tiếng Việt hoặc Tiếng Anh.
 
@@ -146,7 +148,7 @@ Còn trang **Analytics** nhóm đã lên ý tưởng nhưng chưa làm hoàn ch�
 
     + Leader nhóm sẽ kiểm tra và hợp nhất mã đã kiểm duyệt vào nhánh chính (master).
 
-    ![Quá trình commit trên git](image-1.png)![Quá trình commit trên git](image.png)
+    ![alt text](image-1.png)![alt text](image-2.png)
 
 ## 5. Quality assurance
 
