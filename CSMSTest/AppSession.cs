@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Remote;
 using System;
+using System.Linq;
 
 namespace CSMSTest
 {
@@ -38,6 +39,24 @@ namespace CSMSTest
             {
                 session.Quit();
                 session = null;
+            }
+        }
+
+        public static void Login()
+        {
+            if (session != null)
+            {
+                var usernameTextBox = session.FindElementByAccessibilityId("usernameTextBox");
+                usernameTextBox.Clear();
+                usernameTextBox.SendKeys("admin");
+
+                var passwordBox = session.FindElementByAccessibilityId("passwordBox");
+                passwordBox.Clear();
+                passwordBox.SendKeys("1234");
+
+                session.FindElementByAccessibilityId("loginButton").Click();
+                var mainWindow = session.WindowHandles.Last();
+                session.SwitchTo().Window(mainWindow);
             }
         }
     }

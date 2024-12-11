@@ -504,4 +504,6 @@
   <data name="CheckoutUserControl_FinishBtn.Content" xml:space="preserve">
     <value>Thanh toán</value>
   </data>
+	
+	
 </root>
