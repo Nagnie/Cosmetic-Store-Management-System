@@ -1,4 +1,4 @@
-using Cosmetic_Store_Management_System.Core.Models;
+﻿using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -27,49 +27,50 @@ public sealed partial class AddCosmeticPage : Page
 
     private bool ValidateInput()
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         string errorMessage = "";
 
         // Name validation
         if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
         {
-            errorMessage += "Name cannot be empty.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Name cannot be empty!"
+                         : "Tên không được để trống!";
         }
-
         // Category validation
-        if (categoryComboBox.SelectedItem == null)
+        else if (categoryComboBox.SelectedItem == null)
         {
-            errorMessage += "Category must be selected.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Please select a category!"
+                         : "Vui lòng chọn danh mục sản phẩm!";
         }
-
         // Manufacturer validation
-        if (manufacturerComboBox.SelectedItem == null)
+        else if (manufacturerComboBox.SelectedItem == null)
         {
-            errorMessage += "Manufacturer must be selected.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Please select a manufacturer!"
+                         : "Vui lòng chọn hãng sản xuất!";
         }
-
         // Quantity validation
-        if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (ViewModel.Cosmetic.Quantity <= 0)
         {
-            errorMessage += "Quantity must be a positive number.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Quantity must be a positive number!"
+                         : "Số lượng sản phẩm phải là số nguyên dương!";
         }
-
         // Price validation
-        if (ViewModel.Cosmetic.Price <= 0)
+        else if (ViewModel.Cosmetic.Price <= 0)
         {
-            errorMessage += "Price must be a positive number.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Price must be a positive number!"
+                         : "Giá sản phẩm phải là số dương!";
         }
-
-        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
+        else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
-            errorMessage += "Image input cannot be empty.\n";
+            errorMessage = language.Equals("en-US")
+                         ? "Please upload product image!"
+                         : "Vui lòng tải ảnh sản phẩm!";
         }
-
-        // Image URL validation
-        //if (!Uri.TryCreate(ViewModel.Cosmetic.Image, UriKind.Absolute, out Uri uriResult) ||
-        //    !(uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
-        //{
-        //    errorMessage += "Image must be a valid URL.\n";
-        //}
 
         if (errorMessage != "")
         {
@@ -82,10 +83,14 @@ public sealed partial class AddCosmeticPage : Page
 
     private async void DisplayValidationErrors(string errorMessage)
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
         await new ContentDialog
         {
             XamlRoot = this.Content.XamlRoot,
-            Title = "Validation Error",
+            Title = language.Equals("en-US")
+                  ? "Unable to add product"
+                  : "Không thể thêm sản phẩm",
             Content = errorMessage,
             CloseButtonText = "OK"
         }.ShowAsync();
@@ -100,26 +105,53 @@ public sealed partial class AddCosmeticPage : Page
         ViewModel.Category = categoryComboBox.SelectedItem as Category;
         bool success = ViewModel.AddCosmetic();
 
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         if (success)
         {
-            await new ContentDialog
+            if (language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Add",
-                Content = "Add successfully!",
-                CloseButtonText = "OK"
-            }.ShowAsync();
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Success",
+                    Content = "Product is inserted successfully!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Thành công",
+                    Content = "Sản phẩm đã được lưu thành công!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
         }
         else
         {
-            await new ContentDialog
+            if (language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Add",
-                Content = "add failed",
-                CloseButtonText = "Cannot add new cosmetic!"
-            }.ShowAsync();
-        }
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Error",
+                    Content = "Enable to insert product!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Lỗi",
+                    Content = "Không thể thêm sản phẩm vào hệ thống!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+        } 
 
         this.Frame.Navigate(typeof(ProductDataPage));
     }

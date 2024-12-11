@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -121,27 +121,54 @@ public sealed partial class UpdateCosmeticPage : Page
         if (!ValidateInput()) return;
 
         ICosmeticDAO dao = new SQLCosmeticDAO();
-        bool success = dao.UpdateCosmetic(ViewModel.Cosmetic);
+        var success = dao.UpdateCosmetic(ViewModel.Cosmetic);
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
         if (success)
         {
-            await new ContentDialog
+            if (language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Update",
-                Content = "Update successfully!",
-                CloseButtonText = "OK"
-            }.ShowAsync();
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Success",
+                    Content = "Product is updated successfully!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Thành công",
+                    Content = "Sản phẩm đã được cập nhật thành công!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
         }
         else
         {
-            await new ContentDialog
+            if (language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Update",
-                Content = "Update failed",
-                CloseButtonText = "Cannot update cosmetic!"
-            }.ShowAsync();
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Failed",
+                    Content = "Update failed",
+                    CloseButtonText = "Cancel"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Lỗi",
+                    Content = "Không thể cập nhật sản phẩm!",
+                    CloseButtonText = "Hủy"
+                }.ShowAsync();
+            }
         }
 
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);

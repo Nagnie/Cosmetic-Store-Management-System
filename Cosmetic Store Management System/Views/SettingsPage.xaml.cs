@@ -56,8 +56,14 @@ public sealed partial class SettingsPage : Page
     {
         var localSettings = ApplicationData.Current.LocalSettings;
         localSettings.Values["CurrencyUnit"] = "USD";
-        localSettings.Values["ExchangeRate"] = (float)25405;
-        //localSettings.Values["ExchangeRate"] = await ExchangeRateHelper.GetExchangeRate("USD", "VND"); 
+
+        try
+        {
+            localSettings.Values["ExchangeRate"] = await ExchangeRateHelper.GetExchangeRate("USD", "VND");
+        }
+        catch (Exception) {
+            localSettings.Values["ExchangeRate"] = 25380;
+        }
     }
 
     private void VietnameseButton_Checked(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -95,14 +101,5 @@ public sealed partial class SettingsPage : Page
 
             await dialog.ShowAsync();
         }
-    }
-
-    private void RefreshUI()
-    {
-        Debug.WriteLine(Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride);
-        var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
-        EnglishButton.Content = resourceLoader.GetString("Settings_Language_English/Content");
-        VietnameseButton.Content = resourceLoader.GetString("Settings_Language_Vietnamese/Content");
-        settingLanguageHeader.Text = resourceLoader.GetString("Settings_Language/Text");
     }
 }
