@@ -22,11 +22,6 @@ public partial class OverviewsViewModel : ObservableRecipient
         set;
     } = "cosmetic_id ASC";
 
-    public int LowStockCount
-    {
-        get; set;
-    }
-
     public int OutOfStockCount
     {
         get; set;
@@ -65,6 +60,9 @@ public partial class OverviewsViewModel : ObservableRecipient
             items
         );
 
+        // Update low-stock count and products
+        UpdateLowStock();
+
         // Get the out of stock count
         OutOfStockCount = dao.GetOutOfStockCount();
 
@@ -84,6 +82,13 @@ public partial class OverviewsViewModel : ObservableRecipient
     {
         get => lowStockProducts;
         set => SetProperty(ref lowStockProducts, value); // Notify UI of changes
+    }
+
+    private int lowStockCount;
+    public int LowStockCount
+    {
+        get => lowStockCount;
+        set => SetProperty(ref lowStockCount, value); // Notify UI of changes
     }
 
     public void UpdateLowStock()
