@@ -19,7 +19,7 @@
     <Grid x:Name="ContentArea">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -38,11 +38,10 @@
             </Button>
         </StackPanel>
 
-        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,40,0,0">
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
 
                 <!-- Product Image -->
-                <Border Height="350" Width="350" CornerRadius="10" Margin="0, 0, 0, 0">
+                <Border Height="350" Width="350" CornerRadius="10" Margin="0, 50, 0, 0">
                     <Image Source="{x:Bind ViewModel.Image, Mode=OneWay}" Height="350" Width="350" HorizontalAlignment="Left" Stretch="UniformToFill"/>
                 </Border>
 
@@ -50,26 +49,25 @@
                 <!-- Delete and Edit buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
                     <Button x:Uid="ProductPage_DeleteButton"
-                        Content="Delete" 
-                        Width="100" 
-                        Margin="10" 
-                        BorderBrush="Red" 
-                        Foreground="Red" 
-                        FontWeight="SemiBold"
-                        Click="deleteButton_Click"/>
+                            Style="{ThemeResource ButtonRevealStyle}"
+                            Background="{ThemeResource ApplicationPressedForegroundThemeBrush}"
+                            Content="Delete" 
+                            Width="100" 
+                            Margin="10" 
+                            FontWeight="SemiBold"
+                            Click="deleteButton_Click"/>
                     <Button x:Uid="ProductPage_EditButton"
-                        Content="Edit" 
-                        Width="100" 
-                        Margin="10" 
-                        BorderBrush="Navy" 
-                        Foreground="Navy" 
-                        FontWeight="SemiBold"
-                        Click="editButton_Click"/>
+                            Style="{ThemeResource AccentButtonStyle}"
+                            Background="{ThemeResource AccentAAFillColorTertiaryBrush}"
+                            Content="Edit" 
+                            Width="100" 
+                            Margin="10" 
+                            FontWeight="SemiBold"
+                            Click="editButton_Click"/>
                 </StackPanel>
             </StackPanel>
-        </ScrollViewer>
 
-        <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,40,0,0">
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,40,0,0">
             
         
         <!-- Right Column (Product details) -->
@@ -125,12 +123,15 @@
             <Button
                 x:Name="previousProductButton"
                 Click="previousProductButton_Click"
+                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                Style="{StaticResource AccentButtonStyle}"
+                Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"
                 Grid.Column="0"
                 HorizontalAlignment="Left"
                 Margin="25,0,0,0">
                 <StackPanel Orientation="Horizontal">
                     <FontIcon Glyph="&#xE72B;"/>
-                    <TextBlock Text="Previous Product" Margin="8,0,0,0"/>
+                    <TextBlock Text="Previous Product" Margin="8,0,0,0" x:Uid="ProductPage_prevBtn"/>
                 </StackPanel>
             </Button>
 
@@ -138,10 +139,14 @@
                 x:Name="nextProductButton"
                 Click="nextProductButton_Click"
                 Grid.Column="1"
+                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                Style="{StaticResource AccentButtonStyle}"
+                Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"  
                 HorizontalAlignment="Right"
                 Margin="0,0,25,0">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Next Product" Margin="0,0,8,0"/>
+                    <TextBlock Text="Next Product" Margin="0,0,8,0"
+                               x:Uid="ProductPage_nextBtn"/>
                     <FontIcon Glyph="&#xE72A;" />
                 </StackPanel>
             </Button>

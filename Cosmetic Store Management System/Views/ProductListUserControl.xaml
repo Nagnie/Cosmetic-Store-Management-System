@@ -127,7 +127,7 @@
                                 <TextBlock Text="{x:Bind Cosmetic.Name, Mode=OneWay}"
                                            TextWrapping="Wrap"
                                            Height="40"
-                                           Margin="0, 16, 0, 12"
+                                           Margin="0, 15, 0, 10"
                                            Grid.Row="0"
                                            Grid.ColumnSpan="2"/>
 
