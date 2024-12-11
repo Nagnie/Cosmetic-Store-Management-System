@@ -57,8 +57,8 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Category"/>
                 <TextBox Name="category"
-                         Text="{x:Bind ViewModel.Cosmetic.Category.ID, Mode=TwoWay}"
-                         Grid.Row="2"
+                         Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=TwoWay}"
+                         Grid.Row="2" IsEnabled="False"
                          Grid.Column="1"
                          Margin="0, 0, 0, 10"/>
 
@@ -68,9 +68,9 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Manufacturer"/>
                 <TextBox Name="manufacturer"
-                         Text="{x:Bind ViewModel.Cosmetic.Manufacturer.ID, Mode=TwoWay}"
+                         Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=TwoWay}"
                          Grid.Row="3"
-                         Grid.Column="1"
+                         Grid.Column="1" IsEnabled="False"
                          Margin="0, 0, 0, 10"/>
 
                 <TextBlock Text="Quantity"

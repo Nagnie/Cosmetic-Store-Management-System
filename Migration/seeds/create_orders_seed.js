@@ -85,6 +85,22 @@ exports.seed = async function(knex) {
         "discount": 0,
         "sale_tax": 46800,
         "total": 514800
-      }    
+      },
+      {
+        "customer_id": 16,
+        "order_date": "2024-12-11",
+        "subtotal": 468000,
+        "discount": 0,
+        "sale_tax": 46800,
+        "total": 514800
+      },
+      {
+        "customer_id": 20,
+        "order_date": "2024-12-11",
+        "subtotal": 468000,
+        "discount": 0,
+        "sale_tax": 46800,
+        "total": 514800
+      },
   ]);
 };
