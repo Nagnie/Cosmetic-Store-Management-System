@@ -58,7 +58,9 @@
                     HorizontalAlignment="Right"
                     Margin="0, 0, 0, 12"
                     CornerRadius="4, 4, 4, 4">
-                    <Button Click="addButton_Click">
+                    <Button Click="addButton_Click"
+                            Style="{StaticResource AccentButtonStyle}"
+                            >
                         <StackPanel Orientation="Horizontal">
                             <FontIcon Glyph="&#xF8AA;" 
                                       FontSize="12"
@@ -112,7 +114,7 @@
                         <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
                                 SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=OneWay}"
                                 SelectionChanged="pagesComboBox_SelectionChanged"
-                                Margin="5" Name="pagesComboBox" Width="100" Height="35">
+                                Margin="5" Name="pagesComboBox" Width="80" Height="35">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock >

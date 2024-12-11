@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -84,13 +84,6 @@ public sealed partial class UpdateCosmeticPage : Page
             errorMessage += "Image input cannot be empty.\n";
         }
 
-        // Image URL validation
-        //if (!Uri.TryCreate(ViewModel.Cosmetic.Image, UriKind.Absolute, out Uri uriResult) ||
-        //    !(uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
-        //{
-        //    errorMessage += "Image must be a valid URL.\n";
-        //}
-
         if (errorMessage != "")
         {
             DisplayValidationErrors(errorMessage);
@@ -122,26 +115,54 @@ public sealed partial class UpdateCosmeticPage : Page
 
         ICosmeticDAO dao = new SQLCosmeticDAO();
         bool success = dao.UpdateCosmetic(ViewModel.Cosmetic);
-
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         if (success)
         {
-            await new ContentDialog
+            if(language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Update",
-                Content = "Update successfully!",
-                CloseButtonText = "OK"
-            }.ShowAsync();
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Update",
+                    Content = "Update successfully!",
+                    CloseButtonText = "OK"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Cập nhật",
+                    Content = "Cập nhật thành công!",
+                    CloseButtonText = "Đóng"
+                }.ShowAsync();
+            }
+            
         }
         else
         {
-            await new ContentDialog
+            if (language.Equals("en-US"))
             {
-                XamlRoot = this.Content.XamlRoot,
-                Title = "Update",
-                Content = "Update failed",
-                CloseButtonText = "Cannot update cosmetic!"
-            }.ShowAsync();
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Update",
+                    Content = "Update failed",
+                    CloseButtonText = "Đóng"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Cập nhật",
+                    Content = "Cập nhật thất bại",
+                    CloseButtonText = "Đóng"
+                }.ShowAsync();
+            }
+
         }
 
         Frame.Navigate(typeof(ProductPage), ViewModel.Cosmetic);
@@ -177,7 +198,16 @@ public sealed partial class UpdateCosmeticPage : Page
         }
         else
         {
-            PickAPhotoOutputTextBlock.Text = "Operation cancelled.";
+            var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+            if (language.Equals("en-Us"))
+            {
+                PickAPhotoOutputTextBlock.Text = "Operation cancelled.";
+            }
+            else
+            {
+                PickAPhotoOutputTextBlock.Text = "Hủy chọn ảnh.";
+            }
+            
         }
 
     }

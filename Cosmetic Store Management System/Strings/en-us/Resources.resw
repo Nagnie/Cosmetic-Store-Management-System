@@ -501,4 +501,13 @@
   <data name="CheckoutUserControl_FinishBtn.Content" xml:space="preserve">
     <value>Finish</value>
   </data>
+  <data name="ProductPage_prevBtn.Text" xml:space="preserve">
+    <value>Previous Product</value>
+  </data>
+  <data name="ProductPage_nextBtn.Text" xml:space="preserve">
+    <value>Next Product</value>
+  </data>
+  <data name="OverviewsPage_LowStock.Text" xml:space="preserve">
+    <value>Low Stock Product</value>
+  </data>
 </root>
