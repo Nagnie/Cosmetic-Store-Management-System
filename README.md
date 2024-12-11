@@ -22,11 +22,11 @@ Hoàn thành giao diện cho các trang:
      
     + Các thông tin chung như Today's order, Last week's order, Stock left và Running out items được hiển thị đúng theo dữ liệu. Số giờ làm việc: **0.5h**
  
-  ![Overviews](overviews.png)!
+  ![Overviews](overviews.png)
 
 - **Product**: Hoàn thiện việc hiển thị sản phẩm với đầy đủ thông tin, bao gồm ảnh sản phẩm. Số giờ làm việc: **0.5h**
 
-  ![Product Page](product.png)!
+  ![Product Page](product.png)
 
 - **Create Order**:
 
