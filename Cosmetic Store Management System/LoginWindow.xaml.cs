@@ -61,8 +61,9 @@ public sealed partial class LoginWindow : Window
 
     private async void loginButton_Click(object sender, RoutedEventArgs e)
     {
-        string username = usernameTextBox.Text;
-        string password = passwordBox.Password;
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var username = usernameTextBox.Text;
+        var password = passwordBox.Password;
 
         if ((username == "admin") && (password == "1234"))
         {
@@ -96,8 +97,11 @@ public sealed partial class LoginWindow : Window
         {
             await new ContentDialog()
             {
+                Name = "loginFailedDialog",
                 XamlRoot = this.Content.XamlRoot,
-                Content = "Invalid username or password",
+                Content = language.Equals("en-US") 
+                        ? "Invalid username or password!"
+                        : "Tên đăng nhập hoặc mật khẩu chưa đúng!",
                 CloseButtonText = "OK"
             }.ShowAsync();
         }
