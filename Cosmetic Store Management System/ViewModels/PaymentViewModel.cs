@@ -24,32 +24,12 @@ public partial class PaymentViewModel : INotifyPropertyChanged
     }
     public int CustomerPoints => (int)CustomerInforViewModel.Customer.Point;
 
-    public int Discount
+    public float DiscountRate
     {
-        get
-        {
-            if (CustomerPoints >= 1000)
-            {
-                return (int)(SubTotal * 0.15);
-            }
-            else if(CustomerPoints >= 600)
-            {
-                return (int)(SubTotal * 0.1);
-            }
-            else if (CustomerPoints >= 300)
-            {
-                return (int)(SubTotal * 0.08);
-            }
-            else if (CustomerPoints >= 150)
-            {
-                return (int)(SubTotal * 0.05);
-            }
-            else
-            {
-                return 0;
-            }
-        }
+        get; set;
     }
+
+    public int Discount => (int)(SubTotal * DiscountRate);
 
     public int SaleTax => (int)(SubTotal * SALE_TAX_RATE);
 
@@ -65,5 +45,25 @@ public partial class PaymentViewModel : INotifyPropertyChanged
     public Tuple<int, int, int, int> GetPaymentInfo()
     {
         return new Tuple<int, int, int, int>(SubTotal, Discount, SaleTax, Total);
+    }
+
+    public void UpdateDiscountRate(int point)
+    {
+        if (point >= 1000)
+        {
+            DiscountRate = 0.15f;
+        }
+        else if (point >= 600)
+        {
+            DiscountRate = 0.1f;
+        }
+        else if (point >= 300)
+        {
+            DiscountRate = 0.08f;
+        }
+        else if (point >= 150)
+        {
+            DiscountRate = 0.05f;
+        }
     }
 }
