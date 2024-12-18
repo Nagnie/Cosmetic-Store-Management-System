@@ -11,7 +11,7 @@ public sealed partial class AnalyticsPage : Page
     public AnalyticsViewModel ViewModel
     {
         get;
-    }
+    } = new AnalyticsViewModel();
 
     public AnalyticsPage()
     {

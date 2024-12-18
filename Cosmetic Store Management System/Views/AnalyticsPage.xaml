@@ -4,10 +4,35 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Cosmetic_Store_Management_System.Behaviors"
     xmlns:local="using:Cosmetic_Store_Management_System.Views"
-    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI" 
+    xmlns:local1="using:Cosmetic_Store_Management_System.ViewModels"
+    xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.DataContext>
+            <local1:AnalyticsViewModel/>
+        </Grid.DataContext>
+
+        <!-- Revenue Chart -->
+        <Grid BorderBrush="#EEEEEE"
+              BorderThickness="1"
+              CornerRadius="12"
+              Padding="16, 16, 16, 16">
+            <TextBlock Text="Monthly Sales Revenue Chart" 
+                       FontSize="16" 
+                       Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                       HorizontalAlignment="Center"
+                       FontWeight="Medium"
+                       x:Uid="AnalyticsPage_RevenueChartCaption"/>
+            <lvc:CartesianChart
+                Series="{Binding RevenueSeries}"
+                XAxes="{Binding RevenueXAxis}"
+                YAxes="{Binding RevenueYAxis}"
+                ZoomMode="X">
+            </lvc:CartesianChart>
+        </Grid>
     </Grid>
 </Page>

@@ -16,4 +16,6 @@ public interface IOrderDAO
     //void DeleteOrder(int ID);
     int GetTodayOrderCount();
     int GetLastWeekOrderCount();
+
+    public List<Revenue> GetRevenues();
 }
