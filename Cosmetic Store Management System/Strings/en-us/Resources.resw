@@ -510,4 +510,7 @@
   <data name="OverviewsPage_LowStock.Text" xml:space="preserve">
     <value>Low Stock Product</value>
   </data>
+	<data name="AnalyticsPage_RevenueChartCaption.Text" xml:space="preserve">
+		<value>Monthly Sales Revenue Chart</value>
+	</data>
 </root>
