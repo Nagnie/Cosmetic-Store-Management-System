@@ -64,7 +64,6 @@ public sealed partial class CategoryPage : Page
         }
     }
 
-
     private async void deleteButton_Click(object sender, RoutedEventArgs e)
     {
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];

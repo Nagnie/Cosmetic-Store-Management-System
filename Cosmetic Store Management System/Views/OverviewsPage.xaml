@@ -127,7 +127,7 @@
                                     <Button.Flyout>
                                         <Flyout Placement="Bottom">
                                             <StackPanel>
-                                                <TextBlock Text="Low Stock Products" FontWeight="Bold" Margin="0,0,0,10" />
+                                                <TextBlock Text="Low Stock Products" FontWeight="Bold" Margin="0,0,0,10" x:Uid="OverviewsPage_LowStock"/>
                                                 <ItemsControl ItemsSource="{x:Bind ViewModel.LowStockProducts}">
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate x:DataType="models:Cosmetic">
@@ -244,7 +244,7 @@
                 <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" 
-                            Background="{StaticResource AccentAcrylicBackgroundFillColorBaseBrush}" 
+                            Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}" 
                             Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />

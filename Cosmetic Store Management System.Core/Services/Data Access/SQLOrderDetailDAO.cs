@@ -19,7 +19,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
             using var command = new NpgsqlCommand();
             command.Connection = connection;
             command.CommandText = $"""
-                INSERT INTO ORDER_DETAIL (order_id, cosmetic_id, quantity, subTotal)
+                INSERT INTO "ORDER_DETAIL" (order_id, cosmetic_id, quantity, subTotal)
                 VALUES (@orderID, @cosmeticID, @quantity, @subTotal)
             """;
 
@@ -42,7 +42,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                DELETE FROM ORDER_DETAIL
+                DELETE FROM "ORDER_DETAIL"
                 WHERE order_detail_id = {ID}
             """;
 
@@ -59,9 +59,9 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         command.Connection = connection;
         command.CommandText = $"""
                 SELECT *
-                FROM ORDER_DETAIL o JOIN COSMETIC c ON o.cosmetic_id = c.cosmetic_id
-                     JOIN CATEGORY ca ON c.category_id = ca.category_id  
-                     JOIN MANUFACTURER m ON c.manufacturer_id = m.manufacturer_id
+                FROM "ORDER_DETAIL" o JOIN "COSMETIC" c ON o.cosmetic_id = c.cosmetic_id
+                     JOIN "CATEGORY" ca ON c.category_id = ca.category_id  
+                     JOIN "MANUFACTURER" m ON c.manufacturer_id = m.manufacturer_id
                 WHERE order_detail_id = {ID}
             """;
 
@@ -113,9 +113,9 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         command.Connection = connection;
         command.CommandText = $"""
                 SELECT *
-                FROM ORDER_DETAIL o JOIN COSMETIC c ON o.cosmetic_id = c.cosmetic_id
-                     JOIN CATEGORY ca ON c.category_id = ca.category_id  
-                     JOIN MANUFACTURER m ON c.manufacturer_id = m.manufacturer_id
+                FROM "ORDER_DETAIL" o JOIN "COSMETIC" c ON o.cosmetic_id = c.cosmetic_id
+                     JOIN "CATEGORY" ca ON c.category_id = ca.category_id  
+                     JOIN "MANUFACTURER" m ON c.manufacturer_id = m.manufacturer_id
                 WHERE order_id = {orderID}
             """;
 
@@ -166,7 +166,7 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-                UPDATE ORDER_DETAIL
+                UPDATE "ORDER_DETAIL"
                 SET order_id = @orderID, cosmetic_id = @cosmeticID, quantity = @quantity
                 WHERE order_detail_id = @orderDetailID
             """;

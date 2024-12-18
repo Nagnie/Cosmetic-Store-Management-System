@@ -489,11 +489,8 @@
   <data name="OverviewsPage_StockLeftLabel.Text" xml:space="preserve">
     <value>Số lượng tồn kho</value>
   </data>
-	<data name="OverviewsPage_RunningOutLabel.Text" xml:space="preserve">
+  <data name="OverviewsPage_RunningOutLabel.Text" xml:space="preserve">
     <value>Mặt hàng đã hết</value>
-    </data>
-  <data name="UpdateManufacturerPage_ProductCount.Text" xml:space="preserve">
-    <value>Số lượng sản phẩm</value>
   </data>
   <data name="CheckoutUserControl_ReviewOrder.Text" xml:space="preserve">
     <value>Hãy kiểm tra đơn hàng trước khi thanh toán.</value>
@@ -504,6 +501,13 @@
   <data name="CheckoutUserControl_FinishBtn.Content" xml:space="preserve">
     <value>Thanh toán</value>
   </data>
-	
-	
+  <data name="ProductPage_prevBtn.Text" xml:space="preserve">
+    <value>Trước</value>
+  </data>
+  <data name="ProductPage_nextBtn.Text" xml:space="preserve">
+    <value>Tiếp</value>
+  </data>
+  <data name="OverviewsPage_LowStock.Text" xml:space="preserve">
+    <value>Sản phẩm sắp hết hàng</value>
+  </data>
 </root>

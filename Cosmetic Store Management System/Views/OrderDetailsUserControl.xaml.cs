@@ -42,7 +42,6 @@ public sealed partial class OrderDetailsUserControl : UserControl
     private void OnOrderDetailsChanged(object sender, NotifyCollectionChangedEventArgs e)
     {
         UpdateExtraOrderDetails();
-        
     }
 
     private void UpdateExtraOrderDetails()
@@ -57,8 +56,6 @@ public sealed partial class OrderDetailsUserControl : UserControl
             });
         }
     }
-
-    
 
     private async void ShowCantAddItemNotification()
     {
@@ -93,9 +90,6 @@ public sealed partial class OrderDetailsUserControl : UserControl
     public async void AddOrderDetail(Cosmetic cosmetic)
     {
         var (added, delta) = ViewModel.Add(cosmetic);
-
-        
-
         if (!added)
         {
             ShowCantAddItemNotification();

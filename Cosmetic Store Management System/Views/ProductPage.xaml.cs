@@ -18,6 +18,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.Views;
 
@@ -55,47 +56,36 @@ public sealed partial class ProductPage : Page
     {
         ICosmeticDAO dao = new SQLCosmeticDAO();
 
-        ContentDialog dialog = new ContentDialog();
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var dialog = new ContentDialog();
 
-        // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-        dialog.XamlRoot = this.XamlRoot;
-        dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-        dialog.Title = "Delete this product?";
-        dialog.Content = "Are you sure to delete this product?";
-        dialog.PrimaryButtonText = "Delete";
-        dialog.CloseButtonText = "Cancel";
-        dialog.DefaultButton = ContentDialogButton.Primary;
-        //dialog.Content = new ContentDialogContent();
 
-        ContentDialogResult result = await dialog.ShowAsync();
+        if (language.Equals("en-US"))
+        {
+            dialog.Title = "Delete Category";
+            dialog.Content = "Are you sure you want to delete this category?";
+            dialog.PrimaryButtonText = "No";
+            dialog.SecondaryButtonText = "Yes";
+        }
+        else
+        {
+            dialog.Title = "Xóa danh mục";
+            dialog.Content = "Bạn có chắc chắn muốn xóa danh mục này không?";
+            dialog.PrimaryButtonText = "Không";
+            dialog.SecondaryButtonText = "Có";
+        }
 
-        if (result == ContentDialogResult.Primary)
+        dialog.SecondaryButtonStyle = (Style)Application.Current.Resources["AccentButtonStyle"];
+        dialog.XamlRoot = this.Content.XamlRoot;
+        var result = await dialog.ShowAsync();
+
+        if (result == ContentDialogResult.Secondary)
         {
             var button = sender as Button;
             var cosmetic = button?.DataContext as Cosmetic;
-            bool success = dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
+            dao.DeleteCosmetic(ViewModel.Cosmetic.ID);
 
-            if (success)
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Delete",
-                    Content = "Delete successfully!",
-                    CloseButtonText = "OK"
-                }.ShowAsync();
-            }
-            else
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Delete",
-                    Content = "Delete failed",
-                    CloseButtonText = "Cannot delete cosmetic!"
-                }.ShowAsync();
-            }
-
+            
             Frame.Navigate(typeof(ProductDataPage), ViewModel.Cosmetic);
         }
     }
