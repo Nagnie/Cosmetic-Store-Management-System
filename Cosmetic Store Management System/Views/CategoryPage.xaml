@@ -59,6 +59,7 @@
                     Margin="0, 0, 0, 12"
                     CornerRadius="4, 4, 4, 4">
                     <Button Click="addButton_Click"
+                            Name="addCategoryButton">
                             Style="{StaticResource AccentButtonStyle}"
                             >
                         <StackPanel Orientation="Horizontal">
