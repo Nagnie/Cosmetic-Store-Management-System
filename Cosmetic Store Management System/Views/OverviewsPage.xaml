@@ -142,13 +142,9 @@
                                     </Button.Flyout>
                                 </Button>
 
-
                             </Grid>
 
                         </StackPanel>
-
-                        <!-- Notification Button -->
-                        
 
                     </Grid>
 
@@ -226,7 +222,7 @@
                             Content="See more" 
                             Margin="20,0,0,0" 
                             FontSize="25"
-                    Padding="15,0, 15, 5"
+                            Padding="15,0, 15, 5"
                             FontFamily="{StaticResource DongleBold}"
                             Style="{StaticResource AccentButtonStyle}"
                             Click="MoreAnalytics_Click"/>
@@ -244,8 +240,8 @@
                 <StackPanel Margin="0,0,0,0">
                     <!-- Tiêu đề cột -->
                     <Grid Height="40" 
-                            Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}" 
-                            Margin="0, 20, 0, 0">
+                          Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}" 
+                          Margin="0, 20, 0, 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="3*" />
@@ -317,7 +313,6 @@
                     Background="{StaticResource AccentFillColorTertiaryBrush}"
                     Click="MoreButton_Click"
                     x:Uid="OverviewsPage_MoreProduct">
-                    
                 </Button>
             </StackPanel>
         </ScrollViewer>

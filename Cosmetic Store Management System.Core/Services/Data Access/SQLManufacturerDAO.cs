@@ -80,7 +80,10 @@ public class SQLManufacturerDAO : IManufacturerDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
         command.CommandText = $"""
-            SELECT * FROM "MANUFACTURER"
+            SELECT man.manufacturer_id, man.manufacturer_name, COUNT(cos.quantity) as product_count, man.origin
+            FROM "MANUFACTURER" man JOIN "COSMETIC" cos ON man.manufacturer_id = cos.manufacturer_id
+            GROUP BY man.manufacturer_id, man.manufacturer_name
+            ORDER BY man.manufacturer_id
             """;
 
         var reader = command.ExecuteReader();
@@ -90,6 +93,7 @@ public class SQLManufacturerDAO : IManufacturerDAO
             Manufacturer manufacturer = new Manufacturer();
             manufacturer.ID = reader.GetInt32(0);
             manufacturer.Name = reader.GetString(1);
+            manufacturer.ProductCount = reader["product_count"] is DBNull ? 0 : Convert.ToInt32(reader["product_count"]);
             manufacturer.Origin = (string)reader["origin"];
             manufacturers.Add(manufacturer);
         }

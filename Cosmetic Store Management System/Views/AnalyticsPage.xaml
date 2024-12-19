@@ -15,14 +15,84 @@
         <Grid.DataContext>
             <local1:AnalyticsViewModel/>
         </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" 
+            Margin="0,5,0,0"
+            Grid.Row="0"
+            Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Today's order -->
+            <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
+                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <TextBlock Text="Today's order" FontSize="16" x:Uid="OverviewsPage_TodayOrderLabel"/>
+                        <TextBlock Text="{x:Bind ViewModel.TodayOrderCount}" 
+                           FontSize="32" 
+                           FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Last week's order -->
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
+                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <TextBlock Text="Last week's order" FontSize="16" x:Uid="OverviewsPage_LastWeekOrderLabel"/>
+                        <TextBlock Text="{x:Bind ViewModel.LastWeekOrderCount}"
+                           FontSize="32" 
+                           FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Stock left -->
+            <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
+                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <TextBlock Text="Stock left" FontSize="16" x:Uid="OverviewsPage_StockLeftLabel"/>
+                        <TextBlock Text="{x:Bind ViewModel.InStockCount}" 
+                           FontSize="32" 
+                           FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- Running out item -->
+            <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
+                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <TextBlock Text="Running out item" FontSize="16" x:Uid="OverviewsPage_RunningOutLabel"/>
+                        <TextBlock Text="{x:Bind ViewModel.OutOfStockCount}" 
+                           FontSize="32" 
+                           FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
 
         <!-- Revenue Chart -->
         <Grid BorderBrush="#EEEEEE"
+              Grid.Row="1" Grid.Column="0"
               BorderThickness="1"
               CornerRadius="12"
               Padding="16, 16, 16, 16">
             <TextBlock Text="Monthly Sales Revenue Chart" 
-                       FontSize="16" 
+                       FontSize="20"
                        Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                        HorizontalAlignment="Center"
                        FontWeight="Medium"
@@ -34,5 +104,39 @@
                 ZoomMode="X">
             </lvc:CartesianChart>
         </Grid>
+
+        <Grid
+            Grid.Column="1"
+            Grid.Row="0"
+            Grid.RowSpan="2">
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!-- Category Chart -->
+                <TextBlock 
+                    Text="Category" FontSize="25"
+                    Grid.Row="0" FontWeight="SemiBold"
+                    HorizontalAlignment="Center"/>
+                <lvc:PieChart 
+                    Series="{Binding Categories}" Margin="0, 0, 0, 35"
+                    Grid.Row="1"></lvc:PieChart>
+
+                <!-- Manufacturer Chart -->
+                <TextBlock 
+                    Text="Manufacturer" FontWeight="SemiBold"
+                    Grid.Row="2" FontSize="25"
+                    HorizontalAlignment="Center"/>
+                <lvc:PieChart Margin="0, 0, 0, 35"
+                    Series="{Binding Manufacturers}"  
+                    Grid.Row="3" ></lvc:PieChart>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>
