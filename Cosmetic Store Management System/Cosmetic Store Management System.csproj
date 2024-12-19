@@ -107,4 +107,8 @@
   <ItemGroup>
     <PRIResource Remove="Strings\vi-vn\Resources.resw" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
 </Project>

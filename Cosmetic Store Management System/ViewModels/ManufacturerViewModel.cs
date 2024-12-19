@@ -63,7 +63,10 @@ public class ManufacturerViewModel : ObservableRecipient
     {
         get; set;
     }
-
+    public int manufacturerCount
+    {
+        get; set;
+    }
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -124,7 +127,7 @@ public class ManufacturerViewModel : ObservableRecipient
                 });
             }
         }
-
+        manufacturerCount = manufacturerDAO.GetManufacturerCount();
         SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 
         OnPropertyChanged(nameof(Info));

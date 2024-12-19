@@ -193,4 +193,21 @@ public class SQLCategoryDAO : ICategoryDAO
         connection.Close();
         return null;
     }
+
+    public int GetCategoryCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT COUNT(*)
+            FROM "CATEGORY"
+        """;
+        var count = Convert.ToInt32(command.ExecuteScalar());
+
+        connection.Close();
+        return count;
+    }
 }

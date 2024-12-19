@@ -60,7 +60,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         get; set;
     }
-
+    
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -91,6 +91,10 @@ public partial class CategoryViewModel : ObservableRecipient
         
         LoadData();
     }
+    public int categoryCount
+    {
+        get; set;
+    }
 
     public void LoadData()
     {
@@ -120,7 +124,7 @@ public partial class CategoryViewModel : ObservableRecipient
                 });
             }
         }
-
+        categoryCount = categoryDAO.GetCategoryCount();
         SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 
         OnPropertyChanged(nameof(Info));

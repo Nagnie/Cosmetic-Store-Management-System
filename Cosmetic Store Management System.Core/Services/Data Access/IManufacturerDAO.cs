@@ -14,6 +14,6 @@ public interface IManufacturerDAO
     void AddManufacturer(Manufacturer manufacturer);
     void UpdateManufacturer(Manufacturer manufacturer);
     void DeleteManufacturer(int id);
-
     public Manufacturer GetManufacturerByName(string name);
+    public int GetManufacturerCount();
 }

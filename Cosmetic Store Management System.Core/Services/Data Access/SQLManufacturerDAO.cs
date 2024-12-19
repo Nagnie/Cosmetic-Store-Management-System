@@ -195,4 +195,19 @@ public class SQLManufacturerDAO : IManufacturerDAO
         connection.Close();
         return null;
     }
+
+    public int GetManufacturerCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+                SELECT COUNT(*)
+                FROM "MANUFACTURER"
+            """;
+        var count = Convert.ToInt32(command.ExecuteScalar());
+        connection.Close();
+        return count;
+    }
 }

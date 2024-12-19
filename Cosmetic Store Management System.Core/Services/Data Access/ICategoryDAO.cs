@@ -14,6 +14,6 @@ public interface ICategoryDAO
     void AddCategory(Category category);
     void UpdateCategory(Category category);
     void DeleteCategory(int ID);
-
     Category GetCategoryByName(string name);
+    int GetCategoryCount();
 }

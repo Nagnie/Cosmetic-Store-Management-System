@@ -52,7 +52,34 @@
     </Page.Resources>
 
     <Grid x:Name="ContentArea">
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0, 44, 40, 0">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
+                    <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
+                        <TextBlock 
+                            HorizontalAlignment="Center" 
+                            Text="Total Categories" 
+                            FontSize="20"
+                            FontWeight="SemiBold"/>
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.categoryCount}" 
+                            HorizontalAlignment="Center"
+                            FontSize="40" 
+                            FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
             <StackPanel VerticalAlignment="Top">
                 <StackPanel 
                     HorizontalAlignment="Right"
@@ -134,6 +161,7 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </ScrollViewer>
+        </Grid>
+
     </Grid>
 </Page>
