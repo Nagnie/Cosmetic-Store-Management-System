@@ -15,12 +15,12 @@
         <DataTemplate x:Key="CustomerItemTemplate" x:DataType="models:Customer">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{x:Bind ID}"
@@ -58,23 +58,23 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="1">
             <ScrollViewer VerticalScrollMode="Enabled">
                 <StackPanel Orientation="Vertical">
                     <!-- Table header -->
                     <Grid Padding="12, 12, 12, 12" Margin="0, 20, 0, 0" Column="0"
                           Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="70"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="ID"
@@ -137,8 +137,28 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Column="1" Margin="40, 0, 0, 0">
-            <local:CustomerInforUserControl x:Name="customerUserControl"/>
+        <Grid Grid.Column="0" Margin="0, 0, 50, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <local:CustomerInforUserControl Grid.Row="0" x:Name="customerUserControl"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
+                    <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
+                        <TextBlock 
+                            HorizontalAlignment="Center" 
+                            Text="Total Customers" 
+                            FontSize="20"
+                            FontWeight="SemiBold"/>
+                        <TextBlock 
+                            Text="{x:Bind ViewModel.customerCount}" 
+                            HorizontalAlignment="Center"
+                            FontSize="40" 
+                            FontWeight="Bold" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

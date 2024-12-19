@@ -28,6 +28,15 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '037.jpg'))
     },
     {
+      cosmetic_name: "Merzy The Glam Mellow Tint 4g",
+      quantity: 61,
+      price: 165000,
+      category_id: 1,
+      manufacturer_id: 5,
+      description: "Son Kem Lì Mềm Mịn, Lâu Trôi Merzy The Glam Mellow Tint 4g là son tint đến từ thương hiệu Merzy. Chất son thế hệ mới được cải tiến với chất son lì mềm mịn như nhung, có độ bền màu suốt 8 tiếng mà không gây khô môi. Cùng với, bảng màu son đa dạng, trendy với những tone màu dành riêng cho nhiều dịp đặc biệt.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '046.jpg'))
+    },
+    {
       cosmetic_name: "L'oreal Glycolic-Bright Instant Glowing Serum 30ml",
       quantity: 106,
       price: 319000,
@@ -71,6 +80,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 1,
       description: 'Phấn Nước Trang Điểm Căng Bóng Thuần Chay Romand Bare Water Cushion là phấn nước trang điểm đến từ thương hiệu Romand che phủ hoàn hảo các khuyết điểm trên da đồng thời mang đến lớp finish với độ căng bóng vừa phải cho bạn lớp trang điểm nền hoàn hảo, rạng rỡ xinh đẹp căng tràn sức sống.',
       image: readImageAsBinary(path.join(__dirname, 'images', '005.jpg'))
+    },
+    {
+      cosmetic_name: 'Merzy The First Pen Eyeliner 0.5g',
+      quantity: 8,
+      price: 125000,
+      category_id: 4,
+      manufacturer_id: 5,
+      description: 'Bút Kẻ Mắt Nước Chống Trôi Merzy The First Pen Eyeliner là kẻ mắt nước của thương hiệu Merzy với đầu bút mềm mại giúp kẻ đường line một cách dễ dàng tạo đôi mắt sắc sảo, cho đường kẻ chính xác và liền mạch, bền màu, lâu trôi giữ cho đôi mắt thu hút suốt cả ngày dài.',
+      image: readImageAsBinary(path.join(__dirname, 'images', '047.jpg'))
     },
     {
       cosmetic_name: 'Etude Play Color Eyes Milky New Year #BLUEBERRY MILK',
@@ -145,6 +163,15 @@ exports.seed = async function (knex) {
       description: "Bút Kẻ Mắt Nước Chống Trôi Black Rouge Power Proof Pen Liner là bút kẻ mắt nước đến từ thương hiệu Black Rouge vừa cho ra mắt bộ sưu tập Pool Party. Trong đó Power Proof Pen Liner là dòng kẻ mắt nằm trong bộ sưu tập lần này của Black Rouge với đường kẻ cực kì sắc nét & khó lem, lên màu rõ ngay lần di bút đầu tiên."
     },
     {
+      cosmetic_name: 'Merzy Stay Blur Loose Powder',
+      quantity: 18,
+      price: 145000,
+      category_id: 9,
+      manufacturer_id: 5,
+      image: readImageAsBinary(path.join(__dirname, 'images', '048.jpg')),
+      description: "Bút Kẻ Mắt Nước Chống Trôi Black Rouge Power Proof Pen Liner là bút kẻ mắt nước đến từ thương hiệu Black Rouge vừa cho ra mắt bộ sưu tập Pool Party. Trong đó Power Proof Pen Liner là dòng kẻ mắt nằm trong bộ sưu tập lần này của Black Rouge với đường kẻ cực kì sắc nét & khó lem, lên màu rõ ngay lần di bút đầu tiên."
+    },
+    {
       cosmetic_name: 'The Saem Saemmul Perfect Pore BB SPF30/PA++ 30g',
       quantity: 85,
       price: 92000,
@@ -188,6 +215,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 10,
       description: 'Phấn Nước Dưỡng Ẩm Cho Lớp Nền Căng Bóng Laneige Neo Cushion Glow SPF 46 PA++ là phấn nước đến từ thương hiệu Laneige, chứa thành phần dưỡng ẩm giúp dưỡng ẩm 5 lần suốt cả ngày, tạo nên lớp nền sáng bóng tự nhiên, hoàn hảo đến không ngờ.',
       image: readImageAsBinary(path.join(__dirname, 'images', '014.jpg'))
+    },
+    {
+      cosmetic_name: "Etude House Muhly Romance Special Kit",
+      quantity: 44,
+      price: 229000,
+      category_id: 7,
+      manufacturer_id: 4,
+      description: "Bảng phấn mắt 6 màu trong bộ sưu tập với tên gọi MUHLY ROMANCE lấy cảm hứng từ sắc màu hoàng hôn lãng mạn đi kèm cọ mắt tiện dụng màu hồng xinh xắn mang đến cho bạn ánh nhìn ngọt ngào, ánh nhũ lấp lánh cho bạn đôi mắt tỏa sáng đầy quyến rũ, thu hút mọi ánh nhìn trong các bữa tiệc, ngày thường.",
+      image: readImageAsBinary(path.join(__dirname, 'images', '049.jpg'))
     },
     {
       cosmetic_name: 'Dr.G R.E.D Blemish Soothing Up Sun SPF50+ PA++++ 50ml',
@@ -244,6 +280,15 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '019.jpg'))
     },
     {
+      cosmetic_name: "Laneige Bouncy & Firm Sleeping Mask",
+      quantity: 10,
+      price: 779000,
+      category_id: 15,
+      manufacturer_id: 10,
+      image: readImageAsBinary(path.join(__dirname, 'images', '050.jpg')),
+      description: "Mặt Nạ Ngủ Tăng Cường Collagen, Căng Mịn Da Laneige Bouncy & Firm Sleeping Mask là mặt nạ ngủ thuộc thương hiệu Laneige đến từ Hàn Quốc. Mặt nạ giúp cung cấp độ ẩm sâu và dưỡng da căng mịn vào ban đêm. Với thành phần chính là phức hợp hoa mẫu đơn và collagen giúp hỗ trợ săn chắc da, cải thiện nếp nhăn, dưỡng da căng mịn và tăng cường độ đàn hồi."
+    },
+    {
       cosmetic_name: "Ma:nyo Pure Cleansing Oil 200ml",
       quantity: 19,
       price: 449000,
@@ -289,6 +334,15 @@ exports.seed = async function (knex) {
       image: readImageAsBinary(path.join(__dirname, 'images', '023.jpg'))
     },
     {
+      cosmetic_name: "Laneige Cream Skin Refiner 150ml",
+      quantity: 10,
+      price: 499000,
+      category_id: 12,
+      manufacturer_id: 10,
+      image: readImageAsBinary(path.join(__dirname, 'images', '051.jpg')),
+      description: "Nước Hoa Hồng Cân Bằng Da Laneige Cream Skin Refiner 150ml là nước hoa hồng thuộc thương hiệu Laneige đến từ Hàn Quốc. Chiết xuất từ trà tràm trắng chứa nhiều Axit Amin, dầu hạt Meadowfoam dưỡng ẩm, giúp củng cố hàng rào bảo vệ da."
+    },
+    {
       cosmetic_name: "I'm Meme Pink Blur Tone-Up Sun Base SPF50+/PA++++ 40ml",
       quantity: 66,
       price: 209000,
@@ -323,6 +377,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 15,
       description: 'Với thiết kế vỏ ngoài xinh xắn nhưng không kém phần hiện đại, sở hữu màu sắc nhã nhặn đi kèm chất son mềm mượt, dễ dàng thẩm thấu nhanh; Son Dưỡng Màu Hera Sensual Spicy Nude Gloss có khả năng phục hồi tình trạng khô môi và bong tróc. Nhờ đó mà các chị em phụ nữ có thể tự tin trang điểm cho đôi môi và tự tin trong cả việc giao tiếp hằng ngày.',
       image: readImageAsBinary(path.join(__dirname, 'images', '027.jpg'))
+    },
+    {
+      cosmetic_name: "Innisfree Cherry Blossom Glow Skin-Fit Tone-up Cream SPF50+ 50ml",
+      quantity: 150,
+      price: 509000,
+      category_id: 6,
+      manufacturer_id: 8,
+      image: readImageAsBinary(path.join(__dirname, 'images', '052.jpg')),
+      description: "Kem Dưỡng Ẩm Nâng Tông, Làm Sáng, Chống Nắng Cho Da Innisfree Cherry Blossom Glow Skin-Fit Tone-up Cream SPF50+ là kem dưỡng thuộc thương hiệu Innisfree với kết cấu mỏng nhẹ cùng công thức từ cánh hoa anh đào giúp nâng tông da nhẹ nhàng tức thì, hỗ trợ dưỡng ẩm, hỗ trợ làm sáng và chống nắng cho da mang đến làn da sáng mịn tự nhiên."
     },
     {
       cosmetic_name: "Innisfree Green Tea Seed Hyaluronic Serum",
@@ -368,6 +431,15 @@ exports.seed = async function (knex) {
       manufacturer_id: 22,
       description: 'Dầu Xả Siêu Dưỡng Phục Hồi Tóc Hư Tổn DOVE 1 Minute Super Conditioner là sản phẩm dầu xả thế hệ mới đến từ thương hiệu nổi tiếng DOVE với tinh chất dưỡng ẩm ưu việt có chức năng siêu dưỡng phục hồi tóc hư tổn nặng nề, kết cấu dạng kem đặc giúp tái tạo cấu trúc tóc từ bên trong và làm giảm tình trạng hư tổn chỉ trong 1 phút, mái tóc trở nên suôn mượt và chắc khỏe.',
       image: readImageAsBinary(path.join(__dirname, 'images', '031.jpg'))
+    },
+    {
+      cosmetic_name: "Innisfree Jeju Cherry Blossom Tone-up Cream 50ml",
+      quantity: 52,
+      price: 459000,
+      category_id: 14,
+      manufacturer_id: 8,
+      image: readImageAsBinary(path.join(__dirname, 'images', '053.jpg')),
+      description: "Kem Dưỡng Nâng Tone Hỗ Trợ Dưỡng Da Sáng Mịn Innisfree Jeju Cherry Blossom Tone-up Cream là kem dưỡng thuộc thương hiệu Innisfree với các chiết xuất thiên nhiên vừa giúp da dưỡng ẩm, vừa nâng tông nhẹ nhàng mang đến làn sáng mịn tự nhiên như cánh hoa anh đào ở đảo Jeju."
     },
     {
       cosmetic_name: "Catrice Primer 30ml",

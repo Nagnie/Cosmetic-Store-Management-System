@@ -170,4 +170,19 @@ public class SQLCustomerDAO : ICustomerDAO
         command.ExecuteNonQuery();
         connection.Close();
     }
+
+    public int GetCustomerCount()
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+                SELECT COUNT(*)
+                FROM "CUSTOMER"
+            """;
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
+    }
 }

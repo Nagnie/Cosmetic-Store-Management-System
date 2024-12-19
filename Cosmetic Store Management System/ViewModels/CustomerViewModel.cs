@@ -86,6 +86,11 @@ public partial class CustomerViewModel : ObservableRecipient
         CurrentPage = page;
         LoadData();
     }
+    public int customerCount
+    {
+        get; set;
+    }
+
     public CustomerViewModel()
     {
         RowsPerPage = 12;
@@ -126,6 +131,7 @@ public partial class CustomerViewModel : ObservableRecipient
                 });
             }
         }
+        customerCount = customerDAO.GetCustomerCount();
 
         SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 

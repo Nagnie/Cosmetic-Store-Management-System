@@ -14,4 +14,5 @@ public interface ICustomerDAO
     Customer GetCustomer(string phone);
     void UpdateCustomer(Customer Customer);
     void DeleteCustomer(string phone);
+    int GetCustomerCount();
 }
