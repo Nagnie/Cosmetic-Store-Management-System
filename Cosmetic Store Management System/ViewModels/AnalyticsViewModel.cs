@@ -176,18 +176,97 @@ public partial class AnalyticsViewModel : ObservableObject
         ICategoryDAO categoryDAO = new SQLCategoryDAO();
         List<Category> categories = categoryDAO.GetAllCategories();
 
-        Categories = categories.Select(category =>
-                new PieSeries<int>
-                {
-                    Values = new[] { category.ProductCount },
-                    Name = category.Name,
-                    MaxRadialColumnWidth = 60
-                }).ToArray();
+        // Sắp xếp danh sách theo số lượng sản phẩm giảm dần
+        var sortedCategories = categories.OrderByDescending(c => c.ProductCount).ToList();
+
+        // Lấy top 5
+        var top5Categories = sortedCategories.Take(5);
+
+        // Tính tổng số lượng sản phẩm còn lại
+        var othersCount = sortedCategories.Skip(5).Sum(c => c.ProductCount);
+
+        // Tạo danh sách Series với "Khác" ở đầu
+        var series = new List<PieSeries<int>>();
+        var legends = new List<CategoryLegend>();
+
+        // Thêm mục "Khác" trước
+        if (othersCount > 0)
+        {
+            series.Add(new PieSeries<int>
+            {
+                Values = new[] { othersCount },
+                Name = "Other",
+                MaxRadialColumnWidth = 60
+            });
+
+            legends.Add(new CategoryLegend
+            {
+                Name = "Other",
+                ProductCount = othersCount
+            });
+        }
+
+        // Thêm top 5 vào sau
+        series.AddRange(top5Categories.Select(category =>
+            new PieSeries<int>
+            {
+                Values = new[] { category.ProductCount },
+                Name = category.Name,
+                MaxRadialColumnWidth = 60
+            }));
+
+        legends.AddRange(top5Categories.Select(category => new CategoryLegend
+        {
+            Name = category.Name,
+            ProductCount = category.ProductCount
+        }));
+
+        // Gán dữ liệu cho biểu đồ
+        Categories = series;
+
+        // Gán dữ liệu cho chú thích
+        CategoryLegends = legends;
+    }
+
+    // Danh sách chú thích
+    public List<CategoryLegend> CategoryLegends
+    {
+        get; set;
+    }
+
+    public class CategoryLegend
+    {
+        public string Name
+        {
+            get; set;
+        }
+        public int ProductCount
+        {
+            get; set;
+        }
     }
 
     public IEnumerable<ISeries> Manufacturers
     {
         get; set;
+    }
+
+    // Thuộc tính lưu danh sách chú thích
+    public List<ManufacturerLegend> ManufacturerLegends
+    {
+        get; set;
+    }
+
+    public class ManufacturerLegend
+    {
+        public string Name
+        {
+            get; set;
+        }
+        public int ProductCount
+        {
+            get; set;
+        }
     }
 
     private void CreateManufacturerChart()
@@ -196,12 +275,56 @@ public partial class AnalyticsViewModel : ObservableObject
         IManufacturerDAO manufacturerDAO = new SQLManufacturerDAO();
         List<Manufacturer> manufacturers = manufacturerDAO.GetAllManufacturers();
 
-        Manufacturers = manufacturers.Select(manufacturer =>
-                new PieSeries<int>
-                {
-                    Values = new[] { manufacturer.ProductCount },
-                    Name = manufacturer.Name,
-                    MaxRadialColumnWidth = 60
-                }).ToArray();
+        // Sắp xếp danh sách theo số lượng sản phẩm giảm dần
+        var sortedManufacturers = manufacturers.OrderByDescending(m => m.ProductCount).ToList();
+
+        // Lấy top 5
+        var top5Manufacturers = sortedManufacturers.Take(5);
+
+        // Tính tổng số lượng sản phẩm còn lại
+        var othersCount = sortedManufacturers.Skip(5).Sum(m => m.ProductCount);
+
+        // Tạo danh sách Series với "Khác" ở đầu
+        var series = new List<PieSeries<int>>();
+        var legends = new List<ManufacturerLegend>();
+
+        // Thêm mục "Khác" trước
+        if (othersCount > 0)
+        {
+            series.Add(new PieSeries<int>
+            {
+                Values = new[] { othersCount },
+                Name = "Other",
+                MaxRadialColumnWidth = 60
+            });
+
+            legends.Add(new ManufacturerLegend
+            {
+                Name = "Other",
+                ProductCount = othersCount
+            });
+        }
+
+        // Thêm top 5 vào sau
+        series.AddRange(top5Manufacturers.Select(manufacturer =>
+            new PieSeries<int>
+            {
+                Values = new[] { manufacturer.ProductCount },
+                Name = manufacturer.Name,
+                MaxRadialColumnWidth = 60
+            }));
+
+        legends.AddRange(top5Manufacturers.Select(manufacturer => new ManufacturerLegend
+        {
+            Name = manufacturer.Name,
+            ProductCount = manufacturer.ProductCount
+        }));
+
+        // Gán dữ liệu cho biểu đồ
+        Manufacturers = series;
+
+        // Gán dữ liệu cho chú thích
+        ManufacturerLegends = legends;
     }
+
 }

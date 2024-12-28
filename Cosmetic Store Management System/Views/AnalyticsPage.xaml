@@ -11,132 +11,207 @@
     xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.DataContext>
-            <local1:AnalyticsViewModel/>
-        </Grid.DataContext>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <Grid 
+    <ScrollViewer>
+        <Grid>
+            <Grid.DataContext>
+                <local1:AnalyticsViewModel/>
+            </Grid.DataContext>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="450"/>
+                <RowDefinition Height="500"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             Margin="0,5,0,0"
             Grid.Row="0"
             Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Today's order -->
-            <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
-                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
-                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                        <TextBlock Text="Today's order" FontSize="16" x:Uid="OverviewsPage_TodayOrderLabel"/>
-                        <TextBlock Text="{x:Bind ViewModel.TodayOrderCount}" 
+                <!-- Today's order -->
+                <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                    <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
+                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                            <TextBlock Text="Today's order" FontSize="16" x:Uid="OverviewsPage_TodayOrderLabel"/>
+                            <TextBlock Text="{x:Bind ViewModel.TodayOrderCount}" 
                            FontSize="32" 
                            FontWeight="Bold" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
-            <!-- Last week's order -->
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
-                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
-                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                        <TextBlock Text="Last week's order" FontSize="16" x:Uid="OverviewsPage_LastWeekOrderLabel"/>
-                        <TextBlock Text="{x:Bind ViewModel.LastWeekOrderCount}"
+                <!-- Last week's order -->
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                    <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
+                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                            <TextBlock Text="Last week's order" FontSize="16" x:Uid="OverviewsPage_LastWeekOrderLabel"/>
+                            <TextBlock Text="{x:Bind ViewModel.LastWeekOrderCount}"
                            FontSize="32" 
                            FontWeight="Bold" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
-            <!-- Stock left -->
-            <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
-                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
-                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                        <TextBlock Text="Stock left" FontSize="16" x:Uid="OverviewsPage_StockLeftLabel"/>
-                        <TextBlock Text="{x:Bind ViewModel.InStockCount}" 
+                <!-- Stock left -->
+                <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                    <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
+                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                            <TextBlock Text="Stock left" FontSize="16" x:Uid="OverviewsPage_StockLeftLabel"/>
+                            <TextBlock Text="{x:Bind ViewModel.InStockCount}" 
                            FontSize="32" 
                            FontWeight="Bold" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
 
-            <!-- Running out item -->
-            <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
-                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
-                    <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
-                        <TextBlock Text="Running out item" FontSize="16" x:Uid="OverviewsPage_RunningOutLabel"/>
-                        <TextBlock Text="{x:Bind ViewModel.OutOfStockCount}" 
+                <!-- Running out item -->
+                <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
+                    <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
+                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                            <TextBlock Text="Running out item" FontSize="16" x:Uid="OverviewsPage_RunningOutLabel"/>
+                            <TextBlock Text="{x:Bind ViewModel.OutOfStockCount}" 
                            FontSize="32" 
                            FontWeight="Bold" />
-                    </StackPanel>
-                </Border>
-            </StackPanel>
-        </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
 
-        <!-- Revenue Chart -->
-        <Grid BorderBrush="#EEEEEE"
+            <!-- Revenue Chart -->
+            <Grid BorderBrush="#EEEEEE"
               Grid.Row="1" Grid.Column="0"
               BorderThickness="1"
               CornerRadius="12"
               Padding="16, 16, 16, 16">
-            <TextBlock Text="Monthly Sales Revenue Chart" 
+                <TextBlock Text="Monthly Sales Revenue Chart" 
                        FontSize="20"
                        Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                        HorizontalAlignment="Center"
                        FontWeight="Medium"
                        x:Uid="AnalyticsPage_RevenueChartCaption"/>
-            <lvc:CartesianChart
+                <lvc:CartesianChart
                 Series="{Binding RevenueSeries}"
                 XAxes="{Binding RevenueXAxis}"
                 YAxes="{Binding RevenueYAxis}"
                 ZoomMode="X">
-            </lvc:CartesianChart>
-        </Grid>
+                </lvc:CartesianChart>
+            </Grid>
 
-        <Grid
+            <Grid
             Grid.Column="1"
             Grid.Row="0"
             Grid.RowSpan="2">
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <!-- Category Chart -->
-                <TextBlock 
-                    Text="Category" FontSize="25"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock 
+                    Text="Top 5" FontSize="30"
                     Grid.Row="0" FontWeight="SemiBold"
                     HorizontalAlignment="Center"/>
-                <lvc:PieChart 
-                    Series="{Binding Categories}" Margin="0, 0, 0, 35"
-                    Grid.Row="1"></lvc:PieChart>
+                    
+                    <!-- Top 5 Product -->
+                    <TextBlock 
+                        Text="Product" FontWeight="SemiBold"
+                        Grid.Row="1" FontSize="20"
+                        HorizontalAlignment="Center"/>
 
-                <!-- Manufacturer Chart -->
-                <TextBlock 
-                    Text="Manufacturer" FontWeight="SemiBold"
-                    Grid.Row="2" FontSize="25"
-                    HorizontalAlignment="Center"/>
-                <lvc:PieChart Margin="0, 0, 0, 35"
-                    Series="{Binding Manufacturers}"  
-                    Grid.Row="3" ></lvc:PieChart>
+                    <!-- Top 5 Customer -->
+                    <TextBlock 
+                        Text="Customer" FontWeight="SemiBold"
+                        Grid.Row="2" FontSize="20"
+                        HorizontalAlignment="Center"/>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Category Chart -->
+                    <TextBlock 
+                        Text="Category" FontSize="30" Margin="0, 50, 0, 0"
+                        Grid.Column="0" Grid.ColumnSpan="2" FontWeight="SemiBold"
+                        HorizontalAlignment="Center"/>
+                    <lvc:PieChart 
+                        Width="280"
+                        Series="{Binding Categories}"
+                        Grid.Column="0">
+                    </lvc:PieChart>
+
+                    <StackPanel
+                        Grid.Column="1">
+                        <ItemsControl 
+                            ItemsSource="{Binding CategoryLegends}"
+                            Margin="30, 130, 0, 0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                        <TextBlock 
+                                            Text="{Binding Name}" 
+                                            FontSize="16" FontWeight="SemiBold"
+                                            Width="150" />
+                                        <TextBlock 
+                                            Text="{Binding ProductCount}" 
+                                            FontSize="16" FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!-- Manufacturer Chart -->
+                    <TextBlock 
+                        Text="Manufacturer" FontWeight="SemiBold"
+                        Grid.Column="2" Grid.ColumnSpan="2"  FontSize="30" Margin="0, 50, 0, 0"
+                        HorizontalAlignment="Center"/>
+                    <lvc:PieChart 
+                        Width="280"
+                        Series="{Binding Manufacturers}"  
+                        Grid.Column="2" >
+                    </lvc:PieChart>
+
+                    <StackPanel Grid.Column="3">
+                        <ItemsControl ItemsSource="{Binding ManufacturerLegends}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 5">
+                                        <TextBlock 
+                                            Text="{Binding Name}" 
+                                            FontSize="16" 
+                                            FontWeight="SemiBold"
+                                            Width="150" />
+                                        <TextBlock 
+                                            Text="{Binding ProductCount}" 
+                                            FontSize="16"
+                                            FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Grid>
-
-    </Grid>
+    </ScrollViewer>
 </Page>
