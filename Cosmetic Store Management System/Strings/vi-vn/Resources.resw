@@ -513,4 +513,64 @@
 	<data name="AnalyticsPage_RevenueChartCaption.Text" xml:space="preserve">
 		<value>Biểu đồ doanh thu theo tháng</value>
 	</data>
+	<data name="OrderListPage_SearchBox.Text" xml:space="preserve">
+    <value>Nhập Tên hoặc Số điện thoại khách hàng</value>
+  </data>
+	<data name="OrderListPage_SearchButton.Content" xml:space="preserve">
+    <value>Tìm</value>
+  </data>
+	<data name="OrderListPage_FilterButton.Content" xml:space="preserve">
+    <value>Lọc</value>
+  </data>
+	<data name="OrderListPage_ClearFilterButton.Content" xml:space="preserve">
+    <value>Xóa Lọc</value>
+  </data>
+	<data name="OrderListPage_OrderTime.Text" xml:space="preserve">
+    <value>Thời gian đặt hàng:</value>
+  </data>
+	<data name="OrderListPage_Total.Text" xml:space="preserve">
+    <value>Tổng cộng:</value>
+  </data>
+	<data name="OrderListPage_CusName.Text" xml:space="preserve">
+    <value>Tên khách hàng:</value>
+  </data>
+	<data name="OrderListPage_CusPhone.Text" xml:space="preserve">
+    <value>Số điện thoại khách hàng:</value>
+  </data>
+	<data name="OrderListPage_OrderDetailsDialog.Title" xml:space="preserve">
+    <value>Chi tiết đơn hàng</value>
+  </data>
+	<data name="OrderListPage_OrderDetailsDialog.CloseButtonText" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+	<data name="OrderListPage_OrderID.Text" xml:space="preserve">
+    <value>ID đơn hàng:</value>
+  </data>
+	<data name="OrderListPage_SubTotal.Text" xml:space="preserve">
+    <value>Tổng tiền hàng:</value>
+  </data>	
+	<data name="OrderListPage_Discount.Text" xml:space="preserve">
+    <value>Giảm giá:</value>
+  </data>
+	<data name="OrderListPage_SaleTax.Text" xml:space="preserve">
+    <value>Thuế:</value>
+  </data>
+	<data name="OrderListPage_OrderDetails.Text" xml:space="preserve">
+    <value>Chi tiết đơn hàng</value>
+  </data>
+	<data name="OrderListPage_Quantity.Text" xml:space="preserve">
+    <value>Số lượng:</value>
+  </data>
+	<data name="OrderListPage_Price.Text" xml:space="preserve">
+    <value>Giá:</value>
+  </data>
+	<data name="OrderListPage_StartDate.Text" xml:space="preserve">
+    <value>Ngày Bắt đầu</value>
+  </data>
+	<data name="OrderListPage_EndDate.Text" xml:space="preserve">
+    <value>Ngày Kết thúc</value>
+  </data>
+	<data name="Shell_OrderList.Content" xml:space="preserve">
+    <value>Danh sách đơn hàng</value>
+  </data>
 </root>

@@ -109,6 +109,7 @@ public sealed partial class OrderListPage : Page
             SelectedOrder = order;
             ViewModel.SelectedOrder = order;
             OrderDetailsDialog.DataContext = SelectedOrder;
+            ViewModel.UpdateExtraOrderList();
             await OrderDetailsDialog.ShowAsync();
         }
     }

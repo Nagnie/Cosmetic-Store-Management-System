@@ -54,7 +54,7 @@ public partial class OrderListViewModel : ObservableRecipient
                 _selectedOrder = value;
                 OnPropertyChanged(nameof(SelectedOrder));
                 LoadOrderDetails();
-                //UpdateExtraOrderList();
+                UpdateExtraOrderList();
             }
         }
     }
@@ -67,6 +67,11 @@ public partial class OrderListViewModel : ObservableRecipient
         {
             IOrderDetailDAO orderDetailDao = new SQLOrderDetailDAO();
             var items = orderDetailDao.GetOrderDetails(SelectedOrder.ID);
+
+            foreach (var item in items)
+            {
+                OrderDetails.Add(item); // Ensure this is being populated correctly.
+            }
 
             SelectedOrder.Details = items; // Optional, if the Order class tracks its details.
         }
@@ -85,7 +90,7 @@ public partial class OrderListViewModel : ObservableRecipient
             ExtraOrderLists.Add(new ExtraOrderListViewModel
             {
                 OrderDetail = orderDetail,
-                Cosmetic = orderDetail.Cosmetic ?? new Cosmetic { Name = "Unknown", ImageData = null  }
+                Cosmetic = orderDetail.Cosmetic 
             });
         }
     }
