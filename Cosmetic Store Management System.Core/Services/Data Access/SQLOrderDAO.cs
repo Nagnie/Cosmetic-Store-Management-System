@@ -191,18 +191,18 @@ public class SQLOrderDAO : IOrderDAO
             }
             Order order = new Order()
             {
-                ID = Convert.ToInt32(reader["order_id"]),        
+                ID = Convert.ToInt32(reader["order_id"]),
                 Customer = new Customer
                 {
                     ID = reader["customer_id"] != DBNull.Value ? Convert.ToInt32(reader["customer_id"]) : 0,
                     Name = reader["customer_name"] != DBNull.Value ? reader["customer_name"].ToString() : "Unknown",
                     Phone = reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "Unknown",
                 },
-                SubTotal = Convert.ToInt32(reader["subtotal"]),  
-                Discount = Convert.ToInt32(reader["discount"]),  
-                SaleTax = Convert.ToInt32(reader["sale_tax"]),   
-                Total = Convert.ToInt32(reader["total"]),        
-                OrderTime = (DateTime)reader["order_date"]       
+                SubTotal = Convert.ToInt32(reader["subtotal"]),
+                Discount = Convert.ToInt32(reader["discount"]),
+                SaleTax = Convert.ToInt32(reader["sale_tax"]),
+                Total = Convert.ToInt32(reader["total"]),
+                OrderTime = (DateTime)reader["order_date"]
             };
 
 
@@ -324,5 +324,30 @@ public class SQLOrderDAO : IOrderDAO
                 connection.Close();
             }
         }
+    }
+
+    public List<(string name, long total)> GetTop5MostRevenueCustomers()
+    {
+
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT cu.customer_name, SUM(o.total) as total
+            FROM "ORDERS" o
+            LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
+            GROUP BY cu.customer_name
+            ORDER BY total DESC
+            LIMIT 5
+        """;
+        using var reader = command.ExecuteReader();
+        List<(string name, long total)> top5Customers = [];
+        while (reader.Read())
+        {
+            top5Customers.Add((reader["customer_name"].ToString(), (long)reader["total"]));
+        }
+        connection.Close();
+        return top5Customers;
     }
 }

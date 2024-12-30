@@ -130,6 +130,7 @@ public partial class AnalyticsViewModel : ObservableObject
         CreateCategoryChart();
         CreateManufacturerChart();
         LoadTopProducts();
+        LoadTopCustomers();
     }
 
     private void CreateRevenueChart()
@@ -351,6 +352,35 @@ public partial class AnalyticsViewModel : ObservableObject
         IOrderDetailDAO dao = new SQLOrderDetailDAO();
         List<(string name, long total)> products = dao.GetTop5MostPurchasedProducts();
         TopProducts = products.Select(p => new TopProductsLegend
+        {
+            Name = p.name,
+            Total = p.total
+        }).ToList();
+
+    }
+
+    public class TopCustomersLegend
+    {
+        public string Name
+        {
+            get; set;
+        }
+        public long Total
+        {
+            get; set;
+        }
+    }
+
+    public List<TopCustomersLegend> TopCustomers
+    {
+        get; set;
+    }
+
+    private void LoadTopCustomers()
+    {
+        IOrderDAO dao = new SQLOrderDAO();
+        List<(string name, long total)> customers = dao.GetTop5MostRevenueCustomers();
+        TopCustomers = customers.Select(p => new TopCustomersLegend
         {
             Name = p.name,
             Total = p.total

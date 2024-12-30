@@ -19,14 +19,14 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
                 <RowDefinition Height="480"/>
-                <RowDefinition Height="400"/>
-                <RowDefinition Height="500"/>
+                <RowDefinition Height="380"/>
+                <RowDefinition Height="470"/>
             </Grid.RowDefinitions>
             <Grid 
-            HorizontalAlignment="Left" 
-            VerticalAlignment="Top" 
-            Margin="0,5,0,0"
-            Grid.Row="0">
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="0,5,0,0"
+                Grid.Row="0">   
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -37,7 +37,7 @@
                 <!-- Today's order -->
                 <StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                     <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
-                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <StackPanel HorizontalAlignment="Center" Width="160" Padding="7">
                             <TextBlock Text="Today's order" FontSize="16" x:Uid="OverviewsPage_TodayOrderLabel"/>
                             <TextBlock Text="{x:Bind ViewModel.TodayOrderCount}" 
                            FontSize="32" 
@@ -49,7 +49,7 @@
                 <!-- Last week's order -->
                 <StackPanel Grid.Column="1" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                     <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorSecondaryBrush}">
-                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <StackPanel HorizontalAlignment="Center" Width="160" Padding="7">
                             <TextBlock Text="Last week's order" FontSize="16" x:Uid="OverviewsPage_LastWeekOrderLabel"/>
                             <TextBlock Text="{x:Bind ViewModel.LastWeekOrderCount}"
                            FontSize="32" 
@@ -61,7 +61,7 @@
                 <!-- Stock left -->
                 <StackPanel Grid.Column="2" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                     <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorTertiaryBrush}">
-                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <StackPanel HorizontalAlignment="Center" Width="160" Padding="7">
                             <TextBlock Text="Stock left" FontSize="16" x:Uid="OverviewsPage_StockLeftLabel"/>
                             <TextBlock Text="{x:Bind ViewModel.InStockCount}" 
                            FontSize="32" 
@@ -73,7 +73,7 @@
                 <!-- Running out item -->
                 <StackPanel Grid.Column="3" HorizontalAlignment="Center" Margin="0, 0, 30, 0">
                     <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAcrylicInAppFillColorDefaultBrush}">
-                        <StackPanel HorizontalAlignment="Center" Width="150" Padding="7">
+                        <StackPanel HorizontalAlignment="Center" Width="160" Padding="7">
                             <TextBlock Text="Running out item" FontSize="16" x:Uid="OverviewsPage_RunningOutLabel"/>
                             <TextBlock Text="{x:Bind ViewModel.OutOfStockCount}" 
                            FontSize="32" 
@@ -107,8 +107,8 @@
                 Grid.Row="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
 
                     <StackPanel 
@@ -120,7 +120,7 @@
                         <ListView ItemsSource="{Binding TopProducts}" Margin="15, 10, 15, 10">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="15, 0, 15, 0">
+                                    <Grid Margin="5, 0, 5, 0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="7*"/>
                                             <ColumnDefinition Width="*"/>
@@ -145,14 +145,14 @@
                         Grid.Column="1" 
                         BorderThickness="2" CornerRadius="15"
                         BorderBrush="{ThemeResource AccentAcrylicInAppFillColorDefaultBrush}" 
-                        Margin="20, 40, 20, 15">
+                        Margin="20, 40, 25, 15">
                         <TextBlock Text="Top 5 Customers" FontSize="24" FontWeight="Bold" Margin="0, 30, 0, 15" HorizontalAlignment="Center" />
-                        <ListView ItemsSource="{Binding TopProducts}" Margin="15, 10, 15, 10">
+                        <ListView ItemsSource="{Binding TopCustomers}" Margin="15, 10, 15, 10">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="15, 0, 15, 0">
+                                    <Grid Margin="5, 0, 5, 0">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock 
@@ -161,7 +161,7 @@
                                             Margin="0,0,0,0" 
                                             HorizontalAlignment="Left"/>
                                         <TextBlock 
-                                            Text="{Binding Total }" 
+                                            Text="{Binding Total}" 
                                             FontSize="16" Grid.Column="1"
                                             Margin="15,0,0,0" 
                                             HorizontalAlignment="Right"/>
