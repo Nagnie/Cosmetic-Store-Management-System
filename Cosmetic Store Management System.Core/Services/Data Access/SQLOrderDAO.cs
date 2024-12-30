@@ -31,7 +31,7 @@ public class SQLOrderDAO : IOrderDAO
         return orderID;
     }
 
-    public Tuple<List<Order>, int> GetOrdersByPhoneNumber(string phoneNumber, int page, int rowsPerPage)
+    public Tuple<List<Order>, int> GetOrders(int page, int rowsPerPage, DateTime? startDate = null, DateTime? endDate = null, string searchString = null)
     {
         if (page < 1) page = 1;
         List<Order> orders = new List<Order>();
@@ -41,84 +41,33 @@ public class SQLOrderDAO : IOrderDAO
         using var command = new NpgsqlCommand();
         command.Connection = connection;
 
-        // Truy vấn thêm điều kiện lọc theo số điện thoại
-        command.CommandText = $"""
-       SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
-       FROM "ORDERS" o
-       LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
-       WHERE cu.phone = @PhoneNumber
-       {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
-    """;
+        // Build the query dynamically based on parameters
+        var whereClauses = new List<string>();
 
-        // Thêm tham số số điện thoại
-        command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-
-        // Thêm tham số phân trang nếu có
-        if (rowsPerPage > 0)
+        if (startDate.HasValue && endDate.HasValue)
         {
-            command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
-            command.Parameters.AddWithValue("@Take", rowsPerPage);
+            whereClauses.Add("o.order_date BETWEEN @StartDate AND @EndDate");
+            command.Parameters.AddWithValue("@StartDate", startDate.Value);
+            command.Parameters.AddWithValue("@EndDate", endDate.Value);
         }
 
-        NpgsqlDataReader reader = command.ExecuteReader();
-        int count = -1;
-
-        while (reader.Read())
+        if (!string.IsNullOrWhiteSpace(searchString))
         {
-            if (count == -1)
-            {
-                count = (int)(long)(reader["TotalOrders"]);
-            }
-
-            // Tạo đối tượng Order
-            Order order = new Order()
-            {
-                ID = Convert.ToInt32(reader["order_id"]),
-                Customer = new Customer
-                {
-                    ID = reader["customer_id"] != DBNull.Value ? Convert.ToInt32(reader["customer_id"]) : 0,
-                    Name = reader["customer_name"] != DBNull.Value ? reader["customer_name"].ToString() : "Unknown",
-                    Phone = reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "Unknown",
-                },
-                SubTotal = Convert.ToInt32(reader["subtotal"]),
-                Discount = Convert.ToInt32(reader["discount"]),
-                SaleTax = Convert.ToInt32(reader["sale_tax"]),
-                Total = Convert.ToInt32(reader["total"]),
-                OrderTime = (DateTime)reader["order_date"]
-            };
-
-            orders.Add(order);
+            whereClauses.Add("(cu.customer_name ILIKE @SearchString OR cu.phone ILIKE @SearchString)");
+            command.Parameters.AddWithValue("@SearchString", $"%{searchString}%");
         }
 
-        connection.Close();
-        return new Tuple<List<Order>, int>(orders, count);
-    }
+        string whereClause = whereClauses.Count > 0 ? "WHERE " + string.Join(" AND ", whereClauses) : "";
 
-
-    public Tuple<List<Order>, int> GetOrdersByDate(DateTime startDate, DateTime endDate, int page, int rowsPerPage)
-    {
-        if (page < 1) page = 1;
-        List<Order> orders = new List<Order>();
-        NpgsqlConnection connection = DBConnection.GetConnection();
-        connection.Open();
-
-        using var command = new NpgsqlCommand();
-        command.Connection = connection;
-
-        // Adjusted query to include filtering by date range
         command.CommandText = $"""
-       SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
-       FROM "ORDERS" o
-       LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
-       WHERE o.order_date BETWEEN @StartDate AND @EndDate
-       {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
-    """;
+            SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
+            FROM "ORDERS" o
+            LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
+            {whereClause}
+            {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
+        """;
 
-        // Add parameters for date range
-        command.Parameters.AddWithValue("@StartDate", startDate);
-        command.Parameters.AddWithValue("@EndDate", endDate);
-
-        // Add parameters for pagination if applicable
+        // Add parameters for pagination
         if (rowsPerPage > 0)
         {
             command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
@@ -159,61 +108,6 @@ public class SQLOrderDAO : IOrderDAO
         return new Tuple<List<Order>, int>(orders, count);
     }
 
-    public Tuple<List<Order>, int> GetOrders(int page, int rowsPerPage)
-    {
-        if (page < 1) page = 1;
-        List<Order> orders = new List<Order>();
-        NpgsqlConnection connection = DBConnection.GetConnection();
-        connection.Open();
-
-        using var command = new NpgsqlCommand();
-        command.Connection = connection;
-        command.CommandText = $"""
-           SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
-           FROM "ORDERS" o LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id         
-           {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
-        """;
-
-        if (rowsPerPage > 0)
-        {
-            command.Parameters.AddWithValue("@Skip", (page - 1) * rowsPerPage);
-            command.Parameters.AddWithValue("@Take", rowsPerPage);
-        }
-
-        NpgsqlDataReader reader = command.ExecuteReader();
-        int count = -1;
-
-        while (reader.Read())
-        {
-            if (count == -1)
-            {
-                count = (int)(Int64)(reader["TotalOrders"]);
-            }
-            Order order = new Order()
-            {
-                ID = Convert.ToInt32(reader["order_id"]),        
-                Customer = new Customer
-                {
-                    ID = reader["customer_id"] != DBNull.Value ? Convert.ToInt32(reader["customer_id"]) : 0,
-                    Name = reader["customer_name"] != DBNull.Value ? reader["customer_name"].ToString() : "Unknown",
-                    Phone = reader["phone"] != DBNull.Value ? reader["phone"].ToString() : "Unknown",
-                },
-                SubTotal = Convert.ToInt32(reader["subtotal"]),  
-                Discount = Convert.ToInt32(reader["discount"]),  
-                SaleTax = Convert.ToInt32(reader["sale_tax"]),   
-                Total = Convert.ToInt32(reader["total"]),        
-                OrderTime = (DateTime)reader["order_date"]       
-            };
-
-
-            orders.Add(order);
-        }
-
-        connection.Close();
-        return new Tuple<List<Order>, int>(
-            orders, count
-        );
-    }
     public Order GetOrder(int ID)
     {
         Order order = null;

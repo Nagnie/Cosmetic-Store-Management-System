@@ -18,8 +18,6 @@ public class Order
 
     public int SubTotal { get; set; }
 
-    public int Tax { get; set; }
-
     public int Total { get; set; }
 
     public int Discount { get; set; }
