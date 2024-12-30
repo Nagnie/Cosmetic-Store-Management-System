@@ -17,9 +17,8 @@ public interface IOrderDAO
 
     public Tuple<List<Order>, int> GetOrdersByPhoneNumber(string phoneNumber, int page, int rowsPerPage);
 
-    public Tuple<List<Order>, int> GetOrdersByDate(DateTime startDate, DateTime endDate, int page, int rowsPerPage);
-
-    Tuple<List<Order>, int> GetOrders(int page, int rowsPerPage);
+    
+    Tuple<List<Order>, int> GetOrders(int page, int rowsPerPage, DateTime? startDate = null, DateTime? endDate = null, string searchString = null);
 
     int GetTodayOrderCount();
     int GetLastWeekOrderCount();

@@ -17,6 +17,8 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 using Windows.Storage;
 using System.ComponentModel;
 using Microsoft.UI.Xaml.Media.Imaging;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 
 namespace Cosmetic_Store_Management_System.ViewModels;
@@ -25,7 +27,6 @@ public partial class OrderListViewModel : ObservableRecipient
 {
     //public ObservableCollection<Order> Orders { get; set; } = new ObservableCollection<Order>();
     public ObservableCollection<OrderDetail> OrderDetails { get; set; } = new ObservableCollection<OrderDetail>();
-
     public ObservableCollection<ExtraOrderListViewModel> ExtraOrderLists
     {
         get; set;
@@ -57,22 +58,7 @@ public partial class OrderListViewModel : ObservableRecipient
             }
         }
     }
-
-    //private void PopulateOrderDetails()
-    //{
-    //    OrderDetails.Clear();
-    //    foreach (var order in Orders)
-    //    {
-    //        IOrderDetailDAO orderDetailDao = new SQLOrderDetailDAO();
-    //        var details = orderDetailDao.GetOrderDetails(order.ID);
-    //        foreach (var detail in details)
-    //        {
-    //            OrderDetails.Add(detail);
-    //        }
-    //    }
-    //}
-
-    
+            
     public void LoadOrderDetails()
     {
         OrderDetails.Clear();
@@ -88,9 +74,6 @@ public partial class OrderListViewModel : ObservableRecipient
 
     public OrderListViewModel()
     {
-        RowsPerPage = 10;
-        CurrentPage = 1;
-
         LoadData();
     }
 
@@ -109,45 +92,30 @@ public partial class OrderListViewModel : ObservableRecipient
 
     public ObservableCollection<PageInfo> PageInfos { get; set; } = new ObservableCollection<PageInfo>();
 
-    private PageInfo _selectedPageInfoItem;
-    public PageInfo SelectedPageInfoItem
+    public PageInfo CurrentPageInfo
     {
-        get => _selectedPageInfoItem;
-        set
-        {
-            _selectedPageInfoItem = value;
-            OnPropertyChanged(nameof(SelectedPageInfoItem));
-        }
-    }
-    public int CurrentPage  {   get; set;   }
-    public int TotalPages   {   get; set;   }
+        get; set;
+    } = new PageInfo();
+    public bool EnablePrev => CurrentPageInfo != null && CurrentPage > 1;
+    public bool EnableNext => CurrentPageInfo != null && CurrentPage < CurrentPageInfo.Total;
+    public int CurrentPage  {   get; set;   } = 1;
+    public int TotalPages   {   get; set;   } = 0;
     public int TotalItems { get; set; } = 0;
-    public int RowsPerPage  {   get; set;   }
 
-    public void GoToNextPage()
-    {
-        if (CurrentPage < TotalPages)
-        {
-            CurrentPage++;
-            LoadData();
-        }
-    }
-
-    public void GoToPreviousPage()
-    {
-        if (CurrentPage > 1)
-        {
-            CurrentPage--;
-            LoadData();
-        }
-    }
-
+    public const int ItemsPerPage = 12;
     public void GoToPage(int page)
     {
         CurrentPage = page;
         LoadData();
     }
-
+    public void GoToNextPage()
+    {
+        CurrentPageInfo = PageInfos.FirstOrDefault(p => p.Page == CurrentPage + 1);
+    }
+    public void GoToPrevPage()
+    {
+        CurrentPageInfo = PageInfos.FirstOrDefault(p => p.Page == CurrentPage - 1);
+    }
     public string Info
     {
         get
@@ -156,111 +124,84 @@ public partial class OrderListViewModel : ObservableRecipient
 
             if (localSettings.Values["appLanguage"].Equals("vi-VN"))
             {
-                return $"Hiển thị {Orders.Count}/{RowsPerPage} trong tổng số {TotalItems} đơn hàng";
+                return $"Hiển thị {Orders.Count}/{ItemsPerPage} trong tổng số {TotalItems} đơn hàng";
             }
 
-            return $"Displaying {Orders.Count}/{RowsPerPage} of total {TotalItems} order(s)";
+            return $"Displaying {Orders.Count}/{ItemsPerPage} of total {TotalItems} order(s)";
         }
     }
 
-    private bool _filterApplied = false;
-    private DateTime _filterStartDate;
-    private DateTime _filterEndDate;
-
+    public DateTime? StartDateFilter
+    {
+        get; set;
+    }
+    public DateTime? EndDateFilter
+    {
+        get; set;
+    }
     public void FilterOrdersByDate(DateTime startDate, DateTime endDate)
     {
-        _filterApplied = true;
-        _filterStartDate = startDate;
-        _filterEndDate = endDate;
+        StartDateFilter = startDate;
+        EndDateFilter = endDate;
+        CurrentPage = 1;
         LoadData();
     }
 
+    
     public void ClearFilters()
     {
-        _filterApplied = false;
+        SearchString  = "";
+
+        StartDateFilter = null;
+        EndDateFilter = null;
+
+
         LoadData();
     }
-
     public void FilterOrdersByPhone(string phone)
     {
         
     }
+    public string SearchString
+    {
+        get; set;
+    } = "";
 
     public void LoadData()
     {
         IOrderDAO orderDao = new SQLOrderDAO();
-        Orders.Clear();
+        
+        var (items, count) = orderDao.GetOrders(CurrentPage, ItemsPerPage, StartDateFilter, EndDateFilter, SearchString);
 
-        var (items, count) = _filterApplied
-            ? orderDao.GetOrdersByDate(_filterStartDate, _filterEndDate, CurrentPage, RowsPerPage)
-            : orderDao.GetOrders(CurrentPage, RowsPerPage);
+        Orders.Clear();
 
         foreach (var item in items)
         {
             Orders.Add(item);
         }
 
-        if (!_filterApplied && count != TotalItems)
-        {
-            // Recreate pagination when not filtering
-            TotalItems = count;
-            TotalPages = (TotalItems / RowsPerPage) + ((TotalItems % RowsPerPage) == 0 ? 0 : 1);
+        TotalItems = count;
 
+        var totalPage = (count % ItemsPerPage == 0)
+            ? count / ItemsPerPage
+            : count / ItemsPerPage + 1;
+
+        if (TotalPages != totalPage)
+        {
+            TotalPages = totalPage;
             PageInfos.Clear();
-            for (var i = 1; i <= TotalPages; i++)
+
+            for (var i = 0; i < totalPage; i++)
             {
-                PageInfos.Add(new PageInfo { Page = i, Total = TotalPages });
+                PageInfos.Add(new PageInfo
+                {
+                    Page = i + 1,
+                    Total = totalPage
+                });
             }
         }
 
-        SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
+        CurrentPageInfo = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
         OnPropertyChanged(nameof(Info));
-        OnPropertyChanged(nameof(TotalItems));
-        OnPropertyChanged(nameof(TotalPages));
-        OnPropertyChanged(nameof(CurrentPage));
     }
-
-
-    //public void LoadData()
-    //{
-    //    IOrderDAO orderDao = new SQLOrderDAO();
-    //    Orders.Clear();
-
-    //    var (items, count) = orderDao.GetOrders(
-    //        CurrentPage, RowsPerPage
-    //    );
-    //    foreach (var item in items) // Add new items
-    //    {
-    //        Orders.Add(item);
-    //    }
-
-    //    if (count != TotalItems)
-    //    { // Recreate PageInfos list
-    //        TotalItems = count;
-    //        TotalPages = (TotalItems / RowsPerPage) +
-    //            (((TotalItems % RowsPerPage) == 0) ? 0 : 1);
-
-    //        PageInfos.Clear();
-    //        for (var i = 1; i <= TotalPages; i++)
-    //        {
-    //            PageInfos.Add(new PageInfo
-    //            {
-    //                Page = i,
-    //                Total = TotalPages
-    //            });
-    //        }
-    //    }
-
-    //    SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
-    //    OnPropertyChanged(nameof(Info));
-    //    OnPropertyChanged(nameof(TotalItems));
-    //    OnPropertyChanged(nameof(TotalPages));
-    //    OnPropertyChanged(nameof(CurrentPage));
-
-    //    //// Populate OrderDetails (if applicable)
-    //    //PopulateOrderDetails();
-
-    //    //// Update ExtraOrderLists
-    //    //UpdateExtraOrderList();
-    //}
 }
