@@ -12,24 +12,30 @@ using Windows.Storage;
 namespace Cosmetic_Store_Management_System.ViewModels;
 public partial class CategoryViewModel : ObservableRecipient
 {
+    public Category Category
+    {
+        get; set;
+    } = new Category();
+
     public ObservableCollection<Category> Categories
     {
         get; set;
     } = new ObservableCollection<Category>();
 
-    public ICategoryDAO dao = new SQLCategoryDAO();
+    public ICategoryDAO dao
+    {
+        get;
+    } = new SQLCategoryDAO();
 
     public string Info
     {
         get
         {
             var localSettings = ApplicationData.Current.LocalSettings;
-
             if (localSettings.Values["appLanguage"].Equals("vi-VN"))
             {
                 return $"Hiển thị {Categories.Count}/{RowsPerPage} trong tổng số {TotalItems} sản phẩm";
             }
-
             return $"Displaying {Categories.Count}/{RowsPerPage} of total {TotalItems} item(s)";
         }
     }
@@ -128,5 +134,40 @@ public partial class CategoryViewModel : ObservableRecipient
         SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 
         OnPropertyChanged(nameof(Info));
+    }
+
+    public Tuple<bool, string> AddCategory()
+    {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
+        if (Category.Name == null || Category.Name.Length == 0)
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Please enter manufacturer name"
+                    : "Vui lòng nhập tên danh mục!");
+        }
+
+        var founded = dao.GetCategoryByName(Category.Name);
+
+        if (founded != null)
+        {
+            return new Tuple<bool, string>(
+                 false,
+                 language.Equals("en-US")
+                     ? "Category already exists"
+                     : "Tên danh mục đã tồn tại!"
+                 );
+        }
+
+        dao.AddCategory(Category);
+
+        return new Tuple<bool, string>(
+            true,
+            language.Equals("en-US")
+                ? "The category has been inserted successfully!"
+                : "Danh mục đã được lưu thành công!"
+        );
     }
 }

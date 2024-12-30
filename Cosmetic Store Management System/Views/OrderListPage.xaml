@@ -20,40 +20,51 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Hàng cho bộ lọc -->
             <RowDefinition Height="*"/>
-            <!-- Hàng cho GridView -->
             <RowDefinition Height="Auto"/>
-            <!-- Hàng cho điều hướng phân trang -->
         </Grid.RowDefinitions>
 
         <!-- Bộ lọc -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top">
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBox x:Name="PhoneSearchBox" Width="200" PlaceholderText="Enter Customer's Phone" Margin="5"/>
+                <TextBox x:Name="SearchBox" 
+                         Width="250" 
+                         PlaceholderText="Enter Customer's Name or Phone" 
+                         Margin="5"
+                         x:Uid="OrderListPage_SearchBox"/>
                 <Button 
                     Style="{StaticResource AccentButtonStyle}"
                     Background="{StaticResource AccentFillColorTertiaryBrush}"
-                    Content="Search" Click="SearchButton_Click" Width="100" Margin="5"/>
+                    Content="Search" Click="SearchButton_Click" Width="100" Margin="5"
+                    x:Uid="OrderListPage_SearchButton"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBlock Text="Start Date:" VerticalAlignment="Center" Margin="5" />
-                <DatePicker x:Name="StartDatePicker" Width="120" Margin="0,0,5,0" ToolTipService.ToolTip="Select start date"/>
+                <TextBlock Text="Start Date:" VerticalAlignment="Center" Margin="5" x:Uid="OrderListPage_StartDate"/>
+                <DatePicker x:Name="StartDatePicker" 
+                            Width="120" 
+                            Margin="0,0,5,0" />
 
-                <TextBlock Text="End Date:" VerticalAlignment="Center" Margin="5" />
-                <DatePicker x:Name="EndDatePicker" Width="120" Margin="0,0,5,0" ToolTipService.ToolTip="Select end date" />
+                <TextBlock Text="End Date:" VerticalAlignment="Center" Margin="5" x:Uid="OrderListPage_EndDate"/>
+                <DatePicker x:Name="EndDatePicker" 
+                            Width="120" 
+                            Margin="0,0,5,0" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="10">
                 <Button
                     Style="{StaticResource AccentButtonStyle}"
                     Background="{StaticResource AccentFillColorTertiaryBrush}"
-                    Content="Filter" Click="FilterButton_Click" Width="100" Margin="5" />
+                    Content="Filter" Click="FilterButton_Click" Width="100" Margin="5" 
+                    x:Uid="OrderListPage_FilterButton"/>
                 <Button 
                     Style="{StaticResource AccentButtonStyle}"
                     Background="{StaticResource AccentFillColorTertiaryBrush}"
-                    Content="Clear Filter" Click="ClearFilterButton_Click" Width="100" Margin="5" />
+                    Content="Clear Filter" 
+                    Click="ClearFilterButton_Click"
+                    Width="100" 
+                    Margin="5" 
+                    x:Uid="OrderListPage_ClearFilterButton"/>
             </StackPanel>
         </StackPanel>
 
@@ -69,46 +80,60 @@
             ItemClick="OrderGridView_ItemClick">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local2:Order">
-                    <Grid Width="300" Height="150" Padding="10" Background="{ThemeResource ListViewItemBackground}">
+                    <StackPanel CornerRadius="12" 
+                        Width="300" 
+                        Height="150" 
+                        Padding="16, 16, 16, 16"
+                        BorderBrush="{StaticResource AccentFillColorTertiaryBrush}"
+                        BorderThickness="1">    
                         <StackPanel>
                             <TextBlock Text="{x:Bind ID}" FontSize="18" FontWeight="Bold"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Order Time:" FontWeight="Bold"/>
+                                <TextBlock Text="Order Time:" FontWeight="Bold" x:Uid="OrderListPage_OrderTime"/>
                                 <TextBlock Text="{x:Bind OrderTime}" FontSize="14" Foreground="Gray" Margin="5,0,0,0"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Total:" FontWeight="Bold"/>
+                                <TextBlock Text="Total:" FontWeight="Bold" x:Uid="OrderListPage_Total"/>
                                 <TextBlock Text="{x:Bind Total, Converter={StaticResource currencyConverter}}" FontSize="14" FontWeight="SemiBold" Margin="5,0,0,0"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Customer's Name:" FontWeight="Bold"/>
+                                <TextBlock Text="Customer's Name:" FontWeight="Bold" x:Uid="OrderListPage_CusName"/>
                                 <TextBlock Text="{x:Bind Customer.Name}" FontSize="14" FontWeight="SemiBold" Margin="5,0,0,0"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Customer's Phone:" FontWeight="Bold"/>
+                                <TextBlock Text="Customer's Phone:" FontWeight="Bold" x:Uid="OrderListPage_CusPhone"/>
                                 <TextBlock Text="{x:Bind Customer.Phone}" FontSize="14" FontWeight="SemiBold" Margin="5,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
-                    </Grid>
+                    </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
 
 
         <!-- Pagination controls -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
+        <StackPanel 
+            Grid.Row="2" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Bottom" 
+            Margin="10">
+            
             <TextBlock Name="infoTextBlock" 
                 Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
                 Margin="0,10,5,0"/>
+
             <Button 
-            Margin="5" 
-            Height="35" 
-            Name="previousButton" 
-            Click="previousButton_Click">
+                Margin="5" 
+                Height="35" 
+                Name="previousButton" 
+                Click="previousButton_Click"
+                IsEnabled="{x:Bind ViewModel.EnablePrev, Mode=OneWay}">
                 <FontIcon Glyph="&#xE973;" />
             </Button>
+            
             <ComboBox ItemsSource="{x:Bind ViewModel.PageInfos, Mode=OneWay}"
-                SelectedItem="{x:Bind ViewModel.SelectedPageInfoItem, Mode=TwoWay}"
+                SelectedItem="{x:Bind ViewModel.CurrentPageInfo, Mode=TwoWay}"
                 SelectionChanged="pagesComboBox_SelectionChanged"
                 Margin="5" Name="pagesComboBox" Width="80" Height="35">
                 <ComboBox.ItemTemplate>
@@ -119,51 +144,77 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Button
-            Margin="5" 
-            Height="35" 
-            Name="nextButton" 
-            Click="nextButton_Click">
+            
+            <Button Name="nextButton"
+                Margin="5" 
+                Height="35"                  
+                Click="nextButton_Click"
+                IsEnabled="{x:Bind ViewModel.EnableNext, Mode=OneWay}">
                 <FontIcon Glyph="&#xE974;" />
             </Button>
+            
         </StackPanel>
 
         <!-- Order Details Dialog -->
         <ContentDialog
             x:Name="OrderDetailsDialog"
+            x:Uid="OrderListPage_OrderDetailsDialog"
             Title="Order Details"
             RequestedTheme="Default"
-            CloseButtonText="Cancel">
+            CloseButtonText="Cancel"
+            Width="400">
             <ScrollViewer>
                 <StackPanel>
-                    <TextBlock Text="Order ID:" FontWeight="Bold"/>
+                    <TextBlock Text="Order ID:" FontWeight="Bold" x:Uid="OrderListPage_OrderID"/>
                     <TextBlock Text="{Binding ID}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Order Time:" FontWeight="Bold"/>
+                    <TextBlock Text="Order Time:" FontWeight="Bold" x:Uid="OrderListPage_OrderTime"/>
                     <TextBlock Text="{Binding OrderTime}" Margin="0,0,0,10"/>
-                    <TextBlock Text="SubTotal:" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding SubTotal, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Tax:" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Tax, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Discount:" FontWeight="Bold"/>
+                    <TextBlock Text="SubTotal:" FontWeight="Bold" x:Uid="OrderListPage_SubTotal"/>
+                    <TextBlock Text="{Binding SubTotal, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10" />
+                    <TextBlock Text="Discount:" FontWeight="Bold" x:Uid="OrderListPage_Discount"/>
                     <TextBlock Text="{Binding Discount, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10"/>
-                    <TextBlock Text="SaleTax:" FontWeight="Bold"/>
+                    <TextBlock Text="SaleTax:" FontWeight="Bold" x:Uid="OrderListPage_SaleTax"/>
                     <TextBlock Text="{Binding SaleTax, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Total:" FontWeight="Bold"/>
+                    <TextBlock Text="Total:" FontWeight="Bold" x:Uid="OrderListPage_Total"/>
                     <TextBlock Text="{Binding Total, Converter={StaticResource currencyConverter}}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Customer's Name:" FontWeight="Bold"/>
+                    <TextBlock Text="Customer's Name:" FontWeight="Bold" x:Uid="OrderListPage_CusName"/>
                     <TextBlock Text="{Binding Customer.Name}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Customer's Phone:" FontWeight="Bold"/>
+                    <TextBlock Text="Customer's Phone:" FontWeight="Bold" x:Uid="OrderListPage_CusPhone"/>
                     <TextBlock Text="{Binding Customer.Phone}" Margin="0,0,0,10"/>
-                    <TextBlock Text="Order Details:" FontWeight="Bold" Margin="0,10,0,5"/>
-                    <ListView ItemsSource="{Binding Details}">
+                    <TextBlock Text="Order Details:" FontWeight="Bold" Margin="0,10,0,10" x:Uid="OrderListPage_OrderDetails"/>
+                    <ListView ItemsSource="{x:Bind ViewModel.ExtraOrderLists, Mode=OneWay}">
                         <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="local2:OrderDetail">
-                                <StackPanel Orientation="Horizontal">
-                                    <!--<Image Source="{x:Bind Image}" Width="50" Height="50"/>-->
-                                    <TextBlock Text="{x:Bind Cosmetic.Name}" FontWeight="SemiBold" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{x:Bind Quantity}" Margin="0,0,10,0"/>
-                                    <TextBlock Text="{x:Bind Cosmetic.Price, Converter={StaticResource currencyConverter}}"/>
-                                </StackPanel>
+                            <DataTemplate x:DataType="local3:ExtraOrderListViewModel">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"/>
+                                        <RowDefinition Height="25"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    
+                                    <Border CornerRadius="6" 
+                                                Grid.RowSpan="2" 
+                                                Grid.Column="0"
+                                                Margin="0, 0, 10, 0">
+                                            <Image Source="{x:Bind Image}" Width="50" Height="50" Stretch="UniformToFill"/>
+                                    </Border>
+                                    <TextBlock Text="{x:Bind Cosmetic.Name}" 
+                                                   FontWeight="SemiBold" 
+                                                   Margin="0,0,10,0"
+                                                   Grid.Row="0"
+                                                   Grid.Column="1"/>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                                        <TextBlock Text="Quantity:" FontWeight="SemiBold" Margin="0,0,8,0" x:Uid="OrderListPage_Quantity"/>
+                                        <TextBlock Text="{x:Bind OrderDetail.Quantity}" Margin="0,0,20,0"/>
+                                        <TextBlock Text="Price:" FontWeight="SemiBold" Margin="0,0,8,0" x:Uid="OrderListPage_Price"/>
+                                        <TextBlock Text="{x:Bind Cosmetic.Price, Converter={StaticResource currencyConverter}}" />
+                                    </StackPanel>
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

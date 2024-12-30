@@ -47,7 +47,7 @@ public sealed partial class OrderListPage : Page
 
     private void previousButton_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel.GoToPreviousPage();
+        ViewModel.GoToPrevPage();
     }
 
     bool init = false;
@@ -69,7 +69,7 @@ public sealed partial class OrderListPage : Page
     {
         var startDate = StartDatePicker.Date.Date;
         var endDate = EndDatePicker.Date.Date;
-
+        ViewModel.CurrentPage = 1;
         if (startDate <= endDate)
         {
             ViewModel.FilterOrdersByDate(startDate, endDate);
@@ -85,8 +85,6 @@ public sealed partial class OrderListPage : Page
         ViewModel.ClearFilters();
     }
 
-
-
     private async void ShowDialog(string title, string content)
     {
         var dialog = new ContentDialog
@@ -100,20 +98,9 @@ public sealed partial class OrderListPage : Page
 
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
-        string phone = PhoneSearchBox.Text;
-
-        if (!string.IsNullOrWhiteSpace(phone))
-        {
-            ViewModel.FilterOrdersByPhone(phone);
-        }
-        else
-        {
-            ShowDialog("Invalid Input", "Please enter a valid phone number.");
-        }
+        ViewModel.SearchString = SearchBox.Text.Length > 0 ? SearchBox.Text : "";
+        ViewModel.LoadData();
     }
-
-
-
 
     private async void OrderGridView_ItemClick(object sender, ItemClickEventArgs e)
     {
@@ -122,6 +109,7 @@ public sealed partial class OrderListPage : Page
             SelectedOrder = order;
             ViewModel.SelectedOrder = order;
             OrderDetailsDialog.DataContext = SelectedOrder;
+            ViewModel.UpdateExtraOrderList();
             await OrderDetailsDialog.ShowAsync();
         }
     }
