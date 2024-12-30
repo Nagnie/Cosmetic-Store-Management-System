@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Cosmetic_Store_Management_System.Core.Helpers;
 using Cosmetic_Store_Management_System.Core.Models;
 using Npgsql;
@@ -149,4 +150,34 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         command.ExecuteNonQuery();
         connection.Close();
     }
+
+    public List<(string name, long total)> GetTop5MostPurchasedProducts()
+    {
+        List<(string name, long total)> topProducts = new List<(string name, long total)>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT c.cosmetic_name, SUM(o.quantity) AS total_quantity
+            FROM "ORDER_DETAIL" o
+            JOIN "COSMETIC" c ON o.cosmetic_id = c.cosmetic_id
+            GROUP BY c.cosmetic_name
+            ORDER BY total_quantity DESC
+            LIMIT 5
+        """;
+
+        var reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+            topProducts.Add(((string)reader["cosmetic_name"], (long)reader["total_quantity"]));
+        }
+
+        connection.Close();
+        return topProducts;
+    }
+
+
 }

@@ -43,12 +43,12 @@ public class SQLOrderDAO : IOrderDAO
 
         // Truy vấn thêm điều kiện lọc theo số điện thoại
         command.CommandText = $"""
-       SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
-       FROM "ORDERS" o
-       LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
-       WHERE cu.phone = @PhoneNumber
-       {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
-    """;
+           SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
+           FROM "ORDERS" o
+           LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
+           WHERE cu.phone = @PhoneNumber
+           {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
+        """;
 
         // Thêm tham số số điện thoại
         command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);

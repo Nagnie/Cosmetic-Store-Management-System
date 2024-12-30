@@ -17,5 +17,6 @@ public sealed partial class AnalyticsPage : Page
     {
      
         this.InitializeComponent();
+        DataContext = ViewModel;
     }
 }

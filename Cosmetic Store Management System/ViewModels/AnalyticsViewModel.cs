@@ -8,6 +8,7 @@ using Windows.Storage;
 using System.Collections.Generic;
 using LiveChartsCore.SkiaSharpView.Extensions;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Cosmetic_Store_Management_System.ViewModels;
 
@@ -128,6 +129,7 @@ public partial class AnalyticsViewModel : ObservableObject
         LoadData();
         CreateCategoryChart();
         CreateManufacturerChart();
+        LoadTopProducts();
     }
 
     private void CreateRevenueChart()
@@ -157,7 +159,7 @@ public partial class AnalyticsViewModel : ObservableObject
         RevenueYAxis = [
             new Axis
             {
-                Name = language.Equals("en-US") 
+                Name = language.Equals("en-US")
                      ? "Sales Revenue (thousand VND)"
                      : "Doanh thu (nghìn VND)",
                 TextSize = 12,
@@ -327,4 +329,32 @@ public partial class AnalyticsViewModel : ObservableObject
         ManufacturerLegends = legends;
     }
 
+    public class TopProductsLegend
+    {
+        public string Name
+        {
+            get; set;
+        }
+        public long Total
+        {
+            get; set;
+        }
+    }
+
+    public List<TopProductsLegend> TopProducts
+    {
+        get; set;
+    }
+
+    private void LoadTopProducts()
+    {
+        IOrderDetailDAO dao = new SQLOrderDetailDAO();
+        List<(string name, long total)> products = dao.GetTop5MostPurchasedProducts();
+        TopProducts = products.Select(p => new TopProductsLegend
+        {
+            Name = p.name,
+            Total = p.total
+        }).ToList();
+
+    }
 }

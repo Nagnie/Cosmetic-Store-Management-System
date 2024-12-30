@@ -18,19 +18,15 @@
             </Grid.DataContext>
             <Grid.RowDefinitions>
                 <RowDefinition Height="160"/>
-                <RowDefinition Height="450"/>
+                <RowDefinition Height="480"/>
+                <RowDefinition Height="400"/>
                 <RowDefinition Height="500"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="7*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
             <Grid 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             Margin="0,5,0,0"
-            Grid.Row="0"
-            Grid.Column="0">
+            Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -89,7 +85,7 @@
 
             <!-- Revenue Chart -->
             <Grid BorderBrush="#EEEEEE"
-              Grid.Row="1" Grid.Column="0"
+              Grid.Row="1"
               BorderThickness="1"
               CornerRadius="12"
               Padding="16, 16, 16, 16">
@@ -108,38 +104,75 @@
             </Grid>
 
             <Grid
-            Grid.Column="1"
-            Grid.Row="0"
-            Grid.RowSpan="2">
+                Grid.Row="2">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                    <TextBlock 
-                    Text="Top 5" FontSize="30"
-                    Grid.Row="0" FontWeight="SemiBold"
-                    HorizontalAlignment="Center"/>
-                    
-                    <!-- Top 5 Product -->
-                    <TextBlock 
-                        Text="Product" FontWeight="SemiBold"
-                        Grid.Row="1" FontSize="20"
-                        HorizontalAlignment="Center"/>
+                    <StackPanel 
+                        Grid.Column="0" 
+                        BorderThickness="2" CornerRadius="15"
+                        BorderBrush="{ThemeResource AccentAcrylicInAppFillColorDefaultBrush}" 
+                        Margin="0, 40, 20, 15">
+                        <TextBlock Text="Top 5 Products" FontSize="24" FontWeight="Bold" Margin="0, 30, 0, 15" HorizontalAlignment="Center"/>
+                        <ListView ItemsSource="{Binding TopProducts}" Margin="15, 10, 15, 10">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="15, 0, 15, 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock 
+                                            Text="{Binding Name}" 
+                                            FontSize="16" Grid.Column="0"
+                                            Margin="0,0,0,0" 
+                                            HorizontalAlignment="Left"/>
+                                        <TextBlock 
+                                            Text="{Binding Total }" 
+                                            FontSize="16" Grid.Column="1"
+                                            Margin="15,0,0,0" 
+                                            HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
 
-                    <!-- Top 5 Customer -->
-                    <TextBlock 
-                        Text="Customer" FontWeight="SemiBold"
-                        Grid.Row="2" FontSize="20"
-                        HorizontalAlignment="Center"/>
+                    <StackPanel 
+                        Grid.Column="1" 
+                        BorderThickness="2" CornerRadius="15"
+                        BorderBrush="{ThemeResource AccentAcrylicInAppFillColorDefaultBrush}" 
+                        Margin="20, 40, 20, 15">
+                        <TextBlock Text="Top 5 Customers" FontSize="24" FontWeight="Bold" Margin="0, 30, 0, 15" HorizontalAlignment="Center" />
+                        <ListView ItemsSource="{Binding TopProducts}" Margin="15, 10, 15, 10">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="15, 0, 15, 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="7*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock 
+                                            Text="{Binding Name}" 
+                                            FontSize="16" Grid.Column="0"
+                                            Margin="0,0,0,0" 
+                                            HorizontalAlignment="Left"/>
+                                        <TextBlock 
+                                            Text="{Binding Total }" 
+                                            FontSize="16" Grid.Column="1"
+                                            Margin="15,0,0,0" 
+                                            HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
                 </Grid>
             </Grid>
-            <Grid Grid.Column="0"
-                  Grid.ColumnSpan="2"
-                  Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -191,7 +224,7 @@
                         Grid.Column="2" >
                     </lvc:PieChart>
 
-                    <StackPanel Grid.Column="3">
+                    <StackPanel Grid.Column="3" Margin="30, 130, 0, 0">
                         <ItemsControl ItemsSource="{Binding ManufacturerLegends}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
