@@ -14,6 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Cosmetic_Store_Management_System.Core.Models;
 using Cosmetic_Store_Management_System.ViewModels;
+using Windows.Storage;
 
 namespace Cosmetic_Store_Management_System.Views;
 
@@ -69,6 +70,7 @@ public sealed partial class OrderListPage : Page
     {
         var startDate = StartDatePicker.Date.Date;
         var endDate = EndDatePicker.Date.Date;
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         ViewModel.CurrentPage = 1;
         if (startDate <= endDate)
         {
@@ -76,7 +78,14 @@ public sealed partial class OrderListPage : Page
         }
         else
         {
-            ShowDialog("Invalid Date Range", "The start date must be earlier than or equal to the end date.");
+            if (language.Equals("en-US"))
+            {
+                ShowDialog("Invalid Date Range", "The start date must be earlier than or equal to the end date.");
+            }
+            else if (language.Equals("vi-VN"))
+            {
+                ShowDialog("Phạm vi ngày không hợp lệ", "Ngày bắt đầu phải trước hoặc bằng ngày kết thúc.");
+            }
         }
     }
 
@@ -91,7 +100,8 @@ public sealed partial class OrderListPage : Page
         {
             Title = title,
             Content = content,
-            CloseButtonText = "OK"
+            CloseButtonText = "OK",
+            XamlRoot = this.XamlRoot
         };
         await dialog.ShowAsync();
     }
