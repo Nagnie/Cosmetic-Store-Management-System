@@ -107,4 +107,22 @@ public sealed partial class CategoryPage : Page
     {
         this.Frame.Navigate(typeof(AddCategoryPage));
     }
+
+    private async void addCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        var category = nameInput.Text;
+        var (success, msg) = ViewModel.AddCategory(category);
+        var dialog = new ContentDialog()
+        {
+            Content = msg,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.XamlRoot
+        };
+        await dialog.ShowAsync();
+
+        if (success)
+        {
+            nameInput.Text = "";
+        }
+    }
 }

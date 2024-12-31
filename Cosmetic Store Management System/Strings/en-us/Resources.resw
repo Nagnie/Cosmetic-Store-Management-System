@@ -510,67 +510,79 @@
   <data name="OverviewsPage_LowStock.Text" xml:space="preserve">
     <value>Low Stock Product</value>
   </data>
-	<data name="AnalyticsPage_RevenueChartCaption.Text" xml:space="preserve">
-		<value>Monthly Sales Revenue Chart</value>
-	</data>
-	<data name="Shell_OrderList.Content" xml:space="preserve">
+  <data name="AnalyticsPage_RevenueChartCaption.Text" xml:space="preserve">
+    <value>Monthly Sales Revenue Chart</value>
+  </data>
+  <data name="Shell_OrderList.Content" xml:space="preserve">
     <value>Order List</value>
   </data>
-    <data name="OrderListPage_SearchBox.Text" xml:space="preserve">
+  <data name="OrderListPage_SearchBox.Text" xml:space="preserve">
     <value>Enter Customer's Name or Phone</value>
   </data>
-	<data name="OrderListPage_SearchButton.Content" xml:space="preserve">
+  <data name="OrderListPage_SearchButton.Content" xml:space="preserve">
     <value>Search</value>
   </data>
-	<data name="OrderListPage_FilterButton.Content" xml:space="preserve">
+  <data name="OrderListPage_FilterButton.Content" xml:space="preserve">
     <value>Filter</value>
   </data>
-	<data name="OrderListPage_ClearFilterButton.Content" xml:space="preserve">
+  <data name="OrderListPage_ClearFilterButton.Content" xml:space="preserve">
     <value>Clear Filter</value>
   </data>
-	<data name="OrderListPage_OrderTime.Text" xml:space="preserve">
+  <data name="OrderListPage_OrderTime.Text" xml:space="preserve">
     <value>Order Time:</value>
   </data>
-	<data name="OrderListPage_Total.Text" xml:space="preserve">
+  <data name="OrderListPage_Total.Text" xml:space="preserve">
     <value>Total:</value>
   </data>
-	<data name="OrderListPage_CusName.Text" xml:space="preserve">
+  <data name="OrderListPage_CusName.Text" xml:space="preserve">
     <value>Customer's Name:</value>
   </data>
-	<data name="OrderListPage_CusPhone.Text" xml:space="preserve">
+  <data name="OrderListPage_CusPhone.Text" xml:space="preserve">
     <value>Customer's Phone:</value>
   </data>
-	<data name="OrderListPage_OrderDetailsDialog.Title" xml:space="preserve">
+  <data name="OrderListPage_OrderDetailsDialog.Title" xml:space="preserve">
     <value>Order Details</value>
   </data>
-	<data name="OrderListPage_OrderDetailsDialog.CloseButtonText" xml:space="preserve">
+  <data name="OrderListPage_OrderDetailsDialog.CloseButtonText" xml:space="preserve">
     <value>Cancel</value>
   </data>
-	<data name="OrderListPage_OrderID.Text" xml:space="preserve">
+  <data name="OrderListPage_OrderID.Text" xml:space="preserve">
     <value>Order ID:</value>
   </data>
-	<data name="OrderListPage_SubTotal.Text" xml:space="preserve">
+  <data name="OrderListPage_SubTotal.Text" xml:space="preserve">
     <value>SubTotal:</value>
   </data>
-	<data name="OrderListPage_Discount.Text" xml:space="preserve">
+  <data name="OrderListPage_Discount.Text" xml:space="preserve">
     <value>Discount:</value>
   </data>
-	<data name="OrderListPage_SaleTax.Text" xml:space="preserve">
+  <data name="OrderListPage_SaleTax.Text" xml:space="preserve">
     <value>Sale Tax:</value>
   </data>
-	<data name="OrderListPage_OrderDetails.Text" xml:space="preserve">
+  <data name="OrderListPage_OrderDetails.Text" xml:space="preserve">
     <value>Order Details</value>
   </data>
-	<data name="OrderListPage_Quantity.Text" xml:space="preserve">
+  <data name="OrderListPage_Quantity.Text" xml:space="preserve">
     <value>Quantity:</value>
   </data>
-	<data name="OrderListPage_Price.Text" xml:space="preserve">
+  <data name="OrderListPage_Price.Text" xml:space="preserve">
     <value>Price:</value>
   </data>
-	<data name="OrderListPage_StartDate.Text" xml:space="preserve">
+  <data name="OrderListPage_StartDate.Text" xml:space="preserve">
     <value>Start Date</value>
   </data>
-	<data name="OrderListPage_EndDate.Text" xml:space="preserve">
+  <data name="OrderListPage_EndDate.Text" xml:space="preserve">
     <value>End Date</value>
+  </data>
+  <data name="CategoryPage_AddLabel.Text" xml:space="preserve">
+    <value>Add new category</value>
+  </data>
+  <data name="CategoryPage_NameInputHeader.Text" xml:space="preserve">
+    <value>Enter name</value>
+  </data>
+  <data name="CategoryPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CategoryPage_TotalCategories.Text" xml:space="preserve">
+    <value>Total Categories</value>
   </data>
 </root>

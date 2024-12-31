@@ -12,10 +12,6 @@ using Windows.Storage;
 namespace Cosmetic_Store_Management_System.ViewModels;
 public partial class CategoryViewModel : ObservableRecipient
 {
-    public Category Category
-    {
-        get; set;
-    } = new Category();
 
     public ObservableCollection<Category> Categories
     {
@@ -34,7 +30,7 @@ public partial class CategoryViewModel : ObservableRecipient
             var localSettings = ApplicationData.Current.LocalSettings;
             if (localSettings.Values["appLanguage"].Equals("vi-VN"))
             {
-                return $"Hiển thị {Categories.Count}/{RowsPerPage} trong tổng số {TotalItems} sản phẩm";
+                return $"Hiển thị {Categories.Count}/{RowsPerPage} trong tổng số {TotalItems} danh mục";
             }
             return $"Displaying {Categories.Count}/{RowsPerPage} of total {TotalItems} item(s)";
         }
@@ -66,7 +62,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         get; set;
     }
-    
+ 
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -136,11 +132,11 @@ public partial class CategoryViewModel : ObservableRecipient
         OnPropertyChanged(nameof(Info));
     }
 
-    public Tuple<bool, string> AddCategory()
+    public Tuple<bool, string> AddCategory(string category)
     {
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
-        if (Category.Name == null || Category.Name.Length == 0)
+        if (category == null || category.Length == 0)
         {
             return new Tuple<bool, string>(
                 false,
@@ -149,7 +145,7 @@ public partial class CategoryViewModel : ObservableRecipient
                     : "Vui lòng nhập tên danh mục!");
         }
 
-        var founded = dao.GetCategoryByName(Category.Name);
+        var founded = dao.GetCategoryByName(category);
 
         if (founded != null)
         {
@@ -161,7 +157,10 @@ public partial class CategoryViewModel : ObservableRecipient
                  );
         }
 
-        dao.AddCategory(Category);
+        dao.AddCategory(new Category()
+        {
+            Name = category
+        });
 
         return new Tuple<bool, string>(
             true,
