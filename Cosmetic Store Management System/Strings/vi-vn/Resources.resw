@@ -513,7 +513,7 @@
   <data name="AnalyticsPage_RevenueChartCaption.Text" xml:space="preserve">
     <value>Biểu đồ doanh thu theo tháng</value>
   </data>
-  <data name="OrderListPage_SearchBox.Text" xml:space="preserve">
+  <data name="OrderListPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Nhập Tên hoặc Số điện thoại khách hàng</value>
   </data>
   <data name="OrderListPage_SearchButton.Content" xml:space="preserve">
