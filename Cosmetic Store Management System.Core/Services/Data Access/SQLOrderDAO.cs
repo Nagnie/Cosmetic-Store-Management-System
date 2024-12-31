@@ -53,19 +53,27 @@ public class SQLOrderDAO : IOrderDAO
 
         if (!string.IsNullOrWhiteSpace(searchString))
         {
-            whereClauses.Add("(cu.customer_name ILIKE @SearchString OR cu.phone ILIKE @SearchString)");
-            command.Parameters.AddWithValue("@SearchString", $"%{searchString}%");
+            if (searchString.Equals("Unknown", StringComparison.OrdinalIgnoreCase))
+            {
+                // Special case for "Unknown"
+                whereClauses.Add("o.customer_id IS NULL");
+            }
+            else
+            {
+                whereClauses.Add("(cu.customer_name ILIKE @SearchString OR cu.phone ILIKE @SearchString)");
+                command.Parameters.AddWithValue("@SearchString", $"%{searchString}%");
+            }
         }
 
         string whereClause = whereClauses.Count > 0 ? "WHERE " + string.Join(" AND ", whereClauses) : "";
 
         command.CommandText = $"""
-            SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
-            FROM "ORDERS" o
-            LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
-            {whereClause}
-            {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
-        """;
+        SELECT count(*) over() as TotalOrders, o.order_id, o.customer_id, o.subtotal, o.discount, o.sale_tax, o.total, o.order_date, cu.customer_name, cu.phone
+        FROM "ORDERS" o
+        LEFT JOIN "CUSTOMER" cu on o.customer_id = cu.customer_id
+        {whereClause}
+        {(rowsPerPage > 0 ? "OFFSET @Skip LIMIT @Take" : "")};
+    """;
 
         // Add parameters for pagination
         if (rowsPerPage > 0)
@@ -107,6 +115,7 @@ public class SQLOrderDAO : IOrderDAO
         connection.Close();
         return new Tuple<List<Order>, int>(orders, count);
     }
+
 
     public Order GetOrder(int ID)
     {

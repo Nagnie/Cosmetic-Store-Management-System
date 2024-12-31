@@ -516,7 +516,7 @@
   <data name="Shell_OrderList.Content" xml:space="preserve">
     <value>Order List</value>
   </data>
-  <data name="OrderListPage_SearchBox.Text" xml:space="preserve">
+  <data name="OrderListPage_SearchBox.PlaceholderText" xml:space="preserve">
     <value>Enter Customer's Name or Phone</value>
   </data>
   <data name="OrderListPage_SearchButton.Content" xml:space="preserve">
