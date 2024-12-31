@@ -63,10 +63,7 @@ public class ManufacturerViewModel : ObservableRecipient
     {
         get; set;
     }
-    public int manufacturerCount
-    {
-        get; set;
-    }
+
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -127,9 +124,57 @@ public class ManufacturerViewModel : ObservableRecipient
                 });
             }
         }
-        manufacturerCount = manufacturerDAO.GetManufacturerCount();
-        SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 
+        SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
         OnPropertyChanged(nameof(Info));
+    }
+
+    public Tuple<bool, string> AddManufacturer(string name, string origin)
+    {
+        var DAO = new SQLManufacturerDAO();
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        if (name.Length == 0)
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Please enter manufacturer name"
+                    : "Vui lòng nhập tên nhà sản xuất!");
+        }
+
+        if (origin.Length == 0)
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Please enter manufacturer origin"
+                    : "Vui lòng nhập nơi xuất xứ!"
+            );
+        }
+
+        var founded = DAO.GetManufacturerByName(name);
+
+        if (founded != null)
+        {
+            return new Tuple<bool, string>(
+                 false,
+                 language.Equals("en-US")
+                     ? "Manufacturer name already exists"
+                     : "Tên nhà sản xuất đã tồn tại!"
+                 );
+        }
+
+        DAO.AddManufacturer(new Manufacturer()
+        {
+            Name = name,
+            Origin = origin
+        });
+
+        return new Tuple<bool, string>(
+            true,
+            language.Equals("en-US")
+                ? "The manufacturer has been inserted successfully!"
+                : "Nhà sản xuất đã được lưu thành công!"
+        );
     }
 }

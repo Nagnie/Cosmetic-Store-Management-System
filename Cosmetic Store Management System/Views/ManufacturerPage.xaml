@@ -68,42 +68,54 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0, 44, 40, 0">
+            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0, 0, 40, 20">
                 <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
                     <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
                         <TextBlock 
-                    HorizontalAlignment="Center" 
-                    Text="Total Categories" 
-                    FontSize="20"
-                    FontWeight="SemiBold"/>
+                            HorizontalAlignment="Center" 
+                            Text="Total Manufacturers" 
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            x:Uid="ManufacturerPage_Total"/>
                         <TextBlock 
-                    Text="{x:Bind ViewModel.manufacturerCount}" 
-                    HorizontalAlignment="Center"
-                    FontSize="40" 
-                    FontWeight="Bold" />
+                            Text="{x:Bind ViewModel.TotalItems, Mode=OneWay}" 
+                            HorizontalAlignment="Center"
+                            FontSize="40" 
+                            FontWeight="Bold" />
                     </StackPanel>
                 </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Padding="0, 0, 40, 0">
+                <TextBlock Text="Add manufacturer"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           x:Uid="ManufacturerPage_AddManufacturer"/>
+                <TextBlock Text="Manufacturer name"
+                           Margin="0, 24, 0, 12"
+                           x:Uid="ManufacturerPage_NameLabel"/>
+                <TextBox PlaceholderText="Enter manufacturer name"
+                         x:Uid="ManufacturerPage_NameInput"
+                         Name="nameInput"/>
+                <TextBlock Text="Origin"
+                           Margin="0, 16, 0, 12"
+                           x:Uid="ManufacturerPage_OriginLabel"/>
+                <TextBox PlaceholderText="Enter origin"
+                         x:Uid="ManufacturerPage_OriginInput"
+                         Name="originInput"/>
+                <Button Content="Save"
+                        Margin="0, 24, 0, 0"
+                        HorizontalAlignment="Right"
+                        Width="100"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        x:Uid="ManufacturerPage_SaveButton"
+                        Click="addButton_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
             <StackPanel Orientation="Vertical">
-                <StackPanel HorizontalAlignment="Right"
-                            Margin="0, 0, 0, 12"
-                            CornerRadius="4, 4, 4, 4">
-                    <Button Click="addButton_Click"
-                            Style="{StaticResource AccentButtonStyle}"
-                            >
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="&#xF8AA;" 
-                                      FontSize="12"
-                                      Margin="0, 0, 12, 0"/>
-                            <TextBlock x:Uid="ManufacturerPage_AddButtonText">Add</TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
                 <!-- Table header -->
                 <Grid Padding="12, 12, 12, 12"
                   Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}">

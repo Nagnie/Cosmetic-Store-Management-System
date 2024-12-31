@@ -585,4 +585,37 @@
   <data name="CategoryPage_TotalCategories.Text" xml:space="preserve">
     <value>Total Categories</value>
   </data>
+  <data name="AnalyticsPage_Top5Products.Text" xml:space="preserve">
+    <value>Top 5 products</value>
+  </data>
+  <data name="AnalyticsPage_Top5Customers.Text" xml:space="preserve">
+    <value>Top 5 customers</value>
+  </data>
+  <data name="AnalyticsPage_CategoryChart.Text" xml:space="preserve">
+    <value>Category Sales Chart</value>
+  </data>
+  <data name="AnalyticsPage_ManufacturerChart.Text" xml:space="preserve">
+    <value>Manufacturer Sales Chart</value>
+  </data>
+  <data name="ManufacturerPage_Total.Text" xml:space="preserve">
+    <value>Total Manufacturers</value>
+  </data>
+  <data name="ManufacturerPage_AddManufacturer.Text" xml:space="preserve">
+    <value>Add manufacturer</value>
+  </data>
+  <data name="ManufacturerPage_NameLabel.Text" xml:space="preserve">
+    <value>Manufacturer name</value>
+  </data>
+  <data name="ManufacturerPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Enter manufacturer name</value>
+  </data>
+  <data name="ManufacturerPage_OriginLabel.Text" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="ManufacturerPage_OriginInput.PlaceholderText" xml:space="preserve">
+    <value>Enter origin</value>
+  </data>
+  <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

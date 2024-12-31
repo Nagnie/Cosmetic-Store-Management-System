@@ -103,11 +103,6 @@ public sealed partial class CategoryPage : Page
         Frame.Navigate(typeof(EditCategoryPage), category);
     }
 
-    private void addButton_Click(object sender, RoutedEventArgs e)
-    {
-        this.Frame.Navigate(typeof(AddCategoryPage));
-    }
-
     private async void addCategoryButton_Click(object sender, RoutedEventArgs e)
     {
         var category = nameInput.Text;
@@ -123,6 +118,7 @@ public sealed partial class CategoryPage : Page
         if (success)
         {
             nameInput.Text = "";
+            ViewModel.LoadData();
         }
     }
 }

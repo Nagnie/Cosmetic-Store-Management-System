@@ -60,9 +60,27 @@ public sealed partial class ManufacturerPage : Page
     }
 
 
-    private void addButton_Click(object sender, RoutedEventArgs e)
+    private async void addButton_Click(object sender, RoutedEventArgs e)
     {
-        this.Frame.Navigate(typeof(AddManufacturerPage));
+        var name = nameInput.Text;
+        var origin = originInput.Text;
+        var (success, msg) = ViewModel.AddManufacturer(name, origin);
+
+        var dialog = new ContentDialog()
+        {
+            Content = msg,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+
+        await dialog.ShowAsync();
+
+        if (success)
+        {
+            nameInput.Text = "";
+            originInput.Text = "";
+            ViewModel.LoadData();
+        }
     }
 
     private void editButton_Click(object sender, RoutedEventArgs e)
