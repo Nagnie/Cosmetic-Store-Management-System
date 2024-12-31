@@ -185,4 +185,36 @@ public class SQLCustomerDAO : ICustomerDAO
         connection.Close();
         return count;
     }
+
+    public Customer GetCustomerById(int ID)
+    {
+        Customer customer = null;
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+                SELECT * FROM "CUSTOMER"
+                WHERE customer_id = '{ID}'
+            """;
+
+        NpgsqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+            customer = new Customer()
+            {
+                ID = (int)reader["customer_id"],
+                Name = (string)reader["customer_name"],
+                Phone = (string)reader["phone"],
+                Address = (string)(reader["address"] != null ? reader["address"] : ""),
+                Point = (float)reader["point"],
+                Loyal = reader["loyal"] != DBNull.Value ? (string)reader["loyal"] : string.Empty,
+            };
+        }
+
+        connection.Close();
+        return customer;
+    }
 }
