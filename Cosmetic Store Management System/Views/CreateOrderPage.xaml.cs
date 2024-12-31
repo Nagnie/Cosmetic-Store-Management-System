@@ -100,7 +100,7 @@ public sealed partial class CreateOrderPage : Page
 
         // Get customer info
         Customer customer = customerUserControl.GetCustomer();
-
+        string previousLoyalty = customer.Loyal;
 
         // Get payment info
         var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
@@ -132,11 +132,57 @@ public sealed partial class CreateOrderPage : Page
         };
 
         await contentDialog.ShowAsync();
+
+        // Retrieve updated loyalty level from the database
+        Customer updatedCustomer = ViewModel.GetCustomerById(customer.ID); // Replace with your database access method
+        string updatedLoyalty = updatedCustomer.Loyal;
+
+        // Check if the loyalty level has changed
+        if (!previousLoyalty.Equals(updatedLoyalty))
+        {
+            var loyaltyDialog = new ContentDialog()
+            {
+                Title = language.Equals("en-US")
+                        ? "Congratulations!"
+                        : "Chúc mừng!",
+                Content = language.Equals("en-US")
+                        ? $"You have advanced to the {GetLoyaltyLevelName(updatedLoyalty)} level of our loyalty program! Enjoy additional benefits."
+                        : $"Bạn đã thăng hạng lên {GetLoyaltyLevelNameInVN(updatedLoyalty)} trong chương trình khách hàng thân thiết của chúng tôi! Hãy tận hưởng các ưu đãi đặc biệt.",
+                CloseButtonText = "Ok",
+                XamlRoot = this.Content.XamlRoot
+            };
+
+            await loyaltyDialog.ShowAsync();
+        }
+
+        
         this.Frame.Navigate(typeof(CreateOrderPage));
     }
 
     private void CustomerInforUserControl_UserFound(int point)
     {
         payment.UpdateDiscountRate(point);
+    }
+
+    private string GetLoyaltyLevelName(string loyalty)
+    {
+        return loyalty switch
+        {
+            "" => "DIAMOND",
+            "" => "GOLD",
+            "" => "SILVER",
+            "" => "BRONZE",
+        };
+    }
+
+    private string GetLoyaltyLevelNameInVN(string loyalty)
+    {
+        return loyalty switch
+        {
+            "" => "KIM CƯƠNG",
+            "" => "VÀNG",
+            "" => "BẠC",
+            "" => "ĐỒNG",
+        };
     }
 }

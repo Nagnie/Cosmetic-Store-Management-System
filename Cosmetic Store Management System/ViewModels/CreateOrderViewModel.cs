@@ -33,4 +33,10 @@ public class CreateOrderViewModel : ObservableRecipient
             loyalCustomerDAO.UpdateCustomer(customer);
         }
     }
+
+    public Customer GetCustomerById(int id) 
+    {
+        ICustomerDAO DAO = new SQLCustomerDAO();
+        return DAO.GetCustomerById(id);
+    }
 }
