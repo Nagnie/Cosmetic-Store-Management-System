@@ -59,12 +59,18 @@
         
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0, 44, 40, 0">
-                <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
-                    <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
+            <StackPanel Grid.Row="0" 
+                        HorizontalAlignment="Center" 
+                        Margin="0, 0, 40, 0">
+                <Border CornerRadius="10" 
+                        Padding="10" 
+                        BorderThickness="2" 
+                        BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
+                    <StackPanel HorizontalAlignment="Center" 
+                                Padding="20, 8, 20, 10">
                         <TextBlock 
                             HorizontalAlignment="Center" 
                             Text="Total Categories" 
@@ -72,7 +78,7 @@
                             FontSize="20"
                             FontWeight="SemiBold"/>
                         <TextBlock 
-                            Text="{x:Bind ViewModel.TotalItems}" 
+                            Text="{x:Bind ViewModel.TotalItems, Mode=OneWay}" 
                             HorizontalAlignment="Center"
                             FontSize="40" 
                             FontWeight="Bold" />
@@ -84,18 +90,18 @@
                     Text="Add new category" 
                     FontSize="22"
                     FontWeight="SemiBold"
-                    Margin="0, 10, 0, 0"
+                    Margin="0, 20, 0, 24"
                     x:Uid="CategoryPage_AddLabel"/>
                 <TextBlock 
-                    Text="Enter Name: "
-                    Margin="0, 10, 0, 10"
+                    Text="Enter Name"
+                    Margin="0, 0, 0, 12"
                     x:Uid="CategoryPage_NameInputHeader"/>
                 <TextBox Name="nameInput"/>
                 <Button 
                     Content="Save"
                     x:Name="saveButton"
                     Width="80" HorizontalAlignment="Right"
-                    Margin="0, 20, 0, 0"
+                    Margin="0, 24, 0, 0"
                     Style="{ThemeResource AccentButtonStyle}"
                     x:Uid="CategoryPage_SaveButton"
                     Click="addCategoryButton_Click"/>
@@ -103,22 +109,6 @@
         </Grid>
         <Grid Grid.Column="1">
             <StackPanel VerticalAlignment="Top">
-                <StackPanel 
-                    HorizontalAlignment="Right"
-                    Margin="0, 0, 0, 12"
-                    CornerRadius="4, 4, 4, 4">
-                    <Button Click="addButton_Click"
-                            Name="addCategoryButton"
-                            Style="{StaticResource AccentButtonStyle}"
-                            >
-                        <StackPanel Orientation="Horizontal">
-                            <FontIcon Glyph="&#xF8AA;" 
-                                      FontSize="12"
-                                      Margin="0, 0, 12, 0"/>
-                            <TextBlock x:Uid="CategoryPage_AddButtonText">Add</TextBlock>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
                 <!-- Table header -->
                 <StackPanel>
                     <Grid Padding="12, 12, 12, 12"   

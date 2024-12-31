@@ -597,4 +597,25 @@
   <data name="AnalyticsPage_ManufacturerChart.Text" xml:space="preserve">
     <value>Biểu đồ số lượng sản phẩm đã bán theo nhà sản xuất</value>
   </data>
+  <data name="ManufacturerPage_Total.Text" xml:space="preserve">
+    <value>Tổng số thương hiệu</value>
+  </data>
+  <data name="ManufacturerPage_AddManufacturer.Text" xml:space="preserve">
+    <value>Thêm thương hiệu</value>
+  </data>
+  <data name="ManufacturerPage_NameLabel.Text" xml:space="preserve">
+    <value>Tên thương hiệu</value>
+  </data>
+  <data name="ManufacturerPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Nhập tên thương hiệu</value>
+  </data>
+  <data name="ManufacturerPage_OriginLabel.Text" xml:space="preserve">
+    <value>Nguồn gốc</value>
+  </data>
+  <data name="ManufacturerPage_OriginInput.PlaceholderText" xml:space="preserve">
+    <value>Nhập nơi xuất xứ</value>
+  </data>
+  <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
 </root>

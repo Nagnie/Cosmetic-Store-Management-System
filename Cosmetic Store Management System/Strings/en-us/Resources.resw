@@ -597,4 +597,25 @@
   <data name="AnalyticsPage_ManufacturerChart.Text" xml:space="preserve">
     <value>Manufacturer Sales Chart</value>
   </data>
+  <data name="ManufacturerPage_Total.Text" xml:space="preserve">
+    <value>Total Manufacturers</value>
+  </data>
+  <data name="ManufacturerPage_AddManufacturer.Text" xml:space="preserve">
+    <value>Add manufacturer</value>
+  </data>
+  <data name="ManufacturerPage_NameLabel.Text" xml:space="preserve">
+    <value>Manufacturer name</value>
+  </data>
+  <data name="ManufacturerPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Enter manufacturer name</value>
+  </data>
+  <data name="ManufacturerPage_OriginLabel.Text" xml:space="preserve">
+    <value>Origin</value>
+  </data>
+  <data name="ManufacturerPage_OriginInput.PlaceholderText" xml:space="preserve">
+    <value>Enter origin</value>
+  </data>
+  <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
