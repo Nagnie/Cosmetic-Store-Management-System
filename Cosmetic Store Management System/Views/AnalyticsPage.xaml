@@ -116,7 +116,14 @@
                         BorderThickness="2" CornerRadius="15"
                         BorderBrush="{ThemeResource AccentAcrylicInAppFillColorDefaultBrush}" 
                         Margin="0, 40, 20, 15">
-                        <TextBlock Text="Top 5 Products" FontSize="24" FontWeight="Bold" Margin="0, 30, 0, 15" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Top 5 Products" 
+                                   FontSize="22" 
+                                   FontWeight="Bold" 
+                                   Margin="0, 30, 0, 15" 
+                                   HorizontalAlignment="Center"
+                                   x:Uid="AnalyticsPage_Top5Products"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
                         <ListView ItemsSource="{Binding TopProducts}" Margin="15, 10, 15, 10">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -146,7 +153,14 @@
                         BorderThickness="2" CornerRadius="15"
                         BorderBrush="{ThemeResource AccentAcrylicInAppFillColorDefaultBrush}" 
                         Margin="20, 40, 25, 15">
-                        <TextBlock Text="Top 5 Customers" FontSize="24" FontWeight="Bold" Margin="0, 30, 0, 15" HorizontalAlignment="Center" />
+                        <TextBlock Text="Top 5 Customers" 
+                                   FontSize="22" 
+                                   FontWeight="Bold" 
+                                   Margin="0, 30, 0, 15" 
+                                   HorizontalAlignment="Center" 
+                                   x:Uid="AnalyticsPage_Top5Customers"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
                         <ListView ItemsSource="{Binding TopCustomers}" Margin="15, 10, 15, 10">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -183,9 +197,12 @@
 
                     <!-- Category Chart -->
                     <TextBlock 
-                        Text="Category" FontSize="30" Margin="0, 50, 0, 0"
+                        Text="Category" FontSize="20" Margin="0, 50, 0, 0"
                         Grid.Column="0" Grid.ColumnSpan="2" FontWeight="SemiBold"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        x:Uid="AnalyticsPage_CategoryChart"
+                        Width="400" TextWrapping="Wrap"/>
                     <lvc:PieChart 
                         Width="280"
                         Series="{Binding Categories}"
@@ -216,8 +233,11 @@
                     <!-- Manufacturer Chart -->
                     <TextBlock 
                         Text="Manufacturer" FontWeight="SemiBold"
-                        Grid.Column="2" Grid.ColumnSpan="2"  FontSize="30" Margin="0, 50, 0, 0"
-                        HorizontalAlignment="Center"/>
+                        Grid.Column="2" Grid.ColumnSpan="2"  FontSize="20" Margin="0, 50, 0, 0"
+                        HorizontalAlignment="Center"
+                        TextAlignment="Center"
+                        x:Uid="AnalyticsPage_ManufacturerChart"
+                        Width="400" TextWrapping="Wrap"/>
                     <lvc:PieChart 
                         Width="280"
                         Series="{Binding Manufacturers}"  

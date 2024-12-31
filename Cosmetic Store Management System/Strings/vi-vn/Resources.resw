@@ -585,4 +585,16 @@
   <data name="CategoryPage_TotalCategories.Text" xml:space="preserve">
     <value>Tổng số danh mục</value>
   </data>
+  <data name="AnalyticsPage_Top5Products.Text" xml:space="preserve">
+    <value>Top 5 sản phẩm bán chạy</value>
+  </data>
+  <data name="AnalyticsPage_Top5Customers.Text" xml:space="preserve">
+    <value>Top 5 khách hàng mua nhiều nhất</value>
+  </data>
+  <data name="AnalyticsPage_CategoryChart.Text" xml:space="preserve">
+    <value>Biểu đồ số lượng sản phẩm đã bán theo danh mục</value>
+  </data>
+  <data name="AnalyticsPage_ManufacturerChart.Text" xml:space="preserve">
+    <value>Biểu đồ số lượng sản phẩm đã bán theo nhà sản xuất</value>
+  </data>
 </root>

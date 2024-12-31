@@ -198,13 +198,13 @@ public partial class AnalyticsViewModel : ObservableObject
             series.Add(new PieSeries<int>
             {
                 Values = new[] { othersCount },
-                Name = "Other",
+                Name = language.Equals("en-US") ? "Other" : "Khác",
                 MaxRadialColumnWidth = 60
             });
 
             legends.Add(new CategoryLegend
             {
-                Name = "Other",
+                Name = language.Equals("en-US") ? "Other" : "Khác",
                 ProductCount = othersCount
             });
         }
@@ -297,13 +297,13 @@ public partial class AnalyticsViewModel : ObservableObject
             series.Add(new PieSeries<int>
             {
                 Values = new[] { othersCount },
-                Name = "Other",
+                Name = language.Equals("en-US") ? "Other" : "Khác",
                 MaxRadialColumnWidth = 60
             });
 
             legends.Add(new ManufacturerLegend
             {
-                Name = "Other",
+                Name = language.Equals("en-US") ? "Other" : "Khác",
                 ProductCount = othersCount
             });
         }
