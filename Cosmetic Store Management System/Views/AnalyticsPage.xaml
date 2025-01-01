@@ -9,7 +9,12 @@
     xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI" 
     xmlns:local1="using:Cosmetic_Store_Management_System.ViewModels"
     xmlns:lvcore="clr-namespace:LiveChartsCore;assembly=LiveChartsCore"
+    xmlns:local2="using:Cosmetic_Store_Management_System.Helpers"
     mc:Ignorable="d">
+
+    <Page.Resources>
+        <local2:IntToCurrencyConverter x:Key="currencyConverter"/>
+    </Page.Resources>
 
     <ScrollViewer>
         <Grid>
@@ -175,7 +180,7 @@
                                             Margin="0,0,0,0" 
                                             HorizontalAlignment="Left"/>
                                         <TextBlock 
-                                            Text="{Binding Total}" 
+                                            Text="{Binding Total, Converter={StaticResource currencyConverter}}" 
                                             FontSize="16" Grid.Column="1"
                                             Margin="15,0,0,0" 
                                             HorizontalAlignment="Right"/>
