@@ -10,8 +10,7 @@
     xmlns:local="using:Cosmetic_Store_Management_System.Helpers"
     xmlns:local2="using:Cosmetic_Store_Management_System.Core.Models"
     xmlns:local3="using:Cosmetic_Store_Management_System.ViewModels"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Page.Resources>
         <local:IntToCurrencyConverter x:Key="currencyConverter"/>
@@ -108,6 +107,12 @@
                     </StackPanel>
                 </DataTemplate>
             </GridView.ItemTemplate>
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="8, 8, 8, 8"/>
+                </Style>
+            </GridView.ItemContainerStyle>
         </GridView>
 
 
