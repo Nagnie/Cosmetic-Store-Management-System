@@ -29,4 +29,8 @@ public interface ICosmeticDAO
 
     int GetOutOfStockCount();
     int GetInStockCount();
+
+    int GetCosmeticCountByCategory(int categoryID);
+
+    int GetCosmeticCountByManufacturer(int manufacturerID);
 }
