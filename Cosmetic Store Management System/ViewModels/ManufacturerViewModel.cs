@@ -100,7 +100,6 @@ public class ManufacturerViewModel : ObservableRecipient
     {
         IManufacturerDAO manufacturerDAO = new SQLManufacturerDAO();
         Manufacturers.Clear();
-        //List<Manufacturer> manufacturers = ManufacturerDAO.GetManufacturers();
         var (items, count) = manufacturerDAO.GetManufacturers(
             CurrentPage, RowsPerPage
         );
@@ -130,39 +129,70 @@ public class ManufacturerViewModel : ObservableRecipient
         OnPropertyChanged(nameof(Info));
     }
 
-    public Tuple<bool, string> AddManufacturer(string name, string origin)
+    public Tuple<bool, string, string> AddManufacturer(string name, string origin)
     {
         var DAO = new SQLManufacturerDAO();
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         if (name.Length == 0)
         {
-            return new Tuple<bool, string>(
-                false,
-                language.Equals("en-US")
-                    ? "Please enter manufacturer name"
-                    : "Vui lòng nhập tên nhà sản xuất!");
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "Please enter manufacturer name"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Vui lòng nhập tên thương hiệu"
+                );
+            }
         }
 
         if (origin.Length == 0)
         {
-            return new Tuple<bool, string>(
-                false,
-                language.Equals("en-US")
-                    ? "Please enter manufacturer origin"
-                    : "Vui lòng nhập nơi xuất xứ!"
-            );
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "Please enter manufacturer origin"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Vui lòng nhập nơi xuất xứ"
+                );
+            }
         }
 
         var founded = DAO.GetManufacturerByName(name);
 
         if (founded != null)
         {
-            return new Tuple<bool, string>(
-                 false,
-                 language.Equals("en-US")
-                     ? "Manufacturer already exists"
-                     : "Nhà sản xuất đã tồn tại!"
-                 );
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "The manufacturer name has already existed"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Tên thương hiệu đã tồn tại"
+                );
+            }
         }
 
         DAO.AddManufacturer(new Manufacturer()
@@ -171,15 +201,24 @@ public class ManufacturerViewModel : ObservableRecipient
             Origin = origin
         });
 
-        return new Tuple<bool, string>(
-            true,
-            language.Equals("en-US")
-                ? "The manufacturer has been inserted successfully!"
-                : "Nhà sản xuất đã được lưu thành công!"
-        );
+        if (language.Equals("en-US")) { 
+            return new Tuple<bool, string, string>(
+                true,
+                "Success",
+                "The manufacturer has been added successfully"
+            );
+        }
+        else
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Thành công",
+                "Thương hiệu đã được thêm thành công"
+            );
+        }
     }
 
-    public Tuple<bool, string> DeleteManufacturer(int ID)
+    public Tuple<bool, string, string> DeleteManufacturer(int ID)
     {
         ICosmeticDAO cosmeticDAO = new SQLCosmeticDAO();
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
@@ -187,23 +226,43 @@ public class ManufacturerViewModel : ObservableRecipient
 
         if (count > 0)
         {
-            return new Tuple<bool, string>(
-                false,
-                language.Equals("en-US")
-                    ? "Cannot delete this manufacturer."
-                    : "Không thể xóa nhà sản xuất này."
-            );
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "This manufacturer has cosmetics, please delete them first"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Thương hiệu này có sản phẩm, vui lòng xóa sản phẩm trước"
+                );
+            }
         }
 
         IManufacturerDAO manufacturerDAO = new SQLManufacturerDAO();
         manufacturerDAO.DeleteManufacturer(ID);
         LoadData();
 
-        return new Tuple<bool, string>(
-            true,
-            language.Equals("en-US")
-                ? "The manufacturer has been deleted successfully!"
-                : "Nhà sản xuất đã được xóa thành công!"
+        if (language.Equals("en-US"))
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Success",
+                "The manufacturer has been deleted successfully"
             );
+        }
+        else
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Thành công",
+                "Thương hiệu đã được xóa thành công"
+            );
+        }
     }
 }

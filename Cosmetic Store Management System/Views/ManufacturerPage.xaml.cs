@@ -64,11 +64,12 @@ public sealed partial class ManufacturerPage : Page
     {
         var name = nameInput.Text;
         var origin = originInput.Text;
-        var (success, msg) = ViewModel.AddManufacturer(name, origin);
+        var (success, title, msg) = ViewModel.AddManufacturer(name, origin);
 
         var dialog = new ContentDialog()
         {
             Content = msg,
+            Title = title,
             PrimaryButtonText = "OK",
             XamlRoot = this.Content.XamlRoot
         };
@@ -119,10 +120,11 @@ public sealed partial class ManufacturerPage : Page
             var button = sender as Button;
         
             if (button?.DataContext is Manufacturer manufacturer) {
-                var (success, msg) = ViewModel.DeleteManufacturer(manufacturer.ID);
+                var (success, title, msg) = ViewModel.DeleteManufacturer(manufacturer.ID);
                 await new ContentDialog()
                 {
                     Content = msg,
+                    Title = title,
                     PrimaryButtonText = "OK",
                     XamlRoot = this.Content.XamlRoot
                 }.ShowAsync();

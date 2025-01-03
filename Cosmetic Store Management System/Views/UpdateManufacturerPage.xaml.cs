@@ -46,29 +46,23 @@ public sealed partial class UpdateManufacturerPage : Page
 
     private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel.UpdateManufacturer();
-
+        var (success, title, msg) = ViewModel.UpdateManufacturer();
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
-        var dialog = new ContentDialog();
-        dialog.Content = language;
 
-        if (language.Equals("en-US"))
+        var dialog = new ContentDialog()
         {
-            dialog.Title = "Success";
-            dialog.Content = "The manufacturer has been updated successfully!";
-            dialog.PrimaryButtonText = "OK";
-        }
-        else
-        {
-            dialog.Title = "Thành công";
-            dialog.Content = "Nhà sản xuất đã được cập nhật thành công!";
-            dialog.PrimaryButtonText = "OK";
-        }
+            Content = msg,
+            Title = title,
+            XamlRoot = this.Content.XamlRoot,
+            PrimaryButtonText = "OK"
+        };
 
-        dialog.XamlRoot = this.Content.XamlRoot;
         await dialog.ShowAsync();
 
-        this.Frame.Navigate(typeof(ManufacturerPage));
+        if (success)
+        {
+            this.Frame.Navigate(typeof(ManufacturerPage));
+        }
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)
