@@ -567,6 +567,9 @@
   <data name="OrderListPage_Price.Text" xml:space="preserve">
     <value>Giá:</value>
   </data>
+	<data name="OrderListPage_SubTotalDetail.Text" xml:space="preserve">
+    <value>Tạm tính:</value>
+  </data>
   <data name="OrderListPage_StartDate.Text" xml:space="preserve">
     <value>Ngày Bắt đầu</value>
   </data>

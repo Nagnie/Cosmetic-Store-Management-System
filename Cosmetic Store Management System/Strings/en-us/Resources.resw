@@ -576,6 +576,9 @@
   <data name="OrderListPage_EndDate.Text" xml:space="preserve">
     <value>End Date</value>
   </data>
+	<data name="OrderListPage_SubTotalDetail.Text" xml:space="preserve">
+    <value>Total:</value>
+  </data>
   <data name="CategoryPage_AddLabel.Text" xml:space="preserve">
     <value>Add new category</value>
   </data>
