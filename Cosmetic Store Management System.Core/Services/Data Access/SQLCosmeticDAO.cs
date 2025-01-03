@@ -402,4 +402,38 @@ public class SQLCosmeticDAO : ICosmeticDAO
         connection.Close();
         return count;
     }
+
+    public int GetCosmeticCountByCategory(int categoryID)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT COUNT(*)
+            FROM "COSMETIC"
+            WHERE category_id = @categoryID
+        """;
+        command.Parameters.AddWithValue("@categoryID", categoryID);
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
+    }
+
+    public int GetCosmeticCountByManufacturer(int manufacturerID)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = """
+            SELECT COUNT(*)
+            FROM "COSMETIC"
+            WHERE manufacturer_id = @manufacturerID
+        """;
+        command.Parameters.AddWithValue("@manufacturerID", manufacturerID);
+        var count = (int)(Int64)command.ExecuteScalar();
+        connection.Close();
+        return count;
+    }
 }

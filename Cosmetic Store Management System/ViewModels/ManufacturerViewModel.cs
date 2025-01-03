@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,8 +160,8 @@ public class ManufacturerViewModel : ObservableRecipient
             return new Tuple<bool, string>(
                  false,
                  language.Equals("en-US")
-                     ? "Manufacturer name already exists"
-                     : "Tên nhà sản xuất đã tồn tại!"
+                     ? "Manufacturer already exists"
+                     : "Nhà sản xuất đã tồn tại!"
                  );
         }
 
@@ -176,5 +177,33 @@ public class ManufacturerViewModel : ObservableRecipient
                 ? "The manufacturer has been inserted successfully!"
                 : "Nhà sản xuất đã được lưu thành công!"
         );
+    }
+
+    public Tuple<bool, string> DeleteManufacturer(int ID)
+    {
+        ICosmeticDAO cosmeticDAO = new SQLCosmeticDAO();
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var count = cosmeticDAO.GetCosmeticCountByManufacturer(ID);
+
+        if (count > 0)
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Cannot delete this manufacturer."
+                    : "Không thể xóa nhà sản xuất này."
+            );
+        }
+
+        IManufacturerDAO manufacturerDAO = new SQLManufacturerDAO();
+        manufacturerDAO.DeleteManufacturer(ID);
+        LoadData();
+
+        return new Tuple<bool, string>(
+            true,
+            language.Equals("en-US")
+                ? "The manufacturer has been deleted successfully!"
+                : "Nhà sản xuất đã được xóa thành công!"
+            );
     }
 }

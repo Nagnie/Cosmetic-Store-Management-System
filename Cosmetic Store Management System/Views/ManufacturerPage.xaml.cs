@@ -116,11 +116,16 @@ public sealed partial class ManufacturerPage : Page
 
         if (result == ContentDialogResult.Secondary)
         {
-                var button = sender as Button;
+            var button = sender as Button;
         
             if (button?.DataContext is Manufacturer manufacturer) {
-                ViewModel.ManufacturerDAO.DeleteManufacturer(manufacturer.ID);
-                ViewModel.LoadData();
+                var (success, msg) = ViewModel.DeleteManufacturer(manufacturer.ID);
+                await new ContentDialog()
+                {
+                    Content = msg,
+                    PrimaryButtonText = "OK",
+                    XamlRoot = this.Content.XamlRoot
+                }.ShowAsync();
             }
         }
     }
