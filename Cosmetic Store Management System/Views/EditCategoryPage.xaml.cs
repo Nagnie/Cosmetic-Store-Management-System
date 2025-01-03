@@ -46,28 +46,22 @@ public sealed partial class EditCategoryPage : Page
 
     private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
-        ViewModel.dao.UpdateCategory(ViewModel.Category);
-
+        var (success, title, msg) = ViewModel.UpdateCategory();
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
-        var dialog = new ContentDialog();
-
-        if (language.Equals("en-US"))
+        var dialog = new ContentDialog()
         {
-            dialog.Title = "Success";
-            dialog.Content = "The category has been updated successfully!";
-            dialog.PrimaryButtonText = "OK";
-        }
-        else
-        {
-            dialog.Title = "Thành công";
-            dialog.Content = "Danh mục đã được cập nhật thành công!";
-            dialog.PrimaryButtonText = "OK";
-        }
+            Title = title,
+            Content = msg,
+            PrimaryButtonText = "OK"
+        };
 
         dialog.XamlRoot = this.Content.XamlRoot;
         await dialog.ShowAsync();
 
-        this.Frame.Navigate(typeof(CategoryPage));
+        if (success)
+        {
+            this.Frame.Navigate(typeof(CategoryPage));
+        }
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)
