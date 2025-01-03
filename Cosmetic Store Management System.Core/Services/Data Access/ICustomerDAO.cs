@@ -13,6 +13,9 @@ public interface ICustomerDAO
     List<Customer> GetAllCustomers();
     Customer GetCustomer(string phone);
     void UpdateCustomer(Customer Customer);
+    public void EditCustomer(Customer customer);
+    public bool CustomerExists(string name, string phone);
+    bool CanDeleteCustomer(string phone);
     void DeleteCustomer(string phone);
     int GetCustomerCount();
 

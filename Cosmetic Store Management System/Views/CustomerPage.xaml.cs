@@ -88,7 +88,55 @@ public sealed partial class CustomerPage : Page
         {
             var button = sender as Button;
             var customer = button?.DataContext as Customer;
+
+            // Check if the customer can be deleted
+            if (!ViewModel.dao.CanDeleteCustomer(customer.Phone))
+            {
+                var errorDialog = new ContentDialog
+                {
+                    Title = language.Equals("en-US") ? "Delete Customer" : "Xóa khách hàng",
+                    Content = language.Equals("en-US")
+                        ? "This customer cannot be deleted because they have existing orders."
+                        : "Không thể xóa khách hàng này vì đã có đơn đặt hàng.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.Content.XamlRoot
+                };
+                await errorDialog.ShowAsync();
+                return;
+            }
+
+            // Proceed to delete the customer
             ViewModel.dao.DeleteCustomer(customer.Phone);
+            ViewModel.LoadData();
+        }
+    }
+
+    private void editButton_Click(object sender, RoutedEventArgs e)
+    {
+        var button = sender as Button;
+        var customer = button?.DataContext as Customer;
+        this.Frame.Navigate(typeof(EditCustomerPage), customer);
+    }
+
+    private async void addButton_Click(object sender, RoutedEventArgs e)
+    {
+        var name = nameInput.Text;
+        var phone = phoneNumberInput.Text;
+        var (success, msg) = ViewModel.AddCustomer(name, phone);
+
+        var dialog = new ContentDialog()
+        {
+            Content = msg,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+
+        await dialog.ShowAsync();
+
+        if (success)
+        {
+            nameInput.Text = "";
+            phoneNumberInput.Text = "";
             ViewModel.LoadData();
         }
     }
