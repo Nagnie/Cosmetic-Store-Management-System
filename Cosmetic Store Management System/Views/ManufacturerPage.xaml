@@ -111,7 +111,8 @@
                         Width="100"
                         Style="{ThemeResource AccentButtonStyle}"
                         x:Uid="ManufacturerPage_SaveButton"
-                        Click="addButton_Click"/>
+                        Click="addButton_Click"
+                        x:Name="saveButton"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">

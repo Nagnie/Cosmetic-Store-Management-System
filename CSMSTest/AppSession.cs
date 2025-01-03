@@ -16,11 +16,10 @@ namespace CSMSTest
 
         public static void Setup(TestContext context)
         {
-            // Launch Calculator application if it is not yet launched
+            // Launch application if it is not yet launched
             if (session == null)
             {
-                // Create a new session to bring up an instance of the Calculator application
-                // Note: Multiple calculator windows (instances) share the same process Id
+                // Create a new session to bring up an instance of the application
                 DesiredCapabilities appCapabilities = new DesiredCapabilities();
                 appCapabilities.SetCapability("app", AppID);
                 appCapabilities.SetCapability("deviceName", "WindowsPC");
