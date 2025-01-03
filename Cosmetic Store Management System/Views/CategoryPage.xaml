@@ -96,7 +96,8 @@
                     Text="Enter Name"
                     Margin="0, 0, 0, 12"
                     x:Uid="CategoryPage_NameInputHeader"/>
-                <TextBox Name="nameInput"/>
+                <TextBox Name="nameInput"
+                         x:Uid="CategoryPage_NameInput"/>
                 <Button 
                     Content="Save"
                     x:Name="saveButton"

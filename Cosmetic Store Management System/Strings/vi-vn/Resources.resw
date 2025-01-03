@@ -618,4 +618,7 @@
   <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
     <value>Lưu</value>
   </data>
+  <data name="CategoryPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Nhập tên danh mục</value>
+  </data>
 </root>

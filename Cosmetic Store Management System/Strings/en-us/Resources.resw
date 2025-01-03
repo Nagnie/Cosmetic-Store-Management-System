@@ -618,4 +618,7 @@
   <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="CategoryPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Enter category name</value>
+  </data>
 </root>
