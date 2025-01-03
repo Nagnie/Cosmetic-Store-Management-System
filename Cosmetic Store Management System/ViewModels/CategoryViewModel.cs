@@ -62,7 +62,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         get; set;
     }
- 
+
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -90,7 +90,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         RowsPerPage = 12;
         CurrentPage = 1;
-        
+
         LoadData();
     }
     public int categoryCount
@@ -132,29 +132,48 @@ public partial class CategoryViewModel : ObservableRecipient
         OnPropertyChanged(nameof(Info));
     }
 
-    public Tuple<bool, string> AddCategory(string category)
+    public Tuple<bool, string, string> AddCategory(string category)
     {
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
         if (category == null || category.Length == 0)
         {
-            return new Tuple<bool, string>(
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "Please enter category name"
+                );
+            }
+
+            return new Tuple<bool, string, string>(
                 false,
-                language.Equals("en-US")
-                    ? "Please enter manufacturer name"
-                    : "Vui lòng nhập tên danh mục!");
+                "Lỗi",
+                "Vui lòng nhập tên danh mục"
+            );
         }
 
         var founded = dao.GetCategoryByName(category);
 
         if (founded != null)
         {
-            return new Tuple<bool, string>(
-                 false,
-                 language.Equals("en-US")
-                     ? "Category already exists"
-                     : "Tên danh mục đã tồn tại!"
-                 );
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "The category already exists"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Danh mục đã tồn tại"
+                );
+            }
         }
 
         dao.AddCategory(new Category()
@@ -162,11 +181,63 @@ public partial class CategoryViewModel : ObservableRecipient
             Name = category
         });
 
-        return new Tuple<bool, string>(
+        if (language.Equals("en-US"))
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Success",
+                "Category added successfully"
+            );
+        }
+
+        return new Tuple<bool, string, string>(
             true,
-            language.Equals("en-US")
-                ? "The category has been inserted successfully!"
-                : "Danh mục đã được lưu thành công!"
+            "Thành công",
+            "Danh mục đã được thêm thành công"
+        );
+    }
+
+    public Tuple<bool, string, string> DeleteCategory(int ID)
+    {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        ICosmeticDAO cosmeticDAO = new SQLCosmeticDAO();
+        var count = cosmeticDAO.GetCosmeticCountByCategory(ID);
+        if (count > 0)
+        {
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "This category cannot be deleted"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Không thể xóa danh mục này"
+                );
+            }
+        }
+
+        dao.DeleteCategory(ID);
+        LoadData();
+
+        if (language.Equals("en-US"))
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Success",
+                "Category deleted successfully"
+            );
+        }
+
+        return new Tuple<bool, string, string>(
+            true,
+            "Thành công",
+            "Danh mục đã được xóa thành công"
         );
     }
 }
