@@ -96,6 +96,47 @@ namespace CSMSTest
             Assert.IsNotNull(session.FindElementByAccessibilityId("pointTextBox").Text);
         }
 
+        [TestMethod]
+        public void CreateNewOrder_EmptyOrder_Fail()
+        {
+            NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("checkoutButton").Click();
+
+            try
+            {
+                session.FindElementByName("Yes").Click();
+                session.FindElementByName("Your cart is empty. Please add items to your order before proceeding to checkout.");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Có").Click();
+                session.FindElementByName("Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm vào đơn hàng trước khi thanh toán.");
+            }
+
+            session.FindElementByName("Ok").Click();
+        }
+
+        [TestMethod]
+        public void CreateNewOrder_ContainsDetail_Success()
+        {
+            NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("cosmetic").Click();
+            session.FindElementByAccessibilityId("checkoutButton").Click();
+            try
+            {
+                session.FindElementByName("Confirm Payment");
+                session.FindElementByName("Yes").Click();
+                session.FindElementByName("Payment Successful");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Xác nhận thanh toán");
+                session.FindElementByName("Có").Click();
+                session.FindElementByName("Thanh toán thành công");
+            }
+            session.FindElementByName("Ok").Click();
+        }
+
         [ClassInitialize]
         public static void ClassInitialize(TestContext context)
         {
