@@ -30,10 +30,10 @@ public partial class CustomerViewModel : ObservableRecipient
 
             if (localSettings.Values["appLanguage"].Equals("vi-VN"))
             {
-                return $"Hiển thị {Customers.Count}/{RowsPerPage} trong tổng số {TotalItems} sản phẩm";
+                return $"Hiển thị {Customers.Count}/{RowsPerPage} trong tổng số {TotalItems} khách hàng";
             }
 
-            return $"Displaying {Customers.Count}/{RowsPerPage} of total {TotalItems} item(s)";
+            return $"Displaying {Customers.Count}/{RowsPerPage} of total {TotalItems} customer(s)";
         }
     }
 
@@ -86,10 +86,6 @@ public partial class CustomerViewModel : ObservableRecipient
         CurrentPage = page;
         LoadData();
     }
-    public int customerCount
-    {
-        get; set;
-    }
 
     public CustomerViewModel()
     {
@@ -131,12 +127,66 @@ public partial class CustomerViewModel : ObservableRecipient
                 });
             }
         }
-        customerCount = customerDAO.GetCustomerCount();
 
         SelectedPageInfoItem = PageInfos.FirstOrDefault(p => p.Page == CurrentPage);
 
         OnPropertyChanged(nameof(Info));
+        OnPropertyChanged(nameof(TotalItems));
+    
     }
 
+    private bool IsValidPhone(string phone)
+    {
+        // Example validation: Check if the phone contains only digits and has 10 characters
+        return phone.Length == 10 && phone.All(char.IsDigit);
+    }
 
+    public Tuple<bool, string> AddCustomer(string name, string phone)
+    {
+        var DAO = new SQLCustomerDAO();
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        if (name.Length == 0)
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Please enter Customer's name"
+                    : "Vui lòng nhập tên khách hàng!");
+        }
+
+        if (string.IsNullOrWhiteSpace(phone) || !IsValidPhone(phone))
+        {
+            return new Tuple<bool, string>(
+                false,
+                language.Equals("en-US")
+                    ? "Please enter a valid Customer's phone number!"
+                    : "Vui lòng nhập số điện thoại khách hàng hợp lệ!"
+            );
+        }
+
+        var founded = DAO.GetCustomer(phone);
+
+        if (founded != null)
+        {
+            return new Tuple<bool, string>(
+                 false,
+                 language.Equals("en-US")
+                     ? "Customer already exists"
+                     : "Khách hàng đã tồn tại!"
+                 );
+        }
+
+        DAO.AddCustomer(new Customer()
+        {
+            Name = name,
+            Phone = phone
+        });
+
+        return new Tuple<bool, string>(
+            true,
+            language.Equals("en-US")
+                ? "The customer has been inserted successfully!"
+                : "Khách hàng đã được thêm thành công!"
+        );
+    }
 }

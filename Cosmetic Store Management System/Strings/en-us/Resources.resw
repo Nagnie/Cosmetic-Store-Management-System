@@ -477,6 +477,9 @@
   <data name="CustomerPage_Loyal.Text" xml:space="preserve">
     <value>Loyal</value>
   </data>
+	<data name="CustomerPage_Action.Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="OverviewsPage_TodayOrderLabel.Text" xml:space="preserve">
     <value>Today's order</value>
   </data>
@@ -617,5 +620,44 @@
   </data>
   <data name="ManufacturerPage_SaveButton.Content" xml:space="preserve">
     <value>Save</value>
+  </data>
+	<data name="CustomerPage_AddCustomer.Text" xml:space="preserve">
+    <value>Add Customer</value>
+  </data>
+	<data name="CustomerPage_NameLabel.Text" xml:space="preserve">
+    <value>Customer's Name</value>
+  </data>
+	<data name="CustomerPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Enter Customer's name</value>
+  </data>
+	<data name="CustomerPage_PhoneNumberLabel.Text" xml:space="preserve">
+    <value>Customer's Phone Number</value>
+  </data>
+	<data name="CustomerPage_PhoneNumberInput.PlaceholderText" xml:space="preserve">
+    <value>Enter Customer's phone number</value>
+  </data>
+	<data name="CustomerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+	<data name="CustomerPage_TotalCustomers.Text" xml:space="preserve">
+    <value>Total Customers</value>
+  </data>
+	<data name="EditCustomerPage_Name.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+	<data name="EditCustomerPage_Phone.Text" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+	<data name="EditCustomerPage_Point.Text" xml:space="preserve">
+    <value>Point</value>
+  </data>
+	<data name="EditCustomerPage_Loyal.Text" xml:space="preserve">
+    <value>Loyal</value>
+  </data>
+	<data name="EditCustomerPage_SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+	<data name="EditCustomerPage_CancelButton.Content" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>
