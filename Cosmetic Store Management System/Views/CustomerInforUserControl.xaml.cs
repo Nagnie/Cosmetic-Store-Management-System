@@ -41,6 +41,9 @@ public sealed partial class CustomerInforUserControl : UserControl
         {
             ContentDialog notification = new ContentDialog()
             {
+                Title = language.Equals("en-US")
+                        ? "Error"
+                        : "Lỗi",
                 Content = language.Equals("en-US") 
                         ? "Please enter the phone number!"
                         : "Vui lòng nhập số điện thoại khách hàng!",
@@ -59,6 +62,9 @@ public sealed partial class CustomerInforUserControl : UserControl
         {
             ContentDialog notification = new ContentDialog()
             {
+                Title = language.Equals("en-US")
+                        ? "Error"
+                        : "Lỗi",
                 Content = language.Equals("en-US") 
                         ? "Customer not found!"
                         : "Không tìm thấy khách hàng có số điện thoại đã nhập!",
@@ -84,6 +90,7 @@ public sealed partial class CustomerInforUserControl : UserControl
         {
             ContentDialog dialog = new ContentDialog()
             {
+                Title = language.Equals("en-US") ? "Error" : "Lỗi",
                 Content = language.Equals("en-US") 
                         ? "Please enter the phone number and customer name!"
                         : "Vui lòng nhập đầy đủ số điện thoại và tên khách hàng!",
@@ -99,6 +106,7 @@ public sealed partial class CustomerInforUserControl : UserControl
 
         ContentDialog notification = new ContentDialog()
         {
+            Title = language.Equals("en-US") ? "Succes" : "Thành công",
             Content = language.Equals("en-US")
                     ? "Customer information has been saved successfully!"
                     : "Thông tin khách hàng đã được lưu thành công!",
