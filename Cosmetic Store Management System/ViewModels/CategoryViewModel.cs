@@ -62,7 +62,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         get; set;
     }
- 
+
     public void GoToNextPage()
     {
         if (CurrentPage < TotalPages)
@@ -90,7 +90,7 @@ public partial class CategoryViewModel : ObservableRecipient
     {
         RowsPerPage = 12;
         CurrentPage = 1;
-        
+
         LoadData();
     }
     public int categoryCount
@@ -194,6 +194,50 @@ public partial class CategoryViewModel : ObservableRecipient
             true,
             "Thành công",
             "Danh mục đã được thêm thành công"
+        );
+    }
+
+    public Tuple<bool, string, string> DeleteCategory(int ID)
+    {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        ICosmeticDAO cosmeticDAO = new SQLCosmeticDAO();
+        var count = cosmeticDAO.GetCosmeticCountByCategory(ID);
+        if (count > 0)
+        {
+            if (language.Equals("en-US"))
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Error",
+                    "This category cannot be deleted"
+                );
+            }
+            else
+            {
+                return new Tuple<bool, string, string>(
+                    false,
+                    "Lỗi",
+                    "Không thể xóa danh mục này"
+                );
+            }
+        }
+
+        dao.DeleteCategory(ID);
+        LoadData();
+
+        if (language.Equals("en-US"))
+        {
+            return new Tuple<bool, string, string>(
+                true,
+                "Success",
+                "Category deleted successfully"
+            );
+        }
+
+        return new Tuple<bool, string, string>(
+            true,
+            "Thành công",
+            "Danh mục đã được xóa thành công"
         );
     }
 }
