@@ -25,7 +25,7 @@
                 <RowDefinition Height="160"/>
                 <RowDefinition Height="480"/>
                 <RowDefinition Height="380"/>
-                <RowDefinition Height="470"/>
+                <RowDefinition Height="700"/>
             </Grid.RowDefinitions>
             <Grid 
                 HorizontalAlignment="Left" 
@@ -196,78 +196,87 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- Category Chart -->
-                    <TextBlock 
-                        Text="Category" FontSize="20" Margin="0, 50, 0, 0"
-                        Grid.Column="0" Grid.ColumnSpan="2" FontWeight="SemiBold"
-                        HorizontalAlignment="Center"
-                        TextAlignment="Center"
-                        x:Uid="AnalyticsPage_CategoryChart"
-                        Width="400" TextWrapping="Wrap"/>
-                    <lvc:PieChart 
-                        Width="280"
-                        Series="{Binding Categories}"
-                        Grid.Column="0">
-                    </lvc:PieChart>
-
-                    <StackPanel
-                        Grid.Column="1">
-                        <ItemsControl 
-                            ItemsSource="{Binding CategoryLegends}"
-                            Margin="30, 130, 0, 0">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 5">
-                                        <TextBlock 
-                                            Text="{Binding Name}" 
-                                            FontSize="16" FontWeight="SemiBold"
-                                            Width="150" />
-                                        <TextBlock 
-                                            Text="{Binding ProductCount}" 
-                                            FontSize="16" FontWeight="SemiBold"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock 
+                            Text="Category" FontSize="20" Margin="0, 50, 0, 0"
+                            FontWeight="SemiBold" Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            TextAlignment="Center"
+                            x:Uid="AnalyticsPage_CategoryChart"
+                            Width="400" TextWrapping="Wrap"/>
+                        <lvc:PieChart 
+                            Grid.Row="1" Series="{Binding CategorySeries}">
+                        </lvc:PieChart>
+                        <StackPanel
+                            Grid.Row="2"
+                            HorizontalAlignment="Center">
+                            <ItemsControl 
+                                ItemsSource="{Binding CategoryLegends}"
+                                Margin="0, 20, 0, 0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                            <TextBlock 
+                                                Text="{Binding Name}" 
+                                                FontSize="16" FontWeight="SemiBold"
+                                                Width="180" />
+                                            <TextBlock 
+                                                Text="{Binding TotalRevenue, Converter={StaticResource currencyConverter}}" 
+                                                FontSize="16" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
 
                     <!-- Manufacturer Chart -->
-                    <TextBlock 
-                        Text="Manufacturer" FontWeight="SemiBold"
-                        Grid.Column="2" Grid.ColumnSpan="2"  FontSize="20" Margin="0, 50, 0, 0"
-                        HorizontalAlignment="Center"
-                        TextAlignment="Center"
-                        x:Uid="AnalyticsPage_ManufacturerChart"
-                        Width="400" TextWrapping="Wrap"/>
-                    <lvc:PieChart 
-                        Width="280"
-                        Series="{Binding Manufacturers}"  
-                        Grid.Column="2" >
-                    </lvc:PieChart>
-
-                    <StackPanel Grid.Column="3" Margin="30, 130, 0, 0">
-                        <ItemsControl ItemsSource="{Binding ManufacturerLegends}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 5">
-                                        <TextBlock 
-                                            Text="{Binding Name}" 
-                                            FontSize="16" 
-                                            FontWeight="SemiBold"
-                                            Width="150" />
-                                        <TextBlock 
-                                            Text="{Binding ProductCount}" 
-                                            FontSize="16"
-                                            FontWeight="SemiBold"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="4*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock 
+                            Text="Category" FontSize="20" Margin="0, 50, 0, 0"
+                            FontWeight="SemiBold" Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            TextAlignment="Center"
+                            x:Uid="AnalyticsPage_ManufacturerChart"
+                            Width="400" TextWrapping="Wrap"/>
+                        <lvc:PieChart 
+                            Grid.Row="1" Series="{Binding ManufacturerSeries}">
+                        </lvc:PieChart>
+                        <StackPanel
+                            Grid.Row="2"
+                            HorizontalAlignment="Center">           
+                            <ItemsControl 
+                                ItemsSource="{Binding ManufacturerLegends}"
+                                Margin="0, 20, 0, 0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                            <TextBlock 
+                                                Text="{Binding Name}" 
+                                                FontSize="16" FontWeight="SemiBold"
+                                                Width="180" />
+                                            <TextBlock 
+                                                Text="{Binding TotalRevenue, Converter={StaticResource currencyConverter}}" 
+                                                FontSize="16" FontWeight="SemiBold"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
