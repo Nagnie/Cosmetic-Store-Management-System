@@ -8,8 +8,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    
     <StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -79,10 +81,12 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Quantity"/>
                 <TextBox Name="quantity"
-                         Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=TwoWay}"
+                         Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="4"
                          Grid.Column="1"
-                         Margin="0, 0, 0, 10"/>
+                         Margin="0, 0, 0, 10"
+                         InputScope="Number"
+                         TextChanged="QuantityTextBox_TextChanged"/>
 
                 <TextBlock Text="Price"
                            Grid.Row="5"
@@ -90,10 +94,12 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Price"/>
                 <TextBox Name="price"
-                         Text="{x:Bind ViewModel.Cosmetic.Price, Mode=TwoWay}"
+                         Text="{x:Bind ViewModel.Cosmetic.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="5"
                          Grid.Column="1"
-                         Margin="0, 0, 0, 10"/>
+                         Margin="0, 0, 0, 10"
+                         InputScope="Number"
+                         TextChanged="PriceTextBox_TextChanged"/>
 
                 <!--<TextBlock Text="Image"
                            Grid.Row="6"

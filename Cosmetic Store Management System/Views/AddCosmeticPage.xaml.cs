@@ -33,43 +33,43 @@ public sealed partial class AddCosmeticPage : Page
         // Name validation
         if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Name cannot be empty!"
-                         : "Tên không được để trống!";
+            errorMessage += language.Equals("en-US")
+                         ? "Name cannot be empty!\n"
+                         : "Tên không được để trống!\n";
         }
         // Category validation
-        else if (categoryComboBox.SelectedItem == null)
+        if (categoryComboBox.SelectedItem == null)
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Please select a category!"
-                         : "Vui lòng chọn danh mục sản phẩm!";
+            errorMessage += language.Equals("en-US")
+                         ? "Please select a category!\n"
+                         : "Vui lòng chọn danh mục sản phẩm!\n";
         }
         // Manufacturer validation
-        else if (manufacturerComboBox.SelectedItem == null)
+        if (manufacturerComboBox.SelectedItem == null)
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Please select a manufacturer!"
-                         : "Vui lòng chọn hãng sản xuất!";
+            errorMessage += language.Equals("en-US")
+                         ? "Please select a manufacturer!\n"
+                         : "Vui lòng chọn hãng sản xuất!\n";
         }
         // Quantity validation
-        else if (ViewModel.Cosmetic.Quantity <= 0)
+        if (ViewModel.Cosmetic.Quantity <= 0)
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Quantity must be a positive number!"
-                         : "Số lượng sản phẩm phải là số nguyên dương!";
+            errorMessage += language.Equals("en-US")
+                         ? "Quantity must be a positive number!\n"
+                         : "Số lượng sản phẩm phải là số nguyên dương!\n";
         }
         // Price validation
-        else if (ViewModel.Cosmetic.Price <= 0)
+        if (ViewModel.Cosmetic.Price <= 0)
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Price must be a positive number!"
-                         : "Giá sản phẩm phải là số dương!";
+            errorMessage += language.Equals("en-US")
+                         ? "Price must be a positive number!\n"
+                         : "Giá sản phẩm phải là số dương!\n";
         }
-        else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
+        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
-            errorMessage = language.Equals("en-US")
-                         ? "Please upload product image!"
-                         : "Vui lòng tải ảnh sản phẩm!";
+            errorMessage += language.Equals("en-US")
+                         ? "Please upload product image!\n"
+                         : "Vui lòng tải ảnh sản phẩm!\n";
         }
 
         if (errorMessage != "")

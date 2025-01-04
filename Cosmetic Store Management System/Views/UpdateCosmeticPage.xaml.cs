@@ -45,6 +45,31 @@ public sealed partial class UpdateCosmeticPage : Page
         }
     }
 
+    private void QuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (int.TryParse(((TextBox)sender).Text, out int quantity))
+        {
+            ViewModel.Cosmetic.Quantity = quantity;
+        }
+        else
+        {
+            ViewModel.Cosmetic.Quantity = 0; // Default to prevent validation bypass
+        }
+    }
+
+    private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (int.TryParse(((TextBox)sender).Text, out int price))
+        {
+            ViewModel.Cosmetic.Price = price;
+        }
+        else
+        {
+            ViewModel.Cosmetic.Price = 0; // Default to prevent validation bypass
+        }
+    }
+
+
     private bool ValidateInput()
     {
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
@@ -62,33 +87,6 @@ public sealed partial class UpdateCosmeticPage : Page
             {
                 errorMessage += "Tên không thể để trống.\n";
             }
-        }
-
-        // Category validation
-        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Category.Name))
-        {
-            if (language.Equals("en-US"))
-            {
-                errorMessage += "Category cannot be empty.\n";
-            }
-            else
-            {
-                errorMessage += "Danh mục không thể để trống.\n";
-            }
-
-        }
-        // Manufacturer validation
-        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Manufacturer.Name))
-        {
-                if (language.Equals("en-US"))
-                {
-                    errorMessage += "Manufacturer cannot be empty.\n";
-                }
-                else
-                {
-                    errorMessage += "Thương hiệu không thể để trống.\n";
-                }
-                
         }
 
         // Quantity validation
