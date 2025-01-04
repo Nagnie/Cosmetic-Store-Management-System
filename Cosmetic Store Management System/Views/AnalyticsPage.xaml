@@ -89,25 +89,63 @@
             </Grid>
 
             <!-- Revenue Chart -->
-            <Grid BorderBrush="#EEEEEE"
-              Grid.Row="1"
-              BorderThickness="1"
-              CornerRadius="12"
-              Padding="16, 16, 16, 16">
-                <TextBlock Text="Monthly Sales Revenue Chart" 
+            <Grid 
+                BorderBrush="#EEEEEE"
+                Grid.Row="1"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="16, 16, 16, 16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock Text="Monthly Sales Revenue Chart" 
                        FontSize="20"
                        Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
                        HorizontalAlignment="Center"
                        FontWeight="Medium"
                        x:Uid="AnalyticsPage_RevenueChartCaption"/>
-                <lvc:CartesianChart
-                Series="{Binding RevenueSeries}"
-                XAxes="{Binding RevenueXAxis}"
-                YAxes="{Binding RevenueYAxis}"
-                ZoomMode="X">
-                </lvc:CartesianChart>
-            </Grid>
+                    <lvc:CartesianChart
+                        Series="{Binding RevenueSeries}"
+                        XAxes="{Binding RevenueXAxis}"
+                        YAxes="{Binding RevenueYAxis}"
+                        ZoomMode="X">
+                    </lvc:CartesianChart>
+                </Grid>
 
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="12" Grid.Row="0">
+                        <TextBlock 
+                            Text="Average Revenue" 
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            x:Uid="AnalyticsPage_AverageCalculator"
+                            Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+                            Margin="0, 0, 0, 10"/>
+                        <DatePicker x:Name="StartDatePicker" Header="Start Date: " x:Uid="AnalyticsPage_StartDate"/>
+                        <DatePicker x:Name="EndDatePicker" Header="End Date: " x:Uid="AnalyticsPage_EndDate" />
+                        <Button Content="Calculate" Margin="0, 10, 0, 0"
+                                HorizontalAlignment="Right" x:Uid="AnalyticsPage_Calculate"
+                                Style="{ThemeResource AccentButtonStyle}"
+                                Click="Button_Click" />
+                    </StackPanel>
+                    <TextBlock 
+                        Grid.Row="2" FontWeight="Bold"
+                        x:Name="AverageRevenueResult"
+                        FontSize="20"
+                        HorizontalAlignment="Center"
+                        Margin="16,30,0,0" />
+                    
+                </Grid>
+            </Grid>
             <Grid
                 Grid.Row="2">
                 <Grid>
@@ -201,7 +239,7 @@
                     <!-- Category Chart -->
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="110"/>
                             <RowDefinition Height="4*"/>
                             <RowDefinition Height="3*"/>
                         </Grid.RowDefinitions>

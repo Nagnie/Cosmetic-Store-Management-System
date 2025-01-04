@@ -168,6 +168,23 @@ public partial class AnalyticsViewModel : ObservableObject
             }
         ];
     }
+
+    public double CalculateAverageRevenue(DateTime startDate, DateTime endDate)
+    {
+        IOrderDAO orderDAO = new SQLOrderDAO();
+        var revenues = orderDAO.GetRevenues()
+            .Where(r => new DateTime(r.Year, r.Month, 1) >= startDate &&
+                        new DateTime(r.Year, r.Month, 1) <= endDate)
+            .ToList();
+
+        if (revenues.Any())
+        {
+            return revenues.Average(r => r.TotalRevenue);
+        }
+        return 0;
+    }
+
+
     // Category Chart
     public IEnumerable<ISeries> CategorySeries
     {
