@@ -162,7 +162,6 @@ public partial class ProductDataViewModel : ObservableRecipient
     {
         RowsPerPage = 10;
         CurrentPage = 1;
-        //GetCosmetics();
 
         ICategoryDAO categoryDAO = new SQLCategoryDAO();
         Categories = new ObservableCollection<Category>(categoryDAO.GetAllCategories());
@@ -172,18 +171,6 @@ public partial class ProductDataViewModel : ObservableRecipient
 
         LoadData();
     }
-
-    //public void GetCosmetics()
-    //{
-    //    ICosmeticDAO cosmeticDao = new SQLCosmeticDAO();
-    //    Cosmetics.Clear();
-    //    List<Cosmetic> cosmeticList = cosmeticDao.GetCosmetics(CategoryIDs, ManufacturerIDs, SearchString, SortString);
-
-    //    foreach (Cosmetic cosmetic in cosmeticList)
-    //    {
-    //        Cosmetics.Add(cosmetic);
-    //    }
-    //}
 
     public void SetSortString(string sortString)
     {

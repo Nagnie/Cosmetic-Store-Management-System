@@ -95,17 +95,6 @@
                          Grid.Column="1"
                          Margin="0, 0, 0, 10"/>
 
-                <!--<TextBlock Text="Image"
-                           Grid.Row="6"
-                           Grid.Column="0"
-                           Margin="0, 0, 0, 10"
-                           x:Uid="UpdateCosmeticPage_Image"/>
-                <TextBox Name="image"
-                         Text="{x:Bind ViewModel.Cosmetic.ImageData, Mode=TwoWay}"
-                         Grid.Row="6"
-                         Grid.Column="1"
-                         Margin="0, 0, 0, 10"/>-->
-
                 <TextBlock Text="Image"
                            Grid.Row="6"
                            Grid.Column="0"
@@ -148,7 +137,8 @@
                     Click="updateButton_Click"
                     Margin="0, 0, 20, 0"
                     Width="80"
-                    x:Uid="UpdateCosmeticPage_UpdateButton"/>
+                    x:Uid="UpdateCosmeticPage_UpdateButton"
+                    x:Name="updateButton"/>
 
             <Button Content="Cancel"
                     Click="cancelButton_Click"

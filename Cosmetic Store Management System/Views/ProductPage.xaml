@@ -55,7 +55,8 @@
                             Width="100" 
                             Margin="10" 
                             FontWeight="SemiBold"
-                            Click="deleteButton_Click"/>
+                            Click="deleteButton_Click"
+                            x:Name="deleteButton"/>
                     <Button x:Uid="ProductPage_EditButton"
                             Style="{ThemeResource AccentButtonStyle}"
                             Background="{ThemeResource AccentAAFillColorTertiaryBrush}"
@@ -63,7 +64,8 @@
                             Width="100" 
                             Margin="10" 
                             FontWeight="SemiBold"
-                            Click="editButton_Click"/>
+                            Click="editButton_Click"
+                            x:Name="editButton"/>
                 </StackPanel>
             </StackPanel>
 

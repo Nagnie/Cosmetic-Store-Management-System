@@ -47,41 +47,31 @@ public sealed partial class UpdateCosmeticPage : Page
 
     private bool ValidateInput()
     {
-        string errorMessage = "";
+        var errorMessage = "";
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
         // Name validation
         if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
         {
-            errorMessage += "Name cannot be empty.\n";
-        }
-
-        // Category validation
-        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Category.Name))
-        {
-            errorMessage += "Category cannot be empty.\n";
-        }
-
-        // Manufacturer validation
-        if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Manufacturer.Name))
-        {
-            errorMessage += "Manufacturer cannot be empty.\n";
+            errorMessage = language.Equals("en-US") 
+                ? "Please enter product name"
+                : "Vui lòng nhập tên sản phẩm";
         }
 
         // Quantity validation
-        if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (ViewModel.Cosmetic.Quantity <= 0)
         {
-            errorMessage += "Quantity must be a positive number.\n";
+            errorMessage = language.Equals("en-US") 
+                ? "Please enter a valid quantity"
+                : "Vui lòng nhập số lượng hợp lệ";
         }
 
         // Price validation
-        if (ViewModel.Cosmetic.Price <= 0)
+        else if (ViewModel.Cosmetic.Price <= 0)
         {
-            errorMessage += "Price must be a positive number.\n";
-        }
-
-        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
-        {
-            errorMessage += "Image input cannot be empty.\n";
+            errorMessage = language.Equals("en-US") 
+                ? "Please enter a valid price"
+                : "Vui lòng nhập giá hợp lệ";
         }
 
         if (errorMessage != "")
@@ -99,7 +89,6 @@ public sealed partial class UpdateCosmeticPage : Page
         await new ContentDialog
         {
             XamlRoot = this.Content.XamlRoot,
-            Title = "Validation Error",
             Content = errorMessage,
             CloseButtonText = "OK"
         }.ShowAsync();

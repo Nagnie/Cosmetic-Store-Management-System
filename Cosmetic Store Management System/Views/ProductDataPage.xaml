@@ -37,7 +37,8 @@
                         Click="OnProductClick" 
                         Background="Transparent" 
                         BorderBrush="Transparent" 
-                        Margin="0, 0, 20, 0">
+                        Margin="0, 0, 20, 0"
+                        x:Name="productDetailButton">
                     <TextBlock Text="{x:Bind Name, Mode=OneWay}"  
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left" />
