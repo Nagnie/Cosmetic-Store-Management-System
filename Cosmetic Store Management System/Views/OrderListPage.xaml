@@ -85,7 +85,7 @@
                 <DataTemplate x:DataType="local2:Order">
                     <StackPanel CornerRadius="12" 
                         Width="300" 
-                        Height="150" 
+                        Height="160" 
                         Padding="16, 16, 16, 16"
                         BorderBrush="{StaticResource AccentFillColorTertiaryBrush}"
                         BorderThickness="1">    

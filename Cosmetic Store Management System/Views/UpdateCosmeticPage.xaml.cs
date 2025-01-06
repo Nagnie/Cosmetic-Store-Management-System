@@ -183,7 +183,7 @@ public sealed partial class UpdateCosmeticPage : Page
                 await new ContentDialog
                 {
                     XamlRoot = this.Content.XamlRoot,
-                    Title = "Failed",
+                    Title = "Error",
                     Content = "Product already exists!",
                     CloseButtonText = "Cancel"
                 }.ShowAsync();

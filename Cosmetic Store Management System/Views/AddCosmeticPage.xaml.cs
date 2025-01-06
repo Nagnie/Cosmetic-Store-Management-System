@@ -106,19 +106,28 @@ public sealed partial class AddCosmeticPage : Page
         ViewModel.Category = categoryComboBox.SelectedItem as Category;
         var (success, msg)  = ViewModel.AddCosmetic();
 
-        var dialog = new ContentDialog()
-        {
-            Content = msg,
-            PrimaryButtonText = "OK",
-            XamlRoot = this.Content.XamlRoot
-        };
+        
         if (success)
         {
+            var dialog = new ContentDialog()
+            {
+                Title = language.Equals("en-US") ? "Success" : "Thành công",
+                Content = msg,
+                PrimaryButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
             await dialog.ShowAsync();
             this.Frame.Navigate(typeof(ProductDataPage));
         }
         else
         {
+            var dialog = new ContentDialog()
+            {
+                Title = language.Equals("en-US") ? "Error" : "Lỗi",
+                Content = msg,
+                PrimaryButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
             await dialog.ShowAsync();
         }    
                
