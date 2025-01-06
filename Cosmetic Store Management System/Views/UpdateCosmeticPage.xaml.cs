@@ -103,7 +103,7 @@ public sealed partial class UpdateCosmeticPage : Page
             }
 
         // Price validation
-        if (ViewModel.Cosmetic.Price <= 0)
+        else if (ViewModel.Cosmetic.Price <= 0)
         {
                 if (language.Equals("en-US"))
                 {
@@ -115,7 +115,7 @@ public sealed partial class UpdateCosmeticPage : Page
                 }
             }
 
-        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
+        else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
             if (language.Equals("en-US"))
             {

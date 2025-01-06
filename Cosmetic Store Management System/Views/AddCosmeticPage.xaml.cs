@@ -38,34 +38,34 @@ public sealed partial class AddCosmeticPage : Page
                          : "Tên không được để trống!\n";
         }
         // Category validation
-        if (categoryComboBox.SelectedItem == null)
+        else if (categoryComboBox.SelectedItem == null)
         {
             errorMessage += language.Equals("en-US")
                          ? "Please select a category!\n"
                          : "Vui lòng chọn danh mục sản phẩm!\n";
         }
         // Manufacturer validation
-        if (manufacturerComboBox.SelectedItem == null)
+        else if (manufacturerComboBox.SelectedItem == null)
         {
             errorMessage += language.Equals("en-US")
                          ? "Please select a manufacturer!\n"
                          : "Vui lòng chọn hãng sản xuất!\n";
         }
         // Quantity validation
-        if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (ViewModel.Cosmetic.Quantity <= 0)
         {
             errorMessage += language.Equals("en-US")
                          ? "Quantity must be a positive number!\n"
                          : "Số lượng sản phẩm phải là số nguyên dương!\n";
         }
         // Price validation
-        if (ViewModel.Cosmetic.Price <= 0)
+        else if (ViewModel.Cosmetic.Price <= 0)
         {
             errorMessage += language.Equals("en-US")
                          ? "Price must be a positive number!\n"
                          : "Giá sản phẩm phải là số dương!\n";
         }
-        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
+        else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
             errorMessage += language.Equals("en-US")
                          ? "Please upload product image!\n"
