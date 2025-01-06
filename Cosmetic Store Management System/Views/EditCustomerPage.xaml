@@ -28,10 +28,10 @@
                Grid.Column="0"
                Margin="0, 0, 0, 12"/>
         <TextBox Text="{x:Bind ViewModel.Customer.ID, Mode=TwoWay}"
-             IsEnabled="False"
-             Grid.Row="0"
-             Grid.Column="1"
-             Margin="0, 0, 0, 12"/>
+                 IsEnabled="False"
+                 Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="0, 0, 0, 12"/>
 
         <TextBlock Text="Name"
                Grid.Row="1"
@@ -39,9 +39,10 @@
                Margin="0, 0, 0, 12"
                x:Uid="EditCustomerPage_Name"/>
         <TextBox Text="{x:Bind ViewModel.Customer.Name, Mode=TwoWay}"
-             Grid.Row="1"
-             Grid.Column="1"
-             Margin="0, 0, 0, 12"/>
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="0, 0, 0, 12"
+                 x:Name="nameInput"/>
 
         <TextBlock Text="Phone Number"
                Grid.Column="0"
@@ -49,11 +50,12 @@
                Margin="0, 0, 0, 12"
                x:Uid="EditCustomerPage_Phone"/>
         <TextBox Text="{x:Bind ViewModel.Customer.Phone, Mode=TwoWay}"
-             Grid.Column="1"
-             Grid.Row="2"
-             Margin="0, 0, 0, 12"
-             ScrollViewer.HorizontalScrollMode="Enabled"
-             TextWrapping="Wrap"/>
+                 Grid.Column="1"
+                 Grid.Row="2"
+                 Margin="0, 0, 0, 12"
+                 ScrollViewer.HorizontalScrollMode="Enabled"
+                 TextWrapping="Wrap"
+                 x:Name="phoneNumberInput"/>
 
         <TextBlock Text="Point"
                   Grid.Column="0"
@@ -94,7 +96,8 @@
                 Margin="0, 0, 12, 0"
                 Click="saveButton_Click"
                 Style="{ThemeResource AccentButtonStyle}"
-                x:Uid="EditCustomerPage_SaveButton"/>
+                x:Uid="EditCustomerPage_SaveButton"
+                x:Name="saveButton"/>
             <Button Content="Cancel"
                 Width="80"
                 Click="cancelButton_Click"

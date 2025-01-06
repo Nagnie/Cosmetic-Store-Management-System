@@ -173,7 +173,8 @@
                     Width="100"
                     Style="{ThemeResource AccentButtonStyle}"
                     x:Uid="CustomerPage_SaveButton"
-                    Click="addButton_Click"/>
+                    Click="addButton_Click"
+                    x:Name="saveButton"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0, 0, 40, 20">
