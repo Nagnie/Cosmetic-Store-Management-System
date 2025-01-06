@@ -223,6 +223,28 @@ public class SQLCosmeticDAO : ICosmeticDAO
         return success;
     }
 
+    public Cosmetic GetCosmeticByName(string name)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        const string query = """
+            SELECT c.cosmetic_id, c.cosmetic_name, c.category_id, ca.category_name, c.manufacturer_id, m.manufacturer_name, c.quantity, c.description, c.price, c.image
+            FROM "COSMETIC" c
+            LEFT JOIN "MANUFACTURER" m ON c.manufacturer_id = m.manufacturer_id
+            LEFT JOIN "CATEGORY" ca ON c.category_id = ca.category_id
+            WHERE cosmetic_name = @name
+        """;
+
+        using var command = new NpgsqlCommand(query, connection);
+        command.Parameters.AddWithValue("@name", name);
+
+        using var reader = command.ExecuteReader();
+        var result = reader.Read() ? MapToCosmetic(reader) : null;
+        connection.Close();
+        return result;
+    }
+        
     public Cosmetic GetCosmeticById(int id)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();

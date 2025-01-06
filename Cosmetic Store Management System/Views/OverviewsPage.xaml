@@ -112,7 +112,7 @@
                                             VerticalAlignment="Top" 
                                             Width="5" 
                                             Height="5" 
-                                            Visibility="{Binding LowStockCount, Converter={StaticResource VisibilityConverter}}">
+                                            Visibility="{x:Bind ViewModel.LowStockCount, Converter={StaticResource VisibilityConverter}, Mode=OneWay}">
                                             <TextBlock 
                                                 x:Name="NotificationCountText" 
                                                 Text="{Binding LowStockCount}" 

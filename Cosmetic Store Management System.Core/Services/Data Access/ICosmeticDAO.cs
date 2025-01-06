@@ -21,6 +21,8 @@ public interface ICosmeticDAO
 
     Cosmetic GetCosmetic(int ID);
     bool UpdateCosmetic(Cosmetic cosmetic);
+
+    Cosmetic GetCosmeticByName(string name);
     bool DeleteCosmetic(int ID);
     Cosmetic GetCosmeticById(int productId);
     Cosmetic GetNextCosmetic(int currentProductId);

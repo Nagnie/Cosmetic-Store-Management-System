@@ -89,7 +89,7 @@
                 </Border>
             </StackPanel>
             <StackPanel Grid.Row="1" Padding="0, 0, 40, 0">
-                <TextBlock Text="Add manufacturer"
+                <TextBlock Text="Add Manufacturer"
                            FontSize="22"
                            FontWeight="SemiBold"
                            x:Uid="ManufacturerPage_AddManufacturer"/>

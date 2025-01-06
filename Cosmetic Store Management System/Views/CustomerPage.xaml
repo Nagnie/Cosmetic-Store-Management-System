@@ -150,7 +150,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <StackPanel Grid.Row="0" Padding="0, 0, 40, 0">
+            <StackPanel Grid.Row="1" Padding="0, 0, 40, 0">
                 <TextBlock Text="Add Customer"
                      FontSize="22"
                      FontWeight="SemiBold"
@@ -176,7 +176,7 @@
                     Click="addButton_Click"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0, 0, 40, 20">
+            <StackPanel Grid.Row="0"  HorizontalAlignment="Center" Margin="0, 0, 40, 20">
                 <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
                     <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
                         <TextBlock 

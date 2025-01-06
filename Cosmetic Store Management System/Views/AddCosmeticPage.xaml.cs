@@ -99,61 +99,29 @@ public sealed partial class AddCosmeticPage : Page
 
     private async void saveButton_Click(object sender, RoutedEventArgs e)
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         if (!ValidateInput()) return;
 
         ViewModel.Manufacturer = manufacturerComboBox.SelectedItem as Manufacturer;
         ViewModel.Category = categoryComboBox.SelectedItem as Category;
-        bool success = ViewModel.AddCosmetic();
+        var (success, msg)  = ViewModel.AddCosmetic();
 
-        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        var dialog = new ContentDialog()
+        {
+            Content = msg,
+            PrimaryButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
         if (success)
         {
-            if (language.Equals("en-US"))
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Success",
-                    Content = "Product is inserted successfully!",
-                    CloseButtonText = "OK"
-                }.ShowAsync();
-            }
-            else
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Thành công",
-                    Content = "Sản phẩm đã được lưu thành công!",
-                    CloseButtonText = "OK"
-                }.ShowAsync();
-            }
+            await dialog.ShowAsync();
+            this.Frame.Navigate(typeof(ProductDataPage));
         }
         else
         {
-            if (language.Equals("en-US"))
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Error",
-                    Content = "Enable to insert product!",
-                    CloseButtonText = "OK"
-                }.ShowAsync();
-            }
-            else
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Lỗi",
-                    Content = "Không thể thêm sản phẩm vào hệ thống!",
-                    CloseButtonText = "OK"
-                }.ShowAsync();
-            }
-        } 
-
-        this.Frame.Navigate(typeof(ProductDataPage));
+            await dialog.ShowAsync();
+        }    
+               
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)

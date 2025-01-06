@@ -169,11 +169,39 @@ public sealed partial class UpdateCosmeticPage : Page
     }
     private async void updateButton_Click(object sender, RoutedEventArgs e)
     {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         if (!ValidateInput()) return;
 
         ICosmeticDAO dao = new SQLCosmeticDAO();
+
+        var founded = dao.GetCosmeticByName(ViewModel.Cosmetic.Name);
+
+        if (founded != null)
+        {            
+            if (language.Equals("en-US"))
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Failed",
+                    Content = "Product already exists!",
+                    CloseButtonText = "Cancel"
+                }.ShowAsync();
+            }
+            else
+            {
+                await new ContentDialog
+                {
+                    XamlRoot = this.Content.XamlRoot,
+                    Title = "Lỗi",
+                    Content = "Sản phẩm đã tồn tại!",
+                    CloseButtonText = "Hủy"
+                }.ShowAsync();
+            }
+            return;
+        }
+        
         var success = dao.UpdateCosmetic(ViewModel.Cosmetic);
-        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
 
         if (success)
         {

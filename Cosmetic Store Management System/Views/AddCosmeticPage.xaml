@@ -9,6 +9,7 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <FontFamily x:Key="DongleBold">/Assets/Font/Dongle/Dongle-Bold.ttf#Dongle Bold</FontFamily>
         <DataTemplate x:Key="ManufacturerItemTemplate" x:DataType="models:Manufacturer">
             <TextBlock Text="{x:Bind Name}"/>
         </DataTemplate>
@@ -146,6 +147,8 @@
                     VerticalAlignment="Center"
                     Margin="120, 20, 0, 0">
             <Button Content="Save"
+                    Style="{StaticResource AccentButtonStyle}"
+                    Background="{StaticResource AccentFillColorTertiaryBrush}"
                     Click="saveButton_Click"
                     Margin="0, 0, 20, 0"
                     Width="80"

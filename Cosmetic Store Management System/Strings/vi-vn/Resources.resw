@@ -517,7 +517,7 @@
     <value>Biểu đồ doanh thu theo tháng</value>
   </data>
   <data name="OrderListPage_SearchBox.PlaceholderText" xml:space="preserve">
-    <value>Nhập Tên hoặc Số điện thoại khách hàng</value>
+    <value>Tìm kiếm bằng tên hoặc số điện thoại</value>
   </data>
   <data name="OrderListPage_SearchButton.Content" xml:space="preserve">
     <value>Tìm</value>
@@ -580,10 +580,10 @@
     <value>Danh sách đơn hàng</value>
   </data>
   <data name="CategoryPage_AddLabel.Text" xml:space="preserve">
-    <value>Thêm danh mục</value>
+    <value>Thêm Danh mục</value>
   </data>
   <data name="CategoryPage_NameInputHeader.Text" xml:space="preserve">
-    <value>Nhập tên danh mục</value>
+    <value>Tên danh mục</value>
   </data>
   <data name="CategoryPage_SaveButton.Content" xml:space="preserve">
     <value>Lưu</value>
@@ -607,7 +607,7 @@
     <value>Tổng số thương hiệu</value>
   </data>
   <data name="ManufacturerPage_AddManufacturer.Text" xml:space="preserve">
-    <value>Thêm thương hiệu</value>
+    <value>Thêm Thương hiệu</value>
   </data>
   <data name="ManufacturerPage_NameLabel.Text" xml:space="preserve">
     <value>Tên thương hiệu</value>
