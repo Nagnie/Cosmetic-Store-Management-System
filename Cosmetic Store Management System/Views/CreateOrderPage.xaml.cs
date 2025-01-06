@@ -158,8 +158,7 @@ public sealed partial class CreateOrderPage : Page
             }
         }
 
-
-            this.Frame.Navigate(typeof(CreateOrderPage));
+        this.Frame.Navigate(typeof(CreateOrderPage));
     }
 
     private void CustomerInforUserControl_UserFound(int point)

@@ -86,15 +86,15 @@ public sealed partial class EditCustomerPage : Page
             return;
         }
         
-
-        if (!ViewModel.dao.CanDeleteCustomer(ViewModel.Customer.Phone))
+        var customer = ViewModel.dao.GetCustomer(phone);
+        if (customer != null && customer.ID != ViewModel.Customer.ID)
         {
             var errorDialog = new ContentDialog
             {
                 Title = language.Equals("en-US") ? "Update Customer" : "Cập nhật khách hàng",
                 Content = language.Equals("en-US")
-                    ? "This customer cannot be updated because they have already existed."
-                    : "Không thể cập nhật vì thông tin khách hàng đã tồn tại.",
+                    ? "This phone number is already in use. Please enter a different phone number."
+                    : "Số điện thoại này đã được sử dụng. Hãy nhập một số điện thoại khác.",
                 CloseButtonText = "OK",
                 XamlRoot = this.Content.XamlRoot
             };

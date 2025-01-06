@@ -8,8 +8,8 @@
     <ProjectGuid>{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CalculatorTest</RootNamespace>
-    <AssemblyName>CalculatorTest</AssemblyName>
+    <RootNamespace>CSMSTest</RootNamespace>
+    <AssemblyName>CSMSTest</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="AppSession.cs" />
     <Compile Include="CategoryTest.cs" />
+    <Compile Include="CustomerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="ManufacturerTest.cs" />

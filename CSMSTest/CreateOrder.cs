@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Policy;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CSMSTest
@@ -10,6 +12,7 @@ namespace CSMSTest
         public void AddCustomer_EmptyPhone_Fail()
         {
             NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("saveCustomerButton").Click();
             try
             {
@@ -27,7 +30,9 @@ namespace CSMSTest
         {
             var phone = GenerateRandomPhoneNumber();
             NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("phoneNumberTextBox").SendKeys(phone);
+            session.FindElementByAccessibilityId("nameTextBox").Clear();
             session.FindElementByAccessibilityId("saveCustomerButton").Click();
             try
             {
@@ -45,7 +50,9 @@ namespace CSMSTest
         {
             var phone = GenerateRandomPhoneNumber();
             NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("phoneNumberTextBox").SendKeys(phone);
+            session.FindElementByAccessibilityId("nameTextBox").Clear();
             session.FindElementByAccessibilityId("nameTextBox").SendKeys("Test");
             session.FindElementByAccessibilityId("saveCustomerButton").Click();
             try
@@ -62,9 +69,8 @@ namespace CSMSTest
         [TestMethod]
         public void FindCustomer_EmptyPhone_Fail()
         {
-            var phone = GenerateRandomPhoneNumber();
             NavigateToCreateOrderPage();
-            session.FindElementByAccessibilityId("phoneNumberTextBox").SendKeys(phone);
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("searchButton").Click();
             try
             {
@@ -82,6 +88,7 @@ namespace CSMSTest
         {
             var phone = GenerateRandomPhoneNumber();
             NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("phoneNumberTextBox").SendKeys(phone);
             session.FindElementByAccessibilityId("nameTextBox").SendKeys("Test");
             session.FindElementByAccessibilityId("saveCustomerButton").Click();
@@ -89,6 +96,7 @@ namespace CSMSTest
 
             NavigateToOverviewsPage();
             NavigateToCreateOrderPage();
+            session.FindElementByAccessibilityId("phoneNumberTextBox").Clear();
             session.FindElementByAccessibilityId("phoneNumberTextBox").SendKeys(phone);
             session.FindElementByAccessibilityId("searchButton").Click();
             Assert.IsNotNull(session.FindElementByAccessibilityId("phoneNumberTextBox").Text);
