@@ -24,7 +24,22 @@ namespace CSMSTest
         }
 
         [TestMethod]
-        public void Login_WrongUsernameOrPassword_Fail()
+        public void Login_WrongUsername_Fail()
+        {
+            var usernameTextBox = session.FindElementByAccessibilityId("usernameTextBox");
+            usernameTextBox.Clear();
+            usernameTextBox.SendKeys("users");
+
+            var passwordBox = session.FindElementByAccessibilityId("passwordBox");
+            passwordBox.Clear();
+            passwordBox.SendKeys("1234");
+
+            session.FindElementByAccessibilityId("loginButton").Click();
+            Assert.IsTrue(IsFailedDialogShown());
+        }
+
+        [TestMethod]
+        public void Login_WrongPassword_Fail()
         {
             var usernameTextBox = session.FindElementByAccessibilityId("usernameTextBox");
             usernameTextBox.Clear();
