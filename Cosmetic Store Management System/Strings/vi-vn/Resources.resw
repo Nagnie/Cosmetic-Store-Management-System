@@ -124,10 +124,15 @@
     <value>Hệ thống quản lý cửa hàng mỹ phẩm</value>
   </data>
   <data name="Settings_About.Text" xml:space="preserve">
-    <value>About this application</value>
+    <value>Thông tin về ứng dụng</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>TODO: Replace with your app description.</value>
+    <value>Hệ thống Quản lý Cửa hàng Mỹ Phẩm là công cụ hoàn hảo giúp bạn tổ chức và theo dõi kho hàng một cách dễ dàng. Ứng dụng này cho phép bạn quản lý các thông tin sản phẩm như tên, danh mục, nhà sản xuất, mức tồn kho và giá cả. Với giao diện trực quan, ứng dụng giúp bạn dễ dàng điều hướng, để bạn có thể tập trung vào việc phát triển doanh nghiệp thay vì phải xử lý công việc giấy tờ phức tạp.
+	
+Khi chọn một sản phẩm cụ thể, bạn có thể truy cập thông tin chi tiết, bao gồm xu hướng bán hàng, tình trạng tồn kho và thông tin nhà cung cấp. Ứng dụng cũng cho phép bạn tạo đơn hàng cho khách hàng, lưu trữ thông tin của họ để tham gia các chương trình giảm giá, mang lại trải nghiệm liền mạch cho cả khách hàng và cửa hàng. Bên cạnh đó, lịch sử đơn hàng có thể được xem lại để theo dõi các giao dịch trước đây, phân tích xu hướng bán hàng và quản lý mối quan hệ với khách hàng. Thiết kế thân thiện của ứng dụng giúp việc quản lý cửa hàng trở nên đơn giản, cho phép bạn dễ dàng cập nhật tồn kho, tạo đơn hàng mới và quản lý các chương trình giảm giá, tất cả trong một nền tảng. Đây là giải pháp toàn diện giúp tối ưu hóa hoạt động cửa hàng, cải thiện sự hài lòng của khách hàng và nâng cao hiệu quả bán hàng.
+	
+Kinh doanh mỹ phẩm đôi khi gặp phải không ít thách thức, nhưng ứng dụng của chúng tôi sẽ hỗ trợ bạn. Với những thông tin chi tiết về sở thích của khách hàng, các sản phẩm bán chạy và cập nhật tồn kho theo thời gian thực, bạn có thể đưa ra các quyết định thông minh để tối đa hóa lợi nhuận. Hãy nâng tầm doanh nghiệp của bạn ngay hôm nay với Ứng dụng Hệ thống Quản lý Cửa hàng Mỹ Phẩm, trợ lý đắc lực cho cửa hàng của bạn!
+	</value>
   </data>
   <data name="Settings_Personalization.Text" xml:space="preserve">
     <value>Cài đặt cá nhân hóa</value>

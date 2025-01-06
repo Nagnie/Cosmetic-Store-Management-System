@@ -10,7 +10,7 @@
     <Page.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
     </Page.Resources>
-    <Grid>
+    <ScrollViewer>
         <StackPanel
             x:Name="ContentArea">
             <TextBlock x:Uid="Settings_Personalization" Style="{ThemeResource SubtitleTextBlockStyle}" />
@@ -100,18 +100,18 @@
                 <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                    <TextBlock Text="{x:Bind ViewModel.VersionDescription, Mode=OneWay}" Style="{ThemeResource BodyTextBlockStyle}" />
-
+                    
                     <TextBlock
                     Text="This app is a comprehensive solution for managing cosmetic retail stores, providing tools for inventory tracking, sales management, customer insights, and more. It allows store owners to easily organize product information, monitor stock levels, and streamline sales processes, with features to track popular items, manage orders, and analyze customer purchasing habits."
                     x:Uid="Settings_AboutDescription"
                     Margin="{StaticResource XSmallTopMargin}"
                     Style="{ThemeResource BodyTextBlockStyle}" 
                     Width="600"
-                    HorizontalAlignment="Left"/>
-                    <HyperlinkButton FontWeight="SemiBold" x:Uid="SettingsPage_PrivacyTermsLink" Margin="{StaticResource SettingsPageHyperlinkButtonMargin}" />
+                    HorizontalAlignment="Left"
+                    TextWrapping="Wrap"/>
+                    
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Page>

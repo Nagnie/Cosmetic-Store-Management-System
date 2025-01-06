@@ -151,7 +151,11 @@
     <value>About this application</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>TODO: Replace with your app description.</value>
+    <value>The Cosmetic Store Management App is the perfect tool for organizing and tracking your inventory with ease. This app allows you to manage product details such as name, category, manufacturer, stock levels, and prices. With its intuitive design, the app ensures smooth navigation, helping you focus on growing your business instead of handling tedious paperwork.
+
+By selecting a specific product, you can access detailed information, including sales trends, stock status, and supplier details. The app also allows you to create customer orders, saving their information for participation in discount programs, ensuring a seamless experience for both customers and the store. Additionally, order history can be reviewed to track past transactions, analyze sales patterns, and manage customer relationships. The app's intuitive design simplifies store management, making it easy to update stock levels, create new orders, and manage discounts, all in one platform. This all-in-one solution helps optimize store operations, improve customer satisfaction, and increase sales efficiency.
+
+Running a cosmetic business comes with challenges, but our app is here to help. With insights into customer preferences, best-selling products, and real-time inventory updates, you can make smarter decisions to maximize profitability. Elevate your business today with the Cosmetic Store Management App, the ultimate assistant for your store!</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
     <value>Privacy Statement</value>
