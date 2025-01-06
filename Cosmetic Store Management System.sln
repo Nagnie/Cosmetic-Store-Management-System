@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cosmetic Store Management System.Core", "Cosmetic Store Management System.Core\Cosmetic Store Management System.Core.csproj", "{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSMSTest", "CSMSTest\CSMSTest.csproj", "{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,22 @@ Global
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x64.Build.0 = Release|x64
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.ActiveCfg = Release|x86
 		{20D5F655-FBA1-4AF9-AC18-18A0B66031B0}.Release|x86.Build.0 = Release|x86
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|arm64.Build.0 = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|x64.Build.0 = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Debug|x86.Build.0 = Debug|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|arm64.ActiveCfg = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|arm64.Build.0 = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|x64.ActiveCfg = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|x64.Build.0 = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|x86.ActiveCfg = Release|Any CPU
+		{B2C5ADFF-D6B5-48C1-BB8C-571BFD583D7F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
