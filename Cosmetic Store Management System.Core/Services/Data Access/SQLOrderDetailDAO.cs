@@ -179,5 +179,53 @@ public class SQLOrderDetailDAO : IOrderDetailDAO
         return topProducts;
     }
 
+    public List<(string name, long totalRevenue)> ProfitableCategories()
+    {
+        List<(string name, long totalRevenue)> profitableCategories = new List<(string name, long totalRevenue)>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
 
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT ca.category_name, SUM(o.quantity * co.price) AS total_revenue
+            FROM "ORDER_DETAIL" o
+            JOIN "COSMETIC" co ON o.cosmetic_id = co.cosmetic_id
+            JOIN "CATEGORY" ca ON ca.category_id = co.category_id
+            GROUP BY ca.category_name
+            ORDER BY total_revenue DESC
+        """;
+
+        var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            profitableCategories.Add(((string)reader["category_name"], (long)reader["total_revenue"]));
+        }
+        connection.Close();
+        return profitableCategories;
+    }
+
+    public List<(string name, long totalRevenue)> ProfitableManufacturers()
+    {
+        List<(string name, long totalRevenue)> profitableManufacturers = new List<(string name, long totalRevenue)>();
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT m.manufacturer_name, SUM(o.quantity * co.price) AS total_revenue
+            FROM "ORDER_DETAIL" o
+            JOIN "COSMETIC" co ON o.cosmetic_id = co.cosmetic_id
+            JOIN "MANUFACTURER" m ON m.manufacturer_id = co.manufacturer_id
+            GROUP BY m.manufacturer_name
+            ORDER BY total_revenue DESC
+        """;
+        var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            profitableManufacturers.Add(((string)reader["manufacturer_name"], (long)reader["total_revenue"]));
+        }
+        connection.Close();
+        return profitableManufacturers;
+    }
 }

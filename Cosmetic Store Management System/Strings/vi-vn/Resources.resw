@@ -480,6 +480,9 @@
   <data name="CustomerPage_Loyal.Text" xml:space="preserve">
     <value>Thân thiết</value>
   </data>
+  <data name="CustomerPage_Action.Text" xml:space="preserve">
+    <value>Hành động</value>
+  </data>
   <data name="OverviewsPage_TodayOrderLabel.Text" xml:space="preserve">
     <value>Đơn hàng hôm nay</value>
   </data>
@@ -564,6 +567,9 @@
   <data name="OrderListPage_Price.Text" xml:space="preserve">
     <value>Giá:</value>
   </data>
+  <data name="OrderListPage_SubTotalDetail.Text" xml:space="preserve">
+    <value>Tạm tính:</value>
+  </data>
   <data name="OrderListPage_StartDate.Text" xml:space="preserve">
     <value>Ngày Bắt đầu</value>
   </data>
@@ -592,10 +598,10 @@
     <value>Top 5 khách hàng mua nhiều nhất</value>
   </data>
   <data name="AnalyticsPage_CategoryChart.Text" xml:space="preserve">
-    <value>Biểu đồ số lượng sản phẩm đã bán theo danh mục</value>
+    <value>Biểu đồ doanh thu sản phẩm đã bán theo danh mục</value>
   </data>
   <data name="AnalyticsPage_ManufacturerChart.Text" xml:space="preserve">
-    <value>Biểu đồ số lượng sản phẩm đã bán theo nhà sản xuất</value>
+    <value>Biểu đồ doanh thu sản phẩm đã bán theo nhà sản xuất</value>
   </data>
   <data name="ManufacturerPage_Total.Text" xml:space="preserve">
     <value>Tổng số thương hiệu</value>
@@ -620,5 +626,55 @@
   </data>
   <data name="CategoryPage_NameInput.PlaceholderText" xml:space="preserve">
     <value>Nhập tên danh mục</value>
+  <data name="CustomerPage_AddCustomer.Text" xml:space="preserve">
+    <value>Thêm khách hàng</value>
+  </data>
+  <data name="CustomerPage_NameLabel.Text" xml:space="preserve">
+    <value>Tên Khách hàng</value>
+  </data>
+  <data name="CustomerPage_NameInput.PlaceholderText" xml:space="preserve">
+    <value>Nhập tên khách hàng</value>
+  </data>
+  <data name="CustomerPage_PhoneNumberLabel.Text" xml:space="preserve">
+    <value>Số điện thoại khách hàng</value>
+  </data>
+  <data name="CustomerPage_PhoneNumberInput.PlaceholderText" xml:space="preserve">
+    <value>Nhập số điện thoại khách hàng</value>
+  </data>
+  <data name="CustomerPage_SaveButton.Content" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="CustomerPage_TotalCustomers.Text" xml:space="preserve">
+    <value>Tổng số khách hàng</value>
+  </data>
+  <data name="EditCustomerPage_Name.Text" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="EditCustomerPage_Phone.Text" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="EditCustomerPage_Point.Text" xml:space="preserve">
+    <value>Điểm</value>
+  </data>
+  <data name="EditCustomerPage_Loyal.Text" xml:space="preserve">
+    <value>Thân thiết</value>
+  </data>
+  <data name="EditCustomerPage_SaveButton.Content" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="EditCustomerPage_CancelButton.Content" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+  <data name="AnalyticsPage_AverageCalculator.Text" xml:space="preserve">
+    <value>Doanh thu trung bình</value>
+  </data>
+  <data name="AnalyticsPage_StartDate.Header" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+  </data>
+  <data name="AnalyticsPage_EndDate.Header" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+  </data>
+  <data name="AnalyticsPage_Calculate.Content" xml:space="preserve">
+    <value>Tính</value>
   </data>
 </root>

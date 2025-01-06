@@ -15,12 +15,12 @@
         <DataTemplate x:Key="CustomerItemTemplate" x:DataType="models:Customer">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{x:Bind ID}"
@@ -46,6 +46,13 @@
                         VerticalAlignment="Center"
                         Grid.Column="6">
 
+                    <Button Margin="0, 0, 8, 0"
+                        Name="editButton"
+                        Click="editButton_Click">
+                        <FontIcon Glyph="&#xE70F;" 
+                            FontSize="12"/>
+                    </Button>
+
                     <Button Name="deleteButton"
                         Click="deleteButton_Click">
                         <FontIcon Glyph="&#xE74D;" 
@@ -69,12 +76,12 @@
                     <Grid Padding="12, 12, 12, 12" Margin="0, 20, 0, 0" Column="0"
                           Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Text="ID"
@@ -96,14 +103,14 @@
                                FontWeight="Bold"
                                Grid.Column="4"
                                x:Uid="CustomerPage_Loyal"/>
-                        <TextBlock
+                        <TextBlock Text="Action"
                                FontWeight="Bold"
                                Grid.Column="5"
-                               x:Uid="CustomerPage_Active"/>
+                               x:Uid="CustomerPage_Action"/>
                     </Grid>
                     <ListView
-                      ItemTemplate="{StaticResource CustomerItemTemplate}"
-                      ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}"/>
+                        ItemTemplate="{StaticResource CustomerItemTemplate}"
+                        ItemsSource="{x:Bind ViewModel.Customers, Mode=OneWay}"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 20, 0, 0">
                         <TextBlock Name="infoTextBlock" 
                            Text="{x:Bind ViewModel.Info, Mode=OneWay}" 
@@ -137,22 +144,49 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid Grid.Column="0" Margin="0, 0, 50, 0">
+        <Grid Grid.Column="0" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <local:CustomerInforUserControl Grid.Row="0" x:Name="customerUserControl"/>
-            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            
+            <StackPanel Grid.Row="0" Padding="0, 0, 40, 0">
+                <TextBlock Text="Add Customer"
+                     FontSize="22"
+                     FontWeight="SemiBold"
+                     x:Uid="CustomerPage_AddCustomer"/>
+                <TextBlock Text="Customer's Name"
+                     Margin="0, 24, 0, 12"
+                     x:Uid="CustomerPage_NameLabel"/>
+                <TextBox PlaceholderText="Enter Customer's name"
+                     x:Uid="CustomerPage_NameInput"
+                     Name="nameInput"/>
+                <TextBlock Text="Customer's Phone Number"
+                     Margin="0, 16, 0, 12"
+                     x:Uid="CustomerPage_PhoneNumberLabel"/>
+                <TextBox PlaceholderText="Enter Customer's phone number"
+                     x:Uid="CustomerPage_PhoneNumberInput"
+                     Name="phoneNumberInput"/>
+                <Button Content="Save"
+                    Margin="0, 16, 0, 20"
+                    HorizontalAlignment="Right"
+                    Width="100"
+                    Style="{ThemeResource AccentButtonStyle}"
+                    x:Uid="CustomerPage_SaveButton"
+                    Click="addButton_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"  HorizontalAlignment="Center" Margin="0, 0, 40, 20">
                 <Border CornerRadius="10" Padding="10" BorderThickness="2" BorderBrush="{StaticResource AccentAAFillColorDefaultBrush}">
                     <StackPanel HorizontalAlignment="Center" Padding="20, 8, 20, 10">
                         <TextBlock 
                             HorizontalAlignment="Center" 
                             Text="Total Customers" 
                             FontSize="20"
-                            FontWeight="SemiBold"/>
+                            FontWeight="SemiBold"
+                            x:Uid="CustomerPage_TotalCustomers"/>
                         <TextBlock 
-                            Text="{x:Bind ViewModel.customerCount}" 
+                            Text="{x:Bind ViewModel.TotalItems, Mode=OneWay}" 
                             HorizontalAlignment="Center"
                             FontSize="40" 
                             FontWeight="Bold" />

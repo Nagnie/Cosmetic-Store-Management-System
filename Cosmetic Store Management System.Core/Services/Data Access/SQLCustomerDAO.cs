@@ -29,6 +29,25 @@ public class SQLCustomerDAO : ICustomerDAO
         return customerId;
     }
 
+    public bool CanDeleteCustomer(string phone)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT COUNT(*) 
+            FROM "CUSTOMER" cu join "ORDERS" o on cu.customer_id = o.customer_id
+            WHERE cu.phone = '{phone}'
+        """;
+
+        int orderCount = Convert.ToInt32(command.ExecuteScalar());
+        connection.Close();
+
+        return orderCount == 0; // Return true if no orders, false otherwise
+    }
+
     public void DeleteCustomer(string phone)
     {
         NpgsqlConnection connection = DBConnection.GetConnection();
@@ -118,6 +137,7 @@ public class SQLCustomerDAO : ICustomerDAO
         command.CommandText = $"""
                 SELECT count(*) over() as Total, cus.customer_id, cus.customer_name, cus.phone, cus.address, cus.point, cus.loyal
                 FROM "CUSTOMER" cus
+                ORDER BY cus.customer_id
                 OFFSET @Skip LIMIT @Take;
             """;
 
@@ -167,6 +187,46 @@ public class SQLCustomerDAO : ICustomerDAO
         command.Parameters.AddWithValue("point", loyalCustomer.Point);
         command.Parameters.AddWithValue("phone", loyalCustomer.Phone);
 
+        command.ExecuteNonQuery();
+        connection.Close();
+    }
+
+    public bool CustomerExists(string name, string phone)
+    {
+        using var connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+            SELECT COUNT(1)
+            FROM "CUSTOMER"
+            WHERE customer_name = @name AND phone = @phone
+        """;
+        command.Parameters.AddWithValue("@name", name);
+        command.Parameters.AddWithValue("@phone", phone);
+
+        int count = Convert.ToInt32(command.ExecuteScalar());
+        connection.Close();
+
+        return count > 0;
+    }
+
+    public void EditCustomer(Customer customer)
+    {
+        NpgsqlConnection connection = DBConnection.GetConnection();
+        connection.Open();
+
+        using var command = new NpgsqlCommand();
+        command.Connection = connection;
+        command.CommandText = $"""
+                UPDATE "CUSTOMER"
+                SET customer_name = @name, phone = @phone
+                WHERE customer_id = @id
+            """;
+        command.Parameters.AddWithValue("@name", customer.Name);
+        command.Parameters.AddWithValue("@phone", customer.Phone);
+        command.Parameters.AddWithValue("@id", customer.ID);
         command.ExecuteNonQuery();
         connection.Close();
     }

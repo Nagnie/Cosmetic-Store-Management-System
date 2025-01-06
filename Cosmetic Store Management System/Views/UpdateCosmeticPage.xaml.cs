@@ -45,33 +45,86 @@ public sealed partial class UpdateCosmeticPage : Page
         }
     }
 
+    private void QuantityTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (int.TryParse(((TextBox)sender).Text, out int quantity))
+        {
+            ViewModel.Cosmetic.Quantity = quantity;
+        }
+        else
+        {
+            ViewModel.Cosmetic.Quantity = 0; // Default to prevent validation bypass
+        }
+    }
+
+    private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (int.TryParse(((TextBox)sender).Text, out int price))
+        {
+            ViewModel.Cosmetic.Price = price;
+        }
+        else
+        {
+            ViewModel.Cosmetic.Price = 0; // Default to prevent validation bypass
+        }
+    }
+
+
     private bool ValidateInput()
     {
-        var errorMessage = "";
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
+        string errorMessage = "";
 
         // Name validation
         if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
         {
-            errorMessage = language.Equals("en-US") 
-                ? "Please enter product name"
-                : "Vui lòng nhập tên sản phẩm";
+            if (language.Equals("en-US"))
+            {
+                errorMessage += "Name cannot be empty.\n";
+            }
+            else
+            {
+                errorMessage += "Tên không thể để trống.\n";
+            }
         }
 
         // Quantity validation
         else if (ViewModel.Cosmetic.Quantity <= 0)
         {
-            errorMessage = language.Equals("en-US") 
-                ? "Please enter a valid quantity"
-                : "Vui lòng nhập số lượng hợp lệ";
-        }
+                if (language.Equals("en-US"))
+                {
+                    errorMessage += "Quantity must be a positive number.\n";
+                }
+                else
+                {
+                    errorMessage += "Số lượng phải là một số dương.\n";
+                }
+            }
 
         // Price validation
-        else if (ViewModel.Cosmetic.Price <= 0)
+        if (ViewModel.Cosmetic.Price <= 0)
         {
-            errorMessage = language.Equals("en-US") 
-                ? "Please enter a valid price"
-                : "Vui lòng nhập giá hợp lệ";
+                if (language.Equals("en-US"))
+                {
+                    errorMessage += "Price must be a positive number.\n";
+                }
+                else
+                {
+                    errorMessage += "Giá tiền phải là một số dương.\n";
+                }
+            }
+
+        if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
+        {
+            if (language.Equals("en-US"))
+            {
+                errorMessage += "Please select an image for the product.\n";
+            }
+            else
+            {
+                errorMessage += "Vui lòng chọn một ảnh cho sản phẩm.\n";
+            } 
         }
 
         if (errorMessage != "")
@@ -86,12 +139,28 @@ public sealed partial class UpdateCosmeticPage : Page
     // Method to display validation errors
     private async void DisplayValidationErrors(string errorMessage)
     {
-        await new ContentDialog
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+
+        if (language.Equals("en-US"))
         {
-            XamlRoot = this.Content.XamlRoot,
-            Content = errorMessage,
-            CloseButtonText = "OK"
-        }.ShowAsync();
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Validation Error",
+                Content = errorMessage,
+                CloseButtonText = "OK"
+            }.ShowAsync();
+        }
+        else
+        {
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Title = "Lỗi tính hợp lệ",
+                Content = errorMessage,
+                CloseButtonText = "OK"
+            }.ShowAsync();
+        }
     }
 
     private void cancelButton_Click(object sender, RoutedEventArgs e)

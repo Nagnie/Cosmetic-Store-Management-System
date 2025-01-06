@@ -16,27 +16,28 @@
         <local:IntToCurrencyConverter x:Key="currencyConverter"/>
     </Page.Resources>
 
-    <Grid x:Name="ContentArea">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid x:Name="ContentArea">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Grid.Row="0" Margin="25,10,0,0">
-            <Button 
-                x:Name="backButton"
-                Click="backButton_Click">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE72B;"/>
-                    <TextBlock Text="Product List" Margin="8,0,0,0"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="0" Margin="25,10,0,0">
+                <Button 
+            x:Name="backButton"
+            Click="backButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE72B;"/>
+                        <TextBlock Text="Product List" Margin="8,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,0,0">
 
@@ -48,7 +49,7 @@
 
                 <!-- Delete and Edit buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                    <Button x:Uid="ProductPage_DeleteButton"
+                    <Button x:Uid="ProductPage_DeleteButton"<<<<<<< test
                             Style="{ThemeResource ButtonRevealStyle}"
                             Background="{ThemeResource ApplicationPressedForegroundThemeBrush}"
                             Content="Delete" 
@@ -70,88 +71,92 @@
             </StackPanel>
 
             <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,40,0,0">
-            
-        
-        <!-- Right Column (Product details) -->
-            <StackPanel HorizontalAlignment="Left">
-                <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Name, Mode=OneWay}"></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,15,0,0">
-                    <Run Text="ID: " FontWeight="Bold" x:Uid="ProductPage_ID"></Run>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0">
-                    <Run Text="Category: " FontWeight="Bold" x:Uid="ProductPage_Category"></Run>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0">
-                    <Run Text="Brand Name: " FontWeight="Bold" x:Uid="ProductPage_Brand"></Run>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0">
-                    <Run Text="Quantity: " FontWeight="Bold" x:Uid="ProductPage_Quantity"/>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0">
-                    <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
 
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0">
-                    <Run Text="Status: " FontWeight="Bold" x:Uid="ProductPage_Status"/>
-                    <Run Text="In stock" FontWeight="Normal" ></Run>
-                </TextBlock>
-            
-                <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
-                    <Run Text="Description: " FontWeight="Bold" x:Uid="ProductPage_Description"/>
-                    <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
-                </TextBlock>
-            </StackPanel>
-        </ScrollViewer>
 
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <!-- Right Column (Product details) -->
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock FontSize="30" FontWeight="Bold" Margin="25, 0, 0, 0" TextWrapping="Wrap">
+                <Run Text="{x:Bind ViewModel.Cosmetic.Name, Mode=OneWay}"></Run>
+                    </TextBlock>
 
-            <Button
-                x:Name="previousProductButton"
-                Click="previousProductButton_Click"
-                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
-                Style="{StaticResource AccentButtonStyle}"
-                Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"
-                Grid.Column="0"
-                HorizontalAlignment="Left"
-                Margin="25,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE72B;"/>
-                    <TextBlock Text="Previous Product" Margin="8,0,0,0" x:Uid="ProductPage_prevBtn"/>
+                    <TextBlock FontSize="20" Margin="25,15,0,0">
+                <Run Text="ID: " FontWeight="Bold" x:Uid="ProductPage_ID"></Run>
+                <Run Text="{x:Bind ViewModel.Cosmetic.ID, Mode=OneWay}" FontWeight="Normal" ></Run>
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Category: " FontWeight="Bold" x:Uid="ProductPage_Category"></Run>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Category.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Brand Name: " FontWeight="Bold" x:Uid="ProductPage_Brand"></Run>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Manufacturer.Name, Mode=OneWay}" FontWeight="Normal" ></Run>
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Quantity: " FontWeight="Bold" x:Uid="ProductPage_Quantity"/>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=OneWay}" FontWeight="Normal" ></Run>
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Price: " FontWeight="Bold" x:Uid="ProductPage_Price"/>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Price, Converter={StaticResource currencyConverter}, Mode=OneWay}" FontWeight="Normal" ></Run>
+
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0">
+                <Run Text="Status: " FontWeight="Bold" x:Uid="ProductPage_Status"/>
+                <Run Text="In stock" FontWeight="Normal" ></Run>
+                    </TextBlock>
+
+                    <TextBlock FontSize="20" Margin="25,10,0,0" TextWrapping="Wrap">
+                <Run Text="Description: " FontWeight="Bold" x:Uid="ProductPage_Description"/>
+                <Run Text="{x:Bind ViewModel.Cosmetic.Description, Mode=OneWay}" FontWeight="Normal" ></Run>
+                    </TextBlock>
                 </StackPanel>
-            </Button>
+            </ScrollViewer>
 
-            <Button 
-                x:Name="nextProductButton"
-                Click="nextProductButton_Click"
-                Grid.Column="1"
-                Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
-                Style="{StaticResource AccentButtonStyle}"
-                Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"  
-                HorizontalAlignment="Right"
-                Margin="0,0,25,0">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Next Product" Margin="0,0,8,0"
-                               x:Uid="ProductPage_nextBtn"/>
-                    <FontIcon Glyph="&#xE72A;" />
-                </StackPanel>
-            </Button>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+            x:Name="previousProductButton"
+            Click="previousProductButton_Click"
+            Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+            Style="{StaticResource AccentButtonStyle}"
+            Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            Margin="25,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon Glyph="&#xE72B;"/>
+                        <TextBlock Text="Previous Product" Margin="8,0,0,0" x:Uid="ProductPage_prevBtn"/>
+                    </StackPanel>
+                </Button>
+
+                <Button 
+            x:Name="nextProductButton"
+            Click="nextProductButton_Click"
+            Grid.Column="1"
+            Foreground="{ThemeResource AccentAAFillColorDefaultBrush}"
+            Style="{StaticResource AccentButtonStyle}"
+            Background="{ThemeResource AccentAcrylicBackgroundFillColorBaseBrush}"  
+            HorizontalAlignment="Right"
+            Margin="0,0,25,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Next Product" Margin="0,0,8,0"
+                           x:Uid="ProductPage_nextBtn"/>
+                        <FontIcon Glyph="&#xE72A;" />
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
-    </Grid>
+
+    </ScrollViewer>
+    
+    
 </Page>

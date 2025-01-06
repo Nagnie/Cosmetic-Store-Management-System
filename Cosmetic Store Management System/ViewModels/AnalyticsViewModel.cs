@@ -168,70 +168,75 @@ public partial class AnalyticsViewModel : ObservableObject
             }
         ];
     }
-    public IEnumerable<ISeries> Categories
+
+    public double CalculateAverageRevenue(DateTime startDate, DateTime endDate)
+    {
+        IOrderDAO orderDAO = new SQLOrderDAO();
+        var revenues = orderDAO.GetRevenues()
+            .Where(r => new DateTime(r.Year, r.Month, 1) >= startDate &&
+                        new DateTime(r.Year, r.Month, 1) <= endDate)
+            .ToList();
+
+        if (revenues.Any())
+        {
+            return revenues.Average(r => r.TotalRevenue);
+        }
+        return 0;
+    }
+
+
+    // Category Chart
+    public IEnumerable<ISeries> CategorySeries
     {
         get; set;
-    }
+    } = [];
 
     private void CreateCategoryChart()
     {
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
-        ICategoryDAO categoryDAO = new SQLCategoryDAO();
-        List<Category> categories = categoryDAO.GetAllCategories();
+        IOrderDetailDAO dao = new SQLOrderDetailDAO();
+        List<(string name, long totalRevenue)> categories = dao.ProfitableCategories();
 
-        // Sắp xếp danh sách theo số lượng sản phẩm giảm dần
-        var sortedCategories = categories.OrderByDescending(c => c.ProductCount).ToList();
+        var top5Categories = categories.Take(5).ToList();
 
-        // Lấy top 5
-        var top5Categories = sortedCategories.Take(5);
+        var otherCategories = categories.Skip(5).Sum(s => s.totalRevenue);
 
-        // Tính tổng số lượng sản phẩm còn lại
-        var othersCount = sortedCategories.Skip(5).Sum(c => c.ProductCount);
-
-        // Tạo danh sách Series với "Khác" ở đầu
         var series = new List<PieSeries<int>>();
         var legends = new List<CategoryLegend>();
 
-        // Thêm mục "Khác" trước
-        if (othersCount > 0)
+        if (otherCategories > 0)
         {
             series.Add(new PieSeries<int>
             {
-                Values = new[] { othersCount },
+                Values = new[] { (int)otherCategories },
                 Name = language.Equals("en-US") ? "Other" : "Khác",
-                MaxRadialColumnWidth = 60
+                MaxRadialColumnWidth = 80
             });
 
             legends.Add(new CategoryLegend
             {
                 Name = language.Equals("en-US") ? "Other" : "Khác",
-                ProductCount = othersCount
+                TotalRevenue = (int)otherCategories
             });
         }
 
-        // Thêm top 5 vào sau
-        series.AddRange(top5Categories.Select(category =>
-            new PieSeries<int>
-            {
-                Values = new[] { category.ProductCount },
-                Name = category.Name,
-                MaxRadialColumnWidth = 60
-            }));
-
-        legends.AddRange(top5Categories.Select(category => new CategoryLegend
+        series.AddRange(top5Categories.Select(c => new PieSeries<int>
         {
-            Name = category.Name,
-            ProductCount = category.ProductCount
+            Name = c.name,
+            Values = new ObservableCollection<int> { (int)c.totalRevenue },
+            MaxRadialColumnWidth = 80
         }));
 
-        // Gán dữ liệu cho biểu đồ
-        Categories = series;
+        legends.AddRange(top5Categories.Select(c => new CategoryLegend
+        {
+            Name = c.name,
+            TotalRevenue = (int)c.totalRevenue,
+        }));
 
-        // Gán dữ liệu cho chú thích
+        CategorySeries = series;
         CategoryLegends = legends;
     }
 
-    // Danh sách chú thích
     public List<CategoryLegend> CategoryLegends
     {
         get; set;
@@ -243,18 +248,57 @@ public partial class AnalyticsViewModel : ObservableObject
         {
             get; set;
         }
-        public int ProductCount
+        public int TotalRevenue
         {
             get; set;
         }
     }
 
-    public IEnumerable<ISeries> Manufacturers
+    //Manufacturer Chart
+    public IEnumerable<ISeries> ManufacturerSeries
     {
         get; set;
+    } = [];
+
+    private void CreateManufacturerChart()
+    {
+        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
+        IOrderDetailDAO dao = new SQLOrderDetailDAO();
+        List<(string name, long totalRevenue)> manufacturers = dao.ProfitableManufacturers();
+        var top5Manufacturers = manufacturers.Take(5).ToList();
+        var otherManufacturers = manufacturers.Skip(5).Sum(s => s.totalRevenue);
+        var series = new List<PieSeries<int>>();
+        var legends = new List<ManufacturerLegend>();
+
+        if (otherManufacturers > 0)
+        {
+            series.Add(new PieSeries<int>
+            {
+                Values = new[] { (int)otherManufacturers },
+                Name = language.Equals("en-US") ? "Other" : "Khác",
+                MaxRadialColumnWidth = 80
+            });
+            legends.Add(new ManufacturerLegend
+            {
+                Name = language.Equals("en-US") ? "Other" : "Khác",
+                TotalRevenue = (int)otherManufacturers
+            });
+        }
+        series.AddRange(top5Manufacturers.Select(c => new PieSeries<int>
+        {
+            Name = c.name,
+            Values = new ObservableCollection<int> { (int)c.totalRevenue },
+            MaxRadialColumnWidth = 80
+        }));
+        legends.AddRange(top5Manufacturers.Select(c => new ManufacturerLegend
+        {
+            Name = c.name,
+            TotalRevenue = (int)c.totalRevenue,
+        }));
+        ManufacturerSeries = series;
+        ManufacturerLegends = legends;
     }
 
-    // Thuộc tính lưu danh sách chú thích
     public List<ManufacturerLegend> ManufacturerLegends
     {
         get; set;
@@ -266,69 +310,12 @@ public partial class AnalyticsViewModel : ObservableObject
         {
             get; set;
         }
-        public int ProductCount
+        public int TotalRevenue
         {
             get; set;
         }
     }
 
-    private void CreateManufacturerChart()
-    {
-        var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
-        IManufacturerDAO manufacturerDAO = new SQLManufacturerDAO();
-        List<Manufacturer> manufacturers = manufacturerDAO.GetAllManufacturers();
-
-        // Sắp xếp danh sách theo số lượng sản phẩm giảm dần
-        var sortedManufacturers = manufacturers.OrderByDescending(m => m.ProductCount).ToList();
-
-        // Lấy top 5
-        var top5Manufacturers = sortedManufacturers.Take(5);
-
-        // Tính tổng số lượng sản phẩm còn lại
-        var othersCount = sortedManufacturers.Skip(5).Sum(m => m.ProductCount);
-
-        // Tạo danh sách Series với "Khác" ở đầu
-        var series = new List<PieSeries<int>>();
-        var legends = new List<ManufacturerLegend>();
-
-        // Thêm mục "Khác" trước
-        if (othersCount > 0)
-        {
-            series.Add(new PieSeries<int>
-            {
-                Values = new[] { othersCount },
-                Name = language.Equals("en-US") ? "Other" : "Khác",
-                MaxRadialColumnWidth = 60
-            });
-
-            legends.Add(new ManufacturerLegend
-            {
-                Name = language.Equals("en-US") ? "Other" : "Khác",
-                ProductCount = othersCount
-            });
-        }
-
-        // Thêm top 5 vào sau
-        series.AddRange(top5Manufacturers.Select(manufacturer =>
-            new PieSeries<int>
-            {
-                Values = new[] { manufacturer.ProductCount },
-                Name = manufacturer.Name,
-                MaxRadialColumnWidth = 60
-            }));
-
-        legends.AddRange(top5Manufacturers.Select(manufacturer => new ManufacturerLegend
-        {
-            Name = manufacturer.Name,
-            ProductCount = manufacturer.ProductCount
-        }));
-
-        // Gán dữ liệu cho biểu đồ
-        Manufacturers = series;
-
-        // Gán dữ liệu cho chú thích
-        ManufacturerLegends = legends;
-    }
 
     public class TopProductsLegend
     {

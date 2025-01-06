@@ -14,4 +14,6 @@ public interface IOrderDetailDAO
     void UpdateOrderDetail(OrderDetail orderDetail);
     void DeleteOrderDetail(int ID);
     List<(string name, long total)> GetTop5MostPurchasedProducts();
+    List<(string name, long totalRevenue)> ProfitableCategories();
+    List<(string name, long totalRevenue)> ProfitableManufacturers();
 }

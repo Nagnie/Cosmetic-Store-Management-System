@@ -190,7 +190,7 @@
                     <ListView ItemsSource="{x:Bind ViewModel.ExtraOrderLists, Mode=OneWay}">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="local3:ExtraOrderListViewModel">
-                                <Grid>
+                                <Grid Padding="0, 8, 0, 8">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="25"/>
                                         <RowDefinition Height="25"/>
@@ -217,7 +217,9 @@
                                         <TextBlock Text="Quantity:" FontWeight="SemiBold" Margin="0,0,8,0" x:Uid="OrderListPage_Quantity"/>
                                         <TextBlock Text="{x:Bind OrderDetail.Quantity}" Margin="0,0,20,0"/>
                                         <TextBlock Text="Price:" FontWeight="SemiBold" Margin="0,0,8,0" x:Uid="OrderListPage_Price"/>
-                                        <TextBlock Text="{x:Bind Cosmetic.Price, Converter={StaticResource currencyConverter}}" />
+                                        <TextBlock Text="{x:Bind Cosmetic.Price, Converter={StaticResource currencyConverter}}" Margin="0,0,20,0"/>
+                                        <TextBlock Text="Total:" FontWeight="SemiBold" Margin="0,0,8,0" x:Uid="OrderListPage_SubTotalDetail"/>
+                                        <TextBlock Text="{x:Bind OrderDetail.SubTotal, Converter={StaticResource currencyConverter}}" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
