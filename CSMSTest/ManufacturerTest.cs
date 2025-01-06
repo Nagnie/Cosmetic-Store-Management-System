@@ -10,6 +10,7 @@ namespace CSMSTest
         public void AddManufacturer_EmptyName_Fail()
         {
             NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("saveButton").Click();
             try
             {
@@ -27,7 +28,9 @@ namespace CSMSTest
         public void AddManufacturer_EmptyOrigin_Fail()
         {
             NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test");
+            session.FindElementByAccessibilityId("originInput").Clear();
             session.FindElementByAccessibilityId("saveButton").Click();
 
             try
@@ -47,12 +50,16 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
             session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             session.FindElementByName("OK").Click();
 
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
             session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
 
@@ -73,7 +80,9 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
             session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             try
@@ -129,7 +138,9 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
             session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             session.FindElementByName("OK").Click();
