@@ -62,7 +62,8 @@
                     Style="{StaticResource AccentButtonStyle}"
                     BorderThickness="0"
                     Click="CheckoutButton_Click"
-                    x:Uid="CreateOrderPage_CheckOutButton"/>
+                    x:Uid="CreateOrderPage_CheckOutButton"
+                    Name="checkoutButton"/>
         </Grid>
     </Grid>
 </Page>

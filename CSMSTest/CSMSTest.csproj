@@ -82,6 +82,9 @@
     <Compile Include="CategoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginTest.cs" />
+    <Compile Include="ManufacturerTest.cs" />
+    <Compile Include="CreateOrder.cs" />
+    <Compile Include="CosmeticTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

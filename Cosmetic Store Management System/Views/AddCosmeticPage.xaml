@@ -150,13 +150,13 @@
                     Margin="0, 0, 20, 0"
                     Width="80"
                     x:Uid="AddCosmeticPage_SaveButton"
-                    />
+                    x:Name="saveButton"/>
 
             <Button Content="Cancel"
                     Click="cancelButton_Click"
                     Width="80"
                     x:Uid="AddCosmeticPage_CancelButton"
-                    />
+                    x:Name="cancelButton"/>
         </StackPanel>
     </StackPanel>
 </Page>

@@ -215,6 +215,15 @@ public sealed partial class ProductDataPage : Page
             var cosmetic = button?.DataContext as Cosmetic;
             ViewModel.dao.DeleteCosmetic(cosmetic.ID);
             ViewModel.LoadData();
+
+            await new ContentDialog
+            {
+                XamlRoot = this.Content.XamlRoot,
+                Content = language.Equals("en-US") 
+                  ? "Product is deleted successfully!" 
+                  : "Sản phẩm đã được xóa thành công!",
+                CloseButtonText = "OK"
+            }.ShowAsync();
         }
 
     }

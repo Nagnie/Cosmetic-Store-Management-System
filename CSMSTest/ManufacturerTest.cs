@@ -1,16 +1,33 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Appium.Windows;
 
 namespace CSMSTest
 {
     [TestClass]
-    public class CategoryTest : AppSession
+    public class ManufacturerTest : AppSession
     {
         [TestMethod]
-        public void AddCategory_EmptyName_Fail()
+        public void AddManufacturer_EmptyName_Fail()
         {
-            NavigateToCategoryPage();
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("saveButton").Click();
+            try
+            {
+                session.FindElementByName("Lỗi");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Error");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddManufacturer_EmptyOrigin_Fail()
+        {
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").SendKeys("Test");
             session.FindElementByAccessibilityId("saveButton").Click();
 
             try
@@ -26,15 +43,57 @@ namespace CSMSTest
         }
 
         [TestMethod]
-        public void AddCategory_DuplicateName_Fail()
+        public void AddManufacturer_DuplicateName_Fail()
         {
             var time = DateTime.Now.Ticks + "";
-            NavigateToCategoryPage();
+            NavigateToManufacturerPage();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             session.FindElementByName("OK").Click();
 
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Lỗi");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Error");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddManufacturer_ValidNameAndOrigin_Success()
+        {
+            var time = DateTime.Now.Ticks + "";
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("saveButton").Click();
+            try
+            {
+                session.FindElementByName("Thành công");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Success");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditManufacturer_EmptyName_Fail()
+        {
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("saveButton").Click();
             try
             {
@@ -48,11 +107,62 @@ namespace CSMSTest
         }
 
         [TestMethod]
-        public void AddCategory_ValidName_Success()
+        public void EditManufacturer_EmptyOrigin_Fail()
+        {
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("originInput").Clear();
+            session.FindElementByAccessibilityId("saveButton").Click();
+            try
+            {
+                session.FindElementByName("Lỗi");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Error");
+            }
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditManufacturer_DuplicateName_Fail()
         {
             var time = DateTime.Now.Ticks + "";
-            NavigateToCategoryPage();
+            NavigateToManufacturerPage();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("saveButton").Click();
+            session.FindElementByName("OK").Click();
+
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("nameInput").Clear();
+            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Lỗi");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Error");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditManufacturer_ValidNameAndOrigin_Success()
+        {
+            var time = DateTime.Now.Ticks + "";
+            NavigateToManufacturerPage();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("nameInput").Clear();
+            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
+            session.FindElementByAccessibilityId("originInput").Clear();
+            session.FindElementByAccessibilityId("originInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
 
             try
@@ -63,70 +173,7 @@ namespace CSMSTest
             {
                 session.FindElementByName("Success");
             }
-            session.FindElementByName("OK").Click();
-        }
 
-        [TestMethod]
-        public void EditCategory_EmptyName_Fail()
-        {
-            NavigateToCategoryPage();
-            session.FindElementByAccessibilityId("editButton").Click();
-            session.FindElementByAccessibilityId("nameInput").Clear();
-            session.FindElementByAccessibilityId("saveButton").Click();
-
-            try
-            {
-                session.FindElementByName("Lỗi");
-            }
-            catch (Exception)
-            {
-                session.FindElementByName("Error");
-            }
-            session.FindElementByName("OK").Click();
-        }
-
-        [TestMethod]
-        public void EditCategory_DuplicatedName_Fail()
-        {
-            var time = DateTime.Now.Ticks + "";
-            NavigateToCategoryPage();
-            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
-            session.FindElementByAccessibilityId("saveButton").Click();
-            session.FindElementByName("OK").Click();
-
-            session.FindElementByAccessibilityId("editButton").Click();
-            session.FindElementByAccessibilityId("nameInput").Clear();
-            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
-            session.FindElementByAccessibilityId("saveButton").Click();
-
-            try
-            {
-                session.FindElementByName("Lỗi");
-            }
-            catch (Exception)
-            {
-                session.FindElementByName("Error");
-            }
-            session.FindElementByName("OK").Click();
-        }
-
-        [TestMethod]
-        public void EditCategory_ValidName_Success()
-        {
-            var time = DateTime.Now.Ticks + "";
-            NavigateToCategoryPage();
-            session.FindElementByAccessibilityId("editButton").Click();
-            session.FindElementByAccessibilityId("nameInput").Clear();
-            session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
-            session.FindElementByAccessibilityId("saveButton").Click();
-            try
-            {
-                session.FindElementByName("Thành công");
-            }
-            catch (Exception)
-            {
-                session.FindElementByName("Success");
-            }
             session.FindElementByName("OK").Click();
         }
 
@@ -143,18 +190,18 @@ namespace CSMSTest
             TearDown();
         }
 
-        public static void NavigateToCategoryPage()
+        public static void NavigateToManufacturerPage()
         {
 
             var navbar = session.FindElementByAccessibilityId("MenuItemsScrollViewer");
 
             try
             {
-                navbar.FindElementByName("Category").Click();
+                navbar.FindElementByName("Manufacturer").Click();
             }
             catch (Exception)
             {
-                navbar.FindElementByName("Danh mục").Click();
+                navbar.FindElementByName("Thương hiệu").Click();
             }
         }
     }

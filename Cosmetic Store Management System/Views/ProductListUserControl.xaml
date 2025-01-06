@@ -100,7 +100,8 @@
                   IsItemClickEnabled="True"
                   ItemClick="GridView_ItemClick"
                   Grid.Row="1"
-                  Margin="-8, 0, -8, 0">
+                  Margin="-8, 0, -8, 0"
+                  x:Name="cosmetic">
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local3:ExtraProductListViewModel" >
                     <StackPanel CornerRadius="12" 

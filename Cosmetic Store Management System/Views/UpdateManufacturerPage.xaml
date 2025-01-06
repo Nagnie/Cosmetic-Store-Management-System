@@ -40,7 +40,8 @@
         <TextBox Text="{x:Bind ViewModel.Manufacturer.Name, Mode=TwoWay}"
                  Grid.Row="1"
                  Grid.Column="1"
-                 Margin="0, 0, 0, 12"/>
+                 Margin="0, 0, 0, 12"
+                 x:Name="nameInput"/>
 
         <TextBlock Text="Origin"
                    Grid.Column="0"
@@ -51,7 +52,8 @@
                  Grid.Column="1"
                  Grid.Row="2"
                  TextWrapping="Wrap"
-                 Margin="0, 0, 0, 12"/>
+                 Margin="0, 0, 0, 12"
+                 x:Name="originInput"/>
 
         <TextBlock Text="Product Count"
                    Grid.Column="0"
@@ -73,11 +75,13 @@
                     Width="80"
                     Margin="0, 0, 12, 0"
                     Click="saveButton_Click"
-                    x:Uid="UpdateManufacturerPage_SaveButton"/>
+                    x:Uid="UpdateManufacturerPage_SaveButton"
+                    x:Name="saveButton"/>
             <Button Content="Cancel"
                     Width="80"
                     Click="cancelButton_Click"
-                    x:Uid="UpdateManufacturerPage_CancelButton"/>
+                    x:Uid="UpdateManufacturerPage_CancelButton"
+                    x:Name="cancelButton"/>
         </StackPanel>
     </Grid>
 </Page>

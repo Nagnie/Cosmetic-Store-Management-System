@@ -90,7 +90,7 @@ public sealed partial class UpdateCosmeticPage : Page
         }
 
         // Quantity validation
-        if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (ViewModel.Cosmetic.Quantity <= 0)
         {
                 if (language.Equals("en-US"))
                 {
@@ -124,7 +124,7 @@ public sealed partial class UpdateCosmeticPage : Page
             else
             {
                 errorMessage += "Vui lòng chọn một ảnh cho sản phẩm.\n";
-            }
+            } 
         }
 
         if (errorMessage != "")

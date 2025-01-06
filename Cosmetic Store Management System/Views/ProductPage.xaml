@@ -49,22 +49,24 @@
 
                 <!-- Delete and Edit buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                    <Button x:Uid="ProductPage_DeleteButton"
-                        Style="{ThemeResource ButtonRevealStyle}"
-                        Background="{ThemeResource ApplicationPressedForegroundThemeBrush}"
-                        Content="Delete" 
-                        Width="100" 
-                        Margin="10" 
-                        FontWeight="SemiBold"
-                        Click="deleteButton_Click"/>
+                    <Button x:Uid="ProductPage_DeleteButton"<<<<<<< test
+                            Style="{ThemeResource ButtonRevealStyle}"
+                            Background="{ThemeResource ApplicationPressedForegroundThemeBrush}"
+                            Content="Delete" 
+                            Width="100" 
+                            Margin="10" 
+                            FontWeight="SemiBold"
+                            Click="deleteButton_Click"
+                            x:Name="deleteButton"/>
                     <Button x:Uid="ProductPage_EditButton"
-                        Style="{ThemeResource AccentButtonStyle}"
-                        Background="{ThemeResource AccentAAFillColorTertiaryBrush}"
-                        Content="Edit" 
-                        Width="100" 
-                        Margin="10" 
-                        FontWeight="SemiBold"
-                        Click="editButton_Click"/>
+                            Style="{ThemeResource AccentButtonStyle}"
+                            Background="{ThemeResource AccentAAFillColorTertiaryBrush}"
+                            Content="Edit" 
+                            Width="100" 
+                            Margin="10" 
+                            FontWeight="SemiBold"
+                            Click="editButton_Click"
+                            x:Name="editButton"/>
                 </StackPanel>
             </StackPanel>
 

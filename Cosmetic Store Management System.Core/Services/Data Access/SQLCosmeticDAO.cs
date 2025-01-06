@@ -10,6 +10,7 @@ using Cosmetic_Store_Management_System.Core.Helpers;
 using Cosmetic_Store_Management_System.Core.Models;
 using Microsoft.UI.Composition;
 using Npgsql;
+using NpgsqlTypes;
 
 namespace Cosmetic_Store_Management_System.Core.Services.Data_Access;
 public class SQLCosmeticDAO : ICosmeticDAO
@@ -29,16 +30,18 @@ public class SQLCosmeticDAO : ICosmeticDAO
         command.Parameters.AddWithValue("categoryID", cosmetic.Category.ID);
         command.Parameters.AddWithValue("manufacturerID", cosmetic.Manufacturer.ID);
         command.Parameters.AddWithValue("quantity", cosmetic.Quantity);
-        command.Parameters.AddWithValue("description", cosmetic.Description);
+        command.Parameters.Add(new NpgsqlParameter("description", NpgsqlDbType.Text)
+        {
+            Value = cosmetic.Description == null ? DBNull.Value : cosmetic.Description
+        });
         command.Parameters.AddWithValue("price", cosmetic.Price);
         command.Parameters.AddWithValue("image", cosmetic.ImageData);
 
-        int count = command.ExecuteNonQuery();
-        bool success = count == 1;
+        var count = command.ExecuteNonQuery();
+        var success = count == 1;
 
         connection.Close();
         return success;
-        //Console.WriteLine("Inserted successfully!");
     }
     public bool DeleteCosmetic(int ID)
     {
@@ -163,7 +166,9 @@ public class SQLCosmeticDAO : ICosmeticDAO
             {
                 ID = (int)reader["cosmetic_id"],
                 Name = (string)reader["cosmetic_name"],
-                Description = (string)reader["description"],
+                Description = reader.IsDBNull(reader.GetOrdinal("description"))
+                ? null
+                : reader.GetString(reader.GetOrdinal("description")),
                 Category = new Category()
                 {
                     ID = (int)reader["category_id"],
