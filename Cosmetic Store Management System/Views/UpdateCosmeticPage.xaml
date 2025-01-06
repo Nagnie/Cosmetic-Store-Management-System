@@ -81,12 +81,10 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Quantity"/>
                 <TextBox Name="quantity"
-                         Text="{x:Bind ViewModel.Cosmetic.Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{x:Bind ViewModel.quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="4"
                          Grid.Column="1"
-                         Margin="0, 0, 0, 10"
-                         InputScope="Number"
-                         TextChanged="QuantityTextBox_TextChanged"/>
+                         Margin="0, 0, 0, 10"/>
 
                 <TextBlock Text="Price"
                            Grid.Row="5"
@@ -94,12 +92,10 @@
                            Margin="0, 0, 0, 10"
                            x:Uid="UpdateCosmeticPage_Price"/>
                 <TextBox Name="price"
-                         Text="{x:Bind ViewModel.Cosmetic.Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{x:Bind ViewModel.price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Row="5"
                          Grid.Column="1"
-                         Margin="0, 0, 0, 10"
-                         InputScope="Number"
-                         TextChanged="PriceTextBox_TextChanged"/>
+                         Margin="0, 0, 0, 10"/>
 
                 <TextBlock Text="Image"
                            Grid.Row="6"

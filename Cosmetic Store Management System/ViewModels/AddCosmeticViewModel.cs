@@ -82,4 +82,8 @@ public class AddCosmeticViewModel : ObservableRecipient
                 : "Sản phẩm đã được thêm thành công!"
         );
     }
+
+    public string price;
+
+    public string quantity;
 }

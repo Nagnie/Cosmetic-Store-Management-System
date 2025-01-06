@@ -5,6 +5,9 @@ using Microsoft.UI.Xaml.Controls;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
+using System.Text.RegularExpressions;
+using Microsoft.UI.Xaml.Input;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,6 +33,9 @@ public sealed partial class AddCosmeticPage : Page
         var language = ApplicationData.Current.LocalSettings.Values["appLanguage"];
         string errorMessage = "";
 
+        int price;
+        int quantity;
+
         // Name validation
         if (string.IsNullOrWhiteSpace(ViewModel.Cosmetic.Name))
         {
@@ -51,26 +57,28 @@ public sealed partial class AddCosmeticPage : Page
                          ? "Please select a manufacturer!\n"
                          : "Vui lòng chọn hãng sản xuất!\n";
         }
-        // Quantity validation
-        else if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (!int.TryParse(ViewModel.quantity, out int parsedQuantity) || parsedQuantity <= 0)
         {
-            errorMessage += language.Equals("en-US")
-                         ? "Quantity must be a positive number!\n"
-                         : "Số lượng sản phẩm phải là số nguyên dương!\n";
+            errorMessage += language.Equals("en-US") ? "Invalid quantity!\n" : "Số lượng không hợp lệ!\n";
         }
-        // Price validation
-        else if (ViewModel.Cosmetic.Price <= 0)
+
+        else if (!int.TryParse(ViewModel.price, out int parsedPrice) || parsedPrice <= 0) 
         {
-            errorMessage += language.Equals("en-US")
-                         ? "Price must be a positive number!\n"
-                         : "Giá sản phẩm phải là số dương!\n";
+            errorMessage += language.Equals("en-US") ? "Invalid price!\n" : "Giá không hợp lệ!\n";
         }
+
         else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
         {
             errorMessage += language.Equals("en-US")
                          ? "Please upload product image!\n"
                          : "Vui lòng tải ảnh sản phẩm!\n";
         }
+        else
+        {
+            ViewModel.Cosmetic.Price = parsedPrice;
+            ViewModel.Cosmetic.Quantity = parsedQuantity;
+        }
+
 
         if (errorMessage != "")
         {
@@ -80,6 +88,8 @@ public sealed partial class AddCosmeticPage : Page
 
         return true;
     }
+
+
 
     private async void DisplayValidationErrors(string errorMessage)
     {

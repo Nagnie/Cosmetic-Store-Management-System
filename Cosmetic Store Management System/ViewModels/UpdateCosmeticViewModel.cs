@@ -13,4 +13,9 @@ public class UpdateCosmeticViewModel
     public UpdateCosmeticViewModel()
     {
     }
+
+    public string price;
+
+
+    public string quantity;
 }

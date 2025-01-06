@@ -19,6 +19,7 @@ using Windows.Foundation.Collections;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using WinRT.Interop;
+using System.Runtime.Intrinsics.X86;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -42,6 +43,9 @@ public sealed partial class UpdateCosmeticPage : Page
         if (e.Parameter is Cosmetic cosmetic)
         {
             ViewModel.Cosmetic = cosmetic;
+
+            ViewModel.price = cosmetic.Price.ToString();
+            ViewModel.quantity = cosmetic.Quantity.ToString();
         }
     }
 
@@ -89,33 +93,22 @@ public sealed partial class UpdateCosmeticPage : Page
             }
         }
 
-        // Quantity validation
-        else if (ViewModel.Cosmetic.Quantity <= 0)
+        else if (!int.TryParse(ViewModel.quantity, out int parsedQuantity) || parsedQuantity <= 0)
         {
-                if (language.Equals("en-US"))
-                {
-                    errorMessage += "Quantity must be a positive number.\n";
-                }
-                else
-                {
-                    errorMessage += "Số lượng phải là một số dương.\n";
-                }
-            }
+            errorMessage += language.Equals("en-US") ? "Invalid quantity!\n" : "Số lượng không hợp lệ!\n";
+        }
 
-        // Price validation
-        else if (ViewModel.Cosmetic.Price <= 0)
+        else if (!int.TryParse(ViewModel.price, out int parsedPrice) || parsedPrice <= 0)
         {
-                if (language.Equals("en-US"))
-                {
-                    errorMessage += "Price must be a positive number.\n";
-                }
-                else
-                {
-                    errorMessage += "Giá tiền phải là một số dương.\n";
-                }
-            }
+            errorMessage += language.Equals("en-US") ? "Invalid price!\n" : "Giá không hợp lệ!\n";
+        }
+        else
+        {
+            ViewModel.Cosmetic.Price = parsedPrice;
+            ViewModel.Cosmetic.Quantity = parsedQuantity;
+        }
 
-        
+
         if (errorMessage != "")
         {
             DisplayValidationErrors(errorMessage);
