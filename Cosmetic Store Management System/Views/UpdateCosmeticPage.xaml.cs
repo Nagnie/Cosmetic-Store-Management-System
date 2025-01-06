@@ -95,12 +95,16 @@ public sealed partial class UpdateCosmeticPage : Page
 
         else if (!int.TryParse(ViewModel.quantity, out int parsedQuantity) || parsedQuantity <= 0)
         {
-            errorMessage += language.Equals("en-US") ? "Invalid quantity!\n" : "Số lượng không hợp lệ!\n";
+            errorMessage += language.Equals("en-US") 
+                        ? "Invalid quantity!\n" 
+                        : "Số lượng không hợp lệ!\n";
         }
 
         else if (!int.TryParse(ViewModel.price, out int parsedPrice) || parsedPrice <= 0)
         {
-            errorMessage += language.Equals("en-US") ? "Invalid price!\n" : "Giá không hợp lệ!\n";
+            errorMessage += language.Equals("en-US") 
+                        ? "Invalid price!\n" 
+                        : "Giá không hợp lệ!\n";
         }
         else
         {

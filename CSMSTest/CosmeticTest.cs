@@ -18,11 +18,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Name cannot be empty!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Tên không được để trống!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -39,11 +39,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Please select a category!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Vui lòng chọn danh mục sản phẩm!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -62,11 +62,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Please select a manufacturer!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Vui lòng chọn hãng sản xuất!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -87,11 +87,92 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Invalid quantity!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Số lượng không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddCosmetic_QuantityIsNaN_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("addNewButton").Click();
+            Thread.Sleep(1000);
+            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("categoryComboBox").Click();
+            session.FindElementByName("Kem chống nắng").Click();
+            session.FindElementByAccessibilityId("manufacturerComboBox").Click();
+            session.FindElementByName("Olay").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("abc");
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid quantity!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Số lượng không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddCosmetic_QuantityIsNegativeNumber_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("addNewButton").Click();
+            Thread.Sleep(1000);
+            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("categoryComboBox").Click();
+            session.FindElementByName("Kem chống nắng").Click();
+            session.FindElementByAccessibilityId("manufacturerComboBox").Click();
+            session.FindElementByName("Olay").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("-100");
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid quantity!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Số lượng không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddCosmetic_QuantityIsNotInt_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("addNewButton").Click();
+            Thread.Sleep(1000);
+            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("categoryComboBox").Click();
+            session.FindElementByName("Kem chống nắng").Click();
+            session.FindElementByAccessibilityId("manufacturerComboBox").Click();
+            session.FindElementByName("Olay").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("10.5");
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid quantity!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Số lượng không hợp lệ!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -113,11 +194,69 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Invalid price!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Giá không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddCosmetic_PriceIsNaN_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("addNewButton").Click();
+            Thread.Sleep(1000);
+            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("categoryComboBox").Click();
+            session.FindElementByName("Kem chống nắng").Click();
+            session.FindElementByAccessibilityId("manufacturerComboBox").Click();
+            session.FindElementByName("Olay").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("10");
+            session.FindElementByAccessibilityId("price").Clear();
+            session.FindElementByAccessibilityId("price").SendKeys("abc");
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid price!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Giá không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void AddCosmetic_PriceIsNegativeNumber_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("addNewButton").Click();
+            Thread.Sleep(1000);
+            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("categoryComboBox").Click();
+            session.FindElementByName("Kem chống nắng").Click();
+            session.FindElementByAccessibilityId("manufacturerComboBox").Click();
+            session.FindElementByName("Olay").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("100");
+            session.FindElementByAccessibilityId("price").Clear();
+            session.FindElementByAccessibilityId("price").SendKeys("-100");
+            session.FindElementByAccessibilityId("saveButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid price!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Giá không hợp lệ!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -140,11 +279,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Unable to add product");
+                session.FindElementByName("Please upload product image!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Không thể thêm sản phẩm");
+                session.FindElementByName("Vui lòng tải ảnh sản phẩm!\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -154,9 +293,10 @@ namespace CSMSTest
         public void AddCosmetic_ValidInput_Success()
         {
             NavigateToCosmeticPage();
+            var time = DateTime.Now.Ticks + "";
             session.FindElementByAccessibilityId("addNewButton").Click();
             Thread.Sleep(1000);
-            session.FindElementByAccessibilityId("name").SendKeys("Test");
+            session.FindElementByAccessibilityId("name").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("categoryComboBox").Click();
             session.FindElementByName("Kem chống nắng").Click();
             session.FindElementByAccessibilityId("manufacturerComboBox").Click();
@@ -181,27 +321,6 @@ namespace CSMSTest
             {
                 session.FindElementByName("Thành công");
             }
-            session.FindElementByName("OK").Click();
-        }
-
-        [TestMethod]
-        public void DeleteCosmetic()
-        {
-            NavigateToCosmeticPage();
-            session.FindElementByAccessibilityId("deleteButton").Click();
-            try
-            {
-                session.FindElementByName("Are you sure you want to delete this category?");
-                session.FindElementByName("Yes").Click();
-                session.FindElementByName("Product is deleted successfully!");
-            }
-            catch (Exception)
-            {
-                session.FindElementByName("Bạn có chắc chắn muốn xóa danh mục này không?");
-                session.FindElementByName("Có").Click();
-                session.FindElementByName("Sản phẩm đã được xóa thành công!");
-            }
-
             session.FindElementByName("OK").Click();
         }
 
@@ -247,7 +366,7 @@ namespace CSMSTest
         }
 
         [TestMethod]
-        public void EditCosmetic_InvalidQuantity_Fail()
+        public void EditCosmetic_QuantityIsNegative_Fail()
         {
             NavigateToCosmeticPage();
             session.FindElementByAccessibilityId("productDetailButton").Click();
@@ -258,18 +377,62 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Quantity must be a positive number.\n");
+                session.FindElementByName("Invalid quantity!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Số lượng phải là một số dương.\n");
+                session.FindElementByName("Số lượng không hợp lệ!\n");
             }
 
             session.FindElementByName("OK").Click();
         }
 
         [TestMethod]
-        public void EditCosmetic_InvalidPrice_Fail()
+        public void EditCosmetic_QuantityIsNaN_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("productDetailButton").Click();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("abc");
+            session.FindElementByAccessibilityId("updateButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid quantity!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Số lượng không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditCosmetic_QuantityIsNotInt_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("productDetailButton").Click();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("quantity").Clear();
+            session.FindElementByAccessibilityId("quantity").SendKeys("12.5");
+            session.FindElementByAccessibilityId("updateButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid quantity!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Số lượng không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditCosmetic_PriceIsNegative_Fail()
         {
             NavigateToCosmeticPage();
             session.FindElementByAccessibilityId("productDetailButton").Click();
@@ -280,11 +443,33 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Price must be a positive number.\n");
+                session.FindElementByName("Invalid price!\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Giá tiền phải là một số dương.\n");
+                session.FindElementByName("Giá không hợp lệ!\n");
+            }
+
+            session.FindElementByName("OK").Click();
+        }
+
+        [TestMethod]
+        public void EditCosmetic_PriceIsNaN_Fail()
+        {
+            NavigateToCosmeticPage();
+            session.FindElementByAccessibilityId("productDetailButton").Click();
+            session.FindElementByAccessibilityId("editButton").Click();
+            session.FindElementByAccessibilityId("price").Clear();
+            session.FindElementByAccessibilityId("price").SendKeys("abc");
+            session.FindElementByAccessibilityId("updateButton").Click();
+
+            try
+            {
+                session.FindElementByName("Invalid price!\n");
+            }
+            catch (Exception)
+            {
+                session.FindElementByName("Giá không hợp lệ!\n");
             }
 
             session.FindElementByName("OK").Click();

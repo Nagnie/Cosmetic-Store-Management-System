@@ -59,12 +59,16 @@ public sealed partial class AddCosmeticPage : Page
         }
         else if (!int.TryParse(ViewModel.quantity, out int parsedQuantity) || parsedQuantity <= 0)
         {
-            errorMessage += language.Equals("en-US") ? "Invalid quantity!\n" : "Số lượng không hợp lệ!\n";
+            errorMessage += language.Equals("en-US") 
+                        ? "Invalid quantity!\n" 
+                        : "Số lượng không hợp lệ!\n";
         }
 
         else if (!int.TryParse(ViewModel.price, out int parsedPrice) || parsedPrice <= 0) 
         {
-            errorMessage += language.Equals("en-US") ? "Invalid price!\n" : "Giá không hợp lệ!\n";
+            errorMessage += language.Equals("en-US") 
+                ? "Invalid price!\n" 
+                : "Giá không hợp lệ!\n";
         }
 
         else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
@@ -88,8 +92,6 @@ public sealed partial class AddCosmeticPage : Page
 
         return true;
     }
-
-
 
     private async void DisplayValidationErrors(string errorMessage)
     {
