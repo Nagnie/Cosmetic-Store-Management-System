@@ -106,7 +106,7 @@ public sealed partial class CustomerInforUserControl : UserControl
 
         ContentDialog notification = new ContentDialog()
         {
-            Title = language.Equals("en-US") ? "Succes" : "Thành công",
+            Title = language.Equals("en-US") ? "Success" : "Thành công",
             Content = language.Equals("en-US")
                     ? "Customer information has been saved successfully!"
                     : "Thông tin khách hàng đã được lưu thành công!",
@@ -115,7 +115,6 @@ public sealed partial class CustomerInforUserControl : UserControl
         };
 
         await notification.ShowAsync();
-        saveCustomerButton.IsEnabled = false;
     }
 
     public Customer GetCustomer()

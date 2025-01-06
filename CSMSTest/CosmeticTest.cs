@@ -236,11 +236,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Please enter product name");
+                session.FindElementByName("Name cannot be empty.\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Vui lòng nhập tên sản phẩm");
+                session.FindElementByName("Tên không thể để trống.\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -258,11 +258,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Please enter a valid quantity");
+                session.FindElementByName("Quantity must be a positive number.\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Vui lòng nhập số lượng hợp lệ");
+                session.FindElementByName("Số lượng phải là một số dương.\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -280,11 +280,11 @@ namespace CSMSTest
 
             try
             {
-                session.FindElementByName("Please enter a valid price");
+                session.FindElementByName("Price must be a positive number.\n");
             }
             catch (Exception)
             {
-                session.FindElementByName("Vui lòng nhập giá hợp lệ");
+                session.FindElementByName("Giá tiền phải là một số dương.\n");
             }
 
             session.FindElementByName("OK").Click();
@@ -310,7 +310,7 @@ namespace CSMSTest
 
             try
             {
-                navbar.FindElementByName("Cosmetic").Click();
+                navbar.FindElementByName("Product").Click();
             }
             catch (Exception)
             {
