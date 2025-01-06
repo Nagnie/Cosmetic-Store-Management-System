@@ -626,6 +626,7 @@
   </data>
   <data name="CategoryPage_NameInput.PlaceholderText" xml:space="preserve">
     <value>Nhập tên danh mục</value>
+  </data>
   <data name="CustomerPage_AddCustomer.Text" xml:space="preserve">
     <value>Thêm khách hàng</value>
   </data>

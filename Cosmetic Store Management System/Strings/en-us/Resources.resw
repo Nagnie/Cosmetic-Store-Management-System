@@ -626,6 +626,7 @@
   </data>
   <data name="CategoryPage_NameInput.PlaceholderText" xml:space="preserve">
     <value>Enter category name</value>
+    </data>
   <data name="CustomerPage_AddCustomer.Text" xml:space="preserve">
     <value>Add Customer</value>
   </data>
