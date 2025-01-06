@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Appium.Windows;
 
 namespace CSMSTest
 {
@@ -11,6 +10,7 @@ namespace CSMSTest
         public void AddCategory_EmptyName_Fail()
         {
             NavigateToCategoryPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("saveButton").Click();
 
             try
@@ -30,10 +30,12 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToCategoryPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             session.FindElementByName("OK").Click();
 
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             try
@@ -52,6 +54,7 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToCategoryPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
 
@@ -90,6 +93,7 @@ namespace CSMSTest
         {
             var time = DateTime.Now.Ticks + "";
             NavigateToCategoryPage();
+            session.FindElementByAccessibilityId("nameInput").Clear();
             session.FindElementByAccessibilityId("nameInput").SendKeys("Test" + time);
             session.FindElementByAccessibilityId("saveButton").Click();
             session.FindElementByName("OK").Click();
