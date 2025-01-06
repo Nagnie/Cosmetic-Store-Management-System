@@ -115,18 +115,7 @@ public sealed partial class UpdateCosmeticPage : Page
                 }
             }
 
-        else if (ViewModel.Cosmetic.ImageData == null || ViewModel.Cosmetic.ImageData.Length == 0)
-        {
-            if (language.Equals("en-US"))
-            {
-                errorMessage += "Please select an image for the product.\n";
-            }
-            else
-            {
-                errorMessage += "Vui lòng chọn một ảnh cho sản phẩm.\n";
-            } 
-        }
-
+        
         if (errorMessage != "")
         {
             DisplayValidationErrors(errorMessage);
@@ -173,34 +162,7 @@ public sealed partial class UpdateCosmeticPage : Page
         if (!ValidateInput()) return;
 
         ICosmeticDAO dao = new SQLCosmeticDAO();
-
-        var founded = dao.GetCosmeticByName(ViewModel.Cosmetic.Name);
-
-        if (founded != null)
-        {            
-            if (language.Equals("en-US"))
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Error",
-                    Content = "Product already exists!",
-                    CloseButtonText = "Cancel"
-                }.ShowAsync();
-            }
-            else
-            {
-                await new ContentDialog
-                {
-                    XamlRoot = this.Content.XamlRoot,
-                    Title = "Lỗi",
-                    Content = "Sản phẩm đã tồn tại!",
-                    CloseButtonText = "Hủy"
-                }.ShowAsync();
-            }
-            return;
-        }
-        
+                        
         var success = dao.UpdateCosmetic(ViewModel.Cosmetic);
 
         if (success)
