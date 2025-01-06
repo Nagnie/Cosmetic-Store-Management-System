@@ -98,9 +98,14 @@ public sealed partial class CreateOrderPage : Page
             return;
         }
 
+        string previousLoyalty = "";
+
         // Get customer info
         Customer customer = customerUserControl.GetCustomer();
-        string previousLoyalty = customer.Loyal;
+        if (customer.Loyal != null)
+        {
+            previousLoyalty = customer.Loyal;
+        }
 
         // Get payment info
         var (subtotal, discount, saleTax, total) = payment.GetPaymentInfo();
@@ -133,6 +138,7 @@ public sealed partial class CreateOrderPage : Page
 
         await contentDialog.ShowAsync();
 
+        
         // Retrieve updated loyalty level from the database
         Customer updatedCustomer = ViewModel.GetCustomerById(customer.ID); // Replace with your database access method
         if (updatedCustomer != null) // Check if the customer exists in the database
